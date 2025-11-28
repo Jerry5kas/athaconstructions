@@ -242,6 +242,11 @@
     {{-- Scroll Progress Bar --}}
     <div class="header-progress" id="scrollProgress"></div>
 
+    {{-- Global Header (exclude welcome hero) --}}
+    @unless(request()->routeIs('home'))
+        <x-header-white />
+    @endunless
+
     {{-- Google Tag Manager (noscript) --}}
     <noscript>
         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NJ9ZQFZG"
@@ -304,6 +309,59 @@
 
             document.querySelectorAll('.animate-on-scroll').forEach(el => {
                 observer.observe(el);
+            });
+        });
+    </script>
+    <script>
+        // Reusable Alpine counter for stat blocks
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('statCounter', ({ target = 0, suffix = '' } = {}) => {
+                const finalTarget = Number(target) || 0;
+
+                return {
+                    displayValue: `0${suffix}`,
+                    started: false,
+                    duration: 1500,
+                    init() {
+                        this.displayValue = `${this.formatValue(0)}${suffix}`;
+                    },
+                    start() {
+                        if (this.started) return;
+                        this.started = true;
+
+                        if (finalTarget === 0) {
+                            this.displayValue = `${this.formatValue(0)}${suffix}`;
+                            return;
+                        }
+
+                        const startTime = performance.now();
+                        const animate = (now) => {
+                            const progress = Math.min((now - startTime) / this.duration, 1);
+                            const currentValue = finalTarget * progress;
+                            this.displayValue = `${this.formatValue(currentValue)}${suffix}`;
+
+                            if (progress < 1) {
+                                requestAnimationFrame(animate);
+                            } else {
+                                this.displayValue = `${this.formatValue(finalTarget)}${suffix}`;
+                            }
+                        };
+
+                        requestAnimationFrame(animate);
+                    },
+                    formatValue(value) {
+                        if (!Number.isInteger(finalTarget)) {
+                            return value.toFixed(1).replace(/\.0$/, '');
+                        }
+
+                        const rounded = Math.round(value);
+                        if (finalTarget >= 1000) {
+                            return rounded.toLocaleString();
+                        }
+
+                        return rounded;
+                    },
+                };
             });
         });
     </script>

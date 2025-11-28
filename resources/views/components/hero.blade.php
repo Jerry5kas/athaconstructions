@@ -7,6 +7,7 @@
         formMessage: '',
         panelActive: false,
         focusDepth: 0,
+        listboxOpen: false,
         submit(event) {
             this.formSubmitting = true;
             fetch('{{ route('contact.submit') }}', {
@@ -27,16 +28,22 @@
             })
             .catch(() => this.formMessage = 'error')
             .finally(() => this.formSubmitting = false);
+        },
+        openPanel() {
+            if (!this.panelActive) this.panelActive = true;
+        },
+        closePanel() {
+            if (this.focusDepth === 0 && !this.listboxOpen) this.panelActive = false;
         }
     }"
     :class="{ 'hero-shell--active': panelActive }"
-    @mouseenter="panelActive = true"
-    @mouseleave="if (focusDepth === 0) panelActive = false"
+    @mouseenter.self="openPanel"
+    @mouseleave.self="closePanel"
     @focusin="focusDepth++; panelActive = true"
     @focusout="
         focusDepth = Math.max(focusDepth - 1, 0);
         setTimeout(() => {
-            if (focusDepth === 0 && !$el.matches(':hover')) {
+            if (focusDepth === 0 && !listboxOpen && !$el.matches(':hover')) {
                 panelActive = false;
             }
         }, 0);
@@ -46,7 +53,7 @@
 
     <x-header overlay="true" />
 
-    <div class="hero-video-layer">
+    <div class="hero-video-layer" @mouseenter="openPanel" @mouseleave="closePanel">
         <video autoplay muted loop playsinline class="hero-video">
             <source src="{{ asset('images/banner.mp4') }}" type="video/mp4">
             Your browser does not support the video tag.
@@ -56,7 +63,7 @@
     <div class="hero-overlay"></div>
 
     <div class="hero-form-panel">
-        <div class="hero-form-card">
+        <div class="hero-form-card" @mouseenter="openPanel" @mouseleave="closePanel">
             <h2 class="hero-form-title">Quick Enquiry</h2>
             <p class="hero-form-subtitle">Let's build your dream together</p>
 
@@ -80,6 +87,8 @@
                             required 
                             class="hero-input hero-input--select"
                             @change="$event.target.blur()"
+                            @focus="focusDepth++; listboxOpen = true; openPanel()"
+                            @blur="focusDepth = Math.max(focusDepth - 1, 0); listboxOpen = false; closePanel()"
                         >
                             <option value="">Construction Type</option>
                             <option value="residential">Residential</option>

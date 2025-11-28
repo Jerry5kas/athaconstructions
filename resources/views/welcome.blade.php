@@ -1,8 +1,7 @@
 <x-layouts 
     :title="$seo['title']" 
     :description="$seo['description']" 
-    :keywords="$seo['keywords']"
->
+    :keywords="$seo['keywords']">
     <x-hero :seo="$seo" />
 
     {{-- Stats Section --}}
@@ -19,8 +18,19 @@
 
                 <div class="grid grid-cols-3 gap-4 lg:gap-8 max-w-3xl mx-auto">
                     @foreach($stats as $stat)
-                        <div class="animate-on-scroll opacity-0">
-                            <p class="font-tenor text-2xl lg:text-4xl font-medium mb-2">{{ $stat['number'] }}</p>
+                        @php
+                            $numericPart = preg_replace('/[^\d\.]/', '', $stat['number']);
+                            $suffixPart = preg_replace('/[\d\.]/', '', $stat['number']);
+                            $targetValue = $numericPart !== '' ? (float) $numericPart : 0;
+                        @endphp
+                        <div 
+                            class="animate-on-scroll opacity-0"
+                            x-data="statCounter({ target: @js($targetValue), suffix: @js($suffixPart) })"
+                            x-intersect.once="start()"
+                        >
+                            <p class="font-tenor text-2xl lg:text-4xl font-medium mb-2" x-text="displayValue">
+                                {{ $stat['number'] }}
+                            </p>
                             <p class="text-xs lg:text-sm">{{ $stat['label'] }}</p>
                         </div>
                     @endforeach

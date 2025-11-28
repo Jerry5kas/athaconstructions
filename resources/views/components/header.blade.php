@@ -102,7 +102,7 @@
             left: 0;
             width: 100%;
             height: 82px;
-            background: rgba(0, 0, 0, 0.35);
+            background: rgba(0, 0, 0, 0.88);
             color: #fff;
             z-index: 120;
             transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
@@ -151,7 +151,7 @@
             font-size: 11px;
             letter-spacing: 0.18em;
             font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
+            font-weight: 400;
         }
 
         @media (min-width: 1024px) {
