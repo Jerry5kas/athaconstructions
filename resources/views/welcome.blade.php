@@ -40,29 +40,29 @@
     </section>
 
     {{-- About Section --}}
-    <section class="py-16 lg:py-24">
+    <section class="py-16 lg:py-24 about-section">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 <div class="lg:col-span-7 lg:pr-12">
-                    <p class="text-sm uppercase mb-2">ATHA Construction</p>
-                    <h2 class="font-tenor text-2xl lg:text-3xl uppercase mb-6">
+                    <p class="text-sm uppercase mb-2 animate-on-scroll opacity-0" style="animation-delay: 0s;">ATHA Construction</p>
+                    <h2 class="font-tenor text-2xl lg:text-3xl uppercase mb-6 animate-on-scroll opacity-0" style="animation-delay: 0.1s;">
                         Crafting Dreams, Building Legacies
                     </h2>
 
                     <div class="space-y-4 text-sm leading-relaxed text-justify">
-                        <p>
+                        <p class="animate-on-scroll opacity-0" style="animation-delay: 0.2s;">
                             Founded in 2016, Atha Construction has established itself as a trusted name in construction across Karnataka. Specializing in both residential and commercial projects, we are committed to transforming ideas into reality with precision, innovation, and sustainable practices.
                         </p>
-                        <p>
+                        <p class="animate-on-scroll opacity-0" style="animation-delay: 0.3s;">
                             Our approach combines cutting-edge design, advanced technology, and eco-conscious solutions to create spaces that inspire and endure. From cozy homes to modern office spaces, every project is tailored to exceed client expectations while delivering unmatched value and quality.
                         </p>
-                        <p>
+                        <p class="animate-on-scroll opacity-0" style="animation-delay: 0.4s;">
                             At Atha Construction, we believe construction is more than building structures—it's about creating environments that foster growth, comfort, and community. Our collaborative process ensures transparency and trust, from concept to completion.
                             With a strong presence in Bengaluru, Mysuru, Ballari, and beyond, we take pride in building lasting partnerships rooted in integrity and excellence. As we continue to grow, our mission remains steadfast: delivering exceptional construction services that stand the test of time.
                         </p>
                     </div>
 
-                    <a href="{{ route('about') }}" class="inline-block mt-8 px-8 py-3 border border-black text-sm uppercase tracking-wide hover:bg-black hover:text-white transition-all duration-300">
+                    <a href="{{ route('about') }}" class="inline-block mt-8 px-8 py-3 border border-black text-sm uppercase tracking-wide hover:bg-black hover:text-white transition-all duration-300 transform hover:scale-105 animate-on-scroll opacity-0" style="animation-delay: 0.5s;">
                         KNOW MORE
                     </a>
                 </div>
@@ -71,7 +71,8 @@
                         src="{{ asset('images/ATHA-CONSTRUCTIONS.jpg') }}" 
                         alt="Best Construction Companies in Bangalore" 
                         title="Best Construction Companies in Bangalore"
-                        class="w-full rounded-lg shadow-lg"
+                        class="w-full rounded-lg shadow-lg animate-on-scroll opacity-0 hover:shadow-xl transition-shadow duration-300" 
+                        style="animation-delay: 0.3s;"
                     >
                 </div>
             </div>
@@ -79,78 +80,452 @@
     </section>
 
     {{-- Services Section --}}
-    <section class="py-16 lg:py-24 bg-black text-white">
+    <section class="py-8 lg:py-12 bg-black text-white min-h-screen flex flex-col justify-center">
         <div class="container mx-auto px-4">
-            <h2 class="font-tenor text-2xl lg:text-3xl uppercase text-center mb-12">OUR SERVICES</h2>
+            <h2 class="font-tenor text-2xl lg:text-3xl uppercase text-center mb-6 lg:mb-8 animate-on-scroll opacity-0">OUR SERVICES</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                @foreach($services as $service)
-                    <div class="animate-on-scroll opacity-0 border-2 border-white rounded-2xl p-6 text-center hover:bg-white/5 transition-all duration-300">
-                        <img 
-                            src="{{ asset('images/our-ser/' . $service['icon']) }}" 
-                            alt="{{ $service['title'] }}"
-                            class="w-12 h-12 mx-auto mb-4"
+            <div class="services-container mb-6 lg:mb-8">
+                @php
+                    $row1 = array_slice($services, 0, 3);
+                    $row2 = array_slice($services, 3, 3);
+                    $row3 = array_slice($services, 6, 2);
+                @endphp
+                
+                {{-- Row 1: 3 cards --}}
+                <div class="services-row services-row-3 mb-4 lg:mb-5">
+                    @foreach($row1 as $index => $service)
+                        @php
+                            $heightClass = ($index == 0 || $index == 2) ? 'card-height-high' : 'card-height-low';
+                        @endphp
+                        <div 
+                            class="service-card-item animate-on-scroll opacity-0 {{ $heightClass }}"
+                            style="animation-delay: {{ $index * 0.1 }}s;"
                         >
-                        <h3 class="text-lg font-medium mb-3">{{ $service['title'] }}</h3>
-                        <p class="text-sm text-gray-300 leading-relaxed">{{ $service['description'] }}</p>
-                    </div>
-                @endforeach
+                            <div class="service-card-inner border-2 border-white rounded-2xl hover:bg-white/5 transition-all duration-300 hover:shadow-lg hover:shadow-white/20 flex flex-col w-full text-center">
+                                <div class="flex flex-col items-center justify-center mb-4">
+                                    <img 
+                                        src="{{ asset('images/our-ser/' . $service['icon']) }}" 
+                                        alt="{{ $service['title'] }}"
+                                        class="w-10 h-10 lg:w-12 lg:h-12 mb-3 transition-transform duration-300 hover:scale-110"
+                                    >
+                                    <h3 class="text-base lg:text-lg font-medium">{{ $service['title'] }}</h3>
+                                </div>
+                                <p class="text-xs lg:text-sm text-gray-300 leading-relaxed flex-1 line-clamp-4">{{ $service['description'] }}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                {{-- Row 2: 3 cards --}}
+                <div class="services-row services-row-3 mb-4 lg:mb-5">
+                    @foreach($row2 as $index => $service)
+                        @php
+                            $heightClass = ($index == 0) ? 'card-height-low' : 'card-height-high';
+                        @endphp
+                        <div 
+                            class="service-card-item animate-on-scroll opacity-0 {{ $heightClass }}"
+                            style="animation-delay: {{ ($index + 3) * 0.1 }}s;"
+                        >
+                            <div class="service-card-inner border-2 border-white rounded-2xl hover:bg-white/5 transition-all duration-300 hover:shadow-lg hover:shadow-white/20 flex flex-col w-full text-center">
+                                <div class="flex flex-col items-center justify-center mb-4">
+                                    <img 
+                                        src="{{ asset('images/our-ser/' . $service['icon']) }}" 
+                                        alt="{{ $service['title'] }}"
+                                        class="w-10 h-10 lg:w-12 lg:h-12 mb-3 transition-transform duration-300 hover:scale-110"
+                                    >
+                                    <h3 class="text-base lg:text-lg font-medium">{{ $service['title'] }}</h3>
+                                </div>
+                                <p class="text-xs lg:text-sm text-gray-300 leading-relaxed flex-1 line-clamp-4">{{ $service['description'] }}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                {{-- Row 3: 2 cards (centered) --}}
+                <div class="services-row services-row-2">
+                    @foreach($row3 as $index => $service)
+                        <div 
+                            class="service-card-item animate-on-scroll opacity-0 card-height-medium"
+                            style="animation-delay: {{ ($index + 6) * 0.1 }}s;"
+                        >
+                            <div class="service-card-inner border-2 border-white rounded-2xl hover:bg-white/5 transition-all duration-300 hover:shadow-lg hover:shadow-white/20 flex flex-col w-full text-center">
+                                <div class="flex flex-col items-center justify-center mb-4">
+                                    <img 
+                                        src="{{ asset('images/our-ser/' . $service['icon']) }}" 
+                                        alt="{{ $service['title'] }}"
+                                        class="w-10 h-10 lg:w-12 lg:h-12 mb-3 transition-transform duration-300 hover:scale-110"
+                                    >
+                                    <h3 class="text-base lg:text-lg font-medium">{{ $service['title'] }}</h3>
+                                </div>
+                                <p class="text-xs lg:text-sm text-gray-300 leading-relaxed flex-1 line-clamp-4">{{ $service['description'] }}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
+            {{-- CTA Button --}}
+            <div class="text-center animate-on-scroll opacity-0">
+                <a 
+                    href="{{ route('services') }}" 
+                    class="inline-block px-6 py-2 lg:px-8 lg:py-3 border-2 border-white text-white text-xs lg:text-sm uppercase tracking-wide hover:bg-white hover:text-black transition-all duration-300 transform hover:scale-105"
+                >
+                    VIEW ALL SERVICES
+                </a>
             </div>
         </div>
     </section>
 
     {{-- What Makes Us Stand Out Section --}}
-    <section class="py-16 lg:py-24" x-data="{ visible: false }" x-intersect="visible = true">
-        <div class="container mx-auto px-4">
-            <h2 class="font-tenor text-2xl lg:text-3xl uppercase text-center mb-12">
-                <span class="hidden md:inline">What makes us stand out?</span>
-                <span class="md:hidden">What makes us<br>stand out?</span>
-            </h2>
+    <section class="py-24 lg:py-40 bg-white relative overflow-hidden" x-data="{ visible: false }" x-intersect="visible = true">
+        {{-- Background Decorative SVG --}}
+        <div class="absolute inset-0 pointer-events-none opacity-5">
+            <svg class="w-full h-full" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 400 L1200 400" stroke="currentColor" stroke-width="1" stroke-dasharray="20 10"/>
+                <path d="M600 0 L600 800" stroke="currentColor" stroke-width="1" stroke-dasharray="20 10"/>
+            </svg>
+        </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 max-w-4xl mx-auto">
-                {{-- Atha Construction --}}
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">ATHA CONSTRUCTION</h3>
-                    <div class="space-y-3">
-                        @foreach($athaAdvantages as $index => $advantage)
-                            <p class="flex items-center gap-3 opacity-0"
-                               :class="{ 'animate-fade-in-left': visible }"
-                               :style="{ animationDelay: '{{ $index * 0.15 }}s' }">
-                                <img src="{{ asset('images/right.png') }}" alt="✓" class="w-6 h-6">
-                                <span class="text-sm">{{ $advantage }}</span>
-                            </p>
-                        @endforeach
+        <div class="container mx-auto px-4 relative z-10">
+            {{-- Section Header --}}
+            <div class="text-center mb-24 lg:mb-32">
+                <div class="inline-block mb-6 animate-on-scroll opacity-0">
+                    <svg class="w-16 h-16 mx-auto text-black" fill="none" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M32 8 L56 20 L56 44 L32 56 L8 44 L8 20 Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="M32 20 L44 26 L44 38 L32 44 L20 38 L20 26 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    </svg>
+                </div>
+                <h2 class="font-tenor text-3xl lg:text-6xl uppercase mb-4 tracking-tight animate-on-scroll opacity-0" style="animation-delay: 0.1s;">
+                    <span class="hidden md:inline">What makes us stand out?</span>
+                    <span class="md:hidden">What makes us<br>stand out?</span>
+                </h2>
+                <div class="w-24 h-0.5 bg-black mx-auto animate-on-scroll opacity-0" style="animation-delay: 0.2s;"></div>
+            </div>
+
+            <div class="max-w-7xl mx-auto">
+                {{-- Desktop: Asymmetric Split Design --}}
+                <div class="hidden lg:block relative">
+                    {{-- Unique Diagonal Divider with SVG --}}
+                    <div class="absolute left-1/2 top-0 bottom-0 w-px transform -translate-x-1/2 z-0">
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center shadow-lg">
+                            <svg class="w-10 h-10 text-gray-400" fill="none" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 8 L32 20 L20 32 L8 20 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            </svg>
+                        </div>
+                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-px h-1/2 bg-gradient-to-b from-transparent via-gray-200 to-gray-200"></div>
+                        <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-px h-1/2 bg-gradient-to-b from-gray-200 via-gray-200 to-transparent"></div>
+                    </div>
+
+                    <div class="grid grid-cols-12 gap-8 items-start">
+                        {{-- ATHA CONSTRUCTION Side --}}
+                        <div class="col-span-5 pr-12">
+                            <div class="sticky top-40">
+                                {{-- Header with SVG --}}
+                                <div class="mb-16 animate-on-scroll opacity-0" style="animation-delay: 0.15s;">
+                                    <div class="flex items-center gap-4 mb-6">
+                                        <svg class="w-8 h-8 text-black flex-shrink-0" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                            <rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                                            <path d="M8 14 L16 20 L24 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <circle cx="10" cy="6" r="1.5" fill="currentColor"/>
+                                            <circle cx="16" cy="6" r="1.5" fill="currentColor"/>
+                                            <circle cx="22" cy="6" r="1.5" fill="currentColor"/>
+                                        </svg>
+                                        <h3 class="font-tenor text-4xl lg:text-5xl uppercase tracking-tight">ATHA<br>CONSTRUCTION</h3>
+                                    </div>
+                                    <div class="w-32 h-1 bg-black"></div>
+                                </div>
+                                
+                                {{-- Items with Custom SVGs --}}
+                                <div class="space-y-8">
+                                    @foreach($athaAdvantages as $index => $advantage)
+                                        <div class="comparison-item-left opacity-0"
+                                             :class="{ 'animate-fade-in-left': visible }"
+                                             :style="{ animationDelay: '{{ $index * 0.1 }}s' }">
+                                            <div class="flex items-start gap-6 group">
+                                                <div class="flex-shrink-0 mt-1">
+                                                    <div class="w-12 h-12 bg-black rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md">
+                                                        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                <div class="flex-1 pt-1">
+                                                    <p class="text-lg text-gray-900 leading-relaxed group-hover:text-black transition-colors">
+                                                        {{ $advantage }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Spacer Column --}}
+                        <div class="col-span-2"></div>
+
+                        {{-- OTHER CONTRACTORS Side --}}
+                        <div class="col-span-5 pl-12">
+                            <div class="sticky top-40">
+                                {{-- Header with SVG --}}
+                                <div class="mb-16 animate-on-scroll opacity-0" style="animation-delay: 0.25s;">
+                                    <div class="flex items-center gap-4 mb-6 justify-end">
+                                        <h3 class="font-tenor text-4xl lg:text-5xl uppercase tracking-tight text-gray-300 text-right">OTHER<br>CONTRACTORS</h3>
+                                        <svg class="w-8 h-8 text-gray-300 flex-shrink-0" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                            <rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="1.5" fill="none" stroke-dasharray="4 4"/>
+                                            <path d="M8 14 L16 20 L24 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 2"/>
+                                        </svg>
+                                    </div>
+                                    <div class="w-32 h-1 bg-gray-300 ml-auto"></div>
+                                </div>
+                                
+                                {{-- Items with Custom SVGs --}}
+                                <div class="space-y-8">
+                                    @foreach($otherContractors as $index => $disadvantage)
+                                        <div class="comparison-item-right opacity-0"
+                                             :class="{ 'animate-fade-in-right': visible }"
+                                             :style="{ animationDelay: '{{ $index * 0.1 }}s' }">
+                                            <div class="flex items-start gap-6 group">
+                                                <div class="flex-1 pt-1 text-right">
+                                                    <p class="text-lg text-gray-400 leading-relaxed line-through">
+                                                        {{ $disadvantage }}
+                                                    </p>
+                                                </div>
+                                                <div class="flex-shrink-0 mt-1">
+                                                    <div class="w-12 h-12 bg-gray-300 rounded-lg flex items-center justify-center opacity-50">
+                                                        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                {{-- Divider for desktop --}}
-                <div class="hidden md:block absolute left-1/2 top-1/2 -translate-y-1/2 w-px h-64 border-l border-dashed border-black -z-10 pointer-events-none"></div>
+                {{-- Mobile: Stacked Design --}}
+                <div class="lg:hidden space-y-20">
+                    {{-- ATHA CONSTRUCTION --}}
+                    <div>
+                        <div class="mb-12 animate-on-scroll opacity-0">
+                            <div class="flex items-center gap-3 mb-6">
+                                <svg class="w-6 h-6 text-black" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                                    <path d="M8 14 L16 20 L24 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <h3 class="font-tenor text-3xl uppercase tracking-tight">ATHA CONSTRUCTION</h3>
+                            </div>
+                            <div class="w-24 h-0.5 bg-black"></div>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            @foreach($athaAdvantages as $index => $advantage)
+                                <div class="comparison-item-left opacity-0"
+                                     :class="{ 'animate-fade-in-left': visible }"
+                                     :style="{ animationDelay: '{{ $index * 0.1 }}s' }">
+                                    <div class="flex items-start gap-4">
+                                        <div class="flex-shrink-0 mt-1">
+                                            <div class="w-10 h-10 bg-black rounded-lg flex items-center justify-center">
+                                                <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-900 leading-relaxed flex-1 pt-2">
+                                            {{ $advantage }}
+                                        </p>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
 
-                {{-- Other Contractors --}}
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">OTHER CONTRACTORS</h3>
-                    <div class="space-y-3">
-                        @foreach($otherContractors as $index => $disadvantage)
-                            <p class="flex items-center gap-3 opacity-0"
-                               :class="{ 'animate-fade-in-right': visible }"
-                               :style="{ animationDelay: '{{ $index * 0.15 }}s' }">
-                                <img src="{{ asset('images/wrong.png') }}" alt="✗" class="w-6 h-6">
-                                <span class="text-sm">{{ $disadvantage }}</span>
-                            </p>
-                        @endforeach
+                    {{-- Divider with SVG --}}
+                    <div class="relative py-8">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-full h-px bg-gray-200"></div>
+                        </div>
+                        <div class="relative flex justify-center">
+                            <div class="w-16 h-16 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center">
+                                <svg class="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16 8 L24 16 L16 24 L8 16 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- OTHER CONTRACTORS --}}
+                    <div>
+                        <div class="mb-12 animate-on-scroll opacity-0" style="animation-delay: 0.2s;">
+                            <div class="flex items-center gap-3 mb-6 justify-end">
+                                <h3 class="font-tenor text-3xl uppercase tracking-tight text-gray-300 text-right">OTHER CONTRACTORS</h3>
+                                <svg class="w-6 h-6 text-gray-300" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="1.5" fill="none" stroke-dasharray="4 4"/>
+                                </svg>
+                            </div>
+                            <div class="w-24 h-0.5 bg-gray-300 ml-auto"></div>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            @foreach($otherContractors as $index => $disadvantage)
+                                <div class="comparison-item-right opacity-0"
+                                     :class="{ 'animate-fade-in-right': visible }"
+                                     :style="{ animationDelay: '{{ $index * 0.1 }}s' }">
+                                    <div class="flex items-start gap-4">
+                                        <p class="text-sm text-gray-400 leading-relaxed flex-1 pt-2 text-right line-through">
+                                            {{ $disadvantage }}
+                                        </p>
+                                        <div class="flex-shrink-0 mt-1">
+                                            <div class="w-10 h-10 bg-gray-300 rounded-lg flex items-center justify-center opacity-50">
+                                                <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    {{-- Featured Project Section --}}
-    <section class="hidden md:block">
-        <div class="container mx-auto px-4 text-center">
-            <img src="{{ asset('images/mysoore-proj.png') }}" alt="Mysore Villa Project" class="w-full">
-            <p class="text-sm font-bold pt-4 mb-0">Mysore</p>
-            <p class="text-sm mb-0">3BHK Villa</p>
-            <p class="text-sm mb-12"><strong>Land Parcel : 2400 sqft</strong></p>
+    {{-- Featured Projects Section - Staggered Leaf Structure --}}
+    <section class="py-8 lg:py-12 bg-white relative overflow-hidden">
+        {{-- Decorative Branch Line --}}
+        <div class="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gray-200 transform -translate-x-1/2 z-0"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-8 lg:mb-10">
+                <h2 class="font-tenor text-2xl lg:text-3xl uppercase mb-3 tracking-tight animate-on-scroll opacity-0">Featured Projects</h2>
+                <div class="w-20 h-0.5 bg-black mx-auto animate-on-scroll opacity-0" style="animation-delay: 0.1s;"></div>
+            </div>
+
+            @php
+                $projects = [
+                    [
+                        'image' => 'mysoore-proj.png',
+                        'location' => 'Bangalore',
+                        'type' => '4BHK Luxury Home',
+                        'land' => '3200 sqft',
+                        'tagline' => 'Smart Living, Premium Design',
+                    ],
+                    [
+                        'image' => 'mysoore-proj.png',
+                        'location' => 'Mysore',
+                        'type' => '3BHK Villa',
+                        'land' => '2400 sqft',
+                        'tagline' => 'Heritage Meets Modernity',
+                    ],
+                    [
+                        'image' => 'mysoore-proj.png',
+                        'location' => 'Ballari',
+                        'type' => 'Commercial Complex',
+                        'land' => '5000 sqft',
+                        'tagline' => 'Business Excellence',
+                    ],
+                ];
+            @endphp
+
+            <div class="max-w-6xl mx-auto relative">
+                @foreach($projects as $index => $project)
+                    @php
+                        $isEven = ($index % 2 == 0);
+                        $isLeft = $isEven;
+                        $staggerOffset = $index * 70; // Reduced stagger for closer spacing
+                    @endphp
+                    <div 
+                        class="project-staggered-card relative mb-4 lg:mb-0"
+                        x-data="{ visible: false }" 
+                        x-intersect="visible = true"
+                        style="margin-top: {{ $index > 0 ? $staggerOffset . 'px' : '0' }};"
+                    >
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-2 items-start">
+                            @if($isLeft)
+                                {{-- Left Side: Small Image Card --}}
+                                <div class="lg:col-span-4 lg:pr-2 animate-on-scroll opacity-0"
+                                     :class="{ 'animate-fade-in-left': visible }"
+                                     style="animation-delay: {{ $index * 0.15 }}s;">
+                                    <div class="project-compact-card group">
+                                        <div class="relative overflow-hidden rounded-lg bg-black h-48 lg:h-56 shadow-md transform transition-all duration-300 hover:scale-105">
+                                            <img 
+                                                src="{{ asset('images/' . $project['image']) }}" 
+                                                alt="{{ $project['location'] }} - {{ $project['type'] }}"
+                                                class="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity duration-300"
+                                            >
+                                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                                            <div class="absolute bottom-2 left-2 right-2">
+                                                <p class="text-white text-xs uppercase tracking-wider font-semibold">{{ $project['location'] }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- Right Side: Minimal Content --}}
+                                <div class="lg:col-span-8 lg:pl-2 animate-on-scroll opacity-0"
+                                     :class="{ 'animate-fade-in-right': visible }"
+                                     style="animation-delay: {{ ($index * 0.15) + 0.1 }}s;">
+                                    <div class="space-y-1.5">
+                                        <div>
+                                            <p class="text-xs uppercase tracking-widest text-gray-400 mb-0.5">{{ $project['location'] }}</p>
+                                            <h3 class="font-tenor text-lg lg:text-xl uppercase mb-1 tracking-tight">{{ $project['type'] }}</h3>
+                                            <div class="w-10 h-0.5 bg-black mb-1.5"></div>
+                                        </div>
+                                        <p class="text-xs text-gray-600 italic mb-1">{{ $project['tagline'] }}</p>
+                                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                                            <div class="w-1 h-1 bg-gray-400 rounded-full"></div>
+                                            <span>{{ $project['land'] }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                {{-- Right Side: Small Image Card --}}
+                                <div class="lg:col-span-4 lg:pl-2 lg:order-2 animate-on-scroll opacity-0"
+                                     :class="{ 'animate-fade-in-right': visible }"
+                                     style="animation-delay: {{ $index * 0.15 }}s;">
+                                    <div class="project-compact-card group">
+                                        <div class="relative overflow-hidden rounded-lg bg-black h-48 lg:h-56 shadow-md transform transition-all duration-300 hover:scale-105">
+                                            <img 
+                                                src="{{ asset('images/' . $project['image']) }}" 
+                                                alt="{{ $project['location'] }} - {{ $project['type'] }}"
+                                                class="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity duration-300"
+                                            >
+                                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                                            <div class="absolute bottom-2 left-2 right-2">
+                                                <p class="text-white text-xs uppercase tracking-wider font-semibold">{{ $project['location'] }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- Left Side: Minimal Content --}}
+                                <div class="lg:col-span-8 lg:pr-2 lg:order-1 text-right animate-on-scroll opacity-0"
+                                     :class="{ 'animate-fade-in-left': visible }"
+                                     style="animation-delay: {{ ($index * 0.15) + 0.1 }}s;">
+                                    <div class="space-y-1.5">
+                                        <div>
+                                            <p class="text-xs uppercase tracking-widest text-gray-400 mb-0.5">{{ $project['location'] }}</p>
+                                            <h3 class="font-tenor text-lg lg:text-xl uppercase mb-1 tracking-tight">{{ $project['type'] }}</h3>
+                                            <div class="w-10 h-0.5 bg-black ml-auto mb-1.5"></div>
+                                        </div>
+                                        <p class="text-xs text-gray-600 italic mb-1">{{ $project['tagline'] }}</p>
+                                        <div class="flex items-center gap-2 text-xs text-gray-500 justify-end">
+                                            <span>{{ $project['land'] }}</span>
+                                            <div class="w-1 h-1 bg-gray-400 rounded-full"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </section>
 
@@ -232,7 +607,7 @@
     </section>
 
     {{-- Work With Us Section --}}
-    <section class="relative min-h-[400px] flex items-center">
+    <section class="relative min-h-[400px] flex items-center" x-data="{ enquiryModalOpen: false, formSubmitting: false, formMessage: '' }">
         <img 
             src="{{ asset('images/Careers.png') }}" 
             alt="best house construction companies in bangalore" 
@@ -246,9 +621,198 @@
                 Our goal is to offer an unparalleled level of service to our highly respected clients. Whether you are looking to buy or sell your home,
                 we guarantee that our expertise, professionalism and dedication will guide you toward meeting your unique real estate needs.
             </p>
-            <a href="{{ route('contact') }}" class="inline-block px-8 py-3 border border-white text-white text-sm uppercase tracking-wide hover:bg-white hover:text-black transition-all duration-300">
+            <button 
+                @click="enquiryModalOpen = true"
+                class="inline-block px-8 py-3 border border-white text-white text-sm uppercase tracking-wide hover:bg-white hover:text-black transition-all duration-300"
+            >
                 CONTACT US
-            </a>
+            </button>
+        </div>
+
+        {{-- Enquiry Form Modal/Lightbox --}}
+        <div 
+            x-show="enquiryModalOpen"
+            x-cloak
+            @click.self="enquiryModalOpen = false"
+            @keydown.escape.window="enquiryModalOpen = false"
+            class="fixed inset-0 z-[150] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+        >
+            <div 
+                @click.stop
+                class="enquiry-modal bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 transform scale-95"
+                x-transition:enter-end="opacity-100 transform scale-100"
+                x-transition:leave="transition ease-in duration-200"
+                x-transition:leave-start="opacity-100 transform scale-100"
+                x-transition:leave-end="opacity-0 transform scale-95"
+            >
+                {{-- Modal Header --}}
+                <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between z-10">
+                    <div class="flex items-center gap-4">
+                        <img 
+                            src="{{ asset('images/Atha Logo - High Quality-1.png') }}" 
+                            alt="ATHA Construction" 
+                            class="h-10 w-auto"
+                        >
+                        <div>
+                            <h3 class="font-tenor text-2xl uppercase tracking-tight">Get In Touch</h3>
+                            <p class="text-xs text-gray-500 mt-1">We'll get back to you soon</p>
+                        </div>
+                    </div>
+                    <button 
+                        @click="enquiryModalOpen = false"
+                        class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+                        aria-label="Close"
+                    >
+                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                {{-- Modal Body - Form --}}
+                <div class="p-6 lg:p-8">
+                    <form 
+                        @submit.prevent="
+                            formSubmitting = true;
+                            fetch('{{ route('contact.submit') }}', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                },
+                                body: JSON.stringify(Object.fromEntries(new FormData($event.target)))
+                            })
+                            .then(res => res.json())
+                            .then(data => {
+                                formMessage = data.status === 'OK' ? 'success' : 'error';
+                                if (data.status === 'OK') {
+                                    $event.target.reset();
+                                    setTimeout(() => {
+                                        enquiryModalOpen = false;
+                                        formMessage = '';
+                                    }, 2000);
+                                }
+                                setTimeout(() => formMessage = '', 5000);
+                            })
+                            .catch(() => formMessage = 'error')
+                            .finally(() => formSubmitting = false);
+                        "
+                        class="space-y-5"
+                    >
+                        {{-- Success/Error Message --}}
+                        <div 
+                            x-show="formMessage === 'success'"
+                            x-cloak
+                            class="p-4 bg-green-50 border border-green-200 text-green-700 text-sm rounded"
+                        >
+                            Thank you! We will contact you soon.
+                        </div>
+                        <div 
+                            x-show="formMessage === 'error'"
+                            x-cloak
+                            class="p-4 bg-red-50 border border-red-200 text-red-700 text-sm rounded"
+                        >
+                            Something went wrong. Please try again.
+                        </div>
+
+                        {{-- Name --}}
+                        <div>
+                            <label for="enquiry-name" class="block text-xs uppercase tracking-wider text-gray-700 mb-2">Your Name *</label>
+                            <input 
+                                type="text" 
+                                id="enquiry-name"
+                                name="name" 
+                                required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition-colors text-sm"
+                                placeholder="Enter your full name"
+                            >
+                        </div>
+
+                        {{-- Phone --}}
+                        <div>
+                            <label for="enquiry-phone" class="block text-xs uppercase tracking-wider text-gray-700 mb-2">Phone Number *</label>
+                            <input 
+                                type="tel" 
+                                id="enquiry-phone"
+                                name="phone" 
+                                required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition-colors text-sm"
+                                placeholder="Enter your phone number"
+                            >
+                        </div>
+
+                        {{-- Email --}}
+                        <div>
+                            <label for="enquiry-email" class="block text-xs uppercase tracking-wider text-gray-700 mb-2">Email Address</label>
+                            <input 
+                                type="email" 
+                                id="enquiry-email"
+                                name="email" 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition-colors text-sm"
+                                placeholder="Enter your email address"
+                            >
+                        </div>
+
+                        {{-- Construction Type --}}
+                        <div>
+                            <label for="enquiry-type" class="block text-xs uppercase tracking-wider text-gray-700 mb-2">Construction Type</label>
+                            <select 
+                                id="enquiry-type"
+                                name="type" 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition-colors text-sm bg-white"
+                            >
+                                <option value="">Select construction type</option>
+                                <option value="residential">Residential</option>
+                                <option value="commercial">Commercial</option>
+                            </select>
+                        </div>
+
+                        {{-- Plot Size --}}
+                        <div>
+                            <label for="enquiry-plotsize" class="block text-xs uppercase tracking-wider text-gray-700 mb-2">Plot Size (Sq.Ft)</label>
+                            <input 
+                                type="text" 
+                                id="enquiry-plotsize"
+                                name="plotsize" 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition-colors text-sm"
+                                placeholder="Enter plot size"
+                            >
+                        </div>
+
+                        {{-- Message --}}
+                        <div>
+                            <label for="enquiry-message" class="block text-xs uppercase tracking-wider text-gray-700 mb-2">Message</label>
+                            <textarea 
+                                id="enquiry-message"
+                                name="message" 
+                                rows="4"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition-colors text-sm resize-none"
+                                placeholder="Tell us about your project requirements..."
+                            ></textarea>
+                        </div>
+
+                        {{-- Submit Button --}}
+                        <div class="pt-2">
+                            <button 
+                                type="submit" 
+                                :disabled="formSubmitting"
+                                class="w-full px-8 py-3 bg-black text-white text-sm uppercase tracking-wide hover:bg-gray-800 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                <span x-show="!formSubmitting">Submit Enquiry</span>
+                                <span x-show="formSubmitting">Submitting...</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </section>
 

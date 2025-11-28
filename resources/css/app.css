@@ -136,6 +136,17 @@
         }
     }
 
+    @keyframes fadeInUpScale {
+        0% {
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
     .animate-fade-in-left {
         animation: fadeInLeft 0.5s ease-out forwards;
     }
@@ -146,6 +157,212 @@
 
     .animate-fade-in-up {
         animation: fadeInUp 0.5s ease-out forwards;
+    }
+
+    .service-card.animate-fade-in-up {
+        animation: fadeInUpScale 0.6s ease-out forwards;
+    }
+
+    /* Services Container - Flexbox Layout */
+    .services-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    /* Services Row - Flexbox for each row */
+    .services-row {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    @media (min-width: 768px) {
+        .services-row {
+            flex-direction: row;
+            gap: 1.5rem;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .services-container {
+            gap: 2rem;
+        }
+
+        .services-row {
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: stretch;
+        }
+
+        /* Row with 3 cards - equal width */
+        .services-row-3 .service-card-item {
+            flex: 1;
+            max-width: calc(33.333% - 1rem);
+            min-width: 0;
+        }
+
+        /* Row with 2 cards - centered with equal width */
+        .services-row-2 {
+            justify-content: center;
+        }
+
+        .services-row-2 .service-card-item {
+            flex: 0 1 calc(33.333% - 1rem);
+            max-width: calc(33.333% - 1rem);
+            min-width: 0;
+        }
+
+        /* Ensure cards don't collapse */
+        .service-card-item {
+            display: flex;
+        }
+
+        .service-card-inner {
+            width: 100%;
+            flex: 1;
+        }
+    }
+
+    /* Service Card Styles */
+    .service-card-inner {
+        transform-origin: center;
+        will-change: transform;
+        border: 2px solid white;
+    }
+
+    .service-card-item:hover .service-card-inner {
+        transform: scale(1.02);
+    }
+
+    /* Featured Projects Section - Staggered Compact Layout */
+    .project-staggered-card {
+        position: relative;
+    }
+
+    .project-compact-card {
+        position: relative;
+    }
+
+    @media (min-width: 1024px) {
+        .project-staggered-card {
+            max-width: 90%;
+        }
+
+        .project-staggered-card:nth-child(odd) {
+            margin-left: 0;
+        }
+
+        .project-staggered-card:nth-child(even) {
+            margin-left: auto;
+            margin-right: 0;
+        }
+    }
+
+    /* Enquiry Modal Styles */
+    .enquiry-modal {
+        animation: modalSlideIn 0.3s ease-out;
+        position: relative;
+        z-index: 151;
+    }
+
+    /* Ensure modal overlay is above header */
+    .fixed.inset-0.z-\[150\] {
+        z-index: 150 !important;
+    }
+
+    @keyframes modalSlideIn {
+        from {
+            opacity: 0;
+            transform: scale(0.95) translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
+
+    .enquiry-modal input:focus,
+    .enquiry-modal select:focus,
+    .enquiry-modal textarea:focus {
+        outline: none;
+        border-color: #000000;
+        box-shadow: 0 0 0 1px #000000;
+    }
+
+    /* Custom Height Classes for Staggered Layout */
+    /* High height cards - more padding and height */
+    .card-height-high .service-card-inner {
+        padding: 1.5rem 1.25rem !important;
+        min-height: 260px !important;
+        height: auto;
+    }
+
+    @media (min-width: 1024px) {
+        .card-height-high .service-card-inner {
+            padding: 2.25rem 2rem !important;
+            min-height: 300px !important;
+        }
+    }
+
+    /* Low height cards - less padding and height */
+    .card-height-low .service-card-inner {
+        padding: 1rem 1rem !important;
+        min-height: 190px !important;
+        height: auto;
+    }
+
+    @media (min-width: 1024px) {
+        .card-height-low .service-card-inner {
+            padding: 1.25rem 1.5rem !important;
+            min-height: 210px !important;
+        }
+    }
+
+    /* Medium height cards - for row 3 */
+    .card-height-medium .service-card-inner {
+        padding: 1.25rem 1.125rem !important;
+        min-height: 200px !important;
+        height: auto;
+    }
+
+    @media (min-width: 1024px) {
+        .card-height-medium .service-card-inner {
+            padding: 1.75rem 1.75rem !important;
+            min-height: 250px !important;
+        }
+    }
+
+    /* About Section Animations */
+    .about-section .lg\:col-span-7 .animate-on-scroll.animate-fade-in-up {
+        animation: fadeInLeft 0.6s ease-out forwards;
+    }
+
+    .about-section .lg\:col-span-5 .animate-on-scroll.animate-fade-in-up {
+        animation: fadeInRight 0.6s ease-out forwards;
+    }
+
+    /* Comparison Section - Unique Design with Perfect Alignments */
+    .comparison-item-left {
+        animation: fadeInLeft 0.7s ease-out forwards;
+    }
+
+    .comparison-item-right {
+        animation: fadeInRight 0.7s ease-out forwards;
+    }
+
+    /* Ensure perfect vertical alignment */
+    section[x-data] .sticky {
+        will-change: transform;
+    }
+
+    /* Smooth SVG transitions */
+    section[x-data] svg {
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    section[x-data] .group:hover svg {
+        transform: scale(1.05);
     }
 }
 
