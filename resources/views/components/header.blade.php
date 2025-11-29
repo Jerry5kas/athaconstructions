@@ -34,16 +34,16 @@
 
         <nav class="atha-header__nav">
             <div class="atha-header__links">
-                <a href="{{ route('home') }}" class="atha-header__link">Home</a>
-                <a href="{{ route('about') }}" class="atha-header__link">About</a>
-                <a href="{{ route('packages') }}" class="atha-header__link">Packages</a>
-                <a href="{{ route('properties') }}" class="atha-header__link">Properties</a>
-                <a href="{{ route('careers') }}" class="atha-header__link">Careers</a>
-                <a href="{{ route('blogs') }}" class="atha-header__link">Blogs</a>
-                <a href="{{ route('gallery') }}" class="atha-header__link">Gallery</a>
-                <a href="{{ route('services') }}" class="atha-header__link">Services</a>
-                <a href="{{ route('cost-estimation') }}" class="atha-header__link">Cost Estimation</a>
-                <a href="{{ route('contact') }}" class="atha-header__link">Contact Us</a>
+                <a href="{{ route('home') }}" class="atha-header__link {{ request()->routeIs('home') ? 'atha-header__link--active' : '' }}">Home</a>
+                <a href="{{ route('about') }}" class="atha-header__link {{ request()->routeIs('about') ? 'atha-header__link--active' : '' }}">About</a>
+                <a href="{{ route('packages') }}" class="atha-header__link {{ request()->routeIs('packages') ? 'atha-header__link--active' : '' }}">Packages</a>
+                <a href="{{ route('properties') }}" class="atha-header__link {{ request()->routeIs('properties') ? 'atha-header__link--active' : '' }}">Properties</a>
+                <a href="{{ route('careers') }}" class="atha-header__link {{ request()->routeIs('careers') ? 'atha-header__link--active' : '' }}">Careers</a>
+                <a href="{{ route('blogs') }}" class="atha-header__link {{ request()->routeIs('blogs') ? 'atha-header__link--active' : '' }}">Blogs</a>
+                <a href="{{ route('gallery') }}" class="atha-header__link {{ request()->routeIs('gallery') ? 'atha-header__link--active' : '' }}">Gallery</a>
+                <a href="{{ route('services') }}" class="atha-header__link {{ request()->routeIs('services') ? 'atha-header__link--active' : '' }}">Services</a>
+                <a href="{{ route('cost-estimation') }}" class="atha-header__link {{ request()->routeIs('cost-estimation') ? 'atha-header__link--active' : '' }}">Cost Estimation</a>
+                <a href="{{ route('contact') }}" class="atha-header__link {{ request()->routeIs('contact') ? 'atha-header__link--active' : '' }}">Contact Us</a>
             </div>
 
             <button
@@ -74,16 +74,16 @@
         class="atha-header__mobile"
     >
         <div class="atha-header__mobile-inner">
-            <a href="{{ route('home') }}" class="atha-header__mobile-link">Home</a>
-            <a href="{{ route('about') }}" class="atha-header__mobile-link">About</a>
-            <a href="{{ route('packages') }}" class="atha-header__mobile-link">Packages</a>
-            <a href="{{ route('properties') }}" class="atha-header__mobile-link">Properties</a>
-            <a href="{{ route('careers') }}" class="atha-header__mobile-link">Careers</a>
-            <a href="{{ route('blogs') }}" class="atha-header__mobile-link">Blogs</a>
-            <a href="{{ route('gallery') }}" class="atha-header__mobile-link">Gallery</a>
-            <a href="{{ route('services') }}" class="atha-header__mobile-link">Services</a>
-            <a href="{{ route('cost-estimation') }}" class="atha-header__mobile-link">Cost Estimation</a>
-            <a href="{{ route('contact') }}" class="atha-header__mobile-link">Contact Us</a>
+            <a href="{{ route('home') }}" class="atha-header__mobile-link {{ request()->routeIs('home') ? 'atha-header__mobile-link--active' : '' }}">Home</a>
+            <a href="{{ route('about') }}" class="atha-header__mobile-link {{ request()->routeIs('about') ? 'atha-header__mobile-link--active' : '' }}">About</a>
+            <a href="{{ route('packages') }}" class="atha-header__mobile-link {{ request()->routeIs('packages') ? 'atha-header__mobile-link--active' : '' }}">Packages</a>
+            <a href="{{ route('properties') }}" class="atha-header__mobile-link {{ request()->routeIs('properties') ? 'atha-header__mobile-link--active' : '' }}">Properties</a>
+            <a href="{{ route('careers') }}" class="atha-header__mobile-link {{ request()->routeIs('careers') ? 'atha-header__mobile-link--active' : '' }}">Careers</a>
+            <a href="{{ route('blogs') }}" class="atha-header__mobile-link {{ request()->routeIs('blogs') ? 'atha-header__mobile-link--active' : '' }}">Blogs</a>
+            <a href="{{ route('gallery') }}" class="atha-header__mobile-link {{ request()->routeIs('gallery') ? 'atha-header__mobile-link--active' : '' }}">Gallery</a>
+            <a href="{{ route('services') }}" class="atha-header__mobile-link {{ request()->routeIs('services') ? 'atha-header__mobile-link--active' : '' }}">Services</a>
+            <a href="{{ route('cost-estimation') }}" class="atha-header__mobile-link {{ request()->routeIs('cost-estimation') ? 'atha-header__mobile-link--active' : '' }}">Cost Estimation</a>
+            <a href="{{ route('contact') }}" class="atha-header__mobile-link {{ request()->routeIs('contact') ? 'atha-header__mobile-link--active' : '' }}">Contact Us</a>
         </div>
     </div>
 </header>
@@ -160,11 +160,28 @@
             }
         }
 
-        .atha-header__link {
-            color: inherit;
+        .atha-header .atha-header__link {
+            color: rgba(255, 255, 255, 0.78); /* light for initial (non-solid) header */
             text-decoration: none;
-            font-weight: 600;
-            transition: opacity 0.2s ease;
+            font-weight: 500;
+            transition: color 0.2s ease, opacity 0.2s ease;
+        }
+
+        .atha-header .atha-header__link--active {
+            color: #ffffff; /* full white when active on initial header */
+        }
+
+        .atha-header .atha-header__link:hover {
+            color: #ffffff;
+        }
+
+        .atha-header.atha-header--solid .atha-header__link {
+            color: #4b5563; /* gray-700 when header is solid */
+        }
+
+        .atha-header.atha-header--solid .atha-header__link--active,
+        .atha-header.atha-header--solid .atha-header__link:hover {
+            color: #000000; /* black when active/hover on solid header */
         }
 
         .atha-header__menu-toggle {
@@ -214,7 +231,12 @@
             padding: 14px 12px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             text-decoration: none;
-            color: #0f0f0f;
+            color: #4b5563; /* gray-700 */
+            font-weight: 500;
+        }
+
+        .atha-header__mobile-link--active {
+            color: #000000; /* black */
         }
 
         .atha-header__mobile-link:last-child {

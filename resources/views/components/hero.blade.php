@@ -8,6 +8,16 @@
         panelActive: false,
         focusDepth: 0,
         listboxOpen: false,
+        init() {
+            const closeOnScroll = () => {
+                if (this.panelActive) {
+                    this.panelActive = false;
+                    this.focusDepth = 0;
+                    this.listboxOpen = false;
+                }
+            };
+            window.addEventListener('scroll', closeOnScroll);
+        },
         submit(event) {
             this.formSubmitting = true;
             fetch('{{ route('contact.submit') }}', {
@@ -37,17 +47,6 @@
         }
     }"
     :class="{ 'hero-shell--active': panelActive }"
-    @mouseenter.self="openPanel"
-    @mouseleave.self="closePanel"
-    @focusin="focusDepth++; panelActive = true"
-    @focusout="
-        focusDepth = Math.max(focusDepth - 1, 0);
-        setTimeout(() => {
-            if (focusDepth === 0 && !listboxOpen && !$el.matches(':hover')) {
-                panelActive = false;
-            }
-        }, 0);
-    "
 >
     <h1 class="sr-only">{{ $seo['h1'] ?? '' }}</h1>
 
@@ -63,7 +62,23 @@
     <div class="hero-overlay"></div>
 
     <div class="hero-form-panel">
-        <div class="hero-form-card" @mouseenter="openPanel" @mouseleave="closePanel">
+        <div 
+            class="hero-form-card" 
+            @mouseenter="openPanel" 
+            @mouseleave="closePanel"
+            @focusin="
+                focusDepth++;
+                panelActive = true;
+            "
+            @focusout="
+                focusDepth = Math.max(focusDepth - 1, 0);
+                setTimeout(() => {
+                    if (focusDepth === 0 && !listboxOpen && !$el.matches(':hover')) {
+                        panelActive = false;
+                    }
+                }, 0);
+            "
+        >
             <h2 class="hero-form-title">Quick Enquiry</h2>
             <p class="hero-form-subtitle">Let's build your dream together</p>
 
