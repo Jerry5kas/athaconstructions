@@ -82,86 +82,16 @@
     {{-- Services Section --}}
     <section class="py-8 lg:py-12 bg-black text-white min-h-screen flex flex-col justify-center">
         <div class="container mx-auto px-4">
-            <h2 class="font-tenor text-2xl lg:text-3xl uppercase text-center mb-6 lg:mb-8 animate-on-scroll opacity-0">OUR SERVICES</h2>
+            <h2 class="font-tenor text-2xl lg:text-3xl uppercase text-center mb-4 animate-on-scroll opacity-0">OUR SERVICES</h2>
+            <p class="text-sm lg:text-base text-gray-300 text-center max-w-3xl mx-auto mb-6 lg:mb-8 animate-on-scroll opacity-0" style="animation-delay: 0.1s;">
+                From concept to completion, we deliver comprehensive construction solutions tailored to your vision. 
+                Whether you're building your dream home or expanding your business, our expert team brings quality, 
+                innovation, and reliability to every project.
+            </p>
             
-            <div class="services-container mb-6 lg:mb-8">
-                @php
-                    $row1 = array_slice($services, 0, 3);
-                    $row2 = array_slice($services, 3, 3);
-                    $row3 = array_slice($services, 6, 2);
-                @endphp
-                
-                {{-- Row 1: 3 cards --}}
-                <div class="services-row services-row-3 mb-4 lg:mb-5">
-                    @foreach($row1 as $index => $service)
-                        @php
-                            $heightClass = ($index == 0 || $index == 2) ? 'card-height-high' : 'card-height-low';
-                        @endphp
-                        <div 
-                            class="service-card-item animate-on-scroll opacity-0 {{ $heightClass }}"
-                            style="animation-delay: {{ $index * 0.1 }}s;"
-                        >
-                            <div class="service-card-inner border-2 border-white rounded-2xl hover:bg-white/5 transition-all duration-300 hover:shadow-lg hover:shadow-white/20 flex flex-col w-full text-center">
-                                <div class="flex flex-col items-center justify-center mb-4">
-                                    <img 
-                                        src="{{ asset('images/our-ser/' . $service['icon']) }}" 
-                                        alt="{{ $service['title'] }}"
-                                        class="w-10 h-10 lg:w-12 lg:h-12 mb-3 transition-transform duration-300 hover:scale-110"
-                                    >
-                                    <h3 class="text-base lg:text-lg font-medium">{{ $service['title'] }}</h3>
-                                </div>
-                                <p class="text-xs lg:text-sm text-gray-300 leading-relaxed flex-1 line-clamp-4">{{ $service['description'] }}</p>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-
-                {{-- Row 2: 3 cards --}}
-                <div class="services-row services-row-3 mb-4 lg:mb-5">
-                    @foreach($row2 as $index => $service)
-                        @php
-                            $heightClass = ($index == 0) ? 'card-height-low' : 'card-height-high';
-                        @endphp
-                        <div 
-                            class="service-card-item animate-on-scroll opacity-0 {{ $heightClass }}"
-                            style="animation-delay: {{ ($index + 3) * 0.1 }}s;"
-                        >
-                            <div class="service-card-inner border-2 border-white rounded-2xl hover:bg-white/5 transition-all duration-300 hover:shadow-lg hover:shadow-white/20 flex flex-col w-full text-center">
-                                <div class="flex flex-col items-center justify-center mb-4">
-                                    <img 
-                                        src="{{ asset('images/our-ser/' . $service['icon']) }}" 
-                                        alt="{{ $service['title'] }}"
-                                        class="w-10 h-10 lg:w-12 lg:h-12 mb-3 transition-transform duration-300 hover:scale-110"
-                                    >
-                                    <h3 class="text-base lg:text-lg font-medium">{{ $service['title'] }}</h3>
-                                </div>
-                                <p class="text-xs lg:text-sm text-gray-300 leading-relaxed flex-1 line-clamp-4">{{ $service['description'] }}</p>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-
-                {{-- Row 3: 2 cards (centered) --}}
-                <div class="services-row services-row-2">
-                    @foreach($row3 as $index => $service)
-                        <div 
-                            class="service-card-item animate-on-scroll opacity-0 card-height-medium"
-                            style="animation-delay: {{ ($index + 6) * 0.1 }}s;"
-                        >
-                            <div class="service-card-inner border-2 border-white rounded-2xl hover:bg-white/5 transition-all duration-300 hover:shadow-lg hover:shadow-white/20 flex flex-col w-full text-center">
-                                <div class="flex flex-col items-center justify-center mb-4">
-                                    <img 
-                                        src="{{ asset('images/our-ser/' . $service['icon']) }}" 
-                                        alt="{{ $service['title'] }}"
-                                        class="w-10 h-10 lg:w-12 lg:h-12 mb-3 transition-transform duration-300 hover:scale-110"
-                                    >
-                                    <h3 class="text-base lg:text-lg font-medium">{{ $service['title'] }}</h3>
-                                </div>
-                                <p class="text-xs lg:text-sm text-gray-300 leading-relaxed flex-1 line-clamp-4">{{ $service['description'] }}</p>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
+            {{-- Services Slider Component --}}
+            <div class="mb-6 lg:mb-8">
+                <x-services-slider :services="$services" />
             </div>
 
             {{-- CTA Button --}}
@@ -177,24 +107,17 @@
     </section>
 
     {{-- What Makes Us Stand Out Section --}}
-    <section class="py-24 lg:py-40 bg-white relative overflow-hidden" x-data="{ visible: false }" x-intersect="visible = true">
-        {{-- Background Decorative SVG --}}
+    <section class="py-12 lg:py-16 bg-white relative overflow-hidden h-auto" x-data="{ visible: false }" x-intersect="visible = true">
+        {{-- Background Decorative SVG - Vertical Dashed Line Only --}}
         <div class="absolute inset-0 pointer-events-none opacity-5">
             <svg class="w-full h-full" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 400 L1200 400" stroke="currentColor" stroke-width="1" stroke-dasharray="20 10"/>
                 <path d="M600 0 L600 800" stroke="currentColor" stroke-width="1" stroke-dasharray="20 10"/>
             </svg>
         </div>
 
         <div class="container mx-auto px-4 relative z-10">
             {{-- Section Header --}}
-            <div class="text-center mb-24 lg:mb-32">
-                <div class="inline-block mb-6 animate-on-scroll opacity-0">
-                    <svg class="w-16 h-16 mx-auto text-black" fill="none" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M32 8 L56 20 L56 44 L32 56 L8 44 L8 20 Z" stroke="currentColor" stroke-width="2" fill="none"/>
-                        <path d="M32 20 L44 26 L44 38 L32 44 L20 38 L20 26 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
-                    </svg>
-                </div>
+            <div class="text-center mb-8 lg:mb-12">
                 <h2 class="font-tenor text-3xl lg:text-6xl uppercase mb-4 tracking-tight animate-on-scroll opacity-0" style="animation-delay: 0.1s;">
                     <span class="hidden md:inline">What makes us stand out?</span>
                     <span class="md:hidden">What makes us<br>stand out?</span>
@@ -205,23 +128,24 @@
             <div class="max-w-7xl mx-auto">
                 {{-- Desktop: Asymmetric Split Design --}}
                 <div class="hidden lg:block relative">
-                    {{-- Unique Diagonal Divider with SVG --}}
+                    {{-- Center Icon on Vertical Dashed Line --}}
                     <div class="absolute left-1/2 top-0 bottom-0 w-px transform -translate-x-1/2 z-0">
-                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center shadow-lg">
-                            <svg class="w-10 h-10 text-gray-400" fill="none" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M20 8 L32 20 L20 32 L8 20 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
+                            <svg class="w-12 h-12 text-black" fill="none" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M32 8 L56 20 L56 44 L32 56 L8 44 L8 20 Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M32 20 L44 26 L44 38 L32 44 L20 38 L20 26 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
                             </svg>
                         </div>
                         <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-px h-1/2 bg-gradient-to-b from-transparent via-gray-200 to-gray-200"></div>
                         <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-px h-1/2 bg-gradient-to-b from-gray-200 via-gray-200 to-transparent"></div>
                     </div>
 
-                    <div class="grid grid-cols-12 gap-8 items-start">
+                    <div class="grid grid-cols-12 gap-6 items-start">
                         {{-- ATHA CONSTRUCTION Side --}}
-                        <div class="col-span-5 pr-12">
-                            <div class="sticky top-40">
+                        <div class="col-span-5 pr-10">
+                            <div class="sticky top-32">
                                 {{-- Header with SVG --}}
-                                <div class="mb-16 animate-on-scroll opacity-0" style="animation-delay: 0.15s;">
+                                <div class="mb-10 animate-on-scroll opacity-0" style="animation-delay: 0.15s;">
                                     <div class="flex items-center gap-4 mb-6">
                                         <svg class="w-8 h-8 text-black flex-shrink-0" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                                             <rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
@@ -230,13 +154,13 @@
                                             <circle cx="16" cy="6" r="1.5" fill="currentColor"/>
                                             <circle cx="22" cy="6" r="1.5" fill="currentColor"/>
                                         </svg>
-                                        <h3 class="font-tenor text-4xl lg:text-5xl uppercase tracking-tight">ATHA<br>CONSTRUCTION</h3>
+                                        <h3 class="font-tenor text-3xl lg:text-4xl uppercase tracking-tight">ATHA<br>CONSTRUCTION</h3>
                                     </div>
                                     <div class="w-32 h-1 bg-black"></div>
                                 </div>
                                 
                                 {{-- Items with Custom SVGs --}}
-                                <div class="space-y-8">
+                                <div class="space-y-5">
                                     @foreach($athaAdvantages as $index => $advantage)
                                         <div class="comparison-item-left opacity-0"
                                              :class="{ 'animate-fade-in-left': visible }"
@@ -250,7 +174,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="flex-1 pt-1">
-                                                    <p class="text-lg text-gray-900 leading-relaxed group-hover:text-black transition-colors">
+                                                    <p class="text-base text-gray-900 leading-relaxed group-hover:text-black transition-colors">
                                                         {{ $advantage }}
                                                     </p>
                                                 </div>
@@ -265,12 +189,12 @@
                         <div class="col-span-2"></div>
 
                         {{-- OTHER CONTRACTORS Side --}}
-                        <div class="col-span-5 pl-12">
-                            <div class="sticky top-40">
+                        <div class="col-span-5 pl-10">
+                            <div class="sticky top-32">
                                 {{-- Header with SVG --}}
-                                <div class="mb-16 animate-on-scroll opacity-0" style="animation-delay: 0.25s;">
+                                <div class="mb-10 animate-on-scroll opacity-0" style="animation-delay: 0.25s;">
                                     <div class="flex items-center gap-4 mb-6 justify-end">
-                                        <h3 class="font-tenor text-4xl lg:text-5xl uppercase tracking-tight text-gray-300 text-right">OTHER<br>CONTRACTORS</h3>
+                                        <h3 class="font-tenor text-3xl lg:text-4xl uppercase tracking-tight text-gray-300 text-right">OTHER<br>CONTRACTORS</h3>
                                         <svg class="w-8 h-8 text-gray-300 flex-shrink-0" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                                             <rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="1.5" fill="none" stroke-dasharray="4 4"/>
                                             <path d="M8 14 L16 20 L24 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 2"/>
@@ -280,14 +204,14 @@
                                 </div>
                                 
                                 {{-- Items with Custom SVGs --}}
-                                <div class="space-y-8">
+                                <div class="space-y-5">
                                     @foreach($otherContractors as $index => $disadvantage)
                                         <div class="comparison-item-right opacity-0"
                                              :class="{ 'animate-fade-in-right': visible }"
                                              :style="{ animationDelay: '{{ $index * 0.1 }}s' }">
                                             <div class="flex items-start gap-6 group">
                                                 <div class="flex-1 pt-1 text-right">
-                                                    <p class="text-lg text-gray-400 leading-relaxed line-through">
+                                                    <p class="text-base text-gray-400 leading-relaxed line-through">
                                                         {{ $disadvantage }}
                                                     </p>
                                                 </div>
@@ -311,13 +235,13 @@
                 <div class="lg:hidden space-y-20">
                     {{-- ATHA CONSTRUCTION --}}
                     <div>
-                        <div class="mb-12 animate-on-scroll opacity-0">
+                        <div class="mb-10 animate-on-scroll opacity-0">
                             <div class="flex items-center gap-3 mb-6">
                                 <svg class="w-6 h-6 text-black" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                                     <rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
                                     <path d="M8 14 L16 20 L24 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
-                                <h3 class="font-tenor text-3xl uppercase tracking-tight">ATHA CONSTRUCTION</h3>
+                                <h3 class="font-tenor text-2xl uppercase tracking-tight">ATHA CONSTRUCTION</h3>
                             </div>
                             <div class="w-24 h-0.5 bg-black"></div>
                         </div>
@@ -335,7 +259,7 @@
                                                 </svg>
                                             </div>
                                         </div>
-                                        <p class="text-sm text-gray-900 leading-relaxed flex-1 pt-2">
+                                        <p class="text-xs text-gray-900 leading-relaxed flex-1 pt-2">
                                             {{ $advantage }}
                                         </p>
                                     </div>
@@ -345,14 +269,15 @@
                     </div>
 
                     {{-- Divider with SVG --}}
-                    <div class="relative py-8">
+                    <div class="relative py-6">
                         <div class="absolute inset-0 flex items-center justify-center">
                             <div class="w-full h-px bg-gray-200"></div>
                         </div>
                         <div class="relative flex justify-center">
-                            <div class="w-16 h-16 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center">
-                                <svg class="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M16 8 L24 16 L16 24 L8 16 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <div class="flex items-center justify-center">
+                                <svg class="w-12 h-12 text-black" fill="none" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M32 8 L56 20 L56 44 L32 56 L8 44 L8 20 Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                                    <path d="M32 20 L44 26 L44 38 L32 44 L20 38 L20 26 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
                                 </svg>
                             </div>
                         </div>
@@ -360,9 +285,9 @@
 
                     {{-- OTHER CONTRACTORS --}}
                     <div>
-                        <div class="mb-12 animate-on-scroll opacity-0" style="animation-delay: 0.2s;">
+                        <div class="mb-10 animate-on-scroll opacity-0" style="animation-delay: 0.2s;">
                             <div class="flex items-center gap-3 mb-6 justify-end">
-                                <h3 class="font-tenor text-3xl uppercase tracking-tight text-gray-300 text-right">OTHER CONTRACTORS</h3>
+                                <h3 class="font-tenor text-2xl uppercase tracking-tight text-gray-300 text-right">OTHER CONTRACTORS</h3>
                                 <svg class="w-6 h-6 text-gray-300" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                                     <rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="1.5" fill="none" stroke-dasharray="4 4"/>
                                 </svg>
@@ -376,7 +301,7 @@
                                      :class="{ 'animate-fade-in-right': visible }"
                                      :style="{ animationDelay: '{{ $index * 0.1 }}s' }">
                                     <div class="flex items-start gap-4">
-                                        <p class="text-sm text-gray-400 leading-relaxed flex-1 pt-2 text-right line-through">
+                                        <p class="text-xs text-gray-400 leading-relaxed flex-1 pt-2 text-right line-through">
                                             {{ $disadvantage }}
                                         </p>
                                         <div class="flex-shrink-0 mt-1">
@@ -397,12 +322,22 @@
     </section>
 
     {{-- Featured Projects Section - Staggered Leaf Structure --}}
-    <section class="py-8 lg:py-12 bg-white relative overflow-hidden">
-        {{-- Decorative Branch Line --}}
-        <div class="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gray-200 transform -translate-x-1/2 z-0"></div>
+    <section class=" pb-8 lg:pt-8 lg:pb-12 bg-white relative overflow-hidden">
+        {{-- Decorative Vertical Dashed Line (continuation) --}}
+        <div class="hidden lg:block absolute inset-0 pointer-events-none opacity-5">
+            <svg class="w-full h-full" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M600 0 L600 800" stroke="currentColor" stroke-width="1" stroke-dasharray="20 10"/>
+            </svg>
+        </div>
 
         <div class="container mx-auto px-4 relative z-10">
             <div class="text-center mb-8 lg:mb-10">
+                <!-- <div class="inline-block mb-4 animate-on-scroll opacity-0">
+                    <svg class="w-10 h-10 mx-auto text-black" fill="none" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M32 8 L56 20 L56 44 L32 56 L8 44 L8 20 Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="M32 20 L44 26 L44 38 L32 44 L20 38 L20 26 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    </svg>
+                </div> -->
                 <h2 class="font-tenor text-2xl lg:text-3xl uppercase mb-3 tracking-tight animate-on-scroll opacity-0">Featured Projects</h2>
                 <div class="w-20 h-0.5 bg-black mx-auto animate-on-scroll opacity-0" style="animation-delay: 0.1s;"></div>
             </div>
@@ -433,20 +368,24 @@
                 ];
             @endphp
 
-            <div class="max-w-6xl mx-auto relative">
+            <div class="max-w-6xl mx-auto relative featured-projects-container">
                 @foreach($projects as $index => $project)
                     @php
                         $isEven = ($index % 2 == 0);
                         $isLeft = $isEven;
-                        $staggerOffset = $index * 70; // Reduced stagger for closer spacing
+                        // Calculate top position: 0, card-height/2, card-height, etc.
+                        // Card height is approximately 224px (h-56 = 14rem = 224px)
+                        $cardHeight = 224; // h-56 in pixels
+                        $topPosition = $index * ($cardHeight / 2);
                     @endphp
                     <div 
-                        class="project-staggered-card relative mb-4 lg:mb-0"
+                        class="project-staggered-card featured-project-item"
                         x-data="{ visible: false }" 
                         x-intersect="visible = true"
-                        style="margin-top: {{ $index > 0 ? $staggerOffset . 'px' : '0' }};"
+                        data-index="{{ $index }}"
+                        style="--card-index: {{ $index }};"
                     >
-                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-2 items-start">
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
                             @if($isLeft)
                                 {{-- Left Side: Small Image Card --}}
                                 <div class="lg:col-span-4 lg:pr-2 animate-on-scroll opacity-0"
@@ -845,5 +784,48 @@
             </div>
         </div>
     </section>
+
+    @once
+    <style>
+        /* Featured Projects - Interlocking Stagger Pattern */
+        @media (min-width: 1024px) {
+            .featured-projects-container {
+                height: auto;
+                position: relative;
+                padding-bottom: 600px; /* Ensure space for absolutely positioned cards */
+            }
+
+            .featured-project-item {
+                position: absolute;
+                left: 0;
+                right: 0;
+                width: 100%;
+            }
+
+            /* Card 1: Left side, starts at top: 0 */
+            .featured-project-item[data-index="0"] {
+                top: 0;
+            }
+
+            /* Card 2: Right side, starts at half card height + gap (112px + 48px = 160px) */
+            .featured-project-item[data-index="1"] {
+                top: 200px;
+            }
+
+            /* Card 3: Left side, starts at full card height + gap (224px + 48px = 272px) */
+            .featured-project-item[data-index="2"] {
+                top: 360px;
+            }
+        }
+
+        /* Mobile: Keep normal flow */
+        @media (max-width: 1023px) {
+            .featured-project-item {
+                position: relative !important;
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+    @endonce
 
 </x-layouts>
