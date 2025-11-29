@@ -1,18 +1,20 @@
-<x-layouts 
-    :title="$seo['title']" 
-    :description="$seo['description']" 
+<x-layouts
+    :title="$seo['title']"
+    :description="$seo['description']"
     :keywords="$seo['keywords']">
-    <x-hero :seo="$seo" />
+    <x-hero :seo="$seo"/>
 
     {{-- Stats Section --}}
-    <section class="relative bg-cover bg-center bg-no-repeat" id="next-section" style="background-image: url('{{ asset('images/blog-2.jpeg') }}')">
+    <section class="relative bg-cover bg-center bg-no-repeat" id="next-section"
+             style="background-image: url('{{ asset('images/blog-2.jpeg') }}')">
         <div class="bg-white/90 py-16 lg:py-20">
             <div class="container mx-auto px-4 text-center">
                 <h2 class="font-tenor text-2xl lg:text-3xl uppercase mb-4">
                     EXPERTISE. PROFESSIONALISM. DEDICATION.
                 </h2>
                 <p class="text-sm max-w-3xl mx-auto mb-12">
-                    The ATHA Construction offers an unparalleled level of service, expertise and discretion to its clients, buyers and
+                    The ATHA Construction offers an unparalleled level of service, expertise and discretion to its
+                    clients, buyers and
                     sellers alike, across the globe.
                 </p>
 
@@ -23,7 +25,7 @@
                             $suffixPart = preg_replace('/[\d\.]/', '', $stat['number']);
                             $targetValue = $numericPart !== '' ? (float) $numericPart : 0;
                         @endphp
-                        <div 
+                        <div
                             class="animate-on-scroll opacity-0"
                             x-data="statCounter({ target: @js($targetValue), suffix: @js($suffixPart) })"
                             x-intersect.once="start()"
@@ -44,34 +46,47 @@
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 <div class="lg:col-span-7 lg:pr-12">
-                    <p class="text-sm uppercase mb-2 animate-on-scroll opacity-0" style="animation-delay: 0s;">ATHA Construction</p>
-                    <h2 class="font-tenor text-2xl lg:text-3xl uppercase mb-6 animate-on-scroll opacity-0" style="animation-delay: 0.1s;">
+                    <p class="text-sm uppercase mb-2 animate-on-scroll opacity-0" style="animation-delay: 0s;">ATHA
+                        Construction</p>
+                    <h2 class="font-tenor text-2xl lg:text-3xl uppercase mb-6 animate-on-scroll opacity-0"
+                        style="animation-delay: 0.1s;">
                         Crafting Dreams, Building Legacies
                     </h2>
 
                     <div class="space-y-4 text-sm leading-relaxed text-justify">
                         <p class="animate-on-scroll opacity-0" style="animation-delay: 0.2s;">
-                            Founded in 2016, Atha Construction has established itself as a trusted name in construction across Karnataka. Specializing in both residential and commercial projects, we are committed to transforming ideas into reality with precision, innovation, and sustainable practices.
+                            Founded in 2016, Atha Construction has established itself as a trusted name in construction
+                            across Karnataka. Specializing in both residential and commercial projects, we are committed
+                            to transforming ideas into reality with precision, innovation, and sustainable practices.
                         </p>
                         <p class="animate-on-scroll opacity-0" style="animation-delay: 0.3s;">
-                            Our approach combines cutting-edge design, advanced technology, and eco-conscious solutions to create spaces that inspire and endure. From cozy homes to modern office spaces, every project is tailored to exceed client expectations while delivering unmatched value and quality.
+                            Our approach combines cutting-edge design, advanced technology, and eco-conscious solutions
+                            to create spaces that inspire and endure. From cozy homes to modern office spaces, every
+                            project is tailored to exceed client expectations while delivering unmatched value and
+                            quality.
                         </p>
                         <p class="animate-on-scroll opacity-0" style="animation-delay: 0.4s;">
-                            At Atha Construction, we believe construction is more than building structures—it's about creating environments that foster growth, comfort, and community. Our collaborative process ensures transparency and trust, from concept to completion.
-                            With a strong presence in Bengaluru, Mysuru, Ballari, and beyond, we take pride in building lasting partnerships rooted in integrity and excellence. As we continue to grow, our mission remains steadfast: delivering exceptional construction services that stand the test of time.
+                            At Atha Construction, we believe construction is more than building structures—it's about
+                            creating environments that foster growth, comfort, and community. Our collaborative process
+                            ensures transparency and trust, from concept to completion.
+                            With a strong presence in Bengaluru, Mysuru, Ballari, and beyond, we take pride in building
+                            lasting partnerships rooted in integrity and excellence. As we continue to grow, our mission
+                            remains steadfast: delivering exceptional construction services that stand the test of time.
                         </p>
                     </div>
 
-                    <a href="{{ route('about') }}" class="inline-block mt-8 px-8 py-3 border border-black text-sm uppercase tracking-wide hover:bg-black hover:text-white transition-all duration-300 transform hover:scale-105 animate-on-scroll opacity-0" style="animation-delay: 0.5s;">
+                    <a href="{{ route('about') }}"
+                       class="inline-block mt-8 px-8 py-3 border border-black text-sm uppercase tracking-wide hover:bg-black hover:text-white transition-all duration-300 transform hover:scale-105 animate-on-scroll opacity-0"
+                       style="animation-delay: 0.5s;">
                         KNOW MORE
                     </a>
                 </div>
                 <div class="lg:col-span-5">
-                    <img 
-                        src="{{ asset('images/ATHA-CONSTRUCTIONS.jpg') }}" 
-                        alt="Best Construction Companies in Bangalore" 
+                    <img
+                        src="{{ asset('images/ATHA-CONSTRUCTIONS.jpg') }}"
+                        alt="Best Construction Companies in Bangalore"
                         title="Best Construction Companies in Bangalore"
-                        class="w-full rounded-lg shadow-lg animate-on-scroll opacity-0 hover:shadow-xl transition-shadow duration-300" 
+                        class="w-full rounded-lg shadow-lg animate-on-scroll opacity-0 hover:shadow-xl transition-shadow duration-300"
                         style="animation-delay: 0.3s;"
                     >
                 </div>
@@ -82,22 +97,24 @@
     {{-- Services Section --}}
     <section class="py-8 lg:py-12 bg-black text-white min-h-screen flex flex-col justify-center">
         <div class="container mx-auto px-4">
-            <h2 class="font-tenor text-2xl lg:text-3xl uppercase text-center mb-4 animate-on-scroll opacity-0">OUR SERVICES</h2>
-            <p class="text-sm lg:text-base text-gray-300 text-center max-w-3xl mx-auto mb-6 lg:mb-8 animate-on-scroll opacity-0" style="animation-delay: 0.1s;">
-                From concept to completion, we deliver comprehensive construction solutions tailored to your vision. 
-                Whether you're building your dream home or expanding your business, our expert team brings quality, 
+            <h2 class="font-tenor text-2xl lg:text-3xl uppercase text-center mb-4 animate-on-scroll opacity-0">OUR
+                SERVICES</h2>
+            <p class="text-sm lg:text-base text-gray-300 text-center max-w-3xl mx-auto mb-6 lg:mb-8 animate-on-scroll opacity-0"
+               style="animation-delay: 0.1s;">
+                From concept to completion, we deliver comprehensive construction solutions tailored to your vision.
+                Whether you're building your dream home or expanding your business, our expert team brings quality,
                 innovation, and reliability to every project.
             </p>
-            
+
             {{-- Services Slider Component --}}
             <div class="mb-6 lg:mb-8">
-                <x-services-slider :services="$services" />
+                <x-services-slider :services="$services"/>
             </div>
 
             {{-- CTA Button --}}
             <div class="text-center animate-on-scroll opacity-0">
-                <a 
-                    href="{{ route('services') }}" 
+                <a
+                    href="{{ route('services') }}"
                     class="inline-block px-6 py-2 lg:px-8 lg:py-3 border-2 border-white text-white text-xs lg:text-sm uppercase tracking-wide hover:bg-white hover:text-black transition-all duration-300 transform hover:scale-105"
                 >
                     VIEW ALL SERVICES
@@ -107,7 +124,8 @@
     </section>
 
     {{-- What Makes Us Stand Out Section --}}
-    <section class="py-12 lg:py-16 bg-white relative overflow-hidden h-auto" x-data="{ visible: false }" x-intersect="visible = true">
+    <section class="py-12 lg:py-16 bg-white relative overflow-hidden h-auto" x-data="{ visible: false }"
+             x-intersect="visible = true">
         {{-- Background Decorative SVG - Vertical Dashed Line Only --}}
         <div class="absolute inset-0 pointer-events-none opacity-5">
             <svg class="w-full h-full" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -118,11 +136,13 @@
         <div class="container mx-auto px-4 relative z-10">
             {{-- Section Header --}}
             <div class="text-center mb-8 lg:mb-12">
-                <h2 class="font-tenor text-3xl lg:text-6xl uppercase mb-4 tracking-tight animate-on-scroll opacity-0" style="animation-delay: 0.1s;">
+                <h2 class="font-tenor text-3xl lg:text-6xl uppercase mb-4 tracking-tight animate-on-scroll opacity-0"
+                    style="animation-delay: 0.1s;">
                     <span class="hidden md:inline">What makes us stand out?</span>
                     <span class="md:hidden">What makes us<br>stand out?</span>
                 </h2>
-                <div class="w-24 h-0.5 bg-black mx-auto animate-on-scroll opacity-0" style="animation-delay: 0.2s;"></div>
+                <div class="w-24 h-0.5 bg-black mx-auto animate-on-scroll opacity-0"
+                     style="animation-delay: 0.2s;"></div>
             </div>
 
             <div class="max-w-7xl mx-auto">
@@ -130,14 +150,20 @@
                 <div class="hidden lg:block relative">
                     {{-- Center Icon on Vertical Dashed Line --}}
                     <div class="absolute left-1/2 top-0 bottom-0 w-px transform -translate-x-1/2 z-0">
-                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-black" fill="none" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M32 8 L56 20 L56 44 L32 56 L8 44 L8 20 Z" stroke="currentColor" stroke-width="2" fill="none"/>
-                                <path d="M32 20 L44 26 L44 38 L32 44 L20 38 L20 26 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                        <div
+                            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
+                            <svg class="w-12 h-12 text-black" fill="none" viewBox="0 0 64 64"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M32 8 L56 20 L56 44 L32 56 L8 44 L8 20 Z" stroke="currentColor"
+                                      stroke-width="2" fill="none"/>
+                                <path d="M32 20 L44 26 L44 38 L32 44 L20 38 L20 26 Z" stroke="currentColor"
+                                      stroke-width="1.5" fill="none"/>
                             </svg>
                         </div>
-                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-px h-1/2 bg-gradient-to-b from-transparent via-gray-200 to-gray-200"></div>
-                        <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-px h-1/2 bg-gradient-to-b from-gray-200 via-gray-200 to-transparent"></div>
+                        <div
+                            class="absolute top-0 left-1/2 transform -translate-x-1/2 w-px h-1/2 bg-gradient-to-b from-transparent via-gray-200 to-gray-200"></div>
+                        <div
+                            class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-px h-1/2 bg-gradient-to-b from-gray-200 via-gray-200 to-transparent"></div>
                     </div>
 
                     <div class="grid grid-cols-12 gap-6 items-start">
@@ -147,18 +173,22 @@
                                 {{-- Header with SVG --}}
                                 <div class="mb-10 animate-on-scroll opacity-0" style="animation-delay: 0.15s;">
                                     <div class="flex items-center gap-4 mb-6">
-                                        <svg class="w-8 h-8 text-black flex-shrink-0" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
-                                            <path d="M8 14 L16 20 L24 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <svg class="w-8 h-8 text-black flex-shrink-0" fill="none" viewBox="0 0 32 32"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor"
+                                                  stroke-width="2" fill="none"/>
+                                            <path d="M8 14 L16 20 L24 14" stroke="currentColor" stroke-width="2"
+                                                  stroke-linecap="round" stroke-linejoin="round"/>
                                             <circle cx="10" cy="6" r="1.5" fill="currentColor"/>
                                             <circle cx="16" cy="6" r="1.5" fill="currentColor"/>
                                             <circle cx="22" cy="6" r="1.5" fill="currentColor"/>
                                         </svg>
-                                        <h3 class="font-tenor text-3xl lg:text-4xl uppercase tracking-tight">ATHA<br>CONSTRUCTION</h3>
+                                        <h3 class="font-tenor text-3xl lg:text-4xl uppercase tracking-tight">ATHA<br>CONSTRUCTION
+                                        </h3>
                                     </div>
                                     <div class="w-32 h-1 bg-black"></div>
                                 </div>
-                                
+
                                 {{-- Items with Custom SVGs --}}
                                 <div class="space-y-5">
                                     @foreach($athaAdvantages as $index => $advantage)
@@ -167,9 +197,13 @@
                                              :style="{ animationDelay: '{{ $index * 0.1 }}s' }">
                                             <div class="flex items-start gap-6 group">
                                                 <div class="flex-shrink-0 mt-1">
-                                                    <div class="w-12 h-12 bg-black rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md">
-                                                        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <div
+                                                        class="w-12 h-12 bg-black rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md">
+                                                        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24"
+                                                             xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M5 13l4 4L19 7" stroke="currentColor"
+                                                                  stroke-width="3" stroke-linecap="round"
+                                                                  stroke-linejoin="round"/>
                                                         </svg>
                                                     </div>
                                                 </div>
@@ -194,15 +228,20 @@
                                 {{-- Header with SVG --}}
                                 <div class="mb-10 animate-on-scroll opacity-0" style="animation-delay: 0.25s;">
                                     <div class="flex items-center gap-4 mb-6 justify-end">
-                                        <h3 class="font-tenor text-3xl lg:text-4xl uppercase tracking-tight text-gray-300 text-right">OTHER<br>CONTRACTORS</h3>
-                                        <svg class="w-8 h-8 text-gray-300 flex-shrink-0" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="1.5" fill="none" stroke-dasharray="4 4"/>
-                                            <path d="M8 14 L16 20 L24 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 2"/>
+                                        <h3 class="font-tenor text-3xl lg:text-4xl uppercase tracking-tight text-gray-300 text-right">
+                                            OTHER<br>CONTRACTORS</h3>
+                                        <svg class="w-8 h-8 text-gray-300 flex-shrink-0" fill="none" viewBox="0 0 32 32"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor"
+                                                  stroke-width="1.5" fill="none" stroke-dasharray="4 4"/>
+                                            <path d="M8 14 L16 20 L24 14" stroke="currentColor" stroke-width="1.5"
+                                                  stroke-linecap="round" stroke-linejoin="round"
+                                                  stroke-dasharray="2 2"/>
                                         </svg>
                                     </div>
                                     <div class="w-32 h-1 bg-gray-300 ml-auto"></div>
                                 </div>
-                                
+
                                 {{-- Items with Custom SVGs --}}
                                 <div class="space-y-5">
                                     @foreach($otherContractors as $index => $disadvantage)
@@ -216,9 +255,13 @@
                                                     </p>
                                                 </div>
                                                 <div class="flex-shrink-0 mt-1">
-                                                    <div class="w-12 h-12 bg-gray-300 rounded-lg flex items-center justify-center opacity-50">
-                                                        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <div
+                                                        class="w-12 h-12 bg-gray-300 rounded-lg flex items-center justify-center opacity-50">
+                                                        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24"
+                                                             xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M6 18L18 6M6 6l12 12" stroke="currentColor"
+                                                                  stroke-width="3" stroke-linecap="round"
+                                                                  stroke-linejoin="round"/>
                                                         </svg>
                                                     </div>
                                                 </div>
@@ -237,15 +280,18 @@
                     <div>
                         <div class="mb-10 animate-on-scroll opacity-0">
                             <div class="flex items-center gap-3 mb-6">
-                                <svg class="w-6 h-6 text-black" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
-                                    <path d="M8 14 L16 20 L24 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <svg class="w-6 h-6 text-black" fill="none" viewBox="0 0 32 32"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor"
+                                          stroke-width="2" fill="none"/>
+                                    <path d="M8 14 L16 20 L24 14" stroke="currentColor" stroke-width="2"
+                                          stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                                 <h3 class="font-tenor text-2xl uppercase tracking-tight">ATHA CONSTRUCTION</h3>
                             </div>
                             <div class="w-24 h-0.5 bg-black"></div>
                         </div>
-                        
+
                         <div class="space-y-6">
                             @foreach($athaAdvantages as $index => $advantage)
                                 <div class="comparison-item-left opacity-0"
@@ -254,8 +300,10 @@
                                     <div class="flex items-start gap-4">
                                         <div class="flex-shrink-0 mt-1">
                                             <div class="w-10 h-10 bg-black rounded-lg flex items-center justify-center">
-                                                <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3"
+                                                          stroke-linecap="round" stroke-linejoin="round"/>
                                                 </svg>
                                             </div>
                                         </div>
@@ -275,9 +323,12 @@
                         </div>
                         <div class="relative flex justify-center">
                             <div class="flex items-center justify-center">
-                                <svg class="w-12 h-12 text-black" fill="none" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M32 8 L56 20 L56 44 L32 56 L8 44 L8 20 Z" stroke="currentColor" stroke-width="2" fill="none"/>
-                                    <path d="M32 20 L44 26 L44 38 L32 44 L20 38 L20 26 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                <svg class="w-12 h-12 text-black" fill="none" viewBox="0 0 64 64"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M32 8 L56 20 L56 44 L32 56 L8 44 L8 20 Z" stroke="currentColor"
+                                          stroke-width="2" fill="none"/>
+                                    <path d="M32 20 L44 26 L44 38 L32 44 L20 38 L20 26 Z" stroke="currentColor"
+                                          stroke-width="1.5" fill="none"/>
                                 </svg>
                             </div>
                         </div>
@@ -287,14 +338,17 @@
                     <div>
                         <div class="mb-10 animate-on-scroll opacity-0" style="animation-delay: 0.2s;">
                             <div class="flex items-center gap-3 mb-6 justify-end">
-                                <h3 class="font-tenor text-2xl uppercase tracking-tight text-gray-300 text-right">OTHER CONTRACTORS</h3>
-                                <svg class="w-6 h-6 text-gray-300" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="1.5" fill="none" stroke-dasharray="4 4"/>
+                                <h3 class="font-tenor text-2xl uppercase tracking-tight text-gray-300 text-right">OTHER
+                                    CONTRACTORS</h3>
+                                <svg class="w-6 h-6 text-gray-300" fill="none" viewBox="0 0 32 32"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor"
+                                          stroke-width="1.5" fill="none" stroke-dasharray="4 4"/>
                                 </svg>
                             </div>
                             <div class="w-24 h-0.5 bg-gray-300 ml-auto"></div>
                         </div>
-                        
+
                         <div class="space-y-6">
                             @foreach($otherContractors as $index => $disadvantage)
                                 <div class="comparison-item-right opacity-0"
@@ -305,9 +359,13 @@
                                             {{ $disadvantage }}
                                         </p>
                                         <div class="flex-shrink-0 mt-1">
-                                            <div class="w-10 h-10 bg-gray-300 rounded-lg flex items-center justify-center opacity-50">
-                                                <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <div
+                                                class="w-10 h-10 bg-gray-300 rounded-lg flex items-center justify-center opacity-50">
+                                                <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M6 18L18 6M6 6l12 12" stroke="currentColor"
+                                                          stroke-width="3" stroke-linecap="round"
+                                                          stroke-linejoin="round"/>
                                                 </svg>
                                             </div>
                                         </div>
@@ -338,8 +396,10 @@
                         <path d="M32 20 L44 26 L44 38 L32 44 L20 38 L20 26 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
                     </svg>
                 </div> -->
-                <h2 class="font-tenor text-2xl lg:text-3xl uppercase mb-3 tracking-tight animate-on-scroll opacity-0">Featured Projects</h2>
-                <div class="w-20 h-0.5 bg-black mx-auto animate-on-scroll opacity-0" style="animation-delay: 0.1s;"></div>
+                <h2 class="font-tenor text-2xl lg:text-3xl uppercase mb-3 tracking-tight animate-on-scroll opacity-0">
+                    Featured Projects</h2>
+                <div class="w-20 h-0.5 bg-black mx-auto animate-on-scroll opacity-0"
+                     style="animation-delay: 0.1s;"></div>
             </div>
 
             @php
@@ -378,9 +438,9 @@
                         $cardHeight = 224; // h-56 in pixels
                         $topPosition = $index * ($cardHeight / 2);
                     @endphp
-                    <div 
+                    <div
                         class="project-staggered-card featured-project-item"
-                        x-data="{ visible: false }" 
+                        x-data="{ visible: false }"
                         x-intersect="visible = true"
                         data-index="{{ $index }}"
                         style="--card-index: {{ $index }};"
@@ -392,13 +452,15 @@
                                      :class="{ 'animate-fade-in-left': visible }"
                                      style="animation-delay: {{ $index * 0.15 }}s;">
                                     <div class="project-compact-card group">
-                                        <div class="relative overflow-hidden rounded-lg bg-black h-48 lg:h-56 shadow-md transform transition-all duration-300 hover:scale-105">
-                                            <img 
-                                                src="{{ asset('images/' . $project['image']) }}" 
+                                        <div
+                                            class="relative overflow-hidden rounded-lg bg-black h-48 lg:h-56 shadow-md transform transition-all duration-300 hover:scale-105">
+                                            <img
+                                                src="{{ asset('images/' . $project['image']) }}"
                                                 alt="{{ $project['location'] }} - {{ $project['type'] }}"
                                                 class="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity duration-300"
                                             >
-                                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                                            <div
+                                                class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                             <div class="absolute bottom-2 left-2 right-2">
                                                 <p class="text-white text-xs uppercase tracking-wider font-semibold">{{ $project['location'] }}</p>
                                             </div>
@@ -429,13 +491,15 @@
                                      :class="{ 'animate-fade-in-right': visible }"
                                      style="animation-delay: {{ $index * 0.15 }}s;">
                                     <div class="project-compact-card group">
-                                        <div class="relative overflow-hidden rounded-lg bg-black h-48 lg:h-56 shadow-md transform transition-all duration-300 hover:scale-105">
-                                            <img 
-                                                src="{{ asset('images/' . $project['image']) }}" 
+                                        <div
+                                            class="relative overflow-hidden rounded-lg bg-black h-48 lg:h-56 shadow-md transform transition-all duration-300 hover:scale-105">
+                                            <img
+                                                src="{{ asset('images/' . $project['image']) }}"
                                                 alt="{{ $project['location'] }} - {{ $project['type'] }}"
                                                 class="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity duration-300"
                                             >
-                                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                                            <div
+                                                class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                             <div class="absolute bottom-2 left-2 right-2">
                                                 <p class="text-white text-xs uppercase tracking-wider font-semibold">{{ $project['location'] }}</p>
                                             </div>
@@ -469,7 +533,8 @@
     </section>
 
     {{-- How It Works Section - Desktop --}}
-    <section class="py-16 lg:py-24 hidden md:block" x-data="{ activeStep: 0 }" x-init="setInterval(() => activeStep = (activeStep + 1) % {{ count($howItWorks) }}, 3000)">
+    <section class="py-16 lg:py-24 hidden md:block" x-data="{ activeStep: 0 }"
+             x-init="setInterval(() => activeStep = (activeStep + 1) % {{ count($howItWorks) }}, 3000)">
         <div class="container mx-auto px-4">
             <h2 class="font-tenor text-2xl lg:text-3xl uppercase text-center mb-12">How it works</h2>
 
@@ -482,12 +547,12 @@
                          :style="{ width: (activeStep / {{ count($howItWorks) - 1 }}) * 100 + '%' }"></div>
 
                     @foreach($howItWorks as $index => $step)
-                        <button 
+                        <button
                             @click="activeStep = {{ $index }}"
                             class="relative z-10 flex flex-col items-center text-center w-32 cursor-pointer transition-all duration-300"
                             :class="{ 'text-black': activeStep >= {{ $index }}, 'text-gray-400': activeStep < {{ $index }} }"
                         >
-                            <span 
+                            <span
                                 class="w-10 h-10 flex items-center justify-center rounded text-lg mb-3 transition-all duration-300"
                                 :class="activeStep >= {{ $index }} ? 'bg-black text-white' : 'bg-white text-black border border-gray-300'"
                             >
@@ -502,15 +567,15 @@
             {{-- Step Content --}}
             <div class="max-w-3xl mx-auto">
                 @foreach($howItWorks as $index => $step)
-                    <div 
+                    <div
                         x-show="activeStep === {{ $index }}"
                         x-transition:enter="transition ease-out duration-300"
                         x-transition:enter-start="opacity-0 transform translate-x-4"
                         x-transition:enter-end="opacity-100 transform translate-x-0"
                         class="text-center"
                     >
-                        <img 
-                            src="{{ asset('images/' . $step['image']) }}" 
+                        <img
+                            src="{{ asset('images/' . $step['image']) }}"
                             alt="{{ $step['title'] }}"
                             class="w-1/4 mx-auto mb-6"
                         >
@@ -529,8 +594,8 @@
             <div class="space-y-8">
                 @foreach($howItWorks as $step)
                     <div class="text-center border-b border-gray-200 pb-8 last:border-0">
-                        <img 
-                            src="{{ asset('images/' . $step['image']) }}" 
+                        <img
+                            src="{{ asset('images/' . $step['image']) }}"
                             alt="{{ $step['title'] }}"
                             class="w-3/4 mx-auto mb-4"
                         >
@@ -546,10 +611,12 @@
     </section>
 
     {{-- Work With Us Section --}}
-    <section class="relative min-h-[400px] flex items-center" x-data="{ enquiryModalOpen: false, formSubmitting: false, formMessage: '' }">
-        <img 
-            src="{{ asset('images/Careers.png') }}" 
-            alt="best house construction companies in bangalore" 
+    <section class="relative min-h-[400px] flex items-center"
+             x-data="{ enquiryModalOpen: false }"
+             @enquiry-success.window="setTimeout(() => enquiryModalOpen = false, 2000)">
+        <img
+            src="{{ asset('images/Careers.png') }}"
+            alt="best house construction companies in bangalore"
             title="best house construction companies in bangalore"
             class="hidden md:block absolute inset-0 w-full h-full object-cover"
         >
@@ -557,10 +624,12 @@
         <div class="container mx-auto px-4 relative z-10 text-center text-white py-16">
             <h2 class="font-tenor text-2xl lg:text-3xl uppercase mb-6">WORK WITH US</h2>
             <p class="text-sm max-w-2xl mx-auto mb-8">
-                Our goal is to offer an unparalleled level of service to our highly respected clients. Whether you are looking to buy or sell your home,
-                we guarantee that our expertise, professionalism and dedication will guide you toward meeting your unique real estate needs.
+                Our goal is to offer an unparalleled level of service to our highly respected clients. Whether you are
+                looking to buy or sell your home,
+                we guarantee that our expertise, professionalism and dedication will guide you toward meeting your
+                unique real estate needs.
             </p>
-            <button 
+            <button
                 @click="enquiryModalOpen = true"
                 class="inline-block px-8 py-3 border border-white text-white text-sm uppercase tracking-wide hover:bg-white hover:text-black transition-all duration-300"
             >
@@ -569,7 +638,7 @@
         </div>
 
         {{-- Enquiry Form Modal/Lightbox --}}
-        <div 
+        <div
             x-show="enquiryModalOpen"
             x-cloak
             @click.self="enquiryModalOpen = false"
@@ -582,7 +651,7 @@
             x-transition:leave-start="opacity-100"
             x-transition:leave-end="opacity-0"
         >
-            <div 
+            <div
                 @click.stop
                 class="enquiry-modal bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto"
                 x-transition:enter="transition ease-out duration-300"
@@ -593,163 +662,30 @@
                 x-transition:leave-end="opacity-0 transform scale-95"
             >
                 {{-- Modal Header --}}
-                <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between z-10">
-                    <div class="flex items-center gap-4">
-                        <img 
-                            src="{{ asset('images/Atha Logo - High Quality-1.png') }}" 
-                            alt="ATHA Construction" 
-                            class="h-10 w-auto"
-                        >
-                        <div>
-                            <h3 class="font-tenor text-2xl uppercase tracking-tight">Get In Touch</h3>
-                            <p class="text-xs text-gray-500 mt-1">We'll get back to you soon</p>
-                        </div>
+                <div
+                    class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between z-10">
+                    <div>
+                        <h3 class="font-tenor text-2xl uppercase tracking-tight">Get In Touch</h3>
+                        <p class="text-xs text-gray-500 mt-1">We'll get back to you soon</p>
                     </div>
-                    <button 
+                    <button
                         @click="enquiryModalOpen = false"
                         class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
                         aria-label="Close"
                     >
                         <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
                     </button>
                 </div>
 
                 {{-- Modal Body - Form --}}
                 <div class="p-6 lg:p-8">
-                    <form 
-                        @submit.prevent="
-                            formSubmitting = true;
-                            fetch('{{ route('contact.submit') }}', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                                },
-                                body: JSON.stringify(Object.fromEntries(new FormData($event.target)))
-                            })
-                            .then(res => res.json())
-                            .then(data => {
-                                formMessage = data.status === 'OK' ? 'success' : 'error';
-                                if (data.status === 'OK') {
-                                    $event.target.reset();
-                                    setTimeout(() => {
-                                        enquiryModalOpen = false;
-                                        formMessage = '';
-                                    }, 2000);
-                                }
-                                setTimeout(() => formMessage = '', 5000);
-                            })
-                            .catch(() => formMessage = 'error')
-                            .finally(() => formSubmitting = false);
-                        "
-                        class="space-y-5"
-                    >
-                        {{-- Success/Error Message --}}
-                        <div 
-                            x-show="formMessage === 'success'"
-                            x-cloak
-                            class="p-4 bg-green-50 border border-green-200 text-green-700 text-sm rounded"
-                        >
-                            Thank you! We will contact you soon.
-                        </div>
-                        <div 
-                            x-show="formMessage === 'error'"
-                            x-cloak
-                            class="p-4 bg-red-50 border border-red-200 text-red-700 text-sm rounded"
-                        >
-                            Something went wrong. Please try again.
-                        </div>
-
-                        {{-- Name --}}
-                        <div>
-                            <label for="enquiry-name" class="block text-xs uppercase tracking-wider text-gray-700 mb-2">Your Name *</label>
-                            <input 
-                                type="text" 
-                                id="enquiry-name"
-                                name="name" 
-                                required 
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition-colors text-sm"
-                                placeholder="Enter your full name"
-                            >
-                        </div>
-
-                        {{-- Phone --}}
-                        <div>
-                            <label for="enquiry-phone" class="block text-xs uppercase tracking-wider text-gray-700 mb-2">Phone Number *</label>
-                            <input 
-                                type="tel" 
-                                id="enquiry-phone"
-                                name="phone" 
-                                required 
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition-colors text-sm"
-                                placeholder="Enter your phone number"
-                            >
-                        </div>
-
-                        {{-- Email --}}
-                        <div>
-                            <label for="enquiry-email" class="block text-xs uppercase tracking-wider text-gray-700 mb-2">Email Address</label>
-                            <input 
-                                type="email" 
-                                id="enquiry-email"
-                                name="email" 
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition-colors text-sm"
-                                placeholder="Enter your email address"
-                            >
-                        </div>
-
-                        {{-- Construction Type --}}
-                        <div>
-                            <label for="enquiry-type" class="block text-xs uppercase tracking-wider text-gray-700 mb-2">Construction Type</label>
-                            <select 
-                                id="enquiry-type"
-                                name="type" 
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition-colors text-sm bg-white"
-                            >
-                                <option value="">Select construction type</option>
-                                <option value="residential">Residential</option>
-                                <option value="commercial">Commercial</option>
-                            </select>
-                        </div>
-
-                        {{-- Plot Size --}}
-                        <div>
-                            <label for="enquiry-plotsize" class="block text-xs uppercase tracking-wider text-gray-700 mb-2">Plot Size (Sq.Ft)</label>
-                            <input 
-                                type="text" 
-                                id="enquiry-plotsize"
-                                name="plotsize" 
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition-colors text-sm"
-                                placeholder="Enter plot size"
-                            >
-                        </div>
-
-                        {{-- Message --}}
-                        <div>
-                            <label for="enquiry-message" class="block text-xs uppercase tracking-wider text-gray-700 mb-2">Message</label>
-                            <textarea 
-                                id="enquiry-message"
-                                name="message" 
-                                rows="4"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition-colors text-sm resize-none"
-                                placeholder="Tell us about your project requirements..."
-                            ></textarea>
-                        </div>
-
-                        {{-- Submit Button --}}
-                        <div class="pt-2">
-                            <button 
-                                type="submit" 
-                                :disabled="formSubmitting"
-                                class="w-full px-8 py-3 bg-black text-white text-sm uppercase tracking-wide hover:bg-gray-800 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                            >
-                                <span x-show="!formSubmitting">Submit Enquiry</span>
-                                <span x-show="formSubmitting">Submitting...</span>
-                            </button>
-                        </div>
-                    </form>
+                    <x-contact-enquiry 
+                        variant="modal"
+                        :onSuccess="'enquiryModalOpen = false; setTimeout(() => enquiryModalOpen = false, 2000);'"
+                    />
                 </div>
             </div>
         </div>
@@ -763,7 +699,7 @@
             <div class="max-w-3xl mx-auto" x-data="{ openFaq: 0 }">
                 @foreach($faqs as $index => $faq)
                     <div class="border-b border-gray-200">
-                        <button 
+                        <button
                             @click="openFaq = openFaq === {{ $index }} ? null : {{ $index }}"
                             class="w-full flex items-center justify-between py-4 text-left bg-black text-white px-4 mb-1"
                         >
@@ -772,7 +708,7 @@
                                 <i class="fas" :class="openFaq === {{ $index }} ? 'fa-minus' : 'fa-plus'"></i>
                             </span>
                         </button>
-                        <div 
+                        <div
                             x-show="openFaq === {{ $index }}"
                             x-collapse
                             class="px-4 pb-4"
@@ -786,46 +722,46 @@
     </section>
 
     @once
-    <style>
-        /* Featured Projects - Interlocking Stagger Pattern */
-        @media (min-width: 1024px) {
-            .featured-projects-container {
-                height: auto;
-                position: relative;
-                padding-bottom: 600px; /* Ensure space for absolutely positioned cards */
+        <style>
+            /* Featured Projects - Interlocking Stagger Pattern */
+            @media (min-width: 1024px) {
+                .featured-projects-container {
+                    height: auto;
+                    position: relative;
+                    padding-bottom: 600px; /* Ensure space for absolutely positioned cards */
+                }
+
+                .featured-project-item {
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    width: 100%;
+                }
+
+                /* Card 1: Left side, starts at top: 0 */
+                .featured-project-item[data-index="0"] {
+                    top: 0;
+                }
+
+                /* Card 2: Right side, starts at half card height + gap (112px + 48px = 160px) */
+                .featured-project-item[data-index="1"] {
+                    top: 200px;
+                }
+
+                /* Card 3: Left side, starts at full card height + gap (224px + 48px = 272px) */
+                .featured-project-item[data-index="2"] {
+                    top: 360px;
+                }
             }
 
-            .featured-project-item {
-                position: absolute;
-                left: 0;
-                right: 0;
-                width: 100%;
+            /* Mobile: Keep normal flow */
+            @media (max-width: 1023px) {
+                .featured-project-item {
+                    position: relative !important;
+                    margin-bottom: 2rem;
+                }
             }
-
-            /* Card 1: Left side, starts at top: 0 */
-            .featured-project-item[data-index="0"] {
-                top: 0;
-            }
-
-            /* Card 2: Right side, starts at half card height + gap (112px + 48px = 160px) */
-            .featured-project-item[data-index="1"] {
-                top: 200px;
-            }
-
-            /* Card 3: Left side, starts at full card height + gap (224px + 48px = 272px) */
-            .featured-project-item[data-index="2"] {
-                top: 360px;
-            }
-        }
-
-        /* Mobile: Keep normal flow */
-        @media (max-width: 1023px) {
-            .featured-project-item {
-                position: relative !important;
-                margin-bottom: 2rem;
-            }
-        }
-    </style>
+        </style>
     @endonce
 
 </x-layouts>
