@@ -390,13 +390,7 @@
 
         <div class="container mx-auto px-4 relative z-10">
             <div class="text-center mb-8 lg:mb-10">
-                <!-- <div class="inline-block mb-4 animate-on-scroll opacity-0">
-                    <svg class="w-10 h-10 mx-auto text-black" fill="none" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M32 8 L56 20 L56 44 L32 56 L8 44 L8 20 Z" stroke="currentColor" stroke-width="2" fill="none"/>
-                        <path d="M32 20 L44 26 L44 38 L32 44 L20 38 L20 26 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
-                    </svg>
-                </div> -->
-                <h2 class="font-tenor text-2xl lg:text-3xl uppercase mb-3 tracking-tight animate-on-scroll opacity-0">
+                               <h2 class="font-tenor text-2xl lg:text-3xl uppercase mb-3 tracking-tight animate-on-scroll opacity-0">
                     Featured Projects</h2>
                 <div class="w-20 h-0.5 bg-black mx-auto animate-on-scroll opacity-0"
                      style="animation-delay: 0.1s;"></div>
@@ -532,83 +526,8 @@
         </div>
     </section>
 
-    {{-- How It Works Section - Desktop --}}
-    <section class="py-16 lg:py-24 hidden md:block" x-data="{ activeStep: 0 }"
-             x-init="setInterval(() => activeStep = (activeStep + 1) % {{ count($howItWorks) }}, 3000)">
-        <div class="container mx-auto px-4">
-            <h2 class="font-tenor text-2xl lg:text-3xl uppercase text-center mb-12">How it works</h2>
-
-            {{-- Steps Navigation --}}
-            <div class="max-w-5xl mx-auto mb-8">
-                <div class="flex justify-between relative">
-                    {{-- Progress Line --}}
-                    <div class="absolute top-5 left-0 right-0 h-0.5 bg-gray-200"></div>
-                    <div class="absolute top-5 left-0 h-0.5 bg-black transition-all duration-500"
-                         :style="{ width: (activeStep / {{ count($howItWorks) - 1 }}) * 100 + '%' }"></div>
-
-                    @foreach($howItWorks as $index => $step)
-                        <button
-                            @click="activeStep = {{ $index }}"
-                            class="relative z-10 flex flex-col items-center text-center w-32 cursor-pointer transition-all duration-300"
-                            :class="{ 'text-black': activeStep >= {{ $index }}, 'text-gray-400': activeStep < {{ $index }} }"
-                        >
-                            <span
-                                class="w-10 h-10 flex items-center justify-center rounded text-lg mb-3 transition-all duration-300"
-                                :class="activeStep >= {{ $index }} ? 'bg-black text-white' : 'bg-white text-black border border-gray-300'"
-                            >
-                                {{ $step['step'] }}
-                            </span>
-                            <span class="text-xs">{{ $step['title'] }}</span>
-                        </button>
-                    @endforeach
-                </div>
-            </div>
-
-            {{-- Step Content --}}
-            <div class="max-w-3xl mx-auto">
-                @foreach($howItWorks as $index => $step)
-                    <div
-                        x-show="activeStep === {{ $index }}"
-                        x-transition:enter="transition ease-out duration-300"
-                        x-transition:enter-start="opacity-0 transform translate-x-4"
-                        x-transition:enter-end="opacity-100 transform translate-x-0"
-                        class="text-center"
-                    >
-                        <img
-                            src="{{ asset('images/' . $step['image']) }}"
-                            alt="{{ $step['title'] }}"
-                            class="w-1/4 mx-auto mb-6"
-                        >
-                        <p class="bg-black text-white p-5 text-lg">{{ $step['description'] }}</p>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
-    {{-- How It Works Section - Mobile --}}
-    <section class="py-12 md:hidden">
-        <div class="container mx-auto px-4">
-            <h2 class="font-tenor text-2xl uppercase text-center mb-8">How it works</h2>
-
-            <div class="space-y-8">
-                @foreach($howItWorks as $step)
-                    <div class="text-center border-b border-gray-200 pb-8 last:border-0">
-                        <img
-                            src="{{ asset('images/' . $step['image']) }}"
-                            alt="{{ $step['title'] }}"
-                            class="w-3/4 mx-auto mb-4"
-                        >
-                        <p class="text-lg font-medium mb-2">
-                            <span class="inline-block bg-black text-white px-2 py-1 mr-2">{{ $step['step'] }}</span>
-                            {{ $step['title'] }}
-                        </p>
-                        <p class="text-sm text-gray-600 px-4">{{ $step['description'] }}</p>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
+    {{-- How It Works Section --}}
+    <x-how-it-works :steps="$howItWorks" />
 
     {{-- Work With Us Section --}}
     <section class="relative min-h-[400px] flex items-center"
