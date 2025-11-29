@@ -4,11 +4,12 @@
     :keywords="$seo['keywords']"
 >
     {{-- Page Banner --}}
-    <section class="relative h-64 md:h-80 bg-black">
-        <div class="container mx-auto px-4 h-full flex items-center justify-center">
-            <h1 class="font-tenor text-3xl md:text-4xl text-white uppercase">Cost Estimation</h1>
-        </div>
-    </section>
+    <x-page-banner
+        contentTitle="Cost Estimation"
+        backgroundImage="images/blog-header-image.jpg"
+        alt="Building Contractors in Bangalore"
+        title="Building Contractors in Bangalore"
+    />
 
     {{-- Cost Estimation Content --}}
     <section class="py-16 lg:py-24">

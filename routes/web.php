@@ -32,6 +32,9 @@ Route::get('/careers', [HomeController::class, 'careers'])->name('careers');
 // Blogs Page
 Route::get('/blogs', [HomeController::class, 'blogs'])->name('blogs');
 
+// Blog Detail Page
+Route::get('/blog/{slug}', [HomeController::class, 'blogDetail'])->name('blog.detail');
+
 // Gallery Page
 Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
 
@@ -46,3 +49,6 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 // Contact Form Submission
 Route::post('/contact', [HomeController::class, 'submitContact'])->name('contact.submit');
+
+// Careers Form Submission
+Route::post('/careers', [HomeController::class, 'submitCareer'])->name('careers.submit');
