@@ -363,6 +363,41 @@
                     },
                 };
             });
+
+            // About Section Counter - Steps through 0, 0.5, 1, 1.5, 2
+            Alpine.data('aboutCounter', ({ target = 2, suffix = 'M+' } = {}) => {
+                const steps = [0, 0.5, 1, 1.5, 2];
+                const finalTarget = Number(target) || 2;
+
+                return {
+                    displayValue: `0${suffix}`,
+                    started: false,
+                    currentStep: 0,
+                    stepDelay: 300, // Delay between each step in milliseconds
+                    init() {
+                        this.displayValue = `0${suffix}`;
+                    },
+                    start() {
+                        if (this.started) return;
+                        this.started = true;
+
+                        // Filter steps up to the target value
+                        const targetSteps = steps.filter(step => step <= finalTarget);
+                        
+                        if (targetSteps.length === 0) {
+                            this.displayValue = `0${suffix}`;
+                            return;
+                        }
+
+                        // Animate through each step
+                        targetSteps.forEach((step, index) => {
+                            setTimeout(() => {
+                                this.displayValue = `${step}${suffix}`;
+                            }, index * this.stepDelay);
+                        });
+                    },
+                };
+            });
         });
     </script>
 

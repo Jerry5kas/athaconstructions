@@ -38,9 +38,7 @@
                 <a href="{{ route('about') }}" class="atha-header__link {{ request()->routeIs('about') ? 'atha-header__link--active' : '' }}">About</a>
                 <a href="{{ route('packages') }}" class="atha-header__link {{ request()->routeIs('packages') ? 'atha-header__link--active' : '' }}">Packages</a>
                 <a href="{{ route('properties') }}" class="atha-header__link {{ request()->routeIs('properties') ? 'atha-header__link--active' : '' }}">Properties</a>
-                <a href="{{ route('careers') }}" class="atha-header__link {{ request()->routeIs('careers') ? 'atha-header__link--active' : '' }}">Careers</a>
                 <a href="{{ route('blogs') }}" class="atha-header__link {{ request()->routeIs('blogs') ? 'atha-header__link--active' : '' }}">Blogs</a>
-                <a href="{{ route('gallery') }}" class="atha-header__link {{ request()->routeIs('gallery') ? 'atha-header__link--active' : '' }}">Gallery</a>
                 <a href="{{ route('services') }}" class="atha-header__link {{ request()->routeIs('services') ? 'atha-header__link--active' : '' }}">Services</a>
                 <a href="{{ route('cost-estimation') }}" class="atha-header__link {{ request()->routeIs('cost-estimation') ? 'atha-header__link--active' : '' }}">Cost Estimation</a>
                 <a href="{{ route('contact') }}" class="atha-header__link {{ request()->routeIs('contact') ? 'atha-header__link--active' : '' }}">Contact Us</a>
@@ -78,9 +76,7 @@
             <a href="{{ route('about') }}" class="atha-header__mobile-link {{ request()->routeIs('about') ? 'atha-header__mobile-link--active' : '' }}">About</a>
             <a href="{{ route('packages') }}" class="atha-header__mobile-link {{ request()->routeIs('packages') ? 'atha-header__mobile-link--active' : '' }}">Packages</a>
             <a href="{{ route('properties') }}" class="atha-header__mobile-link {{ request()->routeIs('properties') ? 'atha-header__mobile-link--active' : '' }}">Properties</a>
-            <a href="{{ route('careers') }}" class="atha-header__mobile-link {{ request()->routeIs('careers') ? 'atha-header__mobile-link--active' : '' }}">Careers</a>
             <a href="{{ route('blogs') }}" class="atha-header__mobile-link {{ request()->routeIs('blogs') ? 'atha-header__mobile-link--active' : '' }}">Blogs</a>
-            <a href="{{ route('gallery') }}" class="atha-header__mobile-link {{ request()->routeIs('gallery') ? 'atha-header__mobile-link--active' : '' }}">Gallery</a>
             <a href="{{ route('services') }}" class="atha-header__mobile-link {{ request()->routeIs('services') ? 'atha-header__mobile-link--active' : '' }}">Services</a>
             <a href="{{ route('cost-estimation') }}" class="atha-header__mobile-link {{ request()->routeIs('cost-estimation') ? 'atha-header__mobile-link--active' : '' }}">Cost Estimation</a>
             <a href="{{ route('contact') }}" class="atha-header__mobile-link {{ request()->routeIs('contact') ? 'atha-header__mobile-link--active' : '' }}">Contact Us</a>

@@ -42,57 +42,25 @@
     </section>
 
     {{-- About Section --}}
-    <section class="py-16 lg:py-24 about-section">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                <div class="lg:col-span-7 lg:pr-12">
-                    <p class="text-sm uppercase mb-2 animate-on-scroll opacity-0" style="animation-delay: 0s;">ATHA
-                        Construction</p>
-                    <h2 class="font-tenor text-2xl lg:text-3xl uppercase mb-6 animate-on-scroll opacity-0"
-                        style="animation-delay: 0.1s;">
-                        Crafting Dreams, Building Legacies
-                    </h2>
-
-                    <div class="space-y-4 text-sm leading-relaxed text-justify">
-                        <p class="animate-on-scroll opacity-0" style="animation-delay: 0.2s;">
-                            Founded in 2016, Atha Construction has established itself as a trusted name in construction
-                            across Karnataka. Specializing in both residential and commercial projects, we are committed
-                            to transforming ideas into reality with precision, innovation, and sustainable practices.
-                        </p>
-                        <p class="animate-on-scroll opacity-0" style="animation-delay: 0.3s;">
-                            Our approach combines cutting-edge design, advanced technology, and eco-conscious solutions
-                            to create spaces that inspire and endure. From cozy homes to modern office spaces, every
-                            project is tailored to exceed client expectations while delivering unmatched value and
-                            quality.
-                        </p>
-                        <p class="animate-on-scroll opacity-0" style="animation-delay: 0.4s;">
-                            At Atha Construction, we believe construction is more than building structures—it's about
-                            creating environments that foster growth, comfort, and community. Our collaborative process
-                            ensures transparency and trust, from concept to completion.
-                            With a strong presence in Bengaluru, Mysuru, Ballari, and beyond, we take pride in building
-                            lasting partnerships rooted in integrity and excellence. As we continue to grow, our mission
-                            remains steadfast: delivering exceptional construction services that stand the test of time.
-                        </p>
-                    </div>
-
-                    <a href="{{ route('about') }}"
-                       class="inline-block mt-8 px-8 py-3 border border-black text-sm uppercase tracking-wide hover:bg-black hover:text-white transition-all duration-300 transform hover:scale-105 animate-on-scroll opacity-0"
-                       style="animation-delay: 0.5s;">
-                        KNOW MORE
-                    </a>
-                </div>
-                <div class="lg:col-span-5">
-                    <img 
-                        src="{{ asset('images/ATHA-CONSTRUCTIONS.jpg') }}" 
-                        alt="Best Construction Companies in Bangalore" 
-                        title="Best Construction Companies in Bangalore"
-                        class="w-full rounded-lg shadow-lg animate-on-scroll opacity-0 hover:shadow-xl transition-shadow duration-300" 
-                        style="animation-delay: 0.3s;"
-                    >
-                </div>
-            </div>
-        </div>
-    </section>
+    <x-about-section
+        :subtitle="'ATHA Construction'"
+        :title="'Crafting Dreams, Building Legacies'"
+        :paragraphs="[
+            'Founded in 2016, Atha Construction has established itself as a trusted name in construction across Karnataka. Specializing in both residential and commercial projects, we are committed to transforming ideas into reality with precision, innovation, and sustainable practices.',
+            'Our approach combines cutting-edge design, advanced technology, and eco-conscious solutions to create spaces that inspire and endure. From cozy homes to modern office spaces, every project is tailored to exceed client expectations while delivering unmatched value and quality.',
+            'At Atha Construction, we believe construction is more than building structures—it\'s about creating environments that foster growth, comfort, and community. Our collaborative process ensures transparency and trust, from concept to completion. With a strong presence in Bengaluru, Mysuru, Ballari, and beyond, we take pride in building lasting partnerships rooted in integrity and excellence. As we continue to grow, our mission remains steadfast: delivering exceptional construction services that stand the test of time.'
+        ]"
+        image="images/ATHA-CONSTRUCTIONS.jpg"
+        imageAlt="Best Construction Companies in Bangalore"
+        imageTitle="Best Construction Companies in Bangalore"
+        :buttonText="'KNOW MORE'"
+        :buttonLink="route('about')"
+        imagePosition="right"
+        :showCounter="true"
+        :counterValue="2"
+        counterSuffix="M+"
+        counterLabel="Sq.Ft Developed"
+    />
 
     {{-- Services Section --}}
     <section class="py-8 lg:py-12 bg-black text-white min-h-screen flex flex-col justify-center">
