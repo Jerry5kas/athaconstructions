@@ -12,18 +12,21 @@
 
         $missionVision = [
             [
-                'title' => 'OUR MISSION',
+                'title' => 'Our Mission',
                 'icon' => 'images/about/mission.svg',
+                'bg' => 'images/mission.jpg',
                 'description' => [
                     'Craft spaces that reflect the unique needs and aspirations of our clients while building relationships founded on trust and collaboration.',
-                    'To deliver exceptional construction services that exceed expectations, providing value and lasting quality in every project.',
+                    'We are committed to delivering exceptional construction services that exceed expectations, providing lasting value and quality in every project.',
                 ],
             ],
             [
-                'title' => 'OUR VISION',
+                'title' => 'Our Vision',
                 'icon' => 'images/about/vision.svg',
+                'bg' => 'images/vision.jpg',
                 'description' => [
-                    'To be the most trusted and innovative construction partner, shaping inspiring spaces that stand as a testament to quality, collaboration, and enduring value. We envision a future where every project fosters strong relationships and enriches the lives of our clients and communities.',
+                    'To be the most trusted and innovative construction partner, shaping inspiring spaces that stand as a testament to quality, collaboration, and enduring value.',
+                    'We envision communities where thoughtful design and meticulous execution create environments that enrich lives for generations.',
                 ],
             ],
         ];
@@ -81,344 +84,19 @@
     />
 
     {{-- Story --}}
-    <section class="py-16 lg:py-24 relative overflow-hidden story-section" x-data="{ visible: false }" x-intersect="visible = true">
-        {{-- Decorative Background Elements --}}
-        <div class="absolute inset-0 pointer-events-none opacity-5">
-            <div class="absolute top-0 left-0 w-96 h-96 border-2 border-black rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-            <div class="absolute bottom-0 right-0 w-96 h-96 border-2 border-black rounded-full translate-x-1/2 translate-y-1/2"></div>
-        </div>
-
-        <div class="container mx-auto px-4 relative z-10">
-            {{-- Section Header --}}
-            <div class="text-center mb-12 lg:mb-16">
-                <div class="inline-block mb-4">
-                    <span class="font-tenor text-6xl lg:text-8xl text-black/10 font-bold">2016</span>
-                </div>
-                <h2 class="font-tenor text-2xl lg:text-4xl uppercase mb-4 animate-on-scroll opacity-0" style="animation-delay: 0.1s;">
-                    Built on Experience, Driven by Vision
-                </h2>
-                <div class="w-24 h-0.5 bg-black mx-auto animate-on-scroll opacity-0" style="animation-delay: 0.2s;"></div>
-            </div>
-
-            <div class="max-w-6xl mx-auto">
-                <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-                    {{-- Image Section with Creative Frame --}}
-                    <div class="lg:col-span-5 relative">
-                        <div class="story-image-container animate-on-scroll opacity-0" style="animation-delay: 0.3s;">
-                            <div class="story-image-frame">
-                                <img 
-                                    src="{{ asset('images/about/about.jpg') }}" 
-                                    alt="Villa Construction Company In Ballari"
-                                    title="Villa Construction Company In Ballari"
-                                    class="story-image"
-                                >
-                            </div>
-                            {{-- Decorative Corner Elements --}}
-                            <div class="absolute -top-4 -left-4 w-16 h-16 border-t-2 border-l-2 border-black opacity-20"></div>
-                            <div class="absolute -bottom-4 -right-4 w-16 h-16 border-b-2 border-r-2 border-black opacity-20"></div>
-                        </div>
-                    </div>
-
-                    {{-- Content Section with Timeline Style --}}
-                    <div class="lg:col-span-7 relative">
-                        {{-- Timeline Line (Desktop) --}}
-                        <div class="hidden lg:block absolute left-0 top-0 bottom-0 w-px bg-black/10"></div>
-                        
-                        <div class="space-y-8 lg:pl-8">
-                            {{-- Timeline Item 1 --}}
-                            <div class="story-timeline-item opacity-0" :class="{ 'animate-fade-in-left': visible }" style="animation-delay: 0.4s;">
-                                <div class="flex items-start gap-4">
-                                    <div class="flex-shrink-0 mt-1">
-                                        <div class="w-3 h-3 bg-black rounded-full border-4 border-white shadow-lg"></div>
-                                    </div>
-                                    <div class="flex-1">
-                                        <div class="mb-2">
-                                            <span class="text-xs uppercase tracking-widest text-gray-500 font-semibold">The Beginning</span>
-                                        </div>
-                                        <p class="text-sm leading-relaxed text-justify">
-                                            Eight years ago, Atha Construction emerged from Mr. Arun's determination to resolve the challenges he faced in his own construction projects. Frustrated by delays, mismanagement, and cost overruns, he envisioned a company that would offer a seamless, transparent, and hassle-free experience, moving beyond the limitations of individual contractors.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {{-- Timeline Item 2 --}}
-                            <div class="story-timeline-item opacity-0" :class="{ 'animate-fade-in-left': visible }" style="animation-delay: 0.6s;">
-                                <div class="flex items-start gap-4">
-                                    <div class="flex-shrink-0 mt-1">
-                                        <div class="w-3 h-3 bg-black rounded-full border-4 border-white shadow-lg"></div>
-                                    </div>
-                                    <div class="flex-1">
-                                        <div class="mb-2">
-                                            <span class="text-xs uppercase tracking-widest text-gray-500 font-semibold">The Evolution</span>
-                                        </div>
-                                        <p class="text-sm leading-relaxed text-justify">
-                                            What began as a personal mission grew into a commitment to revolutionize the construction industry. Atha Construction redefined excellence by integrating advanced technology, sustainable practices, and a client-first approach to create inspiring spaces and foster community.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {{-- Timeline Item 3 --}}
-                            <div class="story-timeline-item opacity-0" :class="{ 'animate-fade-in-left': visible }" style="animation-delay: 0.8s;">
-                                <div class="flex items-start gap-4">
-                                    <div class="flex-shrink-0 mt-1">
-                                        <div class="w-3 h-3 bg-black rounded-full border-4 border-white shadow-lg"></div>
-                                    </div>
-                                    <div class="flex-1">
-                                        <div class="mb-2">
-                                            <span class="text-xs uppercase tracking-widest text-gray-500 font-semibold">Today</span>
-                                        </div>
-                                        <p class="text-sm leading-relaxed text-justify">
-                                            Today, Atha Construction is a trusted name in the industry, founded on innovation and reliability. Mr. Arun's vision has transformed countless dreams into reality, establishing a legacy built on trust and exceptional value.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Bottom Separator with Creative Design --}}
-            <div class="mt-16 lg:mt-20 flex items-center justify-center gap-4">
-                <div class="flex-1 h-px bg-gray-300"></div>
-                <div class="w-2 h-2 bg-black rounded-full"></div>
-                <div class="flex-1 h-px bg-gray-300"></div>
-            </div>
-        </div>
-    </section>
-
-    @once
-    <style>
-        /* Story Section Styles */
-        .story-section {
-            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.01) 50%, transparent 100%);
-        }
-
-        /* Image Container with Creative Frame */
-        .story-image-container {
-            position: relative;
-            padding: 1rem;
-            background: white;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-        }
-
-        .story-image-frame {
-            position: relative;
-            overflow: hidden;
-            border: 2px solid black;
-            background: black;
-        }
-
-        .story-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.6s ease;
-            min-height: 400px;
-        }
-
-        .story-image-container:hover .story-image {
-            transform: scale(1.05);
-        }
-
-        /* Timeline Items */
-        .story-timeline-item {
-            position: relative;
-            transition: all 0.6s ease;
-        }
-
-        .story-timeline-item:hover {
-            transform: translateX(8px);
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 1023px) {
-            .story-image {
-                min-height: 300px;
-            }
-            
-            .story-timeline-item {
-                padding-left: 0;
-            }
-        }
-
-        /* Animation for timeline items */
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .animate-fade-in-left {
-            animation: fadeInLeft 0.6s ease-out forwards;
-        }
-    </style>
-    @endonce
+    <x-story-section
+        year="2016"
+        heading="Built on Experience, Driven by Vision"
+        image="images/about/about.jpg"
+        imageAlt="Villa Construction Company In Ballari"
+        imageTitle="Villa Construction Company In Ballari"
+    />
 
     {{-- Philosophy --}}
-    <section class="py-20 lg:py-28 relative philosophy-section overflow-hidden" x-data="{ visible: false }" x-intersect="visible = true">
-        {{-- Sophisticated Background Pattern --}}
-        <div class="absolute inset-0 pointer-events-none">
-            {{-- Grid Pattern --}}
-            <div class="absolute inset-0 philosophy-grid-pattern opacity-[0.03]"></div>
-        </div>
-
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="max-w-7xl mx-auto">
-                {{-- Section Header with Elegant Design --}}
-                <div class="text-center mb-16 lg:mb-20">
-                    <div class="inline-block mb-6">
-                        <span class="font-tenor text-5xl lg:text-7xl text-black/5 font-bold tracking-tight">PHILOSOPHY</span>
-                    </div>
-                    <h2 class="font-tenor text-3xl lg:text-4xl uppercase mb-4 animate-on-scroll opacity-0 relative inline-block" style="animation-delay: 0.1s;">
-                        OUR PHILOSOPHY
-                        <span class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-20 h-0.5 bg-black"></span>
-                    </h2>
-                </div>
-
-                {{-- Main Philosophy Content - Split Design --}}
-                <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                    {{-- Left Side: Visual Element --}}
-                    <div class="lg:col-span-5 order-2 lg:order-1">
-                        <div class="philosophy-visual-container animate-on-scroll opacity-0" style="animation-delay: 0.3s;">
-                            {{-- Elegant Frame Design --}}
-                            <div class="philosophy-visual-frame">
-                                <div class="philosophy-visual-inner">
-                                    {{-- Geometric Pattern Overlay --}}
-                                    <div class="philosophy-pattern-overlay">
-                                        <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="50" y="50" width="300" height="300" stroke="currentColor" stroke-width="2" opacity="0.1"/>
-                                            <line x1="200" y1="50" x2="200" y2="350" stroke="currentColor" stroke-width="1" opacity="0.1"/>
-                                            <line x1="50" y1="200" x2="350" y2="200" stroke="currentColor" stroke-width="1" opacity="0.1"/>
-                                            <circle cx="200" cy="200" r="100" stroke="currentColor" stroke-width="2" opacity="0.15"/>
-                                        </svg>
-                                    </div>
-                                    
-                                    {{-- Central Quote Symbol --}}
-                                    <div class="philosophy-central-symbol">
-                                        <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M30 50C30 40 35 30 45 30H55C65 30 70 40 70 50V60C70 70 65 80 55 80H50C45 80 40 75 40 70V65C40 60 45 55 50 55H55C60 55 65 50 65 45V40C65 35 60 30 55 30H45C35 30 30 40 30 50Z" stroke="currentColor" stroke-width="3" fill="none"/>
-                                            <path d="M80 50C80 40 85 30 95 30H105C110 30 115 40 115 50V60C115 70 110 80 105 80H100C95 80 90 75 90 70V65C90 60 95 55 100 55H105C110 55 115 50 115 45V40C115 35 110 30 105 30H95C85 30 80 40 80 50Z" stroke="currentColor" stroke-width="3" fill="none"/>
-                                        </svg>
-                                    </div>
-                                </div>
-                                
-                                {{-- Corner Decorations --}}
-                                <div class="philosophy-corner-decoration philosophy-corner-tl"></div>
-                                <div class="philosophy-corner-decoration philosophy-corner-tr"></div>
-                                <div class="philosophy-corner-decoration philosophy-corner-bl"></div>
-                                <div class="philosophy-corner-decoration philosophy-corner-br"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- Right Side: Philosophy Text --}}
-                    <div class="lg:col-span-7 order-1 lg:order-2">
-                        <div class="philosophy-content-wrapper">
-                            {{-- Main Quote --}}
-                            <div class="philosophy-main-quote animate-on-scroll opacity-0" style="animation-delay: 0.4s;">
-                                <p class="text-2xl lg:text-3xl leading-relaxed font-light text-gray-900 mb-8">
-                                    We believe construction is more than building structures
-                                </p>
-                            </div>
-
-                            {{-- Supporting Text --}}
-                            <div class="philosophy-supporting-text animate-on-scroll opacity-0" style="animation-delay: 0.5s;">
-                                <p class="text-base lg:text-lg leading-relaxed text-gray-700 mb-6">
-                                    it's about creating meaningful spaces that foster growth, comfort, and trust.
-                                </p>
-                            </div>
-
-                            {{-- Philosophy Pillars --}}
-                            <div class="philosophy-pillars mt-8 animate-on-scroll opacity-0" style="animation-delay: 0.6s;">
-                                <div class="grid grid-cols-3 gap-4 lg:gap-6">
-                                    <div class="philosophy-pillar">
-                                        <div class="philosophy-pillar-icon">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <path d="M12 2L2 7L12 12L22 7L12 2Z"/>
-                                                <path d="M2 17L12 22L22 17"/>
-                                                <path d="M2 12L12 17L22 12"/>
-                                            </svg>
-                                        </div>
-                                        <span class="philosophy-pillar-text">Growth</span>
-                                    </div>
-                                    <div class="philosophy-pillar">
-                                        <div class="philosophy-pillar-icon">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <path d="M3 12C3 4.588 5 1 12 1C19 1 21 4.588 21 12C21 19.412 19 23 12 23C5 23 3 19.412 3 12Z"/>
-                                                <path d="M12 8V16M8 12H16"/>
-                                            </svg>
-                                        </div>
-                                        <span class="philosophy-pillar-text">Comfort</span>
-                                    </div>
-                                    <div class="philosophy-pillar">
-                                        <div class="philosophy-pillar-icon">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"/>
-                                                <path d="M8 12L11 15L16 9"/>
-                                            </svg>
-                                        </div>
-                                        <span class="philosophy-pillar-text">Trust</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <x-philosophy-section />
 
     {{-- Mission & Vision --}}
-    <section class="py-16 lg:py-20 bg-black text-white mission-vision-section" x-data="{ visible: false }" x-intersect="visible = true">
-        <div class="container mx-auto px-4">
-            <div class="max-w-6xl mx-auto">
-                {{-- Section Title --}}
-                <h2 class="font-tenor text-2xl lg:text-3xl uppercase text-center mb-12 lg:mb-16 animate-on-scroll opacity-0" style="animation-delay: 0.1s;">
-                    MISSION & VISION
-                </h2>
-
-                <div class="grid md:grid-cols-2 gap-6 lg:gap-12">
-                    @foreach($missionVision as $index => $block)
-                        <div class="mission-vision-card opacity-0" 
-                             :class="{ 'animate-fade-in-up': visible }" 
-                             style="animation-delay: {{ 0.2 + ($index * 0.2) }}s;">
-                            {{-- Card Header --}}
-                            <div class="mission-vision-card-header">
-                                <div class="mission-vision-icon-wrapper">
-                                    <img src="{{ asset($block['icon']) }}" alt="{{ $block['title'] }}" class="mission-vision-icon">
-                                </div>
-                                <h3 class="font-tenor text-xl lg:text-2xl uppercase mt-6 mb-4">
-                                    {{ strtoupper($block['title']) }}
-                                </h3>
-                                <div class="w-16 h-0.5 bg-white mx-auto"></div>
-                            </div>
-
-                            {{-- Card Content --}}
-                            <div class="mission-vision-card-content">
-                                <div class="space-y-4 text-sm lg:text-base leading-relaxed text-gray-300">
-                                    @foreach($block['description'] as $paragraph)
-                                        <p>{{ $paragraph }}</p>
-                                    @endforeach
-                                </div>
-                            </div>
-
-                            {{-- Decorative Corner --}}
-                            <div class="mission-vision-corner"></div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </section>
+    <x-mission-vision-section :blocks="$missionVision" />
 
     @once
     <style>
@@ -439,23 +117,21 @@
         /* Visual Container */
         .philosophy-visual-container {
             position: relative;
-            height: 100%;
-            min-height: 400px;
+            height: auto;
+            min-height: 0;
         }
 
         .philosophy-visual-frame {
             position: relative;
             width: 100%;
-            height: 100%;
-            min-height: 400px;
+            height: auto;
+            min-height: 0;
             border: 2px solid black;
-            background: white;
-            padding: 3rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: transparent;
+            padding: 0;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
             transition: all 0.4s ease;
+            overflow: hidden;
         }
 
         .philosophy-visual-frame:hover {
@@ -607,8 +283,8 @@
         /* Responsive Adjustments */
         @media (max-width: 1023px) {
             .philosophy-visual-frame {
-                min-height: 300px;
-                padding: 2rem;
+                min-height: 0;
+                padding: 0;
             }
 
             .philosophy-central-symbol {
@@ -1045,8 +721,8 @@
                 <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
                     @foreach($founders as $index => $founder)
                         @php
-                            $bgColors = ['#F5F0E8', '#E8F4F5', '#F0E8F5'];
-                            $accentColors = ['#D4C4B0', '#B8D4D8', '#D4C4D8'];
+                            $bgColors = ['#F5F0E8', '#F0E8F5' , '#E8F4F5'];
+                            $accentColors = ['#D4C4B0', '#D4C4D8' , '#B8D4D8'];
                             $bgColor = $bgColors[$index % 3];
                             $accentColor = $accentColors[$index % 3];
                         @endphp
@@ -1084,7 +760,7 @@
                                     <div class="founder-divider"></div>
 
                                     {{-- Bio --}}
-                                    <p class="text-xs lg:text-sm text-gray-700 leading-relaxed text-justify founder-bio">
+                                    <p class="text-xs lg:text-sm text-gray-700 leading-relaxed text-justify founder-bio pb-5">
                                         {{ $founder['bio'] }}
                                     </p>
 
