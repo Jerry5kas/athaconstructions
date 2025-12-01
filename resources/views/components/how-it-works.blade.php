@@ -37,7 +37,7 @@
 @endphp
 
 {{-- Desktop Version --}}
-<section class="py-16 lg:py-24 hidden md:block">
+<section class="py-16 lg:py-24 hidden md:block how-it-works-section relative overflow-hidden">
     <div 
         x-data="{ 
             activeStep: 0,
@@ -63,7 +63,14 @@
         }"
         class="container mx-auto px-4"
     >
-        <h2 class="font-tenor text-2xl lg:text-3xl uppercase text-center mb-16">How it works</h2>
+        <div class="text-center mb-12">
+            <div class="inline-block relative">
+                <h2 class="font-tenor text-3xl lg:text-4xl uppercase mb-4 how-it-works-title">
+                    How it works
+                </h2>
+                <div class="how-it-works-title-underline"></div>
+            </div>
+        </div>
 
         {{-- Steps Navigation with Hexagon Badges - End to End Flow --}}
         <div class="max-w-6xl mx-auto mb-16">
@@ -144,7 +151,7 @@
                         x-transition:leave-end="opacity-0 transform translate-y-8"
                         class="absolute inset-0"
                     >
-                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div class="grid md:grid-cols-2 gap-8 items-center how-it-works-card">
                             {{-- Step SVG Icon with Animation --}}
                             <div class="relative flex items-center justify-center">
                                 <div 
@@ -326,6 +333,45 @@
 </section>
 
 <style>
+    /* Desktop Section Styling */
+    .how-it-works-section {
+        background: #fafafa;
+    }
+
+    .how-it-works-title {
+        color: #1a1a1a;
+        letter-spacing: 0.05em;
+    }
+
+    .how-it-works-title-underline {
+        width: 80px;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, #000000, transparent);
+        margin: 0 auto;
+        opacity: 0.7;
+        transition: width 0.4s ease, opacity 0.4s ease;
+    }
+
+    .how-it-works-section:hover .how-it-works-title-underline {
+        width: 110px;
+        opacity: 1;
+    }
+
+    .how-it-works-card {
+        background: #ffffff;
+        border-radius: 24px;
+        padding: 2.5rem 2rem;
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(0, 0, 0, 0.04);
+        transition: box-shadow 0.4s ease, transform 0.4s ease, border-color 0.4s ease;
+    }
+
+    .how-it-works-card:hover {
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
+        transform: translateY(-4px);
+        border-color: rgba(0, 0, 0, 0.12);
+    }
+
     /* Desktop SVG Icon Styling */
     .how-it-works-icon {
         width: 100%;

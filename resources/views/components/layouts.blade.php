@@ -258,6 +258,19 @@
         {{ $slot }}
     </main>
 
+    {{-- Work With Us Section --}}
+    <x-work-with-us
+        title="WORK WITH US"
+        :description="'Our goal is to offer an unparalleled level of service to our highly respected clients. Whether you are looking to buy or sell your home, we guarantee that our expertise, professionalism and dedication will guide you toward meeting your unique real estate needs.'"
+        buttonText="CONTACT US"
+        backgroundImage="images/Careers.png"
+        backgroundImageAlt="best house construction companies in bangalore"
+        backgroundImageTitle="best house construction companies in bangalore"
+    />
+
+    {{-- FAQ Section --}}
+    <x-faq-section />
+
     {{-- Footer Component --}}
     <x-footer />
 
