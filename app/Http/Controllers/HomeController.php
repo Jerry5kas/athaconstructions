@@ -208,6 +208,7 @@ class HomeController extends Controller
         $packages = [
             [
                 'id' => 1,
+                'slug' => 'basic-package',
                 'name' => 'Basic Package',
                 'price' => '₹1,849',
                 'pricePerSqft' => '1849/sqft',
@@ -229,6 +230,7 @@ class HomeController extends Controller
             ],
             [
                 'id' => 2,
+                'slug' => 'standard-package',
                 'name' => 'Standard Package',
                 'price' => '₹2,025',
                 'pricePerSqft' => '2025/sqft',
@@ -250,6 +252,7 @@ class HomeController extends Controller
             ],
             [
                 'id' => 3,
+                'slug' => 'premium-package',
                 'name' => 'Premium Package',
                 'price' => '₹2,399',
                 'pricePerSqft' => '2399/sqft',
@@ -271,6 +274,7 @@ class HomeController extends Controller
             ],
             [
                 'id' => 4,
+                'slug' => 'budget-package',
                 'name' => 'Budget Package',
                 'price' => '₹2,799',
                 'pricePerSqft' => '2799/sqft',
@@ -293,6 +297,7 @@ class HomeController extends Controller
             ],
             [
                 'id' => 5,
+                'slug' => 'luxury-package',
                 'name' => 'Luxury Package',
                 'price' => '₹4,400',
                 'pricePerSqft' => '4400/sqft',
@@ -316,7 +321,299 @@ class HomeController extends Controller
             ],
         ];
 
-        return view('packages', compact('seo', 'packages'));
+        // Load detailed comparison data from grouped JSON files
+        $comparisonGroups = [];
+        $groupsPath = base_path('z-packages-details/groups');
+        if (is_dir($groupsPath)) {
+            foreach (glob($groupsPath . '/*.json') as $file) {
+                $decoded = json_decode(file_get_contents($file), true);
+                if (!is_array($decoded) || empty($decoded)) {
+                    continue;
+                }
+                // Each file has a single top-level section key
+                $sectionName = array_key_first($decoded);
+                $sectionData = $decoded[$sectionName] ?? null;
+                if (is_array($sectionData)) {
+                    $comparisonGroups[$sectionName] = $sectionData;
+                }
+            }
+        }
+
+        return view('packages', compact('seo', 'packages', 'comparisonGroups'));
+    }
+
+    /**
+     * Display an individual package detail page.
+     */
+    public function packageDetail(string $slug)
+    {
+        $packages = [
+            'basic-package' => [
+                'slug' => 'basic-package',
+                'name' => 'Basic Package',
+                'price' => '₹1,849',
+                'pricePerSqft' => '1849/sq.ft',
+                'image' => 'images/properties/container-1.png',
+                'headline' => 'A solid, value-driven starting point for quality home construction.',
+                'summary' => 'Balanced specifications for first-time home builders who want reliable materials, clear scope, and professional execution without unnecessary frills.',
+                'sections' => [
+                    [
+                        'title' => 'Design',
+                        'items' => [
+                            'Scheme Drawing – All floors (2D)',
+                            'Elevation Design (3D)',
+                            'Plumbing Drawing – All floors (2D)',
+                            'Electrical Drawing – All floors (2D)',
+                            'Working Drawing (2D)',
+                        ],
+                    ],
+                    [
+                        'title' => 'Structure',
+                        'items' => [
+                            'Basement height up to 2 feet',
+                            'Steel: TMT / Kamadhenu or equivalent',
+                            'Cement: Premium grade',
+                            'Brick: 6”/4” solid concrete blocks / wire-cut bricks',
+                            'Waterproofing for bathrooms',
+                            'Partition walls: 4" blocks',
+                            'Sump: up to 4000 liters',
+                        ],
+                    ],
+                    [
+                        'title' => 'Kitchen & Dining',
+                        'items' => [
+                            'Wall tiles: ceramic up to 3 ft (₹45–₹75/sq.ft)',
+                            'Stainless steel sink',
+                            'Faucet: Jaguar / equivalent',
+                            'Granite slab up to ₹90/sq.ft',
+                            'Kitchen platform: 20mm black granite',
+                        ],
+                    ],
+                    [
+                        'title' => 'Project Management',
+                        'items' => [
+                            'Site engineer: one visit per day',
+                            'Project manager: weekly site visit',
+                        ],
+                    ],
+                    [
+                        'title' => 'Bathroom & Plumbing',
+                        'items' => [
+                            'Wall tiles up to 7 ft (₹30–₹45/sq.ft)',
+                            'Anti-skid floor tiles',
+                            'CP fittings: Jaguar / equivalent',
+                            'Branded sanitary ware',
+                            'PVC / CPVC concealed plumbing (ISI marked)',
+                            'Geyser points provided',
+                        ],
+                    ],
+                    [
+                        'title' => 'Flooring',
+                        'items' => [
+                            '2x2 vitrified tiles (₹45–₹75/sq.ft)',
+                            'Staircase: Sadarahalli granite',
+                            'Balcony: anti-skid tiles',
+                        ],
+                    ],
+                    [
+                        'title' => 'Painting',
+                        'items' => [
+                            'Interior: wall putty + tractor emulsion',
+                            'Exterior: Ace exterior paint',
+                            'Enamel paint for grills',
+                            '2 coats of paint total',
+                        ],
+                    ],
+                    [
+                        'title' => 'Doors, Windows & Railings',
+                        'items' => [
+                            'Main door: teak door with teak frame',
+                            'Room doors: flush doors',
+                            'Windows: UPVC / sliding windows',
+                            'Standard MS grill',
+                        ],
+                    ],
+                    [
+                        'title' => 'Electrical',
+                        'items' => [
+                            'Wires: Orbit (FRLS grade)',
+                            'Switches: Anchor / equivalent',
+                            'DB board provided',
+                            'AC, geyser, and chimney points provisioned',
+                        ],
+                    ],
+                    [
+                        'title' => 'What’s Not Included',
+                        'items' => [
+                            'Compound wall',
+                            'Sump beyond 4000 liters',
+                            'Borewell',
+                            'Government charges',
+                            'Special elevation materials',
+                        ],
+                    ],
+                    [
+                        'title' => 'Terms',
+                        'items' => [
+                            'Any extra work will be charged additionally',
+                            'Farmer issues / site delays billed separately',
+                            'GST additional as applicable',
+                        ],
+                    ],
+                ],
+            ],
+            'standard-package' => [
+                'slug' => 'standard-package',
+                'name' => 'Standard Package',
+                'price' => '₹2,025',
+                'pricePerSqft' => '2025/sq.ft',
+                'image' => 'images/properties/container-2.png',
+                'headline' => 'Enhanced specifications with higher finish levels and better budgets.',
+                'summary' => 'Ideal for families who want more flexibility in finishes, better supervision, and elevated material budgets while staying cost-conscious.',
+                'sections' => [
+                    [
+                        'title' => 'Highlights',
+                        'items' => [
+                            'Dedicated full-time engineer',
+                            'Architect support until design completion',
+                            'Higher tile budgets (around ₹55/sq.ft)',
+                            'Ready-made teak main door',
+                            'Premium UPVC windows with toughened 5mm glass',
+                            'Electrical: Finolex / equivalent wires and fixtures',
+                        ],
+                    ],
+                    [
+                        'title' => 'What’s Not Included',
+                        'items' => [
+                            'Compound wall',
+                            'Septic tank',
+                            'Special elevation materials',
+                            'Other exclusions similar to the Basic package',
+                        ],
+                    ],
+                ],
+            ],
+            'premium-package' => [
+                'slug' => 'premium-package',
+                'name' => 'Premium Package',
+                'price' => '₹2,399',
+                'pricePerSqft' => '2399/sq.ft',
+                'image' => 'images/properties/container-1.png',
+                'headline' => 'Premium upgrade for better fixtures, finishes and structural detailing.',
+                'summary' => 'Suited for clients who want a clearly premium outcome with stronger waterproofing, higher tile ranges and additional structural services.',
+                'sections' => [
+                    [
+                        'title' => 'Highlights',
+                        'items' => [
+                            'Daily site engineer presence',
+                            'Waterproofing with chemical treatment',
+                            'Higher tile budgets across the home',
+                            'Premium main doors and flush doors',
+                            'Premium electrical and plumbing materials',
+                            'CPVC / UPVC pipe systems',
+                            'Granite selection up to ₹120/sq.ft',
+                        ],
+                    ],
+                    [
+                        'title' => 'What’s Included',
+                        'items' => [
+                            'Soil test for structural assurance',
+                            'Lift provision planning by the team',
+                            'Structural designs included in the scope',
+                        ],
+                    ],
+                    [
+                        'title' => 'What’s Not Included',
+                        'items' => [
+                            'Compound wall',
+                            'Septic tank',
+                            'Lift installation / hardware',
+                        ],
+                    ],
+                ],
+            ],
+            'budget-package' => [
+                'slug' => 'budget-package',
+                'name' => 'Budget Package',
+                'price' => '₹2,799',
+                'pricePerSqft' => '2799/sq.ft',
+                'image' => 'images/properties/container-2.png',
+                'headline' => 'Smartly optimised specification with clear mention of extra chargeable items.',
+                'summary' => 'For owners looking to control budgets while still maintaining core quality, with transparent line items and extra-charge components.',
+                'sections' => [
+                    [
+                        'title' => 'Key Features',
+                        'items' => [
+                            'Dedicated full-time site engineer',
+                            'Architect + structural engineer support',
+                            'Digital locks for room doors',
+                            'Designer wood doors',
+                            'Premium tiles with ceiling-height tiling',
+                            'Premium bathroom fittings',
+                            'Soft close kitchen accessories',
+                            'Branded electrical materials',
+                            'False ceiling included',
+                        ],
+                    ],
+                    [
+                        'title' => 'Painting',
+                        'items' => [
+                            '2 coats wall putty',
+                            '2 coats primer',
+                            '2 coats premium Asian Paints (interior and exterior)',
+                        ],
+                    ],
+                ],
+            ],
+            'luxury-package' => [
+                'slug' => 'luxury-package',
+                'name' => 'Luxury Package',
+                'price' => '₹4,400',
+                'pricePerSqft' => '4400/sq.ft',
+                'image' => 'images/properties/container-3.png',
+                'headline' => 'Ultra-premium specification for high-end homes with best-in-class materials.',
+                'summary' => 'Designed for clients who expect top-tier architecture support, finishes, automation readiness and comprehensive services.',
+                'sections' => [
+                    [
+                        'title' => 'Highlight Features',
+                        'items' => [
+                            'Exclusive architect and design support',
+                            'Premium steel and cement selection',
+                            'Rainwater sump up to 4000 liters',
+                            'Ceiling-height tiles on bathroom walls',
+                            'Premium CP fittings and branded sanitary ware',
+                            'Marble countertops and premium stone selections',
+                            'Digital main door locks (worth approx. ₹7,000)',
+                            'Premium UPVC / aluminium windows',
+                            'All bathroom sensors and CCTV conduits',
+                            'Fire sensors and basic home automation points',
+                        ],
+                    ],
+                    [
+                        'title' => 'Not Included',
+                        'items' => [
+                            'Septic tank',
+                            'Lift installation and equipment',
+                            'Special elevation decorative materials',
+                        ],
+                    ],
+                ],
+            ],
+        ];
+
+        if (! array_key_exists($slug, $packages)) {
+            abort(404);
+        }
+
+        $package = $packages[$slug];
+
+        $seo = [
+            'title' => $package['name'] . ' | Atha Construction Packages',
+            'description' => $package['headline'],
+            'keywords' => 'Atha Construction, construction packages, ' . $package['name'],
+        ];
+
+        return view('package-details', compact('seo', 'package'));
     }
 
     /**

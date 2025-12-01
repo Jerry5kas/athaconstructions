@@ -1,0 +1,35 @@
+{
+    "Project Management": {
+      "1849": [
+        { "title": "Site Engineer", "value": "One Visit Per Day" },
+        { "title": "Project Manager", "value": "Visit site Once in a Week" }
+      ],
+      "2025": [
+        { "title": "Site Engineer", "value": "Dedicated Full-Time Site Engineer" },
+        { "title": "Project Manager", "value": "Visit site Twice in a Week" },
+        { "title": "Architect", "value": "Support Till Design Completion" }
+      ],
+      "2399": [
+        { "title": "Site Engineer", "value": "Daily Site" },
+        { "title": "Project Manager", "value": "Weekly 2 Site Visit" },
+        { "title": "Architect", "value": "Dedicated Architect throughout the Project" },
+        { "title": "Architect Support", "value": "Stage wise Site Visit" },
+        { "title": "Material Selection Support", "value": null }
+      ],
+      "2799": [
+        { "title": "Site Engineer", "value": "Dedicated Full-Time Site Engineer" },
+        { "title": "Daily Photo Upload", "value": "Project Status Monitoring" },
+        { "title": "Architect", "value": "Dedicated Architect" },
+        { "title": "Architect Support", "value": "Frequent Site Visit" },
+        { "title": "Material & Brand Selection Support", "value": "Including Interiors and Home Decor" }
+      ],
+      "4400": [
+        { "title": "Site Engineer", "value": "Dedicated Full-Time Site Engineer" },
+        { "title": "Daily Photo Upload", "value": "Project Status Monitoring" },
+        { "title": "Architect", "value": "Dedicated Architect" },
+        { "title": "Architect Support", "value": "Frequent Site Visit" },
+        { "title": "Material & Brand Selection Support", "value": "Including Interiors and Home Decor" }
+      ]
+    }
+  }
+  

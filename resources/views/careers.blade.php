@@ -5,7 +5,9 @@
 >
     {{-- Page Banner --}}
     <x-page-banner
-        contentTitle="Atha construction Career"
+        pageTitle="Careers at Atha Construction"
+        contentTitle="Atha Construction Career"
+        description="Join a team that is reshaping how homes are built in Bangalore—with craftsmanship, integrity, and long-term commitment."
         backgroundImage="images/about/about-banner.png"
         alt="Atha Construction Careers"
         title="Atha Construction Careers"

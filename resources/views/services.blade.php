@@ -5,7 +5,9 @@
 >
     {{-- Page Banner --}}
     <x-page-banner
+        pageTitle="Our Services"
         contentTitle="Experience the Comfort"
+        description="From design to delivery, we manage every detail of your home construction with precision, transparency, and care."
         backgroundImage="images/services-banner.png"
         alt="Home Construction Company in Bangalore"
         title="Home Construction Company in Bangalore"

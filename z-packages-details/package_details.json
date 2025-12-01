@@ -1,0 +1,109 @@
+{
+    "Table2": [
+      {
+        "section": "Design",
+        "1849": "●SCHEME DRAWING : ALL FLOORS (2D)\n● ELEVATION DESIGN : (3D)",
+        "2025": "● SCHEME DRAWING : ALL FLOORS (2D)\n● ELEVATION DESIGN : (3D)\n● HALF LAYOUT : ALL FLOORS (3D)\n● ELECTRICAL DRAWINGS : ALL FLOORS (2D)\n● PLUMBING DRAWING : ALL FLOORS (2D)\n● WORKING DRAWING : ALL FLOORS (2D)",
+        "2399": "●SCHEME DRAWING : ALL FLOORS (2D)\n●ELEVATION DESIGN : (3D)\n●HALF LAYOUT : ALL FLOORS (3D)\n●ELECTRICAL DRAWINGS : ALL FLOORS (2D)\n●PLUMBING DRAWING : ALL FLOORS (2D)\n●WORKING DRAWING : ALL FLOORS (2D)\n●SOIL TEST REPORT\n●STRUCTURAL DRAWINGS\n●FURNITURE LAYOUT : ALL FLOORS (2D)\n●ELEVATION DETAIL DRAWING : (2D)",
+        "2799": "● SCHEME DRAWING : ALL FLOORS (2D)\n● ELEVATION DESIGN : (3D)\n● HALF LAYOUT : ALL FLOORS (3D)\n● ELECTRICAL DRAWINGS : ALL FLOORS (2D)\n● PLUMBING DRAWING : ALL FLOORS (2D)\n● WORKING DRAWING : ALL FLOORS (2D)\n● SOIL TEST REPORT\n● STRUCTURAL DRAWINGS\n● FURNITURE LAYOUT : ALL FLOORS (2D)\n●ELEVATION DETAIL DRAWING : (2D)\n● SITE ASSESSMENT & SITE PLAN\n● INTERIOR VIEWS : ALL FLOORS (3D)\n● INTERIOR DETAILING : ALL ROOMS (2D)",
+        "4400": "● SCHEME DRAWING : ALL FLOORS (2D)\n● ELEVATION DESIGN : (3D)\n● HALF LAYOUT : ALL FLOORS (3D)\n● ELECTRICAL DRAWINGS : ALL FLOORS (2D)\n● PLUMBING DRAWING : ALL FLOORS (2D)\n● WORKING DRAWING : ALL FLOORS (2D)\n● SOIL TEST REPORT\n● STRUCTURAL DRAWINGS\n● FURNITURE LAYOUT : ALL FLOORS (2D)\n●ELEVATION DETAIL DRAWING : (2D)\n● SITE ASSESSMENT & SITE PLAN\n● INTERIOR VIEWS : ALL FLOORS (3D)\n● INTERIOR DETAILING : ALL ROOMS (2D)\n● INTERIOR WALK THROUGH (3D)"
+      },
+      {
+        "section": "Project Management",
+        "1849": "● Site Engineer : One Visit Per Day\n● Project Manager : Visit site Once in a Week",
+        "2025": "●Site Engineer : Dedicated Full-Time Site Engineer\n●Project Manager : Visit site Twice in a Week\n●Architect : Support Till Design Completion",
+        "2399": "●Site Engineer : Daily Site\n●Project Manager : Weekly 2 Site Visit\n●Architect : Dedicated Architect throughout the Project. Stage wise Site Visit. Material Selection Support.",
+        "2799": "● Site Engineer : Dedicated Full-Time Site Engineer\n●Daily Photo Upload. Project Status Monitoring\n● Architect : Dedicated Architect. Frequent Site Visit. Material & Brand Selection Support including Interiors and Home Decor.",
+        "4400": "● Site Engineer : Dedicated Full-Time Site Engineer\n●Daily Photo Upload. Project Status Monitoring\n● Architect : Dedicated Architect. Frequent Site Visit. Material & Brand Selection Support including Interiors and Home Decor."
+      },
+      {
+        "section": "Structure",
+        "1849": "●Basement Height : Upto 2 feet\n●Steel : Sunvik TMT / Kamadhenu OR Equivalent\n●Solid Blocks : 6-Inch Exterior | 4-Inch Inner Walls\n●Cement : Zuari / Bharathi\n●M Sand : Masonry Works\n●P Sand : Plastering Works\n●Concrete Grade : M20 (Manual Mix)\n●Ceiling Height : 10 Feet\n●Parapet Wall : 4 Inch\n●Sump : 4000 Litres",
+        "2025": "●Basement Height : Upto 3 feet\n●Steel : SK Turbo or Equivalent\n●Chamber Bricks : 9-Inch Exterior | 4 Inch Inner Walls\n●Cement : ACC / Dalmia\n●Concrete Grade : M20 | RMC for Roof\n●Ceiling Height : 10 Feet\n●Parapet Wall : 6 Inch\n●Sump : 7000 Litres",
+        "2399": "●Basement Height : Upto 3 feet\n●Steel : JSW / INDUS or Equivalent\n●Wire-Cut Bricks : 9-Inch Exterior | 4 Inch Inner Walls\n●Cement : ACC / Dalmia / Ultratech\n●Concrete Grade : M20 | RMC for Roof\n●Ceiling Height : 10.5 Feet\n●Parapet Wall : 3.5 Feet | 6 Inch\n●Sump : 8000 Litres\n●Lift Pit & Shaft : Included",
+        "2799": "●Basement Height : Upto 5 feet\n●Steel : JSW TMT\n●Wire-Cut Bricks : 9-Inch Exterior | 4 Inch Inner Walls\n●Cement : Ultratech / ACC / Birla\n●Concrete Grade : M25 | RMC for Roof\n●Ceiling Height : 11 Feet\n●Parapet Wall : 3.5 Feet\n●Sump : 10000 Litres\n●Lift Pit & Shaft : Included\n●Compound wall included",
+        "4400": "●Basement Height : Upto 8 feet\n●Steel : TATA TMT\n●Wire-Cut Bricks : 9-Inch Exterior | 4 Inch Inner Walls\n●Cement : Ultratech / Birla\n●Concrete Grade : M25 | RMC for Roof\n●Ceiling Height : 11 Feet\n●Parapet Wall : 3.5 Feet\n●Sump : 12000 Litres\n●Lift Pit & Shaft : Included\n●Rain water Sump : upto 4000 litres"
+      },
+      {
+        "section": "Bathroom & Plumbing",
+        "1849": "●Wall Tiles : 7ft | 2x1 Vitrified | ₹40/sqft\n●Fittings : Cera | ₹12000/bathroom | Floor Mounted EWC, Basin, Pillar Tap, Health Faucet, Shower Set, 2-in-1 Mixer\n●Plumbing : CPVC + PVC | APL Apollo\n●OHT : 1000L Sintex (3 Layer)",
+        "2025": "●Wall Tiles : 7ft | 2x2 Vitrified | ₹50/sqft\n●Fittings : Parryware | ₹17000/bathroom | Wall Mounted EWC, Basin, Pillar Tap, Health Faucet, Shower Set, 2-in-1 Mixer\n●Plumbing : CPVC + PVC | APL Apollo\n●OHT : 1000L Sintex (3 Layer)",
+        "2399": "●Wall Tiles : 8ft | 4x2 Digital Vitrified | ₹60/sqft\n●Fittings : Jaquar | ₹22000/bathroom | Wall Mounted EWC, Basin, Mixer\n●Plumbing : CPVC + PVC | Ashirwad / Finolex\n●OHT : 1500L Sintex (5 Layer)",
+        "2799": "●Wall Tiles : 9ft | 4x2 Vitrified | ₹70/sqft\n●Fittings : Kohler | ₹40000/bathroom | Concealed EWC, Counter Basin, Marble Counter, Concealed Mixer\n●Plumbing : CPVC + PVC + HDPE | Ashirwad / Finolex / Jindal\n●OHT : 2000L Sintex with Sensor",
+        "4400": "●Wall Tiles : Full Height | 4x2 Vitrified | ₹150/sqft\n●Fittings : Grohe | ₹70000/bathroom | Concealed EWC, Counter Basin, Marble Counter\n●Plumbing : CPVC + PVC + HDPE | Ashirwad / Finolex / Jindal\n●RCC OHT : 4000L with waterproofing"
+      },
+      {
+        "section": "Flooring",
+        "1849": "●Living/Dining/Bedrooms/Kitchen : 2x2 Vitrified | ₹45/sqft\n●Balcony/Utility : 1x1 | ₹35/sqft\n●Staircase : CC Flooring\n●Parking : 1x1 | ₹35/sqft\n●Bathroom : Ceramic upto ₹35",
+        "2025": "●Living/Dining/Bedrooms/Kitchen : 2x2 Vitrified | ₹65/sqft\n●Balcony/Utility : 2x2 | ₹40/sqft (Antiskid)\n●Staircase : Granite ₹80/sqft\n●Parking : Heavy Duty 1x1 | ₹40/sqft\n●Bathroom : Ceramic ₹45/sqft",
+        "2399": "●Living/Dining/Bedrooms/Kitchen : 4x2 Granite/Vitrified | ₹80/sqft\n●Balcony/Utility : 2x2 | ₹50/sqft\n●Staircase : Granite ₹90/sqft\n●Parking : Heavy Stone 2x2 | ₹50/sqft\n●Terrace : Waterproof + Screed\n●Bathroom : Ceramic ₹65/sqft",
+        "2799": "●Living/Dining/Bedrooms/Kitchen : Quartz/Italian/Granite | ₹100/sqft\n●Balcony/Utility : 2x2 | ₹60/sqft\n●Staircase : Granite ₹100/sqft\n●Parking : Tiles ₹60/sqft\n●Terrace : Waterproof + Screed\n●Bathroom : Ceramic ₹85/sqft",
+        "4400": "●Living/Dining/Bedrooms/Kitchen : Quartz/Italian/Wooden | ₹400/sqft\n●Balcony/Utility : 2x2 | ₹150/sqft\n●Staircase : Granite ₹100/sqft\n●Parking : Pavers | ₹100/sqft\n●Terrace : 2x2 Exterior Vitrified + Waterproof"
+      },
+      {
+        "section": "Kitchen & Dining",
+        "1849": "●Wall Tile : 2x1 Ceramic ₹45/sqft\n●Sink Faucet ₹900\n●SS Sink ₹2800\n●Dining : Wall Basin\n●Granite Top ₹90/sqft",
+        "2025": "●Wall Tile : 2x2 Ceramic ₹55/sqft\n●Faucet ₹2000\n●SS Sink with Drain ₹5000\n●Dining : Wall Basin\n●Granite Top ₹90/sqft",
+        "2399": "●Wall Tile : 4x2 Ceramic ₹65/sqft\n●Designer Faucet ₹3500\n●Quartz Sink ₹8000\n●Dining : Basin with Granite Counter\n●Granite Top ₹95/sqft",
+        "2799": "●Wall Tile : 4x2 Vitrified ₹80/sqft\n●Pull-out Faucet ₹5000\n●Multi Sink ₹10000\n●Dining : Designer Basin with Marble Counter\n●Granite Top ₹100/sqft",
+        "4400": "●Wall Tile : 4x2 Designer ₹100/sqft\n●Premium Pull-out Faucet ₹6000\n●Multi Sink ₹10000\n●Dining : Designer Basin with Marble Counter"
+      },
+      {
+        "section": "Door Window & Railing",
+        "1849": "●Main Door : Teak | 32mm | 7ft x 3.5ft\n●Room Doors : White Panel\n●Bathroom : PVC\n●Windows : UPVC 4x4\n●Railing : MS\n●Grills : MS Standard",
+        "2025": "●Main Door : Teak Readymade | 35mm | ₹32000\n●Room : Membrane/Flush\n●Bathroom : WPC\n●Windows : UPVC 5x4.5\n●Balcony : MS + 8mm Glass\n●Grills : MS Standard",
+        "2399": "●Main Door : Teak | 35mm | ₹52000\n●Puja Door : ₹30000\n●Room : Flush with Laminate\n●Bathroom : WPC\n●Balcony : SS + Toughened Glass\n●Windows : UPVC Toughened",
+        "2799": "●Main Door : Designer Wood 8x5 | Digital Lock ₹50000\n●Room : Laminate Flush Door ₹15000\n●Bathroom : Waterproof Flush ₹10000\n●Windows : UPVC Toughened\n●Railing : Toughened + SS",
+        "4400": "●Main Door : Designer Wood 8x5 | Digital Lock ₹70000\n●Room : 8ft Laminated\n●Bathroom : 8ft Waterproof\n●Windows : High-grade Aluminium with Toughened\n●Railing : SS + Toughened Glass"
+      },
+      {
+        "section": "Painting",
+        "1849": "●Inner Putty : 1 Coat\n●Wall : Primer + 2 Coats Tractor\n●Ceiling : Primer + Tractor\n●Exterior : Ace + Primer",
+        "2025": "●Inner Putty : 2 Coat\n●Wall : Primer + Tractor\n●Ceiling : Primer + Tractor\n●Exterior : Ace + Primer\n●Elevation Putty : 2 Coats (Front)",
+        "2399": "●Inner Putty : 2 Coats\n●Wall : Primer + Tractor Emulsion\n●Exterior : Asian Apex\n●Elevation Putty : 2 Coats (Two Sides)",
+        "2799": "●Inner Putty : 2 Coats\n●Wall : Royale Emulsion\n●Exterior : Apex\n●Elevation Putty : All Sides",
+        "4400": "●Inner Putty : Birla\n●Wall : Royale Luxury\n●Feature Wall : Stucco\n●Exterior : Apex Ultima\n●Elevation Putty : Birla Wallseal"
+      },
+      {
+        "section": "Electrical",
+        "1849": "●Wires : Orbit FRLS\n●Switches : Anchor\n●Bedroom : 2 Boxes\n●Bathroom : 2 Boxes\n●Kitchen : 3 Boxes\n●AC : 1 per Bedroom",
+        "2025": "●Wires : Orbit FRLS\n●Switches : Legrand\n●Bedroom : 3 Boxes\n●AC : Bedroom + Living\n●Kitchen : HOB, Chimney, RO Points",
+        "2399": "●Wires : Finolex/Havells\n●Switches : GM\n●No restriction on points\n●Panel Board : RLCB Exterior",
+        "2799": "●Wires : Finolex/Havells\n●Switches : Legrand/Havells\n●Pump : 2.5HP\n●Auto Level Controller",
+        "4400": "●Wires : Finolex/Havells/VGuard\n●Switches : Schneider/Siemens"
+      },
+      {
+        "section": "What's Not Included",
+        "1849": "●Compound Wall\n●Septic Tank @ ₹22/litre\n●Lift, Pit & Shaft\n●Electricity Connection\n●Plan Approval\n●Elevation Materials",
+        "2025": "●Compound Wall\n●Septic Tank\n●Lift & Shaft\n●Electricity Connection\n●Plan Approval\n●Elevation Materials",
+        "2399": "●Compound Wall\n●Septic Tank\n●Lift\n●Electricity Connection\n●Plan Approval\n●Elevation Materials",
+        "2799": "●Septic Tank\n●Lift\n●Electricity Connection\n●Plan Approval\n●Elevation Materials",
+        "4400": "●Septic Tank\n●Lift\n●Electricity Connection\n●Plan Approval\n●Elevation Materials"
+      },
+      {
+        "section": "What is Included",
+        "1849": "●Soil Test\n●Labour Shed\n●Elevation Design\n●Lift Pit & Shaft\n●Curing included",
+        "2025": null,
+        "2399": "●Soil Test\n●Labour Shed\n●Elevation Design\n●Lift Pit & Shaft\n●Curing included",
+        "2799": "●Soil Test\n●Labour Shed\n●Elevation Design\n●Lift Pit & Shaft\n●Curing included\n●CCTV at site",
+        "4400": "●Compound Wall\n●Landscape 50sqft\n●5KW Smart Energy\n●Solar Heater 500L\n●Gas Sensors\n●Balcony & Bathroom Sensors\n●Smart Gate & Video Door"
+      },
+      {
+        "section": "Offers",
+        "1849": "●Above 2400 sqft: 5g Gold\n●Valid till May 15, 2025",
+        "2025": "●Above 2400 sqft: 5g Gold\n●Valid till May 15, 2025",
+        "2399": "●Above 2400 sqft: 10g Gold\n●Valid till May 15, 2025",
+        "2799": "●Above 2400 sqft: 10g Gold\n●Interiors Free\n●Valid till May 15, 2025",
+        "4400": "●Above 2400 sqft: 10g Gold\n●Interiors Free\n●Valid till May 15, 2025"
+      },
+      {
+        "section": "Terms and conditions",
+        "1849": "●Additional work extra\n●GST extra\n●Structural changes based on site\n●Unlisted items excluded\n●One kitchen included\n●1 toilet / 1000sqft\n●Minimum 2400sqft or extra ₹250–550/sqft\n●30% openings included",
+        "2025": "●Additional work extra\n●GST extra\n●Structural changes based on site\n●Unlisted items excluded\n●One kitchen included\n●1 toilet / 1000sqft\n●Minimum 2400sqft or extra ₹250–550/sqft\n●30% openings included",
+        "2399": "●Additional work extra\n●GST extra\n●Structural changes based on site\n●Unlisted items excluded\n●One kitchen included\n●1 toilet / 1000sqft\n●Minimum 2400sqft or extra ₹250–550/sqft\n●30% openings included",
+        "2799": "●Additional work extra\n●GST extra\n●Structural changes based on site\n●Unlisted items excluded\n●One kitchen included\n●1 toilet / 1000sqft\n●Minimum 2400sqft or extra ₹250–550/sqft\n●30% openings included",
+        "4400": "●Additional work extra\n●GST extra\n●Structural changes based on site\n●Unlisted items excluded\n●One kitchen included\n●1 toilet / 1000sqft\n●Minimum 2400sqft or extra ₹250–550/sqft\n●30% openings included"
+      }
+    ]
+  }
+  

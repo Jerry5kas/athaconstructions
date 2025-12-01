@@ -438,10 +438,13 @@
             <div class="max-w-6xl mx-auto">
                 {{-- Section Header --}}
                 <div class="text-center mb-12 lg:mb-16">
-                    <h2 class="font-tenor text-3xl lg:text-4xl uppercase mb-4 animate-on-scroll opacity-0" style="animation-delay: 0.1s;">
-                        Our USP's
-                    </h2>
-                    <div class="w-24 h-0.5 bg-black mx-auto animate-on-scroll opacity-0" style="animation-delay: 0.2s;"></div>
+                    <p class="text-xs lg:text-sm tracking-[0.25em] uppercase text-gray-500 mb-3 animate-on-scroll opacity-0" style="animation-delay: 0.05s;">
+                        Why homeowners choose Atha
+                    </p>
+                    <h2 class="font-tenor text-3xl lg:text-4xl uppercase mb-3 animate-on-scroll opacity-0" style="animation-delay: 0.1s;">
+                    Our USP's
+                </h2>
+                    <div class="w-24 h-0.5 bg-black mx-auto animate-on-scroll opacity-0 usps-title-underline" style="animation-delay: 0.2s;"></div>
                 </div>
 
                 <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center usp-grid-container">
@@ -461,24 +464,24 @@
                                                     <rect x="8" y="8" width="8" height="8" rx="1" fill="currentColor"/>
                                                 </svg>
                                             </div>
-                                        </div>
+            </div>
                                         {{-- USP Text --}}
                                         <p class="text-[11px] lg:text-xs font-medium text-gray-900 leading-relaxed flex-1">
-                                            {!! $usp !!}
-                                        </p>
+                            {!! $usp !!}
+                        </p>
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
-                    </div>
+                    @endforeach
+                </div>
 
                     {{-- Simple Smooth Slider - Landscape --}}
                     <div class="relative usp-slider-container" x-data="{ 
                         currentSlide: 0, 
                         slides: [
-                            '{{ asset('images/about/USP1.jpg') }}',
-                            '{{ asset('images/about/USP2.jpg') }}',
-                            '{{ asset('images/about/USP3.jpg') }}'
+                    '{{ asset('images/about/USP1.jpg') }}',
+                    '{{ asset('images/about/USP2.jpg') }}',
+                    '{{ asset('images/about/USP3.jpg') }}'
                         ],
                         autoplay: null,
                         init() {
@@ -503,44 +506,44 @@
                     }" @mouseenter="stopAutoplay()" @mouseleave="startAutoplay()">
                         <div class="usp-slider-wrapper animate-on-scroll opacity-0" style="animation-delay: 0.5s;">
                             <div class="relative overflow-hidden usp-slider-frame">
-                                <template x-for="(slide, index) in slides" :key="index">
-                                    <div 
-                                        x-show="currentSlide === index"
+                            <template x-for="(slide, index) in slides" :key="index">
+                                <div 
+                                    x-show="currentSlide === index"
                                         x-transition:enter="transition ease-out duration-500"
                                         x-transition:enter-start="opacity-0 transform translate-x-8"
                                         x-transition:enter-end="opacity-100 transform translate-x-0"
-                                        x-transition:leave="transition ease-in duration-300"
+                                    x-transition:leave="transition ease-in duration-300"
                                         x-transition:leave-start="opacity-100 transform translate-x-0"
                                         x-transition:leave-end="opacity-0 transform -translate-x-8"
                                         class="absolute inset-0 usp-slide"
-                                    >
-                                        <img 
-                                            :src="slide" 
-                                            :alt="'USP ' + (index + 1)"
+                                >
+                                    <img 
+                                        :src="slide" 
+                                        :alt="'USP ' + (index + 1)"
                                             class="usp-slide-image"
-                                        >
-                                    </div>
-                                </template>
-                                
+                                    >
+                                </div>
+                            </template>
+                        
                                 {{-- Simple Arrow Navigation --}}
-                                <button 
+                        <button 
                                     @click="prevSlide()"
                                     class="absolute left-4 top-1/2 transform -translate-y-1/2 usp-arrow-btn"
-                                    aria-label="Previous"
-                                >
+                            aria-label="Previous"
+                        >
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                                     </svg>
-                                </button>
-                                <button 
+                        </button>
+                        <button 
                                     @click="nextSlide()"
                                     class="absolute right-4 top-1/2 transform -translate-y-1/2 usp-arrow-btn"
-                                    aria-label="Next"
-                                >
+                            aria-label="Next"
+                        >
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                                     </svg>
-                                </button>
+                        </button>
                             </div>
                         </div>
                     </div>
@@ -553,21 +556,58 @@
     <style>
         /* USPs Section Styles */
         .usps-section {
-            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.01) 50%, transparent 100%);
-        }
-
-        /* USP Card Styles - Based on Reference Image */
-        .usp-card {
-            background: #f5f5f5;
-            border-radius: 4px;
-            transition: all 0.3s ease;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.015) 50%, transparent 100%);
+            position: relative;
             overflow: hidden;
         }
 
+        .usps-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .usps-title-underline {
+            background: linear-gradient(90deg, transparent, #000000, transparent);
+        }
+
+        /* USP Card Styles */
+        .usp-card {
+            background: #ffffff;
+            border-radius: 6px;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .usp-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #111111, transparent);
+            opacity: 0.2;
+            transition: opacity 0.3s ease;
+        }
+
         .usp-card:hover {
-            background: #ebebeb;
-            transform: translateX(8px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            background: #f9f9f9;
+            transform: translateX(6px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 0, 0.12);
+        }
+
+        .usp-card:hover::before {
+            opacity: 0.6;
         }
 
         .usp-card-content {
@@ -712,13 +752,13 @@
                 <div class="text-center mb-16 lg:mb-20">
                     <div class="inline-block relative">
                         <h2 class="font-tenor text-4xl lg:text-5xl uppercase mb-4 animate-on-scroll opacity-0 relative z-10" style="animation-delay: 0.1s;">
-                            OUR FOUNDERS
-                        </h2>
+                    OUR FOUNDERS
+                </h2>
                         <div class="absolute -bottom-2 left-0 right-0 h-3 founder-title-underline"></div>
                     </div>
-                </div>
+            </div>
 
-                <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+            <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
                     @foreach($founders as $index => $founder)
                         @php
                             $bgColors = ['#F5F0E8', '#F0E8F5' , '#E8F4F5'];
@@ -734,9 +774,9 @@
                                 {{-- Image Section with Creative Shape --}}
                                 <div class="founder-image-section">
                                     <div class="founder-image-shape">
-                                        <img 
-                                            src="{{ asset($founder['image']) }}" 
-                                            alt="{{ $founder['name'] }}"
+                        <img 
+                            src="{{ asset($founder['image']) }}" 
+                            alt="{{ $founder['name'] }}"
                                             class="founder-image-creative"
                                         >
                                     </div>
@@ -761,8 +801,8 @@
 
                                     {{-- Bio --}}
                                     <p class="text-xs lg:text-sm text-gray-700 leading-relaxed text-justify founder-bio pb-5">
-                                        {{ $founder['bio'] }}
-                                    </p>
+                            {{ $founder['bio'] }}
+                        </p>
 
                                     {{-- Bottom Accent --}}
                                     <div class="founder-bottom-accent"></div>
@@ -774,8 +814,8 @@
                                 <div class="founder-decorative-line founder-line-1"></div>
                                 <div class="founder-decorative-line founder-line-2"></div>
                             </div>
-                        </div>
-                    @endforeach
+                    </div>
+                @endforeach
                 </div>
             </div>
         </div>
@@ -858,7 +898,7 @@
         }
 
         .founder-card-creative:hover .founder-image-shape {
-            transform: scale(1.08) rotate(5deg);
+            transform: scale(1.08);
             box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
         }
 

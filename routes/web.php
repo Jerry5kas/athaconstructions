@@ -22,6 +22,7 @@ Route::get('/about', [HomeController::class, 'about'])->name('about');
 
 // Packages Page
 Route::get('/packages', [HomeController::class, 'packages'])->name('packages');
+Route::get('/packages/{slug}', [HomeController::class, 'packageDetail'])->name('packages.show');
 
 // Properties Page
 Route::get('/properties', [HomeController::class, 'properties'])->name('properties');

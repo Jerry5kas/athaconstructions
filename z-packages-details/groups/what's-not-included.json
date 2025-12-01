@@ -1,0 +1,47 @@
+{
+    "What's Not Included": {
+      "1849": [
+        { "title": "Compound Wall", "value": null },
+        { "title": "Septic Tank", "value": "@ ₹22/litre" },
+        { "title": "Lift, Pit & Shaft", "value": null },
+        { "title": "Electricity Connection", "value": null },
+        { "title": "Plan Approval", "value": null },
+        { "title": "Elevation Materials", "value": null }
+      ],
+  
+      "2025": [
+        { "title": "Compound Wall", "value": null },
+        { "title": "Septic Tank", "value": null },
+        { "title": "Lift & Shaft", "value": null },
+        { "title": "Electricity Connection", "value": null },
+        { "title": "Plan Approval", "value": null },
+        { "title": "Elevation Materials", "value": null }
+      ],
+  
+      "2399": [
+        { "title": "Compound Wall", "value": null },
+        { "title": "Septic Tank", "value": null },
+        { "title": "Lift", "value": null },
+        { "title": "Electricity Connection", "value": null },
+        { "title": "Plan Approval", "value": null },
+        { "title": "Elevation Materials", "value": null }
+      ],
+  
+      "2799": [
+        { "title": "Septic Tank", "value": null },
+        { "title": "Lift", "value":null },
+        { "title": "Electricity Connection", "value": null },
+        { "title": "Plan Approval", "value": null },
+        { "title": "Elevation Materials", "value": null }
+      ],
+  
+      "4400": [
+        { "title": "Septic Tank", "value": null },
+        { "title": "Lift", "value": null },
+        { "title": "Electricity Connection", "value": null },
+        { "title": "Plan Approval", "value": null },
+        { "title": "Elevation Materials", "value": null }
+      ]
+    }
+  }
+  

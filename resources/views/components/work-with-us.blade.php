@@ -28,7 +28,7 @@
     
     {{-- Content Container --}}
     <div class="container mx-auto px-4 relative z-10">
-        <div class="max-w-4xl mx-auto text-center">
+        <div class="work-with-us-panel max-w-4xl mx-auto text-center">
             {{-- Decorative Top Element --}}
             <div class="work-with-us-top-decoration opacity-0" 
                  :class="{ 'animate-fade-in-down': visible }" 
@@ -149,9 +149,9 @@
     .work-with-us-overlay {
         background: linear-gradient(
             135deg,
-            rgba(0, 0, 0, 0.4) 0%,
-            rgba(0, 0, 0, 0.3) 50%,
-            rgba(0, 0, 0, 0.35) 100%
+            rgba(0, 0, 0, 0.45) 0%,
+            rgba(0, 0, 0, 0.28) 40%,
+            rgba(0, 0, 0, 0.6) 100%
         );
     }
 
@@ -300,6 +300,28 @@
         }
     }
 
+    /* Panel */
+    .work-with-us-panel {
+        position: relative;
+        padding: 3rem 2.5rem;
+        border-radius: 20px;
+        background: radial-gradient(circle at 10% 0%, rgba(255,255,255,0.06), transparent 55%),
+                    radial-gradient(circle at 90% 100%, rgba(255,255,255,0.04), transparent 60%),
+                    rgba(0,0,0,0.45);
+        border: 1px solid rgba(255,255,255,0.25);
+        box-shadow: 0 24px 80px rgba(0,0,0,0.65);
+        backdrop-filter: blur(16px);
+    }
+
+    .work-with-us-panel::before {
+        content: '';
+        position: absolute;
+        inset: 1.25rem;
+        border-radius: 16px;
+        border: 1px solid rgba(255,255,255,0.08);
+        pointer-events: none;
+    }
+
     /* Animations */
     @keyframes fadeInDown {
         from {
@@ -333,10 +355,6 @@
 
     /* Responsive Adjustments */
     @media (max-width: 767px) {
-        .work-with-us-section {
-            min-height: 450px;
-        }
-
         .work-with-us-title {
             font-size: 2rem;
         }

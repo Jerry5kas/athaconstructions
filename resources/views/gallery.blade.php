@@ -5,7 +5,9 @@
 >
     {{-- Page Banner --}}
     <x-page-banner
-        contentTitle="GALLERY"
+        pageTitle="Project Gallery"
+        contentTitle="Spaces That Tell a Story"
+        description="Explore a curated selection of homes and spaces we’ve crafted—each one built with detail, intent, and trust."
         backgroundImage="images/properties2/banner2.png"
         alt="residential construction companies in bangalore"
         title="residential construction companies in bangalore"

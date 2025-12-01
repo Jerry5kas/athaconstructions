@@ -1,0 +1,43 @@
+{
+    "Kitchen & Dining": {
+      "1849": [
+        { "title": "Wall Tile", "value": "2x1 Ceramic ₹45/sqft" },
+        { "title": "Sink Faucet", "value": "₹900" },
+        { "title": "SS Sink", "value": "₹2800" },
+        { "title": "Dining", "value": "Wall Basin" },
+        { "title": "Granite Top", "value": "₹90/sqft" }
+      ],
+  
+      "2025": [
+        { "title": "Wall Tile", "value": "2x2 Ceramic ₹55/sqft" },
+        { "title": "Faucet", "value": "₹2000" },
+        { "title": "SS Sink with Drain", "value": "₹5000" },
+        { "title": "Dining", "value": "Wall Basin" },
+        { "title": "Granite Top", "value": "₹90/sqft" }
+      ],
+  
+      "2399": [
+        { "title": "Wall Tile", "value": "4x2 Ceramic ₹65/sqft" },
+        { "title": "Designer Faucet", "value": "₹3500" },
+        { "title": "Quartz Sink", "value": "₹8000" },
+        { "title": "Dining", "value": "Basin with Granite Counter" },
+        { "title": "Granite Top", "value": "₹95/sqft" }
+      ],
+  
+      "2799": [
+        { "title": "Wall Tile", "value": "4x2 Vitrified ₹80/sqft" },
+        { "title": "Pull-out Faucet", "value": "₹5000" },
+        { "title": "Multi Sink", "value": "₹10000" },
+        { "title": "Dining", "value": "Designer Basin with Marble Counter" },
+        { "title": "Granite Top", "value": "₹100/sqft" }
+      ],
+  
+      "4400": [
+        { "title": "Wall Tile", "value": "4x2 Designer ₹100/sqft" },
+        { "title": "Premium Pull-out Faucet", "value": "₹6000" },
+        { "title": "Multi Sink", "value": "₹10000" },
+        { "title": "Dining", "value": "Designer Basin with Marble Counter" }
+      ]
+    }
+  }
+  

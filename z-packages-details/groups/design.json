@@ -1,0 +1,60 @@
+{
+    "Design": {
+      "1849": [
+        { "title": "SCHEME DRAWING", "value": "ALL FLOORS (2D)" },
+        { "title": "ELEVATION DESIGN", "value": "(3D)" }
+      ],
+      "2025": [
+        { "title": "SCHEME DRAWING", "value": "ALL FLOORS (2D)" },
+        { "title": "ELEVATION DESIGN", "value": "(3D)" },
+        { "title": "HALF LAYOUT", "value": "ALL FLOORS (3D)" },
+        { "title": "ELECTRICAL DRAWINGS", "value": "ALL FLOORS (2D)" },
+        { "title": "PLUMBING DRAWING", "value": "ALL FLOORS (2D)" },
+        { "title": "WORKING DRAWING", "value": "ALL FLOORS (2D)" }
+      ],
+      "2399": [
+        { "title": "SCHEME DRAWING", "value": "ALL FLOORS (2D)" },
+        { "title": "ELEVATION DESIGN", "value": "(3D)" },
+        { "title": "HALF LAYOUT", "value": "ALL FLOORS (3D)" },
+        { "title": "ELECTRICAL DRAWINGS", "value": "ALL FLOORS (2D)" },
+        { "title": "PLUMBING DRAWING", "value": "ALL FLOORS (2D)" },
+        { "title": "WORKING DRAWING", "value": "ALL FLOORS (2D)" },
+        { "title": "SOIL TEST REPORT", "value": null },
+        { "title": "STRUCTURAL DRAWINGS", "value": null },
+        { "title": "FURNITURE LAYOUT", "value": "ALL FLOORS (2D)" },
+        { "title": "ELEVATION DETAIL DRAWING", "value": "(2D)" }
+      ],
+      "2799": [
+        { "title": "SCHEME DRAWING", "value": "ALL FLOORS (2D)" },
+        { "title": "ELEVATION DESIGN", "value": "(3D)" },
+        { "title": "HALF LAYOUT", "value": "ALL FLOORS (3D)" },
+        { "title": "ELECTRICAL DRAWINGS", "value": "ALL FLOORS (2D)" },
+        { "title": "PLUMBING DRAWING", "value": "ALL FLOORS (2D)" },
+        { "title": "WORKING DRAWING", "value": "ALL FLOORS (2D)" },
+        { "title": "SOIL TEST REPORT", "value": null },
+        { "title": "STRUCTURAL DRAWINGS", "value": null },
+        { "title": "FURNITURE LAYOUT", "value": "ALL FLOORS (2D)" },
+        { "title": "ELEVATION DETAIL DRAWING", "value": "(2D)" },
+        { "title": "SITE ASSESSMENT & SITE PLAN", "value": null },
+        { "title": "INTERIOR VIEWS", "value": "ALL FLOORS (3D)" },
+        { "title": "INTERIOR DETAILING", "value": "ALL ROOMS (2D)" }
+      ],
+      "4400": [
+        { "title": "SCHEME DRAWING", "value": "ALL FLOORS (2D)" },
+        { "title": "ELEVATION DESIGN", "value": "(3D)" },
+        { "title": "HALF LAYOUT", "value": "ALL FLOORS (3D)" },
+        { "title": "ELECTRICAL DRAWINGS", "value": "ALL FLOORS (2D)" },
+        { "title": "PLUMBING DRAWING", "value": "ALL FLOORS (2D)" },
+        { "title": "WORKING DRAWING", "value": "ALL FLOORS (2D)" },
+        { "title": "SOIL TEST REPORT", "value": null },
+        { "title": "STRUCTURAL DRAWINGS", "value": null },
+        { "title": "FURNITURE LAYOUT", "value": "ALL FLOORS (2D)" },
+        { "title": "ELEVATION DETAIL DRAWING", "value": "(2D)" },
+        { "title": "SITE ASSESSMENT & SITE PLAN", "value": null },
+        { "title": "INTERIOR VIEWS", "value": "ALL FLOORS (3D)" },
+        { "title": "INTERIOR DETAILING", "value": "ALL ROOMS (2D)" },
+        { "title": "INTERIOR WALK THROUGH", "value": "(3D)" }
+      ]
+    }
+  }
+  

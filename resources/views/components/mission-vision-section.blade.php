@@ -1,5 +1,6 @@
 @props([
     'title' => 'MISSION & VISION',
+    'subtitle' => 'Purpose & direction that shapes every project',
     'blocks' => [],
 ])
 
@@ -13,9 +14,17 @@
     <div class="container mx-auto px-4">
         <div class="max-w-6xl mx-auto">
             {{-- Section Title --}}
-            <h2 class="font-tenor text-2xl lg:text-3xl uppercase text-center mb-12 lg:mb-16 animate-on-scroll opacity-0" style="animation-delay: 0.1s;">
-                {{ $title }}
-            </h2>
+            <div class="text-center mb-12 lg:mb-16">
+                @if($subtitle)
+                    <p class="mission-vision-subtitle text-xs lg:text-sm tracking-[0.2em] uppercase text-gray-400 mb-3 animate-on-scroll opacity-0" style="animation-delay: 0.05s;">
+                        {{ $subtitle }}
+                    </p>
+                @endif
+                <h2 class="font-tenor text-2xl lg:3xl lg:text-3xl uppercase mb-3 animate-on-scroll opacity-0" style="animation-delay: 0.1s;">
+                    {{ $title }}
+                </h2>
+                <div class="mission-vision-title-underline animate-on-scroll opacity-0 mx-auto" style="animation-delay: 0.15s;"></div>
+            </div>
 
             <div class="grid md:grid-cols-2 gap-6 lg:gap-12">
                 @foreach($blocks as $index => $block)
@@ -33,6 +42,9 @@
 
                             {{-- Card Header --}}
                             <div class="mission-vision-card-header">
+                                <!-- <div class="mission-vision-label-wrapper">
+                                    <span class="mission-vision-label">0{{ $index + 1 }}</span>
+                                </div> -->
                                 <div class="mission-vision-icon-wrapper">
                                     @if(!empty($block['icon']))
                                         <img src="{{ asset($block['icon']) }}" alt="{{ $block['title'] }}" class="mission-vision-icon">
@@ -81,10 +93,6 @@
         opacity: 0.2;
     }
 
-    .mission-vision-card-wrapper {
-        position: relative;
-    }
-
     .mission-vision-card {
         position: relative;
         background: rgba(15, 15, 15, 0.9);
@@ -93,6 +101,18 @@
         transition: all 0.4s ease;
         backdrop-filter: blur(10px);
         overflow: hidden;
+    }
+
+    .mission-vision-card::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(to bottom, rgba(255,255,255,0.5), rgba(255,255,255,0));
+        opacity: 0.4;
+        z-index: 2;
     }
 
     .mission-vision-bg {
@@ -128,6 +148,29 @@
     .mission-vision-card-header {
         text-align: center;
         margin-bottom: 1.75rem;
+        position: relative;
+    }
+
+    .mission-vision-label-wrapper {
+        position: absolute;
+        top: -1.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .mission-vision-label {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.15rem 0.85rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,0.3);
+        font-size: 0.625rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.8);
+        background: rgba(0,0,0,0.7);
+        backdrop-filter: blur(6px);
     }
 
     .mission-vision-icon-wrapper {
@@ -158,6 +201,15 @@
 
     .mission-vision-card-content {
         text-align: center;
+    }
+    .mission-vision-subtitle {
+        letter-spacing: 0.22em;
+    }
+
+    .mission-vision-title-underline {
+        width: 80px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, white, transparent);
     }
 
     .mission-vision-corner {

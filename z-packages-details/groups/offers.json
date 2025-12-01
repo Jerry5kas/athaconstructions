@@ -1,0 +1,31 @@
+{
+    "Offers": {
+      "1849": [
+        { "title": "Gold Offer", "value": "Above 2400 sqft: 5g Gold" },
+        { "title": "Validity", "value": "Valid till May 15, 2025" }
+      ],
+  
+      "2025": [
+        { "title": "Gold Offer", "value": "Above 2400 sqft: 5g Gold" },
+        { "title": "Validity", "value": "Valid till May 15, 2025" }
+      ],
+  
+      "2399": [
+        { "title": "Gold Offer", "value": "Above 2400 sqft: 10g Gold" },
+        { "title": "Validity", "value": "Valid till May 15, 2025" }
+      ],
+  
+      "2799": [
+        { "title": "Gold Offer", "value": "Above 2400 sqft: 10g Gold" },
+        { "title": "Interiors", "value": "Free" },
+        { "title": "Validity", "value": "Valid till May 15, 2025" }
+      ],
+  
+      "4400": [
+        { "title": "Gold Offer", "value": "Above 2400 sqft: 10g Gold" },
+        { "title": "Interiors", "value": "Free" },
+        { "title": "Validity", "value": "Valid till May 15, 2025" }
+      ]
+    }
+  }
+  

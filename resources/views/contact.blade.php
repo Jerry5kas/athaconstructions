@@ -5,7 +5,9 @@
 >
     {{-- Page Banner --}}
     <x-page-banner
-        contentTitle="Contact"
+        pageTitle="Contact Atha Construction"
+        contentTitle="Let’s Build Something Together"
+        description="Reach out to discuss your dream home, renovation, or a simple question—our team is here to guide you at every step."
         backgroundImage="images/contact-us.jpg"
         alt="Best Construction Companies in Bangalore"
         title="Best Construction Companies in Bangalore"

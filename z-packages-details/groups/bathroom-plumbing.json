@@ -1,0 +1,39 @@
+{
+    "Bathroom & Plumbing": {
+      "1849": [
+        { "title": "Wall Tiles", "value": "7ft | 2x1 Vitrified | ₹40/sqft" },
+        { "title": "Fittings", "value": "Cera | ₹12000/bathroom | Floor Mounted EWC, Basin, Pillar Tap, Health Faucet, Shower Set, 2-in-1 Mixer" },
+        { "title": "Plumbing", "value": "CPVC + PVC | APL Apollo" },
+        { "title": "OHT", "value": "1000L Sintex (3 Layer)" }
+      ],
+  
+      "2025": [
+        { "title": "Wall Tiles", "value": "7ft | 2x2 Vitrified | ₹50/sqft" },
+        { "title": "Fittings", "value": "Parryware | ₹17000/bathroom | Wall Mounted EWC, Basin, Pillar Tap, Health Faucet, Shower Set, 2-in-1 Mixer" },
+        { "title": "Plumbing", "value": "CPVC + PVC | APL Apollo" },
+        { "title": "OHT", "value": "1000L Sintex (3 Layer)" }
+      ],
+  
+      "2399": [
+        { "title": "Wall Tiles", "value": "8ft | 4x2 Digital Vitrified | ₹60/sqft" },
+        { "title": "Fittings", "value": "Jaquar | ₹22000/bathroom | Wall Mounted EWC, Basin, Mixer" },
+        { "title": "Plumbing", "value": "CPVC + PVC | Ashirwad / Finolex" },
+        { "title": "OHT", "value": "1500L Sintex (5 Layer)" }
+      ],
+  
+      "2799": [
+        { "title": "Wall Tiles", "value": "9ft | 4x2 Vitrified | ₹70/sqft" },
+        { "title": "Fittings", "value": "Kohler | ₹40000/bathroom | Concealed EWC, Counter Basin, Marble Counter, Concealed Mixer" },
+        { "title": "Plumbing", "value": "CPVC + PVC + HDPE | Ashirwad / Finolex / Jindal" },
+        { "title": "OHT", "value": "2000L Sintex with Sensor" }
+      ],
+  
+      "4400": [
+        { "title": "Wall Tiles", "value": "Full Height | 4x2 Vitrified | ₹150/sqft" },
+        { "title": "Fittings", "value": "Grohe | ₹70000/bathroom | Concealed EWC, Counter Basin, Marble Counter" },
+        { "title": "Plumbing", "value": "CPVC + PVC + HDPE | Ashirwad / Finolex / Jindal" },
+        { "title": "OHT", "value": "RCC OHT : 4000L with waterproofing" }
+      ]
+    }
+  }
+  

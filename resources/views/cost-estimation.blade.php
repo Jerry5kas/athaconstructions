@@ -5,7 +5,9 @@
 >
     {{-- Page Banner --}}
     <x-page-banner
-        contentTitle="Cost Estimation"
+        pageTitle="Cost Estimation"
+        contentTitle="Plan Your Build with Clarity"
+        description="Get a clear picture of your construction budget so you can make confident, well-informed decisions."
         backgroundImage="images/blog-header-image.jpg"
         alt="Building Contractors in Bangalore"
         title="Building Contractors in Bangalore"

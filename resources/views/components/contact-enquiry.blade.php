@@ -84,7 +84,7 @@
     }"
     class="contact-enquiry-form w-full max-w-7xl mx-auto"
 >
-    <div class="grid grid-cols-1 lg:grid-cols-12 max-h-[90vh] overflow-hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-12 max-h-[90vh] overflow-hidden contact-enquiry-grid">
         {{-- Left Side: Image with Logo --}}
         @if($showImage)
         <div class="relative hidden lg:block overflow-hidden lg:col-span-6">
@@ -108,7 +108,7 @@
         @endif
 
         {{-- Right Side: Form --}}
-        <div class="bg-white p-8 lg:p-12 flex flex-col overflow-y-auto max-h-[90vh] lg:col-span-6">
+        <div class="bg-white p-8 lg:p-12 flex flex-col overflow-y-auto max-h-[90vh] lg:col-span-6 contact-enquiry-panel">
             <div class="w-full">
                 <form 
                     @submit.prevent="submitForm($event)"
@@ -306,6 +306,44 @@
 <style>
     [x-cloak] { display: none !important; }
 
+    .contact-enquiry-form {
+        position: relative;
+    }
+
+    .contact-enquiry-grid {
+        background:
+            radial-gradient(circle at 0% 0%, rgba(0,0,0,0.04), transparent 55%),
+            radial-gradient(circle at 100% 100%, rgba(0,0,0,0.04), transparent 55%),
+            #f7f7f7;
+        border-radius: 18px;
+        border: 1px solid rgba(0,0,0,0.06);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+        overflow: hidden;
+    }
+
+    .contact-enquiry-panel {
+        position: relative;
+        background:
+            radial-gradient(circle at 0% 0%, rgba(0,0,0,0.03), transparent 55%),
+            radial-gradient(circle at 100% 100%, rgba(0,0,0,0.03), transparent 55%),
+            #ffffff;
+    }
+
+    .contact-enquiry-panel::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 14px 0 0 14px;
+        border-left: 3px solid #000;
+        opacity: 0.08;
+        pointer-events: none;
+    }
+
+    .contact-enquiry-panel > .w-full {
+        position: relative;
+        z-index: 1;
+    }
+
     .coolinput {
         display: flex;
         flex-direction: column;
@@ -315,13 +353,13 @@
 
     .coolinput label.text {
         font-size: 0.75rem;
-        color: #000000;
-        font-weight: 700;
+        color: #555555;
+        font-weight: 500;
         position: relative;
         top: 0.5rem;
         margin: 0 0 0 7px;
         padding: 0 3px;
-        background: #fff;
+        background: #f8f9fa;
         width: fit-content;
         z-index: 1;
     }

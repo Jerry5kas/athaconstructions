@@ -1,0 +1,47 @@
+{
+    "Door Window & Railing": {
+      "1849": [
+        { "title": "Main Door", "value": "Teak | 32mm | 7ft x 3.5ft" },
+        { "title": "Room Doors", "value": "White Panel" },
+        { "title": "Bathroom", "value": "PVC" },
+        { "title": "Windows", "value": "UPVC 4x4" },
+        { "title": "Railing", "value": "MS" },
+        { "title": "Grills", "value": "MS Standard" }
+      ],
+  
+      "2025": [
+        { "title": "Main Door", "value": "Teak Readymade | 35mm | ₹32000" },
+        { "title": "Room", "value": "Membrane/Flush" },
+        { "title": "Bathroom", "value": "WPC" },
+        { "title": "Windows", "value": "UPVC 5x4.5" },
+        { "title": "Balcony", "value": "MS + 8mm Glass" },
+        { "title": "Grills", "value": "MS Standard" }
+      ],
+  
+      "2399": [
+        { "title": "Main Door", "value": "Teak | 35mm | ₹52000" },
+        { "title": "Puja Door", "value": "₹30000" },
+        { "title": "Room", "value": "Flush with Laminate" },
+        { "title": "Bathroom", "value": "WPC" },
+        { "title": "Balcony", "value": "SS + Toughened Glass" },
+        { "title": "Windows", "value": "UPVC Toughened" }
+      ],
+  
+      "2799": [
+        { "title": "Main Door", "value": "Designer Wood 8x5 | Digital Lock ₹50000" },
+        { "title": "Room", "value": "Laminate Flush Door ₹15000" },
+        { "title": "Bathroom", "value": "Waterproof Flush ₹10000" },
+        { "title": "Windows", "value": "UPVC Toughened" },
+        { "title": "Railing", "value": "Toughened + SS" }
+      ],
+  
+      "4400": [
+        { "title": "Main Door", "value": "Designer Wood 8x5 | Digital Lock ₹70000" },
+        { "title": "Room", "value": "8ft Laminated" },
+        { "title": "Bathroom", "value": "8ft Waterproof" },
+        { "title": "Windows", "value": "High-grade Aluminium with Toughened" },
+        { "title": "Railing", "value": "SS + Toughened Glass" }
+      ]
+    }
+  }
+  

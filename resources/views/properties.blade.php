@@ -5,7 +5,9 @@
 >
     {{-- Page Banner --}}
     <x-page-banner
-        contentTitle="EXPLORE PROPERTIES"
+        pageTitle="Explore Properties"
+        contentTitle="Handpicked Homes & Developments"
+        description="Discover thoughtfully planned properties that combine architecture, comfort, and long-term value."
         backgroundImage="images/properties2/banner2.png"
         alt="residential construction companies in bangalore"
         title="residential construction companies in bangalore"

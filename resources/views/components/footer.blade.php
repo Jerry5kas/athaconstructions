@@ -1,21 +1,26 @@
 {{-- Footer Component --}}
-<footer class="bg-black text-white py-12 lg:py-16">
-    <div class="container mx-auto px-4 lg:px-8">
+<footer class="bg-black text-white py-12 lg:py-16 atha-footer relative overflow-hidden">
+    <div class="container mx-auto px-4 lg:px-8 relative z-10">
         {{-- Footer Logo --}}
-        <div class="mb-8">
+        <div class="mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+            <div>
             <img 
                 src="{{ asset('images/footer-logo.png') }}" 
                 alt="Atha Construction in Bangalore" 
                 title="Atha Construction in Bangalore"
                 class="w-24"
             >
+            </div>
+            <div class="text-xs md:text-sm text-gray-400 max-w-md md:text-right">
+                Building trust, creating value across Bengaluru, Mysuru and Ballari through thoughtfully crafted spaces.
+            </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {{-- Office Locations --}}
-            <div class="lg:col-span-1">
+            <div class="lg:col-span-1 footer-column">
                 {{-- Bangalore Office --}}
-                <h3 class="text-lg font-medium mb-3">Bangalore</h3>
+                <h3 class="footer-heading">Bangalore</h3>
                 <p class="text-sm text-gray-300 flex items-start gap-2 mb-6">
                     <i class="fas fa-map-marker-alt mt-1 flex-shrink-0"></i>
                     <a 
@@ -28,7 +33,7 @@
                 </p>
 
                 {{-- Ballari Office --}}
-                <h3 class="text-lg font-medium mb-3">Ballari</h3>
+                <h3 class="footer-heading">Ballari</h3>
                 <p class="text-sm text-gray-300 flex items-start gap-2 mb-6">
                     <i class="fas fa-map-marker-alt mt-1 flex-shrink-0"></i>
                     <a 
@@ -41,7 +46,7 @@
                 </p>
 
                 {{-- Mysore Office --}}
-                <h3 class="text-lg font-medium mb-3">Mysore</h3>
+                <h3 class="footer-heading">Mysore</h3>
                 <p class="text-sm text-gray-300 flex items-start gap-2">
                     <i class="fas fa-map-marker-alt mt-1 flex-shrink-0"></i>
                     <span>
@@ -51,8 +56,8 @@
             </div>
 
             {{-- Quick Links --}}
-            <div class="lg:pl-8">
-                <h3 class="text-lg font-medium mb-4">Quick Links</h3>
+            <div class="lg:pl-8 footer-column">
+                <h3 class="footer-heading mb-4">Quick Links</h3>
                 <ul class="space-y-3">
                     <li>
                         <a href="{{ route('home') }}" class="text-sm text-gray-300 hover:text-white transition-colors">
@@ -93,9 +98,9 @@
             </div>
 
             {{-- Contact Information --}}
-            <div>
-                <h3 class="text-lg font-medium mb-4">Contact Us</h3>
-                <div class="space-y-3">
+            <div class="footer-column">
+                <h3 class="footer-heading mb-4">Contact Us</h3>
+                <div class="space-y-3 text-sm">
                     <p class="text-sm text-gray-300">
                         <a href="mailto:info@athaconstruction.in" class="flex items-center gap-2 hover:text-white transition-colors">
                             <i class="fas fa-envelope"></i>
@@ -117,7 +122,7 @@
                 </div>
 
                 {{-- Social Media Links --}}
-                <div class="mt-6">
+                <div class="mt-6 space-y-3">
                     <h4 class="text-sm font-medium mb-3">Follow Us</h4>
                     <div class="flex items-center gap-4">
                         <a 
@@ -149,10 +154,10 @@
             </div>
 
             {{-- Newsletter / Quick Contact --}}
-            <div>
-                <h3 class="text-lg font-medium mb-4">Get In Touch</h3>
+            <div class="footer-column">
+                <h3 class="footer-heading mb-4">Get In Touch</h3>
                 <p class="text-sm text-gray-300 mb-4">
-                    Subscribe to our newsletter for updates on our latest projects and offers.
+                    Subscribe for updates on our latest projects, insights and offers.
                 </p>
                 <form action="#" method="POST" class="space-y-3">
                     @csrf
@@ -160,7 +165,7 @@
                         type="email" 
                         name="email"
                         placeholder="Your Email Address"
-                        class="w-full px-4 py-3 bg-transparent border-b border-white/30 text-white text-sm placeholder-gray-400 focus:outline-none focus:border-white transition-colors"
+                        class="w-full px-0 py-3 bg-transparent border-b border-white/30 text-white text-sm placeholder-gray-400 focus:outline-none focus:border-white transition-colors"
                         required
                     >
                     <button 
@@ -195,3 +200,28 @@
     </div>
 </footer>
 
+@once
+<style>
+    .atha-footer::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image:
+            radial-gradient(circle at 0% 0%, rgba(255,255,255,0.06), transparent 45%),
+            radial-gradient(circle at 100% 100%, rgba(255,255,255,0.04), transparent 55%);
+        opacity: 0.7;
+        pointer-events: none;
+    }
+
+    .footer-column {
+        position: relative;
+    }
+
+    .footer-heading {
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }
+</style>
+@endonce

@@ -1,0 +1,66 @@
+{
+    "Structure": {
+      "1849": [
+        { "title": "Basement Height", "value": "Upto 2 feet" },
+        { "title": "Steel", "value": "Sunvik TMT / Kamadhenu OR Equivalent" },
+        { "title": "Solid Blocks", "value": "6-Inch Exterior | 4-Inch Inner Walls" },
+        { "title": "Cement", "value": "Zuari / Bharathi" },
+        { "title": "M Sand", "value": "Masonry Works" },
+        { "title": "P Sand", "value": "Plastering Works" },
+        { "title": "Concrete Grade", "value": "M20 (Manual Mix)" },
+        { "title": "Ceiling Height", "value": "10 Feet" },
+        { "title": "Parapet Wall", "value": "4 Inch" },
+        { "title": "Sump", "value": "4000 Litres" }
+      ],
+  
+      "2025": [
+        { "title": "Basement Height", "value": "Upto 3 feet" },
+        { "title": "Steel", "value": "SK Turbo or Equivalent" },
+        { "title": "Chamber Bricks", "value": "9-Inch Exterior | 4 Inch Inner Walls" },
+        { "title": "Cement", "value": "ACC / Dalmia" },
+        { "title": "Concrete Grade", "value": "M20 | RMC for Roof" },
+        { "title": "Ceiling Height", "value": "10 Feet" },
+        { "title": "Parapet Wall", "value": "6 Inch" },
+        { "title": "Sump", "value": "7000 Litres" }
+      ],
+  
+      "2399": [
+        { "title": "Basement Height", "value": "Upto 3 feet" },
+        { "title": "Steel", "value": "JSW / INDUS or Equivalent" },
+        { "title": "Wire-Cut Bricks", "value": "9-Inch Exterior | 4 Inch Inner Walls" },
+        { "title": "Cement", "value": "ACC / Dalmia / Ultratech" },
+        { "title": "Concrete Grade", "value": "M20 | RMC for Roof" },
+        { "title": "Ceiling Height", "value": "10.5 Feet" },
+        { "title": "Parapet Wall", "value": "3.5 Feet | 6 Inch" },
+        { "title": "Sump", "value": "8000 Litres" },
+        { "title": "Lift Pit & Shaft", "value": "Included" }
+      ],
+  
+      "2799": [
+        { "title": "Basement Height", "value": "Upto 5 feet" },
+        { "title": "Steel", "value": "JSW TMT" },
+        { "title": "Wire-Cut Bricks", "value": "9-Inch Exterior | 4 Inch Inner Walls" },
+        { "title": "Cement", "value": "Ultratech / ACC / Birla" },
+        { "title": "Concrete Grade", "value": "M25 | RMC for Roof" },
+        { "title": "Ceiling Height", "value": "11 Feet" },
+        { "title": "Parapet Wall", "value": "3.5 Feet" },
+        { "title": "Sump", "value": "10000 Litres" },
+        { "title": "Lift Pit & Shaft", "value": "Included" },
+        { "title": "Compound wall", "value": "included" }
+      ],
+  
+      "4400": [
+        { "title": "Basement Height", "value": "Upto 8 feet" },
+        { "title": "Steel", "value": "TATA TMT" },
+        { "title": "Wire-Cut Bricks", "value": "9-Inch Exterior | 4 Inch Inner Walls" },
+        { "title": "Cement", "value": "Ultratech / Birla" },
+        { "title": "Concrete Grade", "value": "M25 | RMC for Roof" },
+        { "title": "Ceiling Height", "value": "11 Feet" },
+        { "title": "Parapet Wall", "value": "3.5 Feet" },
+        { "title": "Sump", "value": "12000 Litres" },
+        { "title": "Lift Pit & Shaft", "value": "Included" },
+        { "title": "Rain water Sump", "value": "upto 4000 litres" }
+      ]
+    }
+  }
+  

@@ -50,31 +50,31 @@
     />
 
     {{-- Featured Projects Section --}}
-    @php
-        $projects = [
-            [
-                'image' => 'mysoore-proj.png',
-                'location' => 'Bangalore',
-                'type' => '4BHK Luxury Home',
-                'land' => '3200 sqft',
-                'tagline' => 'Smart Living, Premium Design',
-            ],
-            [
-                'image' => 'mysoore-proj.png',
-                'location' => 'Mysore',
-                'type' => '3BHK Villa',
-                'land' => '2400 sqft',
-                'tagline' => 'Heritage Meets Modernity',
-            ],
-            [
-                'image' => 'mysoore-proj.png',
-                'location' => 'Ballari',
-                'type' => 'Commercial Complex',
-                'land' => '5000 sqft',
-                'tagline' => 'Business Excellence',
-            ],
-        ];
-    @endphp
+            @php
+                $projects = [
+                    [
+                        'image' => 'mysoore-proj.png',
+                        'location' => 'Bangalore',
+                        'type' => '4BHK Luxury Home',
+                        'land' => '3200 sqft',
+                        'tagline' => 'Smart Living, Premium Design',
+                    ],
+                    [
+                        'image' => 'mysoore-proj.png',
+                        'location' => 'Mysore',
+                        'type' => '3BHK Villa',
+                        'land' => '2400 sqft',
+                        'tagline' => 'Heritage Meets Modernity',
+                    ],
+                    [
+                        'image' => 'mysoore-proj.png',
+                        'location' => 'Ballari',
+                        'type' => 'Commercial Complex',
+                        'land' => '5000 sqft',
+                        'tagline' => 'Business Excellence',
+                    ],
+                ];
+            @endphp
     <x-featured-projects-section
         title="Featured Projects"
         :projects="$projects"

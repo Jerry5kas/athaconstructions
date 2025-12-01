@@ -1,0 +1,40 @@
+{
+    "Electrical": {
+      "1849": [
+        { "title": "Wires", "value": "Orbit FRLS" },
+        { "title": "Switches", "value": "Anchor" },
+        { "title": "Bedroom", "value": "2 Boxes" },
+        { "title": "Bathroom", "value": "2 Boxes" },
+        { "title": "Kitchen", "value": "3 Boxes" },
+        { "title": "AC", "value": "1 per Bedroom" }
+      ],
+  
+      "2025": [
+        { "title": "Wires", "value": "Orbit FRLS" },
+        { "title": "Switches", "value": "Legrand" },
+        { "title": "Bedroom", "value": "3 Boxes" },
+        { "title": "AC", "value": "Bedroom + Living" },
+        { "title": "Kitchen", "value": "HOB, Chimney, RO Points" }
+      ],
+  
+      "2399": [
+        { "title": "Wires", "value": "Finolex/Havells" },
+        { "title": "Switches", "value": "GM" },
+        { "title": "Points", "value": "No restriction on points" },
+        { "title": "Panel Board", "value": "RLCB Exterior" }
+      ],
+  
+      "2799": [
+        { "title": "Wires", "value": "Finolex/Havells" },
+        { "title": "Switches", "value": "Legrand/Havells" },
+        { "title": "Pump", "value": "2.5HP" },
+        { "title": "Auto Level Controller", "value": null }
+      ],
+  
+      "4400": [
+        { "title": "Wires", "value": "Finolex/Havells/VGuard" },
+        { "title": "Switches", "value": "Schneider/Siemens" }
+      ]
+    }
+  }
+  

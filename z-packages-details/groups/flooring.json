@@ -1,0 +1,46 @@
+{
+    "Flooring": {
+      "1849": [
+        { "title": "Living/Dining/Bedrooms/Kitchen", "value": "2x2 Vitrified | ₹45/sqft" },
+        { "title": "Balcony/Utility", "value": "1x1 | ₹35/sqft" },
+        { "title": "Staircase", "value": "CC Flooring" },
+        { "title": "Parking", "value": "1x1 | ₹35/sqft" },
+        { "title": "Bathroom", "value": "Ceramic upto ₹35" }
+      ],
+  
+      "2025": [
+        { "title": "Living/Dining/Bedrooms/Kitchen", "value": "2x2 Vitrified | ₹65/sqft" },
+        { "title": "Balcony/Utility", "value": "2x2 | ₹40/sqft (Antiskid)" },
+        { "title": "Staircase", "value": "Granite ₹80/sqft" },
+        { "title": "Parking", "value": "Heavy Duty 1x1 | ₹40/sqft" },
+        { "title": "Bathroom", "value": "Ceramic ₹45/sqft" }
+      ],
+  
+      "2399": [
+        { "title": "Living/Dining/Bedrooms/Kitchen", "value": "4x2 Granite/Vitrified | ₹80/sqft" },
+        { "title": "Balcony/Utility", "value": "2x2 | ₹50/sqft" },
+        { "title": "Staircase", "value": "Granite ₹90/sqft" },
+        { "title": "Parking", "value": "Heavy Stone 2x2 | ₹50/sqft" },
+        { "title": "Terrace", "value": "Waterproof + Screed" },
+        { "title": "Bathroom", "value": "Ceramic ₹65/sqft" }
+      ],
+  
+      "2799": [
+        { "title": "Living/Dining/Bedrooms/Kitchen", "value": "Quartz/Italian/Granite | ₹100/sqft" },
+        { "title": "Balcony/Utility", "value": "2x2 | ₹60/sqft" },
+        { "title": "Staircase", "value": "Granite ₹100/sqft" },
+        { "title": "Parking", "value": "Tiles ₹60/sqft" },
+        { "title": "Terrace", "value": "Waterproof + Screed" },
+        { "title": "Bathroom", "value": "Ceramic ₹85/sqft" }
+      ],
+  
+      "4400": [
+        { "title": "Living/Dining/Bedrooms/Kitchen", "value": "Quartz/Italian/Wooden | ₹400/sqft" },
+        { "title": "Balcony/Utility", "value": "2x2 | ₹150/sqft" },
+        { "title": "Staircase", "value": "Granite ₹100/sqft" },
+        { "title": "Parking", "value": "Pavers | ₹100/sqft" },
+        { "title": "Terrace", "value": "2x2 Exterior Vitrified + Waterproof" }
+      ]
+    }
+  }
+  

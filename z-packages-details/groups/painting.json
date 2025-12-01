@@ -1,0 +1,41 @@
+{
+    "Painting": {
+      "1849": [
+        { "title": "Inner Putty", "value": "1 Coat" },
+        { "title": "Wall", "value": "Primer + 2 Coats Tractor" },
+        { "title": "Ceiling", "value": "Primer + Tractor" },
+        { "title": "Exterior", "value": "Ace + Primer" }
+      ],
+  
+      "2025": [
+        { "title": "Inner Putty", "value": "2 Coat" },
+        { "title": "Wall", "value": "Primer + Tractor" },
+        { "title": "Ceiling", "value": "Primer + Tractor" },
+        { "title": "Exterior", "value": "Ace + Primer" },
+        { "title": "Elevation Putty", "value": "2 Coats (Front)" }
+      ],
+  
+      "2399": [
+        { "title": "Inner Putty", "value": "2 Coats" },
+        { "title": "Wall", "value": "Primer + Tractor Emulsion" },
+        { "title": "Exterior", "value": "Asian Apex" },
+        { "title": "Elevation Putty", "value": "2 Coats (Two Sides)" }
+      ],
+  
+      "2799": [
+        { "title": "Inner Putty", "value": "2 Coats" },
+        { "title": "Wall", "value": "Royale Emulsion" },
+        { "title": "Exterior", "value": "Apex" },
+        { "title": "Elevation Putty", "value": "All Sides" }
+      ],
+  
+      "4400": [
+        { "title": "Inner Putty", "value": "Birla" },
+        { "title": "Wall", "value": "Royale Luxury" },
+        { "title": "Feature Wall", "value": "Stucco" },
+        { "title": "Exterior", "value": "Apex Ultima" },
+        { "title": "Elevation Putty", "value": "Birla Wallseal" }
+      ]
+    }
+  }
+  

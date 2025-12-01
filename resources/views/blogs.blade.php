@@ -5,7 +5,9 @@
 >
     {{-- Page Banner --}}
     <x-page-banner
-        contentTitle="Blogs"
+        pageTitle="Insights & Blogs"
+        contentTitle="Ideas, Guides, and Perspectives"
+        description="Stay informed with insights on home construction, design trends, and practical tips from the Atha Construction team."
         backgroundImage="images/blog-header-image.jpg"
         alt="Building Contractors in Bangalore"
         title="Building Contractors in Bangalore"
