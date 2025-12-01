@@ -1,6 +1,6 @@
-<x-layouts
-    :title="$seo['title']"
-    :description="$seo['description']"
+<x-layouts 
+    :title="$seo['title']" 
+    :description="$seo['description']" 
     :keywords="$seo['keywords']">
     <x-hero :seo="$seo"/>
 
@@ -25,7 +25,7 @@
                             $suffixPart = preg_replace('/[\d\.]/', '', $stat['number']);
                             $targetValue = $numericPart !== '' ? (float) $numericPart : 0;
                         @endphp
-                        <div
+                        <div 
                             class="animate-on-scroll opacity-0"
                             x-data="statCounter({ target: @js($targetValue), suffix: @js($suffixPart) })"
                             x-intersect.once="start()"
@@ -82,11 +82,11 @@
                     </a>
                 </div>
                 <div class="lg:col-span-5">
-                    <img
-                        src="{{ asset('images/ATHA-CONSTRUCTIONS.jpg') }}"
-                        alt="Best Construction Companies in Bangalore"
+                    <img 
+                        src="{{ asset('images/ATHA-CONSTRUCTIONS.jpg') }}" 
+                        alt="Best Construction Companies in Bangalore" 
                         title="Best Construction Companies in Bangalore"
-                        class="w-full rounded-lg shadow-lg animate-on-scroll opacity-0 hover:shadow-xl transition-shadow duration-300"
+                        class="w-full rounded-lg shadow-lg animate-on-scroll opacity-0 hover:shadow-xl transition-shadow duration-300" 
                         style="animation-delay: 0.3s;"
                     >
                 </div>
@@ -113,8 +113,8 @@
 
             {{-- CTA Button --}}
             <div class="text-center animate-on-scroll opacity-0">
-                <a
-                    href="{{ route('services') }}"
+                <a 
+                    href="{{ route('services') }}" 
                     class="inline-block px-6 py-2 lg:px-8 lg:py-3 border-2 border-white text-white text-xs lg:text-sm uppercase tracking-wide hover:bg-white hover:text-black transition-all duration-300 transform hover:scale-105"
                 >
                     VIEW ALL SERVICES
@@ -188,7 +188,7 @@
                                     </div>
                                     <div class="w-32 h-1 bg-black"></div>
                                 </div>
-
+                                
                                 {{-- Items with Custom SVGs --}}
                                 <div class="space-y-5">
                                     @foreach($athaAdvantages as $index => $advantage)
@@ -241,7 +241,7 @@
                                     </div>
                                     <div class="w-32 h-1 bg-gray-300 ml-auto"></div>
                                 </div>
-
+                                
                                 {{-- Items with Custom SVGs --}}
                                 <div class="space-y-5">
                                     @foreach($otherContractors as $index => $disadvantage)
@@ -291,7 +291,7 @@
                             </div>
                             <div class="w-24 h-0.5 bg-black"></div>
                         </div>
-
+                        
                         <div class="space-y-6">
                             @foreach($athaAdvantages as $index => $advantage)
                                 <div class="comparison-item-left opacity-0"
@@ -348,7 +348,7 @@
                             </div>
                             <div class="w-24 h-0.5 bg-gray-300 ml-auto"></div>
                         </div>
-
+                        
                         <div class="space-y-6">
                             @foreach($otherContractors as $index => $disadvantage)
                                 <div class="comparison-item-right opacity-0"
@@ -432,9 +432,9 @@
                         $cardHeight = 224; // h-56 in pixels
                         $topPosition = $index * ($cardHeight / 2);
                     @endphp
-                    <div
+                    <div 
                         class="project-staggered-card featured-project-item"
-                        x-data="{ visible: false }"
+                        x-data="{ visible: false }" 
                         x-intersect="visible = true"
                         data-index="{{ $index }}"
                         style="--card-index: {{ $index }};"
@@ -448,8 +448,8 @@
                                     <div class="project-compact-card group">
                                         <div
                                             class="relative overflow-hidden rounded-lg bg-black h-48 lg:h-56 shadow-md transform transition-all duration-300 hover:scale-105">
-                                            <img
-                                                src="{{ asset('images/' . $project['image']) }}"
+                                            <img 
+                                                src="{{ asset('images/' . $project['image']) }}" 
                                                 alt="{{ $project['location'] }} - {{ $project['type'] }}"
                                                 class="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity duration-300"
                                             >
@@ -487,8 +487,8 @@
                                     <div class="project-compact-card group">
                                         <div
                                             class="relative overflow-hidden rounded-lg bg-black h-48 lg:h-56 shadow-md transform transition-all duration-300 hover:scale-105">
-                                            <img
-                                                src="{{ asset('images/' . $project['image']) }}"
+                                            <img 
+                                                src="{{ asset('images/' . $project['image']) }}" 
                                                 alt="{{ $project['location'] }} - {{ $project['type'] }}"
                                                 class="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity duration-300"
                                             >
@@ -533,9 +533,9 @@
     <section class="relative min-h-[400px] flex items-center"
              x-data="{ enquiryModalOpen: false }"
              @enquiry-success.window="setTimeout(() => enquiryModalOpen = false, 2000)">
-        <img
-            src="{{ asset('images/Careers.png') }}"
-            alt="best house construction companies in bangalore"
+        <img 
+            src="{{ asset('images/Careers.png') }}" 
+            alt="best house construction companies in bangalore" 
             title="best house construction companies in bangalore"
             class="hidden md:block absolute inset-0 w-full h-full object-cover"
         >
@@ -548,7 +548,7 @@
                 we guarantee that our expertise, professionalism and dedication will guide you toward meeting your
                 unique real estate needs.
             </p>
-            <button
+            <button 
                 @click="enquiryModalOpen = true"
                 class="inline-block px-8 py-3 border border-white text-white text-sm uppercase tracking-wide hover:bg-white hover:text-black transition-all duration-300"
             >
@@ -557,7 +557,7 @@
         </div>
 
         {{-- Enquiry Form Modal/Lightbox --}}
-        <div
+        <div 
             x-show="enquiryModalOpen"
             x-cloak
             @click.self="enquiryModalOpen = false"
@@ -570,7 +570,7 @@
             x-transition:leave-start="opacity-100"
             x-transition:leave-end="opacity-0"
         >
-            <div
+            <div 
                 @click.stop
                 class="enquiry-modal bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto"
                 x-transition:enter="transition ease-out duration-300"
@@ -583,11 +583,11 @@
                 {{-- Modal Header --}}
                 <div
                     class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between z-10">
-                    <div>
-                        <h3 class="font-tenor text-2xl uppercase tracking-tight">Get In Touch</h3>
-                        <p class="text-xs text-gray-500 mt-1">We'll get back to you soon</p>
+                        <div>
+                            <h3 class="font-tenor text-2xl uppercase tracking-tight">Get In Touch</h3>
+                            <p class="text-xs text-gray-500 mt-1">We'll get back to you soon</p>
                     </div>
-                    <button
+                    <button 
                         @click="enquiryModalOpen = false"
                         class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
                         aria-label="Close"
@@ -618,7 +618,7 @@
             <div class="max-w-3xl mx-auto" x-data="{ openFaq: 0 }">
                 @foreach($faqs as $index => $faq)
                     <div class="border-b border-gray-200">
-                        <button
+                        <button 
                             @click="openFaq = openFaq === {{ $index }} ? null : {{ $index }}"
                             class="w-full flex items-center justify-between py-4 text-left bg-black text-white px-4 mb-1"
                         >
@@ -627,7 +627,7 @@
                                 <i class="fas" :class="openFaq === {{ $index }} ? 'fa-minus' : 'fa-plus'"></i>
                             </span>
                         </button>
-                        <div
+                        <div 
                             x-show="openFaq === {{ $index }}"
                             x-collapse
                             class="px-4 pb-4"

@@ -13,24 +13,24 @@
         'Handover' => 'components.icons.handover',
     ];
     
-    // Map step titles to GIF files (for mobile)
-    $gifMap = [
-        'Initial Consultation' => 'initial-consultation.gif',
-        'Design & Planning' => 'design-planning.gif',
-        'Material Selection' => 'material-selection.gif',
-        'Execution' => 'execution.gif',
-        'Final inspections, approvals' => 'final-inspection-approval.gif',
-        'Handover' => 'handover.gif',
+    // Map step titles to PNG files (for mobile)
+    $pngMap = [
+        'Initial Consultation' => 'initial-consultation.png',
+        'Design & Planning' => 'design-planning.png',
+        'Material Selection' => 'materials-selection.png',
+        'Execution' => 'execution.png',
+        'Final inspections, approvals' => 'final-inspections-approval.png',
+        'Handover' => 'handover.png',
     ];
     
     function getIconComponent($title, $iconMap) {
         return $iconMap[$title] ?? null;
     }
     
-    function getGifPath($title, $gifMap) {
-        $gifName = $gifMap[$title] ?? null;
-        if ($gifName && file_exists(public_path('images/how it works/' . $gifName))) {
-            return asset('images/how it works/' . $gifName);
+    function getMobileImagePath($title, $pngMap) {
+        $pngName = $pngMap[$title] ?? null;
+        if ($pngName && file_exists(public_path('images/how it works/' . $pngName))) {
+            return asset('images/how it works/' . $pngName);
         }
         return null;
     }
@@ -244,20 +244,20 @@
             class="mobile-slider-wrapper"
         >
             <div 
-                class="relative overflow-hidden mb-4"
+                class="relative overflow-hidden mb-1 mobile-slider-container"
                 @touchstart="handleTouchStart($event)"
                 @touchmove="handleTouchMove($event)"
                 @touchend="handleTouchEnd()"
             >
                 <div 
-                    class="flex transition-transform duration-500 ease-out"
+                    class="flex transition-transform duration-500 ease-out mobile-slider-track"
                     :style="`transform: translateX(-${currentSlide * 100}%)`"
                 >
                     @foreach($steps as $index => $step)
-                        <div class="min-w-full flex-shrink-0 px-2">
-                            <div class="flex flex-col items-center text-center h-full">
+                        <div class="mobile-slide-item">
+                            <div class="flex flex-col items-center text-center h-full mobile-slide-content">
                                 {{-- Mobile Hexagon Badge --}}
-                                <div class="mb-3 flex-shrink-0">
+                                <div class="mb-1.5 flex-shrink-0">
                                     <div class="relative">
                                         <svg 
                                             class="w-10 h-10"
@@ -276,32 +276,32 @@
                                     </div>
                                 </div>
 
-                                {{-- Mobile GIF/Image Icon - Use GIF if available, fallback to image --}}
-                                <div class="mb-3 flex-shrink-0 w-full flex items-center justify-center" style="height: 180px;">
+                                {{-- Mobile PNG Icon - Use PNG from "how it works" folder --}}
+                                <div class="mb-1.5 flex-shrink-0 w-full flex items-center justify-center mobile-image-container">
                                     @php
-                                        $gifPath = getGifPath($step['title'], $gifMap);
+                                        $pngPath = getMobileImagePath($step['title'], $pngMap);
                                     @endphp
-                                    @if($gifPath)
+                                    @if($pngPath)
                                         <img
-                                            src="{{ $gifPath }}"
+                                            src="{{ $pngPath }}"
                                             alt="{{ $step['title'] }}"
-                                            class="w-full h-full max-w-[200px] object-contain"
+                                            class="mobile-slide-image"
                                         >
                                     @else
                                         <img
                                             src="{{ asset('images/' . $step['image']) }}"
                                             alt="{{ $step['title'] }}"
-                                            class="w-full h-full max-w-[200px] object-contain"
+                                            class="mobile-slide-image"
                                         >
                                     @endif
                                 </div>
 
                                 {{-- Mobile Content --}}
-                                <div class="w-full flex-shrink-0">
-                                    <h3 class="font-tenor text-xs uppercase mb-1.5 text-black">
+                                <div class="w-full flex-shrink-0 mobile-text-content">
+                                    <h3 class="font-tenor text-xs uppercase mb-1 text-black mobile-slide-title">
                                         {{ $step['title'] }}
                                     </h3>
-                                    <p class="text-[10px] text-gray-600 leading-relaxed">
+                                    <p class="text-[10px] text-gray-600 leading-relaxed mobile-slide-description">
                                         {{ $step['description'] }}
                                     </p>
                                 </div>
@@ -312,7 +312,7 @@
             </div>
 
             {{-- Mobile Navigation Dots --}}
-            <div class="flex justify-center gap-1.5">
+            <div class="flex justify-center gap-1.5 mobile-indicators">
                 @foreach($steps as $index => $step)
                     <button
                         @click="goToSlide({{ $index }})"
@@ -365,20 +365,131 @@
     
     /* ===== MOBILE STYLES ===== */
     @media (max-width: 767px) {
-        /* Mobile Slider Wrapper - Simple Container */
+        /* Mobile Slider Wrapper - Constrained to viewport */
         .mobile-slider-wrapper {
             display: flex;
             flex-direction: column;
+            max-height: calc(100vh - 120px);
+            min-height: 400px;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        /* Mobile Slider Container - Prevent horizontal overflow */
+        .mobile-slider-container {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            max-height: calc(100vh - 160px);
+            min-height: 320px;
+        }
+        
+        /* Mobile Slider Track - Horizontal flex container */
+        .mobile-slider-track {
+            width: 100%;
+            display: flex;
+            height: 100%;
+        }
+        
+        /* Mobile Slide Item - Exactly 100% width, no overflow */
+        .mobile-slide-item {
+            width: 100%;
+            min-width: 100%;
+            max-width: 100%;
+            flex-shrink: 0;
+            padding: 0 1rem;
+            box-sizing: border-box;
+            display: flex;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        /* Mobile Slide Content - Flex container with proper constraints */
+        .mobile-slide-content {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            max-height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-bottom: 0.25rem;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        
+        /* Mobile Image Container - Increased height */
+        .mobile-image-container {
+            width: 100%;
+            max-width: 100%;
+            height: 180px;
+            max-height: 180px;
+            min-height: 180px;
+            flex-shrink: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Mobile Slide Image - Increased size */
+        .mobile-slide-image {
+            width: 100%;
+            max-width: 240px;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        /* Mobile Text Content - Flexible with proper wrapping */
+        .mobile-text-content {
+            width: 100%;
+            max-width: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow: hidden;
+            min-height: 0;
+            box-sizing: border-box;
+            padding: 0;
+        }
+        
+        /* Mobile Slide Title - Proper wrapping */
+        .mobile-slide-title {
+            width: 100%;
+            max-width: 100%;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            line-height: 1.3;
+            padding: 0 0.5rem;
+            box-sizing: border-box;
+            overflow-wrap: break-word;
+        }
+        
+        /* Mobile Slide Description - Proper wrapping and overflow */
+        .mobile-slide-description {
+            width: 100%;
+            max-width: 100%;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+            line-height: 1.4;
+            padding: 0 0.5rem;
+            box-sizing: border-box;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        /* Mobile Indicators - Move higher, reduce gap */
+        .mobile-indicators {
+            margin-top: -0.5rem;
+            padding-top: 0.25rem;
         }
         
         /* Prevent text selection on mobile buttons */
         section.md\:hidden button {
             user-select: none;
-        }
-        
-        /* Ensure slider items fit properly */
-        .mobile-slider-wrapper .min-w-full {
-            display: flex;
         }
     }
 </style>
