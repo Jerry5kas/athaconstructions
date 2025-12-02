@@ -13,11 +13,72 @@
         title="Home Construction In Bangalore"
     /> -->
 
-    {{-- Packages Comparison Section --}}
-    <x-packages-comparison-section
-        :packages="$packages"
-        :comparison-groups="$comparisonGroups"
-    />
+    {{-- Packages Section with Tabs --}}
+    <section class="packages-section py-16 lg:py-24" x-data="{ activeTab: 'cards' }">
+        <div class="container mx-auto px-4 lg:px-8">
+            {{-- Shared Section Header --}}
+            <div class="packages-section-header max-w-5xl mx-auto mb-12 lg:mb-16 text-center">
+                <p class="packages-section-label text-xs lg:text-sm tracking-[0.3em] uppercase text-gray-500 mb-4">
+                    Construction Packages
+                </p>
+                <h2 class="packages-section-title font-tenor text-3xl lg:text-4xl xl:text-5xl uppercase mb-4 lg:mb-6 text-black leading-tight">
+                    Choose Your Construction Package
+                </h2>
+                <p class="packages-section-description max-w-3xl mx-auto text-sm lg:text-base text-gray-600 leading-relaxed">
+                    Explore our thoughtfully crafted construction packages, each designed to meet different needs and budgets.
+                </p>
+            </div>
+
+            {{-- Tabs Navigation --}}
+            <div class="packages-tabs-wrapper px-10 mb-12 lg:mb-16">
+                <div class="packages-tabs-container">
+                    <button 
+                        @click="activeTab = 'cards'"
+                        :class="activeTab === 'cards' ? 'packages-tab-active' : 'packages-tab-inactive'"
+                        class="packages-tab"
+                        aria-label="View packages as cards"
+                    >
+                        <span class="packages-tab-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <rect x="3" y="3" width="7" height="7" stroke-width="1.5"/>
+                                <rect x="14" y="3" width="7" height="7" stroke-width="1.5"/>
+                                <rect x="3" y="14" width="7" height="7" stroke-width="1.5"/>
+                                <rect x="14" y="14" width="7" height="7" stroke-width="1.5"/>
+                            </svg>
+                        </span>
+                        <span class="packages-tab-text">Packages</span>
+                    </button>
+                    <button 
+                        @click="activeTab = 'comparison'"
+                        :class="activeTab === 'comparison' ? 'packages-tab-active' : 'packages-tab-inactive'"
+                        class="packages-tab"
+                        aria-label="View packages comparison"
+                    >
+                        <span class="packages-tab-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M3 3h18v18H3z" stroke-width="1.5"/>
+                                <path d="M3 9h18M9 3v18" stroke-width="1.5"/>
+                            </svg>
+                        </span>
+                        <span class="packages-tab-text">Comparison</span>
+                    </button>
+                </div>
+            </div>
+
+            {{-- Cards View --}}
+            <div x-show="activeTab === 'cards'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+                <x-packages-cards-section :packages="$packages" />
+            </div>
+
+            {{-- Comparison View --}}
+            <div x-show="activeTab === 'comparison'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+                <x-packages-comparison-section
+                    :packages="$packages"
+                    :comparison-groups="$comparisonGroups"
+                />
+            </div>
+        </div>
+    </section>
 
     {{-- Customize Package Section --}}
     <section class="py-12 lg:py-16 bg-gray-50" x-data="{ 
@@ -96,4 +157,181 @@
             </div>
         </div>
     </section>
+
+    @once
+    <style>
+        /* Packages Section */
+        .packages-section {
+            position: relative;
+            background: #ffffff;
+        }
+
+        /* Section Header */
+        .packages-section-header {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .packages-section-label {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            opacity: 0.8;
+        }
+
+        .packages-section-title {
+            font-family: 'Tenor Sans', serif;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+
+        .packages-section-description {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+        }
+
+        /* Tabs Wrapper */
+        .packages-tabs-wrapper {
+            animation: fadeInUp 0.6s ease-out 0.1s both;
+        }
+
+        .packages-tabs-container {
+            display: inline-flex;
+            gap: 0.5rem;
+            justify-content: center;
+            padding: 0.25rem;
+            background: #f9f9f9;
+            border-radius: 8px;
+            margin: 0 auto;
+        }
+
+        .packages-tab {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.625rem;
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #6b7280;
+        }
+
+        .packages-tab:hover {
+            color: #000000;
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        .packages-tab-icon {
+            width: 16px;
+            height: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .packages-tab:hover .packages-tab-icon {
+            transform: scale(1.1);
+        }
+
+        .packages-tab-icon svg {
+            width: 100%;
+            height: 100%;
+            stroke-width: 1.5;
+        }
+
+        .packages-tab-active {
+            color: #000000;
+            background: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .packages-tab-active .packages-tab-icon svg {
+            stroke: #000000;
+        }
+
+        .packages-tab-inactive {
+            color: #6b7280;
+        }
+
+        .packages-tab-inactive .packages-tab-icon svg {
+            stroke: #6b7280;
+        }
+
+        .packages-tab-inactive:hover {
+            color: #000000;
+        }
+
+        .packages-tab-inactive:hover .packages-tab-icon svg {
+            stroke: #000000;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (min-width: 640px) {
+            .packages-tabs-container {
+                gap: 0.75rem;
+            }
+
+            .packages-tab {
+                padding: 0.875rem 1.75rem;
+                font-size: 0.875rem;
+            }
+
+            .packages-tab-icon {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        @media (max-width: 639px) {
+            .packages-section {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+
+            .packages-section-header {
+                margin-bottom: 2rem;
+            }
+
+            .packages-tabs-wrapper {
+                margin-bottom: 2rem;
+            }
+
+            .packages-tabs-container {
+                gap: 0.5rem;
+                padding: 0.25rem;
+            }
+
+            .packages-tab {
+                padding: 0.625rem 1.25rem;
+                font-size: 0.75rem;
+                gap: 0.5rem;
+            }
+
+            .packages-tab-icon {
+                width: 14px;
+                height: 14px;
+            }
+        }
+    </style>
+    @endonce
 </x-layouts>

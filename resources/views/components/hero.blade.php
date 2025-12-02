@@ -53,13 +53,29 @@
     <x-header overlay="true" />
 
     <div class="hero-video-layer" @mouseenter="openPanel" @mouseleave="closePanel">
-        <video autoplay muted loop playsinline class="hero-video">
-            <source src="{{ asset('images/banner.mp4') }}" type="video/mp4">
+        <video 
+            autoplay 
+            muted 
+            loop 
+            playsinline 
+            class="hero-video"
+            @ended="$event.target.currentTime = 0; $event.target.play()"
+        >
+            <source src="{{ asset('videos/website home page video.mp4') }}" type="video/mp4">
             Your browser does not support the video tag.
         </video>
+
+        <div class="hero-video-overlay"></div>
     </div>
 
     <div class="hero-overlay"></div>
+
+    <div class="hero-center">
+        <div class="hero-center__inner">
+            <h2 class="hero-center__title">Building Trust Creating Value</h2>
+            <p class="hero-center__slogan">Raising the Standards of Constructions.</p>
+        </div>
+    </div>
 
     <div class="hero-form-panel">
         <div 
@@ -142,6 +158,48 @@
             position: absolute;
             inset: 0;
             overflow: hidden;
+        }
+
+        .hero-video-overlay {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.52),
+                rgba(0, 0, 0, 0.70)
+            );
+        }
+
+        .hero-center {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            z-index: 60;
+        }
+
+        .hero-center__inner {
+            text-align: center;
+            padding: 0 24px;
+        }
+
+        .hero-center__title {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 600;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin-bottom: 14px;
+        }
+
+        .hero-center__slogan {
+            font-size: clamp(14px, 1.5vw, 16px);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.82);
         }
 
         .hero-video {

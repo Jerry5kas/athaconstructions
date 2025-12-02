@@ -8,7 +8,7 @@
         pageTitle="Explore Properties"
         contentTitle="Handpicked Homes & Developments"
         description="Discover thoughtfully planned properties that combine architecture, comfort, and long-term value."
-        backgroundImage="images/properties2/banner2.png"
+        backgroundVideo="videos/Properties page video.mp4"
         alt="residential construction companies in bangalore"
         title="residential construction companies in bangalore"
     />

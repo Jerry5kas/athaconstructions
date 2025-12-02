@@ -3,20 +3,8 @@
     'comparisonGroups' => [],
 ])
 
-<section class="py-12 lg:py-16 packages-section" id="next-section">
+<section class="packages-section" id="next-section">
     <div class="container mx-auto px-4">
-        {{-- Section Header --}}
-        <div class="max-w-4xl mx-auto mb-10 lg:mb-12 text-center">
-            <p class="text-xs lg:text-sm tracking-[0.3em] uppercase text-gray-500 mb-3">
-                CONSTRUCTION PACKAGES
-            </p>
-            <h2 class="font-tenor text-2xl lg:text-3xl uppercase mb-3">
-                Compare Packages Side by Side
-            </h2>
-            <p class="max-w-3xl mx-auto text-sm lg:text-base text-gray-700">
-                Review every specification—materials, fittings, finishes and services—aligned across packages so you can choose the right level of detail for your home.
-            </p>
-        </div>
 
         @php
             $priceMap = [

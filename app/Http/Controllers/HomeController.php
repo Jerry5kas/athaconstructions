@@ -212,7 +212,7 @@ class HomeController extends Controller
                 'name' => 'Basic Package',
                 'price' => '₹1,849',
                 'pricePerSqft' => '1849/sqft',
-                'image' => 'images/properties/container-1.png',
+                'image' => 'images/packages/1849.png',
                 'features' => [
                     'Design & Drawings',
                     'Core Construction Materials',
@@ -234,7 +234,7 @@ class HomeController extends Controller
                 'name' => 'Standard Package',
                 'price' => '₹2,025',
                 'pricePerSqft' => '2025/sqft',
-                'image' => 'images/properties/container-2.png',
+                'image' => 'images/packages/2025.png',
                 'features' => [
                     'Design & Drawings',
                     'Core Construction Materials',
@@ -256,7 +256,7 @@ class HomeController extends Controller
                 'name' => 'Premium Package',
                 'price' => '₹2,399',
                 'pricePerSqft' => '2399/sqft',
-                'image' => 'images/properties/container-1.png',
+                'image' => 'images/packages/2399.png',
                 'features' => [
                     'Design & Drawings',
                     'Core Construction Materials',
@@ -278,7 +278,7 @@ class HomeController extends Controller
                 'name' => 'Budget Package',
                 'price' => '₹2,799',
                 'pricePerSqft' => '2799/sqft',
-                'image' => 'images/properties/container-2.png',
+                'image' => 'images/packages/2799.png',
                 'features' => [
                     'Design & Drawings',
                     'Core Construction Materials',
@@ -301,7 +301,7 @@ class HomeController extends Controller
                 'name' => 'Luxury Package',
                 'price' => '₹4,400',
                 'pricePerSqft' => '4400/sqft',
-                'image' => 'images/properties/container-3.png',
+                'image' => 'images/packages/4400.png',
                 'features' => [
                     'Premium Design & Drawings',
                     'Premium Core Construction Materials',
