@@ -189,7 +189,7 @@
             position: relative;
             margin-top: 82px;
             background: rgba(0, 0, 0, 0.88);
-            padding: 48px 36px;
+            padding: 64px 56px;
             border-radius: 220px 0 0 220px;
             color: #fff;
             width: 100%;
@@ -202,18 +202,18 @@
         }
 
         .hero-form-title {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 600;
             letter-spacing: 0.2em;
             text-transform: uppercase;
-            margin-bottom: 10px;
+            margin-bottom: 14px;
         }
 
         .hero-form-subtitle {
             font-size: 14px;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            margin-bottom: 24px;
+            margin-bottom: 32px;
             opacity: 0.8;
         }
 
@@ -240,7 +240,7 @@
         .hero-form-grid {
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 20px;
         }
 
         .hero-select {
@@ -249,7 +249,7 @@
 
         .hero-input {
             width: 100%;
-            padding: 12px 4px;
+            padding: 14px 6px;
             font-size: 13px;
             letter-spacing: 0.08em;
             text-transform: uppercase;
@@ -314,14 +314,14 @@
         }
 
         .hero-submit {
-            margin-top: 10px;
+            margin-top: 16px;
             width: 100%;
             padding: 14px;
             border: none;
             border-radius: 999px;
             background: #fff;
             color: #000;
-            font-size: 13px;
+            font-size: 12px;
             letter-spacing: 0.2em;
             text-transform: uppercase;
             font-weight: 600;
@@ -330,41 +330,14 @@
 
         @media (max-width: 1024px) {
             .hero-shell {
-                min-height: auto;
+                min-height: 70vh;
             }
 
             .hero-form-panel {
-                position: relative;
-                right: auto;
-                transform: none !important;
-                width: 100%;
-                min-width: 0;
-                padding: 32px 20px;
-            }
-
-            .hero-form-card {
-                margin-top: 0;
-                height: auto;
-                background: rgba(0, 0, 0, 0.9);
-                border-radius: 32px;
+                display: none;
             }
         }
 
-        @media (max-width: 640px) {
-            .hero-form-card {
-                border-radius: 24px;
-                padding: 24px;
-            }
-
-            .hero-form-title {
-                font-size: 22px;
-                letter-spacing: 0.15em;
-            }
-
-            .hero-form-subtitle {
-                letter-spacing: 0.1em;
-            }
-        }
     </style>
 @endonce
 
