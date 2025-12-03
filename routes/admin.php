@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HeroSectionController;
+use App\Http\Controllers\Admin\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // Hero Section (Home) management
         Route::resource('hero-sections', HeroSectionController::class)->names('hero-sections');
+
+        // Categories management
+        Route::resource('categories', CategoryController::class)->names('categories');
     });
 });
 

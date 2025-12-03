@@ -93,21 +93,21 @@
                 @enderror
             </div>
 
-            {{-- Subtitle --}}
+            {{-- Page Title --}}
             <div class="space-y-2">
                 <label class="flex items-center space-x-2 text-sm font-semibold text-gray-700">
                     <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>
                     </svg>
-                    <span>Subtitle</span>
+                    <span>Page Title</span>
                 </label>
                 <input
                     type="text"
-                    name="subtitle"
-                    value="{{ old('subtitle', $heroSection->subtitle ?? '') }}"
+                    name="page_title"
+                    value="{{ old('page_title', $heroSection->page_title ?? '') }}"
                     class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all shadow-sm hover:shadow-md"
-                    placeholder="Short supporting line" />
-                @error('subtitle')
+                    placeholder="Page title or heading" />
+                @error('page_title')
                     <p class="mt-1 text-xs text-red-600 flex items-center space-x-1">
                         <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
@@ -116,22 +116,23 @@
                     </p>
                 @enderror
             </div>
+        </div>
 
-            {{-- Primary Button Text --}}
+        {{-- Description (full width) --}}
+        <div class="mt-6">
             <div class="space-y-2">
                 <label class="flex items-center space-x-2 text-sm font-semibold text-gray-700">
                     <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
                     </svg>
-                    <span>Primary Button Text</span>
+                    <span>Description</span>
                 </label>
-                <input
-                    type="text"
-                    name="primary_button_text"
-                    value="{{ old('primary_button_text', $heroSection->primary_button_text ?? '') }}"
-                    class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all shadow-sm hover:shadow-md"
-                    placeholder="e.g., Quick Enquiry" />
-                @error('primary_button_text')
+                <textarea
+                    name="description"
+                    rows="4"
+                    class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all shadow-sm hover:shadow-md resize-none"
+                    placeholder="Enter a detailed description for the hero section...">{{ old('description', $heroSection->description ?? '') }}</textarea>
+                @error('description')
                     <p class="mt-1 text-xs text-red-600 flex items-center space-x-1">
                         <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
@@ -140,22 +141,24 @@
                     </p>
                 @enderror
             </div>
+        </div>
 
-            {{-- Primary Button Link --}}
+        {{-- Page Type (full width) --}}
+        <div class="mt-6">
             <div class="space-y-2">
                 <label class="flex items-center space-x-2 text-sm font-semibold text-gray-700">
                     <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
                     </svg>
-                    <span>Primary Button Link</span>
+                    <span>Page Type</span>
                 </label>
                 <input
                     type="text"
-                    name="primary_button_link"
-                    value="{{ old('primary_button_link', $heroSection->primary_button_link ?? '') }}"
+                    name="pagetype"
+                    value="{{ old('pagetype', $heroSection->pagetype ?? '') }}"
                     class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all shadow-sm hover:shadow-md"
-                    placeholder="#enquiry-modal" />
-                @error('primary_button_link')
+                    placeholder="e.g., home, about, services" />
+                @error('pagetype')
                     <p class="mt-1 text-xs text-red-600 flex items-center space-x-1">
                         <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>

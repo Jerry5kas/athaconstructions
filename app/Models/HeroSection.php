@@ -8,9 +8,9 @@ class HeroSection extends Model
 {
     protected $fillable = [
         'title',
-        'subtitle',
-        'primary_button_text',
-        'primary_button_link',
+        'page_title',
+        'description',
+        'pagetype',
         'image_path',
         'video_path',
         'use_image',

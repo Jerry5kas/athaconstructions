@@ -55,9 +55,9 @@
                                             <h6 class="mb-0 text-sm leading-normal">
                                                 {{ $hero->title ?: 'Untitled Hero' }}
                                             </h6>
-                                            @if ($hero->subtitle)
+                                            @if ($hero->page_title)
                                                 <p class="mb-0 text-xs text-slate-400">
-                                                    {{ Str::limit($hero->subtitle, 60) }}
+                                                    {{ Str::limit($hero->page_title, 60) }}
                                                 </p>
                                             @endif
                                         </div>

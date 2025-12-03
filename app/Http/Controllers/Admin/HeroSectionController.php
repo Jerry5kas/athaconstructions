@@ -38,9 +38,9 @@ class HeroSectionController extends Controller
     {
         $data = $request->validate([
             'title' => ['nullable', 'string', 'max:255'],
-            'subtitle' => ['nullable', 'string', 'max:255'],
-            'primary_button_text' => ['nullable', 'string', 'max:255'],
-            'primary_button_link' => ['nullable', 'string', 'max:255'],
+            'page_title' => ['nullable', 'string', 'max:255'],
+            'description' => ['nullable', 'string'],
+            'pagetype' => ['nullable', 'string', 'max:255'],
             'image' => ['nullable', 'image', 'max:4096'],
             'video' => ['nullable', 'file', 'mimetypes:video/mp4,video/webm,video/ogg', 'max:51200'],
             'use_image' => ['nullable', 'boolean'],
@@ -102,9 +102,9 @@ class HeroSectionController extends Controller
 
         $data = $request->validate([
             'title' => ['nullable', 'string', 'max:255'],
-            'subtitle' => ['nullable', 'string', 'max:255'],
-            'primary_button_text' => ['nullable', 'string', 'max:255'],
-            'primary_button_link' => ['nullable', 'string', 'max:255'],
+            'page_title' => ['nullable', 'string', 'max:255'],
+            'description' => ['nullable', 'string'],
+            'pagetype' => ['nullable', 'string', 'max:255'],
             'image' => ['nullable', 'image', 'max:4096'],
             'video' => ['nullable', 'file', 'mimetypes:video/mp4,video/webm,video/ogg', 'max:51200'],
             'use_image' => ['nullable', 'boolean'],
