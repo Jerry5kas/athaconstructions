@@ -13,6 +13,7 @@ class Service extends Model
         'slug',
         'description',
         'image_path',
+        'image_file_id',
         'sort_order',
         'is_active',
     ];

@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HeroSectionController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\ImageKitUploadController;
 
 /*
@@ -36,6 +38,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // Services management
         Route::resource('services', ServiceController::class)->names('services');
+
+        // Blogs management
+        Route::resource('blogs', BlogController::class)->names('blogs');
+
+        // Blog Categories management
+        Route::resource('blog-categories', BlogCategoryController::class)->names('blog-categories');
 
         // ImageKit upload route
         Route::post('/upload-imagekit', [ImageKitUploadController::class, 'upload'])->name('upload-imagekit');

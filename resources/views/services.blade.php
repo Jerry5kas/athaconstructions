@@ -14,83 +14,73 @@
     />
 
     {{-- Stats Section --}}
-    <section class="py-12 lg:py-16 text-center" id="next-section">
-        <div class="container mx-auto px-4">
-            <h2 class="font-tenor text-2xl lg:text-3xl uppercase mb-4">
-                EXPERTISE. PROFESSIONALISM. DEDICATION.
-            </h2>
-            <p class="text-sm lg:text-base max-w-3xl mx-auto mb-8 lg:mb-12 pt-3">
-                The ATHA Construction offers an unparalleled level of service, expertise and discretion to its clients, buyers and
-                sellers alike, across the globe.
-            </p>
-
-            <div class="grid grid-cols-3 gap-4 lg:gap-8 max-w-3xl mx-auto pt-5">
-                @foreach($stats as $stat)
-                    @php
-                        $numericPart = preg_replace('/[^\d\.]/', '', $stat['number']);
-                        $suffixPart = preg_replace('/[\d\.]/', '', $stat['number']);
-                        $targetValue = $numericPart !== '' ? (float) $numericPart : 0;
-                    @endphp
-                    <div 
-                        class="animate-on-scroll opacity-0"
-                        x-data="statCounter({ target: @js($targetValue), suffix: @js($suffixPart) })"
-                        x-intersect.once="start()"
-                    >
-                        <p class="font-tenor text-2xl lg:text-4xl font-medium mb-2" x-text="displayValue">
-                            {{ $stat['number'] }}
-                        </p>
-                        <p class="text-xs lg:text-sm">{{ $stat['label'] }}</p>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
+    <x-stats-section
+        title="EXPERTISE. PROFESSIONALISM. DEDICATION."
+        description="The ATHA Construction offers an unparalleled level of service, expertise and discretion to its clients, buyers and sellers alike, across the globe."
+        :stats="$stats"
+        backgroundImage="images/blog-2.jpeg"
+        sectionId="next-section"
+    />
 
     {{-- Services Content --}}
-    <section class="py-12 lg:py-16">
+    <section class="py-12 lg:py-16 bg-white">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-8 lg:mb-12">
-                <h2 class="font-tenor text-2xl lg:text-3xl uppercase">OUR SERVICES</h2>
+            <div class="text-center mb-10 lg:mb-14">
+                <p class="tracking-[0.25em] text-[11px] lg:text-xs uppercase text-gray-500 mb-2">
+                    WHAT WE OFFER
+                </p>
+                <h2 class="font-tenor text-2xl lg:text-3xl uppercase">
+                    OUR CORE SERVICES
+                </h2>
+                <p class="text-sm lg:text-base max-w-3xl mx-auto mt-4 text-gray-700">
+                    Every service is designed to simplify your construction journey – from the first line on paper to final handover of your dream home.
+                </p>
             </div>
 
             <div class="space-y-12 lg:space-y-16">
-                @foreach($services as $index => $service)
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-center">
-                        @if($service['order'] === 'image-right')
-                            {{-- Content Left, Image Right --}}
-                            <div class="order-2 lg:order-1 space-y-4">
-                                <h3 class="font-tenor text-xl lg:text-2xl uppercase pt-4 lg:pt-0">
-                                    {{ $service['title'] }}
-                                </h3>
-                                <p class="text-sm lg:text-base leading-relaxed text-gray-700">
-                                    {{ $service['description'] }}
-                                </p>
-                            </div>
-                            <div class="order-1 lg:order-2">
-                                <img 
-                                    src="{{ asset('images/' . $service['image']) }}" 
-                                    alt="{{ $service['title'] }}"
-                                    class="w-full h-auto"
+                @foreach($services as $service)
+                    @php
+                        $isEven = $loop->iteration % 2 === 0;
+                    @endphp
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-center">
+                        {{-- Image column --}}
+                        <div class="{{ $isEven ? 'order-2 lg:order-2' : 'order-1 lg:order-1' }}">
+                            <div class="relative overflow-hidden rounded-xl lg:rounded-2xl border border-gray-200 bg-[#0B0D10]">
+                                <div class="absolute inset-0 bg-gradient-to-tr from-black/60 via-black/30 to-transparent"></div>
+                                <img
+                                    src="{{ $service->image_url }}"
+                                    alt="{{ $service->title }}"
+                                    class="w-full h-64 lg:h-80 object-cover transform transition duration-700 ease-out hover:scale-[1.03]"
                                 >
+                                <div class="absolute top-4 left-4">
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-[11px] tracking-[0.18em] uppercase bg-white/10 text-gray-100 border border-white/15 backdrop-blur">
+                                        Service {{ sprintf('%02d', $loop->iteration) }}
+                                    </span>
+                                </div>
                             </div>
-                        @else
-                            {{-- Image Left, Content Right --}}
-                            <div class="order-1 lg:order-1">
-                                <img 
-                                    src="{{ asset('images/' . $service['image']) }}" 
-                                    alt="{{ $service['title'] }}"
-                                    class="w-full h-auto"
-                                >
-                            </div>
-                            <div class="order-2 lg:order-2 space-y-4">
-                                <h3 class="font-tenor text-xl lg:text-2xl uppercase pt-4 lg:pt-0">
-                                    {{ $service['title'] }}
-                                </h3>
+                        </div>
+
+                        {{-- Content column --}}
+                        <div class="{{ $isEven ? 'order-1 lg:order-1' : 'order-2 lg:order-2' }} space-y-4 lg:space-y-5">
+                            <p class="tracking-[0.25em] text-[11px] lg:text-xs uppercase text-gray-500">
+                                {{ $loop->iteration < 10 ? '0' . $loop->iteration : $loop->iteration }} • ATHA SERVICES
+                            </p>
+                            <h3 class="font-tenor text-xl lg:text-2xl uppercase">
+                                {{ $service->title }}
+                            </h3>
+                            @if($service->description)
                                 <p class="text-sm lg:text-base leading-relaxed text-gray-700">
-                                    {{ $service['description'] }}
+                                    {{ $service->description }}
                                 </p>
+                            @endif
+
+                            <div class="flex flex-wrap items-center gap-3 pt-2">
+                                <div class="flex items-center gap-2 text-xs lg:text-sm text-gray-600">
+                                    <span class="inline-block w-6 h-[1px] bg-gray-400"></span>
+                                    <span>Curated, end‑to‑end execution</span>
+                                </div>
                             </div>
-                        @endif
+                        </div>
                     </div>
                 @endforeach
             </div>

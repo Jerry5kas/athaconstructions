@@ -13,6 +13,7 @@ class Category extends Model
         'slug',
         'description',
         'media_path',
+        'media_file_id',
         'media_type',
         'sort_order',
         'is_active',

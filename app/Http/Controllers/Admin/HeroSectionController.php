@@ -70,6 +70,7 @@ class HeroSectionController extends Controller
                 $upload = $this->imageKit->upload($request->file('image'), 'atha/hero');
                 if (isset($upload->result->url)) {
                     $data['image_path'] = $upload->result->url;
+                    $data['image_file_id'] = $upload->result->fileId ?? null;
                 } else {
                     return redirect()
                         ->back()
@@ -90,6 +91,7 @@ class HeroSectionController extends Controller
                 $upload = $this->imageKit->upload($request->file('video'), 'atha/hero');
                 if (isset($upload->result->url)) {
                     $data['video_path'] = $upload->result->url;
+                    $data['video_file_id'] = $upload->result->fileId ?? null;
                 } else {
                     return redirect()
                         ->back()
@@ -162,9 +164,15 @@ class HeroSectionController extends Controller
 
         if ($request->hasFile('image')) {
             try {
+                // Delete old image from ImageKit if we have a file ID
+                if ($heroSection->image_file_id) {
+                    $this->imageKit->delete($heroSection->image_file_id);
+                }
+
                 $upload = $this->imageKit->upload($request->file('image'), 'atha/hero');
                 if (isset($upload->result->url)) {
                     $data['image_path'] = $upload->result->url;
+                    $data['image_file_id'] = $upload->result->fileId ?? $heroSection->image_file_id;
                 } else {
                     return redirect()
                         ->back()
@@ -182,9 +190,15 @@ class HeroSectionController extends Controller
 
         if ($request->hasFile('video')) {
             try {
+                // Delete old video from ImageKit if we have a file ID
+                if ($heroSection->video_file_id) {
+                    $this->imageKit->delete($heroSection->video_file_id);
+                }
+
                 $upload = $this->imageKit->upload($request->file('video'), 'atha/hero');
                 if (isset($upload->result->url)) {
                     $data['video_path'] = $upload->result->url;
+                    $data['video_file_id'] = $upload->result->fileId ?? $heroSection->video_file_id;
                 } else {
                     return redirect()
                         ->back()
@@ -213,6 +227,15 @@ class HeroSectionController extends Controller
     public function destroy(string $id)
     {
         $heroSection = HeroSection::findOrFail($id);
+
+        // Delete associated ImageKit files if we have stored file IDs
+        if ($heroSection->image_file_id) {
+            $this->imageKit->delete($heroSection->image_file_id);
+        }
+        if ($heroSection->video_file_id) {
+            $this->imageKit->delete($heroSection->video_file_id);
+        }
+
         $heroSection->delete();
 
         return redirect()

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\HeroSection;
+use App\Models\Blog;
+use App\Models\BlogCategory;
+use App\Models\Service;
 
 class HomeController extends Controller
 {
@@ -829,14 +832,42 @@ class HomeController extends Controller
             'keywords' => 'Home Construction In Bangalore, Home automation in Bangalore, Home Construction Company in Bangalore',
         ];
 
-        $blogPosts = $this->getBlogPosts();
-        
-        // Sort by date descending
-        usort($blogPosts, function($a, $b) {
-            return strtotime($b['date']) - strtotime($a['date']);
-        });
+        // Category filter (optional)
+        $categorySlug = request()->query('category');
 
-        return view('blogs', compact('seo', 'blogPosts'));
+        // Categories for filter bar
+        $categories = BlogCategory::orderBy('name')->get();
+
+        // Fetch published blogs from database (newest first)
+        $query = Blog::published()
+            ->with(['category', 'tags'])
+            ->orderByDesc('published_at')
+            ->orderByDesc('created_at');
+
+        // Optional search by title or content
+        if ($search = trim((string) request()->query('q'))) {
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                  ->orWhere('excerpt', 'like', "%{$search}%")
+                  ->orWhere('content', 'like', "%{$search}%");
+            });
+        }
+
+        if ($categorySlug) {
+            $query->whereHas('category', function ($q) use ($categorySlug) {
+                $q->where('slug', $categorySlug);
+            });
+        }
+
+        $blogs = $query->paginate(9)->withQueryString();
+
+        return view('blogs', [
+            'seo'            => $seo,
+            'blogs'          => $blogs,
+            'categories'     => $categories,
+            'activeCategory' => $categorySlug,
+            'search'         => $search ?? null,
+        ]);
     }
 
     /**
@@ -844,31 +875,31 @@ class HomeController extends Controller
      */
     public function blogDetail($slug)
     {
-        $blogPosts = $this->getBlogPosts();
-        
-        $post = collect($blogPosts)->firstWhere('slug', $slug);
-        
-        if (!$post) {
-            abort(404);
-        }
+        // Find published blog by slug
+        $blog = Blog::published()->where('slug', $slug)->firstOrFail();
+
+        // Increment views counter
+        $blog->increment('views');
 
         $seo = [
-            'title' => $post['Meta_Title'],
-            'description' => $post['Meta_Description'],
-            'keywords' => $post['Keyword'],
+            'title' => $blog->meta_title ?? $blog->title,
+            'description' => $blog->meta_description ?? '',
+            'keywords' => $blog->keywords ?? '',
         ];
 
-        // Get recent posts (exclude current post)
-        $recentPosts = collect($blogPosts)
-            ->where('slug', '!=', $slug)
-            ->sortByDesc(function($post) {
-                return strtotime($post['date']);
-            })
+        // Recent blogs (excluding current)
+        $recentBlogs = Blog::published()
+            ->where('id', '!=', $blog->id)
+            ->orderByDesc('published_at')
+            ->orderByDesc('created_at')
             ->take(3)
-            ->values()
-            ->all();
+            ->get();
 
-        return view('blog-detail', compact('seo', 'post', 'recentPosts'));
+        return view('blog-detail', [
+            'seo' => $seo,
+            'blog' => $blog,
+            'recentBlogs' => $recentBlogs,
+        ]);
     }
 
     /**
@@ -914,56 +945,10 @@ class HomeController extends Controller
             ['number' => '500+', 'label' => 'Completed Projects'],
         ];
 
-        $services = [
-            [
-                'title' => 'Turnkey Construction',
-                'image' => 'Turnkey-Construction.jpg',
-                'description' => 'Comprehensive construction services from start to finish, ensuring hassle-free project delivery. From site preparation to final handover, we promise smooth execution with attention to detail, quality, and timelines, making your dream home a seamless reality.',
-                'order' => 'image-right', // Image on right, content on left
-            ],
-            [
-                'title' => 'Architecture & Design',
-                'image' => 'Architecture-&-Design.jpg',
-                'description' => 'Crafting exclusive designs with precision, including 2D, 3D, and GFC plans. Our designs blend your vision, Vastu principles, and functionality to create spaces that are both aesthetically pleasing and perfectly suited to your needs.',
-                'order' => 'image-left', // Image on left, content on right
-            ],
-            [
-                'title' => 'Project Management',
-                'image' => 'Project-Management.jpg',
-                'description' => 'Expert project management services ensure timely approvals, meticulous quality control, and efficient timelines. We handle every detail with professionalism, so you can enjoy a stress-free construction experience with seamless coordination and superior results.',
-                'order' => 'image-right',
-            ],
-            [
-                'title' => 'Interior Design & Finishing',
-                'image' => 'Interior-Design-&-Finishing.jpg',
-                'description' => 'Transform your home with elegant interiors, including modular kitchens, custom wardrobes, and optimized layouts. Our tailored designs combine functionality with style to make every corner of your space both beautiful and practical.',
-                'order' => 'image-left',
-            ],
-            [
-                'title' => 'Premium Materials and Craftsmanship',
-                'image' => 'Premium-Materials-and-Craftsmanship.jpg',
-                'description' => 'We use trusted brands like UltraTech Cement, JSW Steel, and Asian Paints to guarantee lasting quality. Our commitment to superior materials and expert craftsmanship ensures a durable and elegant finish for every project.',
-                'order' => 'image-right',
-            ],
-            [
-                'title' => 'Extra Features',
-                'image' => 'Extra-Features.jpg',
-                'description' => 'Elevate your home with seismic-resistant structures, future expansion readiness, and luxurious interiors on request. Our thoughtful additions prioritize safety, flexibility, and elegance, ensuring your home is prepared for tomorrow\'s needs.',
-                'order' => 'image-left',
-            ],
-            [
-                'title' => 'Home Automation',
-                'image' => 'Automation-of-Process.jpg',
-                'description' => 'Incorporate cutting-edge smart systems and IoT integration into your home. Experience modern living with advanced automation, enabling seamless control of lighting, security, and appliances for unmatched convenience and efficiency.',
-                'order' => 'image-right',
-            ],
-            [
-                'title' => 'Amenities',
-                'image' => 'Amenities.jpg',
-                'description' => 'Personalize your property with custom amenities like high-speed Wi-Fi, landscaped gardens, and recreational spaces. We design features that enhance your lifestyle, creating a perfect balance of comfort, functionality, and leisure.',
-                'order' => 'image-left',
-            ],
-        ];
+        // Dynamic services from database (active + ordered)
+        $services = Service::active()
+            ->ordered()
+            ->get();
 
         return view('services', compact('seo', 'stats', 'services'));
     }

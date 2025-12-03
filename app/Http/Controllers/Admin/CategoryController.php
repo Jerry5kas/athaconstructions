@@ -81,7 +81,8 @@ class CategoryController extends Controller
             }
             
             $upload = $this->imageKit->upload($file, 'atha/categories');
-            $data['media_path'] = $upload->result->url;
+            $data['media_path'] = $upload->result->url ?? null;
+            $data['media_file_id'] = $upload->result->fileId ?? null;
         }
 
         $data['is_active'] = $request->boolean('is_active', true);
@@ -139,8 +140,10 @@ class CategoryController extends Controller
 
         // Handle file upload to ImageKit
         if ($request->hasFile('media')) {
-            // Note: For ImageKit, we don't delete old files automatically
-            // as we'd need fileId. Old URLs will remain but new one is stored.
+            // Delete old media from ImageKit if we have a file ID
+            if ($category->media_file_id) {
+                $this->imageKit->delete($category->media_file_id);
+            }
 
             $file = $request->file('media');
             $extension = $file->getClientOriginalExtension();
@@ -157,7 +160,8 @@ class CategoryController extends Controller
             }
             
             $upload = $this->imageKit->upload($file, 'atha/categories');
-            $data['media_path'] = $upload->result->url;
+            $data['media_path'] = $upload->result->url ?? $category->media_path;
+            $data['media_file_id'] = $upload->result->fileId ?? $category->media_file_id;
         }
 
         $data['is_active'] = $request->boolean('is_active', $category->is_active);
@@ -176,11 +180,10 @@ class CategoryController extends Controller
     public function destroy(string $id)
     {
         $category = Category::findOrFail($id);
-
-        // Note: ImageKit file deletion would require fileId
-        // For now, we just delete the database record
-        // Old ImageKit files can be cleaned up manually from dashboard if needed
-
+        // Delete associated ImageKit file if we have a stored file ID
+        if ($category->media_file_id) {
+            $this->imageKit->delete($category->media_file_id);
+        }
         $category->delete();
 
         return redirect()

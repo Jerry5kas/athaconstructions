@@ -85,17 +85,17 @@
             />
         @else
             {{-- Fallback: Show default video if no hero section data --}}
-            <video 
-                autoplay 
-                muted 
-                loop 
-                playsinline 
-                class="hero-video"
-                @ended="$event.target.currentTime = 0; $event.target.play()"
-            >
-                <source src="{{ asset('videos/website home page video.mp4') }}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+        <video 
+            autoplay 
+            muted 
+            loop 
+            playsinline 
+            class="hero-video"
+            @ended="$event.target.currentTime = 0; $event.target.play()"
+        >
+            <source src="{{ asset('videos/website home page video.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
         @endif
 
         <div class="hero-video-overlay"></div>

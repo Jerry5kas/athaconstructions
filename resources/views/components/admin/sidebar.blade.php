@@ -181,6 +181,62 @@
             @endif
         </a>
 
+        <div class="my-6">
+            <p class="text-xs font-semibold uppercase tracking-wider text-gray-400 px-3 mb-3">Content Management</p>
+        </div>
+
+        {{-- Blogs --}}
+        <a
+            href="{{ route('admin.blogs.index') }}"
+            class="group relative flex items-center rounded-xl px-4 py-3 transition-all duration-200
+                {{ request()->routeIs('admin.blogs.*') 
+                    ? 'bg-gradient-to-r from-gray-900 to-gray-800 text-white shadow-lg shadow-gray-900/20' 
+                    : 'text-gray-700 hover:bg-gray-100 hover:shadow-md' }}">
+            @if(request()->routeIs('admin.blogs.*'))
+                <div class="absolute left-0 top-0 bottom-0 w-1 bg-gray-400 rounded-r-full"></div>
+            @endif
+            <div class="flex items-center justify-center w-8 h-8 rounded-lg mr-3
+                {{ request()->routeIs('admin.blogs.*') 
+                    ? 'bg-white/10' 
+                    : 'bg-gray-100 group-hover:bg-gray-200' }}">
+                <svg class="w-4 h-4 {{ request()->routeIs('admin.blogs.*') ? 'text-white' : 'text-gray-600' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h10M4 18h6" />
+                </svg>
+            </div>
+            <span class="font-medium {{ request()->routeIs('admin.blogs.*') ? 'text-white' : 'text-gray-700' }}">Blogs</span>
+            @if(request()->routeIs('admin.blogs.*'))
+                <svg class="w-4 h-4 ml-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            @endif
+        </a>
+
+        {{-- Blog Categories --}}
+        <a
+            href="{{ route('admin.blog-categories.index') }}"
+            class="group relative flex items-center rounded-xl px-4 py-3 transition-all duration-200
+                {{ request()->routeIs('admin.blog-categories.*') 
+                    ? 'bg-gradient-to-r from-gray-900 to-gray-800 text-white shadow-lg shadow-gray-900/20' 
+                    : 'text-gray-700 hover:bg-gray-100 hover:shadow-md' }}">
+            @if(request()->routeIs('admin.blog-categories.*'))
+                <div class="absolute left-0 top-0 bottom-0 w-1 bg-gray-400 rounded-r-full"></div>
+            @endif
+            <div class="flex items-center justify-center w-8 h-8 rounded-lg mr-3
+                {{ request()->routeIs('admin.blog-categories.*') 
+                    ? 'bg-white/10' 
+                    : 'bg-gray-100 group-hover:bg-gray-200' }}">
+                <svg class="w-4 h-4 {{ request()->routeIs('admin.blog-categories.*') ? 'text-white' : 'text-gray-600' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h6M7 16h4" />
+                </svg>
+            </div>
+            <span class="font-medium {{ request()->routeIs('admin.blog-categories.*') ? 'text-white' : 'text-gray-700' }}">Blog Categories</span>
+            @if(request()->routeIs('admin.blog-categories.*'))
+                <svg class="w-4 h-4 ml-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            @endif
+        </a>
+
         {{-- Users (placeholder for future) --}}
         <a
             href="#"

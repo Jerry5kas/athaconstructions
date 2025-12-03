@@ -76,7 +76,8 @@ class ServiceController extends Controller
         // Handle image upload to ImageKit
         if ($request->hasFile('image')) {
             $upload = $this->imageKit->upload($request->file('image'), 'atha/services');
-            $data['image_path'] = $upload->result->url;
+            $data['image_path'] = $upload->result->url ?? null;
+            $data['image_file_id'] = $upload->result->fileId ?? null;
         }
 
         $data['is_active'] = $request->boolean('is_active', true);
@@ -133,10 +134,14 @@ class ServiceController extends Controller
 
         // Handle image upload to ImageKit
         if ($request->hasFile('image')) {
-            // Note: For ImageKit, we don't delete old files automatically
-            // as we'd need fileId. Old URLs will remain but new one is stored.
+            // Delete old image from ImageKit if we have a file ID
+            if ($service->image_file_id) {
+                $this->imageKit->delete($service->image_file_id);
+            }
+
             $upload = $this->imageKit->upload($request->file('image'), 'atha/services');
-            $data['image_path'] = $upload->result->url;
+            $data['image_path'] = $upload->result->url ?? $service->image_path;
+            $data['image_file_id'] = $upload->result->fileId ?? $service->image_file_id;
         }
 
         $data['is_active'] = $request->boolean('is_active', $service->is_active);
@@ -155,11 +160,10 @@ class ServiceController extends Controller
     public function destroy(string $id)
     {
         $service = Service::findOrFail($id);
-
-        // Note: ImageKit file deletion would require fileId
-        // For now, we just delete the database record
-        // Old ImageKit files can be cleaned up manually from dashboard if needed
-
+        // Delete associated ImageKit file if we have a stored file ID
+        if ($service->image_file_id) {
+            $this->imageKit->delete($service->image_file_id);
+        }
         $service->delete();
 
         return redirect()
