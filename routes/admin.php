@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HeroSectionController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // Categories management
         Route::resource('categories', CategoryController::class)->names('categories');
+
+        // Services management
+        Route::resource('services', ServiceController::class)->names('services');
     });
 });
 
