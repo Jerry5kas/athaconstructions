@@ -13,7 +13,7 @@
         @endif
 
         <div class="relative flex flex-col min-w-0 break-words bg-white border border-gray-100 rounded-2xl shadow-md">
-            <div class="flex items-center justify-between mb-0 rounded-t-2xl border-b border-gray-100 bg-white p-6 pb-0">
+            <div class="flex items-center justify-between mb-0 rounded-t-2xl border-b border-gray-100 bg-white p-6 pb-6">
                 <div>
                     <h6 class="mb-1 text-lg tracking-wide uppercase font-tenor text-gray-900">Home Hero Section</h6>
                     <p class="mb-0 text-sm text-slate-500">Manage the main hero banner for the home page.</p>
@@ -25,7 +25,7 @@
                 </a>
             </div>
 
-            <div class="flex-auto px-0 pt-0 pb-2">
+            <div class="flex-auto px-0 pt-6 pb-2">
                 <div class="p-6 overflow-x-auto">
                     <table class="min-w-full text-sm text-slate-700">
                         <thead class="bg-slate-50">

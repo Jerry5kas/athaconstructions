@@ -17,31 +17,45 @@
     <style>
         body {
             font-family: "Montserrat", sans-serif;
+            overflow-x: hidden;
         }
         .font-tenor {
             font-family: "Tenor Sans", sans-serif;
+        }
+        /* Ensure content is visible on mobile */
+        @media (max-width: 767px) {
+            body > div {
+                width: 100%;
+            }
+        }
+        /* Alpine.js cloak */
+        [x-cloak] {
+            display: none !important;
         }
     </style>
 
     @stack('styles')
 </head>
 
-<body class="bg-gray-100 text-slate-800 antialiased">
+<body class="bg-gray-100 text-slate-800 antialiased overflow-x-hidden">
     <div class="min-h-screen flex">
-        {{-- Sidebar --}}
+        {{-- Sidebar (overlay on mobile, part of flex layout on desktop) --}}
         <x-admin.sidebar />
 
-        {{-- Main column --}}
-        <div class="flex-1 flex flex-col">
+        {{-- Main content (full width on mobile, flex-1 on desktop) --}}
+        <div class="flex-1 flex flex-col min-w-0 w-full">
             {{-- Top navbar --}}
             <x-admin.navbar />
 
             {{-- Page content --}}
-            <main class="flex-1 px-6 py-6">
+            <main class="flex-1 px-4 sm:px-6 py-6 overflow-x-hidden">
                 @yield('content')
             </main>
         </div>
     </div>
+
+    {{-- Alpine.js --}}
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     @stack('scripts')
 </body>
