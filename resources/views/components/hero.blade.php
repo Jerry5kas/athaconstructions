@@ -1,4 +1,14 @@
-@props(['seo' => []])
+@props(['seo' => [], 'heroSection' => null])
+
+@php
+    // Use hero section data if available, otherwise use defaults
+    $title = $heroSection?->title ?? 'Building Trust Creating Value';
+    $description = $heroSection?->description ?? 'Raising the Standards of Constructions.';
+    $useImage = $heroSection?->use_image ?? false;
+    $useVideo = $heroSection?->use_video ?? false;
+    $imageUrl = $heroSection?->image_url ?? null;
+    $videoUrl = $heroSection?->video_url ?? null;
+@endphp
 
 <section 
     class="hero-shell"
@@ -53,17 +63,40 @@
     <x-header overlay="true" />
 
     <div class="hero-video-layer" @mouseenter="openPanel" @mouseleave="closePanel">
-        <video 
-            autoplay 
-            muted 
-            loop 
-            playsinline 
-            class="hero-video"
-            @ended="$event.target.currentTime = 0; $event.target.play()"
-        >
-            <source src="{{ asset('videos/website home page video.mp4') }}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+        @if($useVideo && $videoUrl)
+            {{-- Show video if use_video is enabled and video URL exists --}}
+            <video 
+                autoplay 
+                muted 
+                loop 
+                playsinline 
+                class="hero-video"
+                @ended="$event.target.currentTime = 0; $event.target.play()"
+            >
+                <source src="{{ $videoUrl }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        @elseif($useImage && $imageUrl)
+            {{-- Show image if use_image is enabled and image URL exists --}}
+            <img 
+                src="{{ $imageUrl }}" 
+                alt="{{ $title }}"
+                class="hero-video"
+            />
+        @else
+            {{-- Fallback: Show default video if no hero section data --}}
+            <video 
+                autoplay 
+                muted 
+                loop 
+                playsinline 
+                class="hero-video"
+                @ended="$event.target.currentTime = 0; $event.target.play()"
+            >
+                <source src="{{ asset('videos/website home page video.mp4') }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        @endif
 
         <div class="hero-video-overlay"></div>
     </div>
@@ -72,8 +105,8 @@
 
     <div class="hero-center">
         <div class="hero-center__inner">
-            <h2 class="hero-center__title">Building Trust Creating Value</h2>
-            <p class="hero-center__slogan">Raising the Standards of Constructions.</p>
+            <h2 class="hero-center__title">{{ $title }}</h2>
+            <p class="hero-center__slogan">{{ $description }}</p>
         </div>
     </div>
 
@@ -203,6 +236,12 @@
         }
 
         .hero-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-video-layer img {
             width: 100%;
             height: 100%;
             object-fit: cover;

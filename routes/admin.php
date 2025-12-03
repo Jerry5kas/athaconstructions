@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HeroSectionController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\ImageKitUploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // Services management
         Route::resource('services', ServiceController::class)->names('services');
+
+        // ImageKit upload route
+        Route::post('/upload-imagekit', [ImageKitUploadController::class, 'upload'])->name('upload-imagekit');
     });
 });
 

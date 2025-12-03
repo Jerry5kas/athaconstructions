@@ -195,7 +195,7 @@
                     <div class="flex items-center gap-3 p-4 bg-gray-50 rounded-xl border-2 border-gray-200">
                         <div class="relative w-32 h-32 overflow-hidden rounded-lg shadow-md bg-slate-100 flex-shrink-0">
                             <img
-                                src="{{ asset('storage/' . $service->image_path) }}"
+                                src="{{ $service->image_url }}"
                                 alt="Current service image"
                                 class="object-cover w-full h-full" />
                         </div>

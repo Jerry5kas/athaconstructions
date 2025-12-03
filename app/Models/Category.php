@@ -46,6 +46,8 @@ class Category extends Model
 
     /**
      * Get the media URL.
+     * Handles both ImageKit URLs (full URLs) and local storage paths.
+     * Automatically optimizes ImageKit media for web delivery.
      */
     public function getMediaUrlAttribute()
     {
@@ -53,6 +55,22 @@ class Category extends Model
             return null;
         }
 
+        // If it's already a full URL (ImageKit), optimize it for web
+        if (filter_var($this->media_path, FILTER_VALIDATE_URL)) {
+            // Check if it's an ImageKit URL
+            if (strpos($this->media_path, 'ik.imagekit.io') !== false) {
+                // Use ImageKit service to get optimized URL
+                $imageKitService = app(\App\Services\ImageKitService::class);
+                // Use media_type if available, otherwise auto-detect
+                $mediaType = $this->media_type === 'svg' ? 'svg' : 
+                            ($this->media_type === 'icon' ? 'icon' : 'image');
+                return $imageKitService->getOptimizedUrl($this->media_path, $mediaType);
+            }
+            // If it's another CDN URL, return as-is
+            return $this->media_path;
+        }
+
+        // Otherwise, it's a local storage path
         return Storage::disk('public')->url($this->media_path);
     }
 

@@ -4,12 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Services\ImageKitService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
+    protected $imageKit;
+
+    public function __construct(ImageKitService $imageKit)
+    {
+        $this->imageKit = $imageKit;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -57,7 +64,7 @@ class CategoryController extends Controller
             $data['slug'] = Str::slug($data['name']);
         }
 
-        // Handle file upload
+        // Handle file upload to ImageKit
         if ($request->hasFile('media')) {
             $file = $request->file('media');
             $extension = $file->getClientOriginalExtension();
@@ -73,7 +80,8 @@ class CategoryController extends Controller
                 }
             }
             
-            $data['media_path'] = $file->store('categories', 'public');
+            $upload = $this->imageKit->upload($file, 'atha/categories');
+            $data['media_path'] = $upload->result->url;
         }
 
         $data['is_active'] = $request->boolean('is_active', true);
@@ -129,12 +137,10 @@ class CategoryController extends Controller
             $data['slug'] = Str::slug($data['name']);
         }
 
-        // Handle file upload
+        // Handle file upload to ImageKit
         if ($request->hasFile('media')) {
-            // Delete old file if exists
-            if ($category->media_path) {
-                Storage::disk('public')->delete($category->media_path);
-            }
+            // Note: For ImageKit, we don't delete old files automatically
+            // as we'd need fileId. Old URLs will remain but new one is stored.
 
             $file = $request->file('media');
             $extension = $file->getClientOriginalExtension();
@@ -150,7 +156,8 @@ class CategoryController extends Controller
                 }
             }
             
-            $data['media_path'] = $file->store('categories', 'public');
+            $upload = $this->imageKit->upload($file, 'atha/categories');
+            $data['media_path'] = $upload->result->url;
         }
 
         $data['is_active'] = $request->boolean('is_active', $category->is_active);
@@ -170,10 +177,9 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
 
-        // Delete associated media file
-        if ($category->media_path) {
-            Storage::disk('public')->delete($category->media_path);
-        }
+        // Note: ImageKit file deletion would require fileId
+        // For now, we just delete the database record
+        // Old ImageKit files can be cleaned up manually from dashboard if needed
 
         $category->delete();
 

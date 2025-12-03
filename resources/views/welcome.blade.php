@@ -2,7 +2,7 @@
     :title="$seo['title']" 
     :description="$seo['description']" 
     :keywords="$seo['keywords']">
-    <x-hero :seo="$seo"/>
+    <x-hero :seo="$seo" :heroSection="$heroSection ?? null"/>
 
     {{-- Stats Section --}}
     <x-stats-section

@@ -4,10 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\HeroSection;
+use App\Services\ImageKitService;
 use Illuminate\Http\Request;
 
 class HeroSectionController extends Controller
 {
+    protected $imageKit;
+
+    public function __construct(ImageKitService $imageKit)
+    {
+        $this->imageKit = $imageKit;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -42,7 +50,7 @@ class HeroSectionController extends Controller
             'description' => ['nullable', 'string'],
             'pagetype' => ['nullable', 'string', 'max:255'],
             'image' => ['nullable', 'image', 'max:4096'],
-            'video' => ['nullable', 'file', 'mimetypes:video/mp4,video/webm,video/ogg', 'max:51200'],
+            'video' => ['nullable', 'file', 'mimetypes:video/mp4,video/webm,video/ogg', 'max:102400'], // 100MB max
             'use_image' => ['nullable', 'boolean'],
             'use_video' => ['nullable', 'boolean'],
             'is_active' => ['nullable', 'boolean'],
@@ -58,11 +66,43 @@ class HeroSectionController extends Controller
         }
 
         if ($request->hasFile('image')) {
-            $data['image_path'] = $request->file('image')->store('hero', 'public');
+            try {
+                $upload = $this->imageKit->upload($request->file('image'), 'atha/hero');
+                if (isset($upload->result->url)) {
+                    $data['image_path'] = $upload->result->url;
+                } else {
+                    return redirect()
+                        ->back()
+                        ->withInput()
+                        ->withErrors(['image' => 'Image upload failed. Please try again.']);
+                }
+            } catch (\Exception $e) {
+                \Log::error("Image upload error", ['error' => $e->getMessage()]);
+                return redirect()
+                    ->back()
+                    ->withInput()
+                    ->withErrors(['image' => 'Image upload failed: ' . $e->getMessage()]);
+            }
         }
 
         if ($request->hasFile('video')) {
-            $data['video_path'] = $request->file('video')->store('hero', 'public');
+            try {
+                $upload = $this->imageKit->upload($request->file('video'), 'atha/hero');
+                if (isset($upload->result->url)) {
+                    $data['video_path'] = $upload->result->url;
+                } else {
+                    return redirect()
+                        ->back()
+                        ->withInput()
+                        ->withErrors(['video' => 'Video upload failed. Please try again or check file size.']);
+                }
+            } catch (\Exception $e) {
+                \Log::error("Video upload error", ['error' => $e->getMessage()]);
+                return redirect()
+                    ->back()
+                    ->withInput()
+                    ->withErrors(['video' => 'Video upload failed: ' . $e->getMessage()]);
+            }
         }
 
         HeroSection::create($data);
@@ -106,7 +146,7 @@ class HeroSectionController extends Controller
             'description' => ['nullable', 'string'],
             'pagetype' => ['nullable', 'string', 'max:255'],
             'image' => ['nullable', 'image', 'max:4096'],
-            'video' => ['nullable', 'file', 'mimetypes:video/mp4,video/webm,video/ogg', 'max:51200'],
+            'video' => ['nullable', 'file', 'mimetypes:video/mp4,video/webm,video/ogg', 'max:102400'], // 100MB max
             'use_image' => ['nullable', 'boolean'],
             'use_video' => ['nullable', 'boolean'],
             'is_active' => ['nullable', 'boolean'],
@@ -121,11 +161,43 @@ class HeroSectionController extends Controller
         }
 
         if ($request->hasFile('image')) {
-            $data['image_path'] = $request->file('image')->store('hero', 'public');
+            try {
+                $upload = $this->imageKit->upload($request->file('image'), 'atha/hero');
+                if (isset($upload->result->url)) {
+                    $data['image_path'] = $upload->result->url;
+                } else {
+                    return redirect()
+                        ->back()
+                        ->withInput()
+                        ->withErrors(['image' => 'Image upload failed. Please try again.']);
+                }
+            } catch (\Exception $e) {
+                \Log::error("Image upload error", ['error' => $e->getMessage()]);
+                return redirect()
+                    ->back()
+                    ->withInput()
+                    ->withErrors(['image' => 'Image upload failed: ' . $e->getMessage()]);
+            }
         }
 
         if ($request->hasFile('video')) {
-            $data['video_path'] = $request->file('video')->store('hero', 'public');
+            try {
+                $upload = $this->imageKit->upload($request->file('video'), 'atha/hero');
+                if (isset($upload->result->url)) {
+                    $data['video_path'] = $upload->result->url;
+                } else {
+                    return redirect()
+                        ->back()
+                        ->withInput()
+                        ->withErrors(['video' => 'Video upload failed. Please try again or check file size.']);
+                }
+            } catch (\Exception $e) {
+                \Log::error("Video upload error", ['error' => $e->getMessage()]);
+                return redirect()
+                    ->back()
+                    ->withInput()
+                    ->withErrors(['video' => 'Video upload failed: ' . $e->getMessage()]);
+            }
         }
 
         $heroSection->update($data);

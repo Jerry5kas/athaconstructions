@@ -68,7 +68,7 @@
                                                 {{-- Image thumbnail --}}
                             <div class="relative w-28 h-16 overflow-hidden rounded-xl shadow-sm bg-slate-100">
                                                     <img
-                                                        src="{{ asset('storage/' . $hero->image_path) }}"
+                                                        src="{{ $hero->image_url }}"
                                                         alt="Hero image preview"
                                                         class="object-cover w-full h-full" />
                                                 </div>
@@ -77,7 +77,7 @@
                             <button
                                                     type="button"
                                                     class="group relative w-28 h-16 overflow-hidden rounded-xl shadow-sm bg-gradient-to-tr from-gray-900 via-slate-900 to-slate-700 cursor-pointer focus:outline-none js-hero-video-trigger"
-                                                    data-video-src="{{ asset('storage/' . $hero->video_path) }}"
+                                                    data-video-src="{{ $hero->video_url }}"
                                                     aria-label="Preview hero video">
                                                     {{-- subtle overlay --}}
                                                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/10 opacity-80 group-hover:opacity-100 transition-opacity"></div>

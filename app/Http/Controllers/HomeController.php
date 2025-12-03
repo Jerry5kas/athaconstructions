@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\HeroSection;
 
 class HomeController extends Controller
 {
@@ -11,6 +12,16 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // Get active hero section for home page
+        $heroSection = HeroSection::where('pagetype', 'home')
+            ->where('is_active', true)
+            ->where(function($query) {
+                $query->where('use_image', true)
+                      ->orWhere('use_video', true);
+            })
+            ->orderBy('created_at', 'desc')
+            ->first();
+
         $seo = [
             'title' => 'Best Construction Company In Bangalore | Atha Construction',
             'description' => 'Explore Atha Construction, the best construction company in Bangalore. Expert builders delivering quality, innovation, and excellence in every project. Visit us',
@@ -176,7 +187,8 @@ class HomeController extends Controller
             'athaAdvantages',
             'otherContractors',
             'howItWorks',
-            'faqs'
+            'faqs',
+            'heroSection'
         ));
     }
 

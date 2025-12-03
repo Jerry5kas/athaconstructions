@@ -61,7 +61,7 @@
                                             @if ($service->image_path)
                                                 <div class="relative w-20 h-20 overflow-hidden rounded-lg shadow-sm bg-slate-100 flex-shrink-0">
                                                     <img
-                                                        src="{{ asset('storage/' . $service->image_path) }}"
+                                                        src="{{ $service->image_url }}"
                                                         alt="{{ $service->title }}"
                                                         class="object-cover w-full h-full" />
                                                 </div>

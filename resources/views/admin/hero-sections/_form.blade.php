@@ -223,7 +223,7 @@
                         <div class="flex items-center gap-3 p-4 bg-gray-50 rounded-xl border-2 border-gray-200">
                             <div class="relative w-24 h-20 overflow-hidden rounded-lg shadow-md bg-slate-100 flex-shrink-0">
                                 <img
-                                    src="{{ asset('storage/' . $heroSection->image_path) }}"
+                                    src="{{ $heroSection->image_url }}"
                                     alt="Current hero image"
                                     class="object-cover w-full h-full" />
                             </div>
@@ -303,7 +303,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
                             </svg>
                             <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-                            <p class="text-xs text-gray-500">MP4, WebM, OGG up to 50MB</p>
+                            <p class="text-xs text-gray-500">MP4, WebM, OGG up to 100MB</p>
                         </div>
                         <input
                             id="video_input"

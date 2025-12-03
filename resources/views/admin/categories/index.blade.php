@@ -62,12 +62,12 @@
                                                 <div class="relative w-16 h-16 overflow-hidden rounded-lg shadow-sm bg-slate-100 flex-shrink-0">
                                                     @if ($category->media_type === 'svg')
                                                         <img
-                                                            src="{{ asset('storage/' . $category->media_path) }}"
+                                                            src="{{ $category->media_url }}"
                                                             alt="{{ $category->name }}"
                                                             class="object-contain w-full h-full p-1" />
                                                     @else
                                                         <img
-                                                            src="{{ asset('storage/' . $category->media_path) }}"
+                                                            src="{{ $category->media_url }}"
                                                             alt="{{ $category->name }}"
                                                             class="object-cover w-full h-full" />
                                                     @endif

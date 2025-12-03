@@ -13,8 +13,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('hero_sections', function (Blueprint $table) {
-            // Remove old columns
-            $table->dropColumn(['primary_button_text', 'primary_button_link']);
+            // Remove old columns if they exist
+            $columnsToDrop = [];
+            if (Schema::hasColumn('hero_sections', 'primary_button_text')) {
+                $columnsToDrop[] = 'primary_button_text';
+            }
+            if (Schema::hasColumn('hero_sections', 'primary_button_link')) {
+                $columnsToDrop[] = 'primary_button_link';
+            }
+            if (!empty($columnsToDrop)) {
+                $table->dropColumn($columnsToDrop);
+            }
         });
         
         // Rename subtitle to page_title (using raw SQL as Laravel doesn't have renameColumn)
@@ -23,9 +32,13 @@ return new class extends Migration
         }
         
         Schema::table('hero_sections', function (Blueprint $table) {
-            // Add new columns
-            $table->text('description')->nullable()->after('page_title');
-            $table->string('pagetype')->nullable()->after('description');
+            // Add new columns if they don't exist
+            if (!Schema::hasColumn('hero_sections', 'description')) {
+                $table->text('description')->nullable()->after('page_title');
+            }
+            if (!Schema::hasColumn('hero_sections', 'pagetype')) {
+                $table->string('pagetype')->nullable()->after('description');
+            }
         });
     }
 
