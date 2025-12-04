@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\HeroSection;
 use App\Models\Service;
 use App\Models\Blog;
+use App\Models\Package;
+use App\Models\Contact;
 
 class DashboardController extends Controller
 {
@@ -15,45 +17,54 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        // Real-time stats from database / data sources
-        $projectsTotal = Service::count(); // Treat active services as "projects" for now
+        // Services are treated as \"projects\" in the current admin UI
+        $projectsTotal = Service::count();
 
-        // Packages count derived from JSON config (z-packages-details/package_details.json)
-        $packagesTotal = 0;
-        $packageFile   = base_path('z-packages-details/package_details.json');
+        // Packages from database (active + total)
+        $packagesTotal      = Package::count();
+        $packagesActive     = Package::where('is_active', true)->count();
 
-        if (file_exists($packageFile)) {
-            $json = json_decode(file_get_contents($packageFile), true);
-            if (is_array($json) && isset($json['Table2'][0]) && is_array($json['Table2'][0])) {
-                $firstRow     = $json['Table2'][0];
-                $packageKeys  = array_filter(array_keys($firstRow), fn ($key) => $key !== 'section');
-                $packagesTotal = count($packageKeys);
-            }
-        }
+        // Leads from contacts table
+        $today      = now()->toDateString();
+        $startMonth = now()->startOfMonth();
+        $endMonth   = now()->endOfMonth();
 
-        // Blog stats (for future dashboard use or additional cards)
-        $blogsTotal       = Blog::count();
-        $blogsPublished   = Blog::published()->count();
-        $blogsTotalViews  = Blog::sum('views');
+        $leadsToday      = Contact::whereDate('created_at', $today)->count();
+        $leadsThisMonth  = Contact::whereBetween('created_at', [$startMonth, $endMonth])->count();
+        $leadsTotal      = Contact::count();
 
-        // Leads / revenue are not yet persisted in DB – keep neutral placeholders
+        // Blog stats (for potential future cards / analytics)
+        $blogsTotal      = Blog::count();
+        $blogsPublished  = Blog::published()->count();
+        $blogsTotalViews = Blog::sum('views');
+
         $stats = [
-            'projects_total'        => $projectsTotal,
-            'projects_delta_label'  => $projectsTotal > 0 ? 'Live from Services' : 'No services yet',
+            // Projects / services
+            'projects_total'       => $projectsTotal,
+            'projects_delta_label' => $projectsTotal > 0
+                ? $projectsTotal . ' services in system'
+                : 'No services yet',
 
-            'packages_total'        => $packagesTotal,
-            'packages_delta_label'  => $packagesTotal > 0 ? 'From packages JSON' : 'No packages configured',
+            // Packages
+            'packages_total'       => $packagesTotal,
+            'packages_delta_label' => $packagesActive . ' active packages',
 
-            'leads_today'           => 0,
-            'leads_delta_label'     => 'Tracking not yet connected',
+            // Leads
+            'leads_today'          => $leadsToday,
+            'leads_delta_label'    => $leadsThisMonth . ' this month • ' . $leadsTotal . ' total',
 
-            'revenue_month'         => '—',
-            'revenue_delta_label'   => 'Pending integration',
+            // Revenue card repurposed as high-level leads metric for now
+            'revenue_month'        => $leadsThisMonth > 0
+                ? $leadsThisMonth . ' leads'
+                : 'No leads yet',
+            'revenue_delta_label'  => $leadsToday > 0
+                ? $leadsToday . ' today'
+                : 'Awaiting new leads',
 
             // Extra blog metrics (not yet surfaced in UI, but available if needed)
-            'blogs_total'           => $blogsTotal,
-            'blogs_published'       => $blogsPublished,
-            'blogs_total_views'     => $blogsTotalViews,
+            'blogs_total'          => $blogsTotal,
+            'blogs_published'      => $blogsPublished,
+            'blogs_total_views'    => $blogsTotalViews,
         ];
 
         return view('admin.dashboard', [

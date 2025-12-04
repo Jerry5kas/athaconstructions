@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
-@section('title', 'Categories')
-@section('page-title', 'Categories')
+@section('title', 'Common')
+@section('page-title', 'Common')
 
 @section('content')
 <div class="flex flex-wrap -mx-3">
@@ -15,8 +15,8 @@
         <div class="relative flex flex-col min-w-0 break-words bg-white border border-gray-100 rounded-2xl shadow-md">
             <div class="flex items-center justify-between mb-0 rounded-t-2xl border-b border-gray-100 bg-white p-6 pb-6">
                 <div>
-                    <h6 class="mb-1 text-lg tracking-wide uppercase font-tenor text-gray-900">Categories</h6>
-                    <p class="mb-0 text-sm text-slate-500">Manage categories for your content.</p>
+                    <h6 class="mb-1 text-lg tracking-wide uppercase font-tenor text-gray-900">Common</h6>
+                    <p class="mb-0 text-sm text-slate-500">Manage shared media (images/videos) and common items.</p>
                 </div>
                 <a
                     href="{{ route('admin.categories.create') }}"
@@ -37,7 +37,13 @@
                                     Name
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-semibold tracking-[0.18em] uppercase text-slate-600 font-tenor">
-                                    Type
+                                    Context Type
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold tracking-[0.18em] uppercase text-slate-600 font-tenor">
+                                    Media Type
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold tracking-[0.18em] uppercase text-slate-600 font-tenor">
+                                    URL
                                 </th>
                                 <th class="px-6 py-3 text-center text-xs font-semibold tracking-[0.18em] uppercase text-slate-600 font-tenor">
                                     Order
@@ -91,16 +97,50 @@
                                             @endif
                                         </div>
                                     </td>
+                                    {{-- Context Type --}}
+                                    <td class="p-2 align-middle bg-transparent whitespace-nowrap">
+                                        <div class="px-2">
+                                            @if ($category->type)
+                                                <span class="inline-flex items-center px-2 py-0.5 text-xs font-semibold leading-tight uppercase tracking-wide text-slate-800 rounded-full bg-slate-100">
+                                                    {{ $category->type }}
+                                                </span>
+                                            @else
+                                                <span class="text-xs text-slate-400">—</span>
+                                            @endif
+                                        </div>
+                                    </td>
+                                    {{-- Media Type --}}
                                     <td class="p-2 align-middle bg-transparent whitespace-nowrap">
                                         <div class="px-2">
                                             @if ($category->media_type)
-                                                <span class="inline-flex items-center px-2 py-0.5 text-xs font-semibold leading-tight uppercase tracking-wide text-slate-800 rounded-full bg-slate-100">
+                                                <span class="inline-flex items-center px-2 py-0.5 text-xs font-semibold leading-tight uppercase tracking-wide text-slate-500 rounded-full bg-slate-50">
                                                     {{ $category->media_type }}
                                                 </span>
                                             @else
                                                 <span class="text-xs text-slate-400">—</span>
                                             @endif
                                         </div>
+                                    </td>
+                                    <td class="p-2 align-middle bg-transparent">
+                                        @if ($category->media_path)
+                                            <div class="px-2 flex items-center gap-2 max-w-xs">
+                                                <a href="{{ $category->media_path }}" target="_blank" class="text-xs text-indigo-600 hover:underline truncate">
+                                                    {{ $category->media_path }}
+                                                </a>
+                                                <button
+                                                    type="button"
+                                                    class="js-copy-url inline-flex items-center justify-center w-6 h-6 rounded-full border border-slate-200 text-slate-400 hover:text-gray-900 hover:border-gray-400 text-[10px]"
+                                                    data-url="{{ $category->media_path }}"
+                                                    title="Copy URL">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        @else
+                                            <span class="text-xs text-slate-400 px-2">—</span>
+                                        @endif
                                     </td>
                                     <td class="p-2 text-center align-middle bg-transparent whitespace-nowrap">
                                         <span class="text-xs font-semibold leading-tight">
@@ -193,4 +233,27 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.js-copy-url').forEach(button => {
+            button.addEventListener('click', async () => {
+                const url = button.getAttribute('data-url');
+                if (!url) return;
+
+                try {
+                    await navigator.clipboard.writeText(url);
+                    button.classList.add('bg-emerald-50', 'border-emerald-300', 'text-emerald-700');
+                    setTimeout(() => {
+                        button.classList.remove('bg-emerald-50', 'border-emerald-300', 'text-emerald-700');
+                    }, 1200);
+                } catch (e) {
+                    console.error('Clipboard copy failed', e);
+                }
+            });
+        });
+    });
+</script>
+@endpush
 

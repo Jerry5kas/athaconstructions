@@ -117,23 +117,21 @@
                 @enderror
             </div>
 
-            {{-- Media Type --}}
+            {{-- Context Type (grouping) --}}
             <div class="space-y-2">
                 <label class="flex items-center space-x-2 text-sm font-semibold text-gray-700">
                     <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
                     </svg>
-                    <span>Media Type</span>
+                    <span>Context Type</span>
                 </label>
-                <select
-                    name="media_type"
-                    class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all shadow-sm hover:shadow-md">
-                    <option value="">Auto-detect</option>
-                    <option value="image" {{ old('media_type', $category->media_type ?? '') === 'image' ? 'selected' : '' }}>Image</option>
-                    <option value="svg" {{ old('media_type', $category->media_type ?? '') === 'svg' ? 'selected' : '' }}>SVG</option>
-                    <option value="icon" {{ old('media_type', $category->media_type ?? '') === 'icon' ? 'selected' : '' }}>Icon</option>
-                </select>
-                @error('media_type')
+                <input
+                    type="text"
+                    name="type"
+                    value="{{ old('type', $category->type ?? '') }}"
+                    class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all shadow-sm hover:shadow-md"
+                    placeholder="e.g. hero-banner, testimonial, about-section" />
+                @error('type')
                     <p class="mt-1 text-xs text-red-600 flex items-center space-x-1">
                         <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
@@ -216,6 +214,37 @@
             </div>
             
             <div class="space-y-3">
+                {{-- Media Type (optional override) --}}
+                <div class="space-y-2">
+                    <label class="flex items-center space-x-2 text-sm font-semibold text-gray-700">
+                        <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M4 6h8a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2z"/>
+                        </svg>
+                        <span>Media Type</span>
+                    </label>
+                    @php
+                        $mediaTypeValue = old('media_type', $category->media_type ?? '');
+                    @endphp
+                    <select
+                        name="media_type"
+                        class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all shadow-sm hover:shadow-md">
+                        <option value="">Auto-detect from file</option>
+                        <option value="image" {{ $mediaTypeValue === 'image' ? 'selected' : '' }}>Image</option>
+                        <option value="svg" {{ $mediaTypeValue === 'svg' ? 'selected' : '' }}>SVG</option>
+                        <option value="icon" {{ $mediaTypeValue === 'icon' ? 'selected' : '' }}>Icon</option>
+                        <option value="video" {{ $mediaTypeValue === 'video' ? 'selected' : '' }}>Video</option>
+                    </select>
+                    <p class="mt-1 text-xs text-gray-500">Leave as auto-detect in most cases. Use this only if you need to force a specific handling.</p>
+                    @error('media_type')
+                        <p class="mt-1 text-xs text-red-600 flex items-center space-x-1">
+                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>{{ $message }}</span>
+                        </p>
+                    @enderror
+                </div>
+
                 {{-- Current Media (if editing) --}}
                 @if (!empty($category?->media_path))
                     <div class="flex items-center gap-3 p-4 bg-gray-50 rounded-xl border-2 border-gray-200">

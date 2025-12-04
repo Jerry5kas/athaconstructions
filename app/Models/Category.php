@@ -11,6 +11,7 @@ class Category extends Model
     protected $fillable = [
         'name',
         'slug',
+        'type',
         'description',
         'media_path',
         'media_file_id',
@@ -60,7 +61,12 @@ class Category extends Model
         if (filter_var($this->media_path, FILTER_VALIDATE_URL)) {
             // Check if it's an ImageKit URL
             if (strpos($this->media_path, 'ik.imagekit.io') !== false) {
-                // Use ImageKit service to get optimized URL
+                // For videos, return the raw URL (no image optimizations)
+                if ($this->media_type === 'video') {
+                    return $this->media_path;
+                }
+
+                // Use ImageKit service to get optimized URL for images/icons/svg
                 $imageKitService = app(\App\Services\ImageKitService::class);
                 // Use media_type if available, otherwise auto-detect
                 $mediaType = $this->media_type === 'svg' ? 'svg' : 
@@ -97,6 +103,14 @@ class Category extends Model
     public function scopeByMediaType($query, $type)
     {
         return $query->where('media_type', $type);
+    }
+
+    /**
+     * Scope: Filter by logical category type.
+     */
+    public function scopeOfType($query, $type)
+    {
+        return $query->where('type', $type);
     }
 
     /**

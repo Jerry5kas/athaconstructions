@@ -23,13 +23,13 @@ class CategoryController extends Controller
     public function index()
     {
         // Optimized query with eager loading and pagination
-        $categories = Category::select('id', 'name', 'slug', 'media_path', 'media_type', 'is_active', 'sort_order', 'created_at')
+        $categories = Category::select('id', 'name', 'slug', 'type', 'media_path', 'media_type', 'is_active', 'sort_order', 'created_at')
             ->orderBy('sort_order')
             ->orderBy('name')
             ->paginate(15); // Optimized pagination size
 
         return view('admin.categories.index', [
-            'pageTitle' => 'Categories',
+            'pageTitle' => 'Common',
             'categories' => $categories,
         ]);
     }
@@ -40,7 +40,7 @@ class CategoryController extends Controller
     public function create()
     {
         return view('admin.categories.create', [
-            'pageTitle' => 'Create Category',
+            'pageTitle' => 'Create Common Item',
         ]);
     }
 
@@ -52,9 +52,11 @@ class CategoryController extends Controller
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'slug' => ['nullable', 'string', 'max:255', 'unique:categories,slug'],
+            // Context type (grouping), free text – e.g. "hero", "testimonial", etc.
+            'type' => ['nullable', 'string', 'max:100'],
             'description' => ['nullable', 'string'],
-            'media' => ['nullable', 'file', 'mimes:png,jpg,jpeg,gif,svg,webp', 'max:5120'], // 5MB max
-            'media_type' => ['nullable', 'string', 'in:image,svg,icon'],
+            'media' => ['nullable', 'file', 'mimes:png,jpg,jpeg,gif,svg,webp,mp4,mov,webm,mkv,avi', 'max:20480'], // up to 20MB for video
+            'media_type' => ['nullable', 'string', 'in:image,svg,icon,video'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
             'is_active' => ['nullable', 'boolean'],
         ]);
@@ -71,10 +73,13 @@ class CategoryController extends Controller
             
             // Determine media type based on extension
             if (empty($data['media_type'])) {
-                if (in_array(strtolower($extension), ['svg'])) {
+                $ext = strtolower($extension);
+                if (in_array($ext, ['svg'])) {
                     $data['media_type'] = 'svg';
-                } elseif (in_array(strtolower($extension), ['ico', 'icon'])) {
+                } elseif (in_array($ext, ['ico', 'icon'])) {
                     $data['media_type'] = 'icon';
+                } elseif (in_array($ext, ['mp4', 'mov', 'webm', 'mkv', 'avi'])) {
+                    $data['media_type'] = 'video';
                 } else {
                     $data['media_type'] = 'image';
                 }
@@ -126,9 +131,11 @@ class CategoryController extends Controller
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'slug' => ['nullable', 'string', 'max:255', 'unique:categories,slug,' . $id],
+            // Context type (grouping)
+            'type' => ['nullable', 'string', 'max:100'],
             'description' => ['nullable', 'string'],
-            'media' => ['nullable', 'file', 'mimes:png,jpg,jpeg,gif,svg,webp', 'max:5120'],
-            'media_type' => ['nullable', 'string', 'in:image,svg,icon'],
+            'media' => ['nullable', 'file', 'mimes:png,jpg,jpeg,gif,svg,webp,mp4,mov,webm,mkv,avi', 'max:20480'],
+            'media_type' => ['nullable', 'string', 'in:image,svg,icon,video'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
             'is_active' => ['nullable', 'boolean'],
         ]);
@@ -150,10 +157,13 @@ class CategoryController extends Controller
             
             // Determine media type based on extension
             if (empty($data['media_type'])) {
-                if (in_array(strtolower($extension), ['svg'])) {
+                $ext = strtolower($extension);
+                if (in_array($ext, ['svg'])) {
                     $data['media_type'] = 'svg';
-                } elseif (in_array(strtolower($extension), ['ico', 'icon'])) {
+                } elseif (in_array($ext, ['ico', 'icon'])) {
                     $data['media_type'] = 'icon';
+                } elseif (in_array($ext, ['mp4', 'mov', 'webm', 'mkv', 'avi'])) {
+                    $data['media_type'] = 'video';
                 } else {
                     $data['media_type'] = 'image';
                 }
@@ -171,7 +181,7 @@ class CategoryController extends Controller
 
         return redirect()
             ->route('admin.categories.index')
-            ->with('status', 'Category updated successfully.');
+            ->with('status', 'Common item updated successfully.');
     }
 
     /**
@@ -188,7 +198,7 @@ class CategoryController extends Controller
 
         return redirect()
             ->route('admin.categories.index')
-            ->with('status', 'Category deleted successfully.');
+            ->with('status', 'Common item deleted successfully.');
     }
 }
 

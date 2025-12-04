@@ -129,7 +129,7 @@
             @endif
         </a>
 
-        {{-- Categories --}}
+        {{-- Common --}}
         <a
             href="{{ route('admin.categories.index') }}"
             class="group relative flex items-center rounded-xl px-4 py-3 transition-all duration-200
@@ -147,7 +147,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
                 </svg>
             </div>
-            <span class="font-medium {{ request()->routeIs('admin.categories.*') ? 'text-white' : 'text-gray-700' }}">Categories</span>
+            <span class="font-medium {{ request()->routeIs('admin.categories.*') ? 'text-white' : 'text-gray-700' }}">Common</span>
             @if(request()->routeIs('admin.categories.*'))
                 <svg class="w-4 h-4 ml-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -175,6 +175,58 @@
             </div>
             <span class="font-medium {{ request()->routeIs('admin.services.*') ? 'text-white' : 'text-gray-700' }}">Services</span>
             @if(request()->routeIs('admin.services.*'))
+                <svg class="w-4 h-4 ml-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            @endif
+        </a>
+
+        {{-- Testimonials --}}
+        <a
+            href="{{ route('admin.testimonials.index') }}"
+            class="group relative flex items-center rounded-xl px-4 py-3 transition-all duration-200
+                {{ request()->routeIs('admin.testimonials.*') 
+                    ? 'bg-gradient-to-r from-gray-900 to-gray-800 text-white shadow-lg shadow-gray-900/20' 
+                    : 'text-gray-700 hover:bg-gray-100 hover:shadow-md' }}">
+            @if(request()->routeIs('admin.testimonials.*'))
+                <div class="absolute left-0 top-0 bottom-0 w-1 bg-gray-400 rounded-r-full"></div>
+            @endif
+            <div class="flex items-center justify-center w-8 h-8 rounded-lg mr-3
+                {{ request()->routeIs('admin.testimonials.*') 
+                    ? 'bg-white/10' 
+                    : 'bg-gray-100 group-hover:bg-gray-200' }}">
+                <svg class="w-4 h-4 {{ request()->routeIs('admin.testimonials.*') ? 'text-white' : 'text-gray-600' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h6m-8 8h12a2 2 0 002-2V6a2 2 0 00-2-2H7L5 6H4a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+            </div>
+            <span class="font-medium {{ request()->routeIs('admin.testimonials.*') ? 'text-white' : 'text-gray-700' }}">Testimonials</span>
+            @if(request()->routeIs('admin.testimonials.*'))
+                <svg class="w-4 h-4 ml-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            @endif
+        </a>
+
+        {{-- Testimonial Media --}}
+        <a
+            href="{{ route('admin.testimonial-media.index') }}"
+            class="group relative flex items-center rounded-xl px-4 py-3 transition-all duration-200
+                {{ request()->routeIs('admin.testimonial-media.*') 
+                    ? 'bg-gradient-to-r from-gray-900 to-gray-800 text-white shadow-lg shadow-gray-900/20' 
+                    : 'text-gray-700 hover:bg-gray-100 hover:shadow-md' }}">
+            @if(request()->routeIs('admin.testimonial-media.*'))
+                <div class="absolute left-0 top-0 bottom-0 w-1 bg-gray-400 rounded-r-full"></div>
+            @endif
+            <div class="flex items-center justify-center w-8 h-8 rounded-lg mr-3
+                {{ request()->routeIs('admin.testimonial-media.*') 
+                    ? 'bg-white/10' 
+                    : 'bg-gray-100 group-hover:bg-gray-200' }}">
+                <svg class="w-4 h-4 {{ request()->routeIs('admin.testimonial-media.*') ? 'text-white' : 'text-gray-600' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M4 6h8a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2z"/>
+                </svg>
+            </div>
+            <span class="font-medium {{ request()->routeIs('admin.testimonial-media.*') ? 'text-white' : 'text-gray-700' }}">Testimonial Media</span>
+            @if(request()->routeIs('admin.testimonial-media.*'))
                 <svg class="w-4 h-4 ml-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                 </svg>

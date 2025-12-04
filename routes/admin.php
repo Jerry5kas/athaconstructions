@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\PackageSectionController;
 use App\Http\Controllers\Admin\PackageFeatureController;
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\TestimonialMediaController;
 use App\Http\Controllers\ImageKitUploadController;
 
 /*
@@ -42,6 +44,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // Services management
         Route::resource('services', ServiceController::class)->names('services');
+
+        // Testimonials management
+        Route::resource('testimonials', TestimonialController::class)->names('testimonials');
+        Route::resource('testimonial-media', TestimonialMediaController::class)->names('testimonial-media');
 
         // Blogs management
         Route::resource('blogs', BlogController::class)->names('blogs');
