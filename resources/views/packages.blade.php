@@ -157,7 +157,7 @@
         >
             <div
                 @click.stop
-                class="enquiry-modal bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto"
+                class="enquiry-modal bg-white rounded-lg shadow-2xl w-full max-w-5xl overflow-y-visible"
                 x-transition:enter="transition ease-out duration-300"
                 x-transition:enter-start="opacity-0 transform scale-95"
                 x-transition:enter-end="opacity-100 transform scale-100"
@@ -184,7 +184,7 @@
                 </div>
 
                 {{-- Modal Body - Reusable Contact Form --}}
-                <div class="p-6 lg:p-8">
+                <div class="p-1">
                     <x-contact-enquiry
                         variant="modal"
                         :messageSource="'Customize package enquiry'"

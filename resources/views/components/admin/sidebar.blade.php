@@ -238,6 +238,36 @@
         </a>
 
         <div class="my-6">
+            <p class="text-xs font-semibold uppercase tracking-wider text-gray-400 px-3 mb-3">Leads</p>
+        </div>
+
+        {{-- Contact Messages --}}
+        <a
+            href="{{ route('admin.contact-messages.index') }}"
+            class="group relative flex items-center rounded-xl px-4 py-3 transition-all duration-200
+                {{ request()->routeIs('admin.contact-messages.*') 
+                    ? 'bg-gradient-to-r from-gray-900 to-gray-800 text-white shadow-lg shadow-gray-900/20' 
+                    : 'text-gray-700 hover:bg-gray-100 hover:shadow-md' }}">
+            @if(request()->routeIs('admin.contact-messages.*'))
+                <div class="absolute left-0 top-0 bottom-0 w-1 bg-gray-400 rounded-r-full"></div>
+            @endif
+            <div class="flex items-center justify-center w-8 h-8 rounded-lg mr-3
+                {{ request()->routeIs('admin.contact-messages.*') 
+                    ? 'bg-white/10' 
+                    : 'bg-gray-100 group-hover:bg-gray-200' }}">
+                <svg class="w-4 h-4 {{ request()->routeIs('admin.contact-messages.*') ? 'text-white' : 'text-gray-600' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2h14a2 2 0 002-2V8zM7 9h10M7 13h6" />
+                </svg>
+            </div>
+            <span class="font-medium {{ request()->routeIs('admin.contact-messages.*') ? 'text-white' : 'text-gray-700' }}">Contact Messages</span>
+            @if(request()->routeIs('admin.contact-messages.*'))
+                <svg class="w-4 h-4 ml-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            @endif
+        </a>
+
+        <div class="my-6">
             <p class="text-xs font-semibold uppercase tracking-wider text-gray-400 px-3 mb-3">Content Management</p>
         </div>
 

@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\PackageSectionController;
 use App\Http\Controllers\Admin\PackageFeatureController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\ImageKitUploadController;
 
 /*
@@ -57,6 +58,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Package Features management
         Route::post('package-sections/{section}/features', [PackageFeatureController::class, 'storeOrUpdate'])->name('package-features.store-or-update');
         Route::delete('package-features/{feature}', [PackageFeatureController::class, 'destroy'])->name('package-features.destroy');
+
+        // Contact messages (leads)
+        Route::resource('contact-messages', ContactController::class)
+            ->only(['index', 'show', 'destroy'])
+            ->names('contact-messages');
 
         // ImageKit upload route
         Route::post('/upload-imagekit', [ImageKitUploadController::class, 'upload'])->name('upload-imagekit');

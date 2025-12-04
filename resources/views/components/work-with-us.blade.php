@@ -82,7 +82,7 @@
         x-cloak
         @click.self="enquiryModalOpen = false"
         @keydown.escape.window="enquiryModalOpen = false"
-        class="fixed inset-0 z-[150] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+        class="fixed inset-0 z-[150] flex items-center justify-center p-1 bg-black/80 backdrop-blur-sm"
         x-transition:enter="transition ease-out duration-300"
         x-transition:enter-start="opacity-0"
         x-transition:enter-end="opacity-100"
@@ -90,9 +90,9 @@
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0"
     >
-        <div
-            @click.stop
-            class="enquiry-modal bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto"
+             <div
+                 @click.stop
+                 class="enquiry-modal bg-white rounded-lg shadow-2xl w-full max-w-5xl overflow-y-visible"
             x-transition:enter="transition ease-out duration-300"
             x-transition:enter-start="opacity-0 transform scale-95"
             x-transition:enter-end="opacity-100 transform scale-100"
@@ -100,26 +100,9 @@
             x-transition:leave-start="opacity-100 transform scale-100"
             x-transition:leave-end="opacity-0 transform scale-95"
         >
-            {{-- Modal Header --}}
-            <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between z-10">
-                <div>
-                    <h3 class="font-tenor text-2xl uppercase tracking-tight">Get In Touch</h3>
-                    <p class="text-xs text-gray-500 mt-1">We'll get back to you soon</p>
-                </div>
-                <button
-                    @click="enquiryModalOpen = false"
-                    class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
-                    aria-label="Close"
-                >
-                    <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
-
+           
             {{-- Modal Body - Form --}}
-            <div class="p-6 lg:p-8">
+            <div class="p-1">
                 <x-contact-enquiry
                     variant="modal"
                     :onSuccess="'enquiryModalOpen = false; setTimeout(() => enquiryModalOpen = false, 2000);'"

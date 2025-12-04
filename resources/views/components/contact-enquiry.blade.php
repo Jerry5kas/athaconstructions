@@ -4,7 +4,7 @@
     'submitText' => 'Submit Enquiry',
     'messageSource' => null, // Custom message source (e.g., 'Quick enquiry from hero form')
     'onSuccess' => null, // Custom success callback (e.g., 'enquiryModalOpen = false')
-    'image' => 'images/contact-us.jpg', // Background image for left side
+    'image' => 'images/Contact us poster.png', // Background image for left side
     'showImage' => true, // Show image layout (left image, right form)
 ])
 
@@ -84,14 +84,14 @@
     }"
     class="contact-enquiry-form w-full max-w-7xl mx-auto"
 >
-    <div class="grid grid-cols-1 lg:grid-cols-12 max-h-[90vh] overflow-hidden contact-enquiry-grid">
+    <div class="grid grid-cols-1 lg:grid-cols-12 overflow-hidden contact-enquiry-grid">
         {{-- Left Side: Image with Logo --}}
         @if($showImage)
-        <div class="relative hidden lg:block overflow-hidden lg:col-span-6">
+        <div class="relative hidden lg:block overflow-hidden lg:col-span-5">
             <img 
                 src="{{ asset($image) }}" 
                 alt="Contact Us"
-                class="w-full h-full object-cover"
+                class="w-full h-[600px] object-cover"
             >
             <div class="absolute inset-0 bg-black/60"></div>
             <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-8">
@@ -108,12 +108,12 @@
         @endif
 
         {{-- Right Side: Form --}}
-        <div class="bg-white p-8 lg:p-12 flex flex-col overflow-y-auto max-h-[90vh] lg:col-span-6 contact-enquiry-panel">
+        <div class="bg-white p-6 lg:p-8 flex flex-col overflow-y-auto lg:col-span-7 contact-enquiry-panel">
             <div class="w-full">
                 <form 
                     @submit.prevent="submitForm($event)"
                     id="{{ $formId }}"
-                    class="space-y-4"
+                    class="space-y-3 lg:space-y-4"
                 >
                     {{-- Success/Error Messages --}}
                     <div 
@@ -136,6 +136,8 @@
                         </template>
                     </div>
 
+                    {{-- Form Heading --}}
+                   
                     {{-- Name Field --}}
                     @if(in_array('name', $showFields))
                     <div class="coolinput">
@@ -274,7 +276,7 @@
                         <textarea
                             id="{{ $formId }}-message"
                             name="message"
-                            rows="4"
+                            rows="2"
                             :class="formErrors.message ? 'border-red-500' : 'border-black'"
                             class="input resize-none"
                             placeholder="Tell us about your project requirements..."

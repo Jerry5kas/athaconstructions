@@ -7,9 +7,15 @@ use App\Models\HeroSection;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Service;
+use App\Models\Contact;
 use App\Models\Package;
 use App\Models\PackageSection;
 use App\Models\PackageFeature;
+
+// Brevo (Sendinblue) API SDK
+use SendinBlue\Client\Configuration as BrevoConfiguration;
+use SendinBlue\Client\Api\TransactionalEmailsApi as BrevoTransactionalEmailsApi;
+use GuzzleHttp\Client as HttpClient;
 
 class HomeController extends Controller
 {
@@ -887,19 +893,70 @@ class HomeController extends Controller
     {
         try {
             $validated = $request->validate([
-                'name' => 'required|string|max:255',
-                'email' => 'nullable|email|max:255',
-                'phone' => 'required|string|regex:/^[0-9]{10}$/|max:10',
-                'type' => 'required|string|in:residential,commercial',
+                'name'     => 'required|string|max:255',
+                'email'    => 'nullable|email|max:255',
+                // allow optional + and 10–15 digits to support country code
+                'phone'    => 'required|string|regex:/^\\+?[0-9]{10,15}$/|max:20',
+                'type'     => 'required|string|in:residential,commercial',
                 'plotsize' => 'required|string|max:50',
+                'message'  => 'nullable|string|max:2000',
             ], [
-                'phone.regex' => 'Enter 10 digit mobile number.',
+                'phone.regex'   => 'Enter a valid mobile number (10–15 digits, with or without country code).',
                 'type.required' => 'Please select construction type.',
             ]);
 
-            // TODO: Save to database and send email notification
-            // Contact::create($validated);
-            // Mail::to('info@athaconstruction.in')->send(new ContactFormMail($validated));
+            // Save lead into contacts table
+            Contact::create($validated);
+
+            // Build email content
+            $body = sprintf(
+                "New contact enquiry from Atha Construction website:\n\n".
+                "Name: %s\nEmail: %s\nPhone: %s\nType: %s\nPlot size: %s\n\nMessage:\n%s\n",
+                $validated['name'],
+                $validated['email'] ?? '-',
+                $validated['phone'],
+                $validated['type'],
+                $validated['plotsize'],
+                $validated['message'] ?? '-'
+            );
+
+            // Send email via Brevo (Sendinblue) API if API key is configured
+            $apiKey = env('BREVO_API_KEY');
+            if (! empty($apiKey)) {
+                $config = BrevoConfiguration::getDefaultConfiguration()
+                    ->setApiKey('api-key', $apiKey);
+
+                $apiInstance = new BrevoTransactionalEmailsApi(new HttpClient(), $config);
+
+                $senderEmail = env('BREVO_SENDER_EMAIL', 'no-reply@example.com');
+                $senderName  = env('BREVO_SENDER_NAME', 'Atha Construction');
+                $toEmail     = env('BREVO_TO_EMAIL', 'admin@example.com');
+                $toName      = env('BREVO_TO_NAME', 'Admin');
+
+                $sendSmtpEmail = [
+                    'sender' => [
+                        'email' => $senderEmail,
+                        'name'  => $senderName,
+                    ],
+                    'to' => [
+                        [
+                            'email' => $toEmail,
+                            'name'  => $toName,
+                        ],
+                    ],
+                    'subject' => 'New Contact Form Message',
+                    'textContent' => $body,
+                ];
+
+                try {
+                    $apiInstance->sendTransacEmail($sendSmtpEmail);
+                } catch (\Throwable $e) {
+                    // Log but don't break the user flow
+                    \Log::error('Brevo email send failed', [
+                        'error' => $e->getMessage(),
+                    ]);
+                }
+            }
 
             return response()->json([
                 'status' => 'OK', 
