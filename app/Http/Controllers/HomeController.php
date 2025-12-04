@@ -7,6 +7,9 @@ use App\Models\HeroSection;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Service;
+use App\Models\Package;
+use App\Models\PackageSection;
+use App\Models\PackageFeature;
 
 class HomeController extends Controller
 {
@@ -220,137 +223,33 @@ class HomeController extends Controller
             'keywords' => 'Atha Construction Packages, house planners in bangalore, home architecture design',
         ];
 
-        $packages = [
-            [
-                'id' => 1,
-                'slug' => 'basic-package',
-                'name' => 'Basic Package',
-                'price' => '₹1,849',
-                'pricePerSqft' => '1849/sqft',
-                'image' => 'images/packages/1849.png',
-                'features' => [
-                    'Design & Drawings',
-                    'Core Construction Materials',
-                    'Architecture Detailing',
-                    'Flooring & Wall Tiling',
-                    'Painting',
-                    'Electricals',
-                    'Plumbing',
-                    'Doors',
-                    'Windows',
-                    'Kitchen & Bathroom Fixtures',
-                    'Fabrication Works',
-                    'Warranty Period',
-                ],
-            ],
-            [
-                'id' => 2,
-                'slug' => 'standard-package',
-                'name' => 'Standard Package',
-                'price' => '₹2,025',
-                'pricePerSqft' => '2025/sqft',
-                'image' => 'images/packages/2025.png',
-                'features' => [
-                    'Design & Drawings',
-                    'Core Construction Materials',
-                    'Architecture Detailing',
-                    'Flooring & Wall Tiling',
-                    'Painting',
-                    'Electricals',
-                    'Plumbing',
-                    'Doors',
-                    'Windows',
-                    'Kitchen & Bathroom Fixtures',
-                    'Fabrication Works',
-                    'Warranty Period',
-                ],
-            ],
-            [
-                'id' => 3,
-                'slug' => 'premium-package',
-                'name' => 'Premium Package',
-                'price' => '₹2,399',
-                'pricePerSqft' => '2399/sqft',
-                'image' => 'images/packages/2399.png',
-                'features' => [
-                    'Design & Drawings',
-                    'Core Construction Materials',
-                    'Architecture Detailing',
-                    'Premium Flooring & Wall Tiling',
-                    'High-Quality Painting',
-                    'Advanced Electricals',
-                    'Premium Plumbing',
-                    'Designer Doors',
-                    'Energy-Efficient Windows',
-                    'Luxury Kitchen & Bathroom Fixtures',
-                    'Premium Fabrication Works',
-                    'Extended Warranty Period',
-                ],
-            ],
-            [
-                'id' => 4,
-                'slug' => 'budget-package',
-                'name' => 'Budget Package',
-                'price' => '₹2,799',
-                'pricePerSqft' => '2799/sqft',
-                'image' => 'images/packages/2799.png',
-                'features' => [
-                    'Design & Drawings',
-                    'Core Construction Materials',
-                    'Architecture Detailing',
-                    'Flooring & Wall Tiling',
-                    'Painting',
-                    'Electricals',
-                    'Plumbing',
-                    'Doors',
-                    'Windows',
-                    'Kitchen & Bathroom Fixtures',
-                    'Fabrication Works',
-                    'Warranty Period',
-                    'Extra Charges',
-                ],
-            ],
-            [
-                'id' => 5,
-                'slug' => 'luxury-package',
-                'name' => 'Luxury Package',
-                'price' => '₹4,400',
-                'pricePerSqft' => '4400/sqft',
-                'image' => 'images/packages/4400.png',
-                'features' => [
-                    'Premium Design & Drawings',
-                    'Premium Core Construction Materials',
-                    'Luxury Architecture Detailing',
-                    'Luxury Flooring & Wall Tiling',
-                    'Premium Painting',
-                    'Smart Electricals',
-                    'Premium Plumbing',
-                    'Designer Doors',
-                    'Energy-Efficient Windows',
-                    'Luxury Kitchen & Bathroom Fixtures',
-                    'Premium Fabrication Works',
-                    'Extended Warranty Period',
-                    'Home Automation Ready',
-                    'Smart Home Features',
-                ],
-            ],
-        ];
+        // Load packages from database
+        $packages = Package::active()->ordered()->get();
 
-        // Load detailed comparison data from grouped JSON files
+        // Load comparison groups from database
+        $sections = PackageSection::active()->ordered()->with(['features' => function ($query) {
+            $query->with('package');
+        }])->get();
+
         $comparisonGroups = [];
-        $groupsPath = base_path('z-packages-details/groups');
-        if (is_dir($groupsPath)) {
-            foreach (glob($groupsPath . '/*.json') as $file) {
-                $decoded = json_decode(file_get_contents($file), true);
-                if (!is_array($decoded) || empty($decoded)) {
-                    continue;
+        $packagesList = Package::active()->ordered()->get();
+
+        foreach ($sections as $section) {
+            $sectionData = [];
+            foreach ($packagesList as $package) {
+                $feature = $section->featuresForPackage($package->id);
+                if ($feature && $feature->content) {
+                    // Use price_per_sqft as string key to match the format expected by the component
+                    $sectionData[(string)$package->price_per_sqft] = [
+                        [
+                            'title' => $section->name,
+                            'value' => $feature->content,
+                        ]
+                    ];
                 }
-                // Each file has a single top-level section key
-                $sectionName = array_key_first($decoded);
-                $sectionData = $decoded[$sectionName] ?? null;
-                if (is_array($sectionData)) {
-                    $comparisonGroups[$sectionName] = $sectionData;
-                }
+            }
+            if (!empty($sectionData)) {
+                $comparisonGroups[$section->name] = $sectionData;
             }
         }
 

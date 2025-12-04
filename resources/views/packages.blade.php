@@ -13,24 +13,31 @@
         title="Home Construction In Bangalore"
     /> -->
 
-    {{-- Packages Section with Tabs --}}
-    <section class="packages-section py-16 lg:py-24" x-data="{ activeTab: 'cards' }">
+    {{-- Packages Tab Container --}}
+    <div x-data="{ activeTab: 'cards' }">
+        {{-- Packages Banner Section --}}
+        <section class="packages-banner-section">
+            <div class="packages-banner-wrapper">
+                <div class="packages-banner-overlay"></div>
+                <div class="packages-banner-content">
         <div class="container mx-auto px-4 lg:px-8">
-            {{-- Shared Section Header --}}
-            <div class="packages-section-header max-w-5xl mx-auto mb-12 lg:mb-16 text-center">
-                <p class="packages-section-label text-xs lg:text-sm tracking-[0.3em] uppercase text-gray-500 mb-4">
+                        <div class="packages-section-header max-w-5xl mx-auto text-center">
+                            <p class="packages-section-label text-xs lg:text-sm tracking-[0.3em] uppercase text-white/90 mb-4">
                     Construction Packages
                 </p>
-                <h2 class="packages-section-title font-tenor text-3xl lg:text-4xl xl:text-5xl uppercase mb-4 lg:mb-6 text-black leading-tight">
+                            <h2 class="packages-section-title font-tenor text-3xl lg:text-4xl xl:text-5xl uppercase mb-4 lg:mb-6 text-white leading-tight">
                     Choose Your Construction Package
                 </h2>
-                <p class="packages-section-description max-w-3xl mx-auto text-sm lg:text-base text-gray-600 leading-relaxed">
+                            <p class="packages-section-description max-w-3xl mx-auto text-sm lg:text-base text-white/95 leading-relaxed">
                     Explore our thoughtfully crafted construction packages, each designed to meet different needs and budgets.
                 </p>
+                        </div>
+                    </div>
             </div>
 
-            {{-- Tabs Navigation --}}
-            <div class="packages-tabs-wrapper px-10 mb-12 lg:mb-16">
+                {{-- Tabs Navigation at Bottom of Banner --}}
+                <div class="packages-tabs-wrapper-banner">
+                    <div class="container mx-auto px-4 lg:px-8">
                 <div class="packages-tabs-container">
                     <button 
                         @click="activeTab = 'cards'"
@@ -64,14 +71,43 @@
                     </button>
                 </div>
             </div>
+                </div>
+            </div>
+        </section>
+
+        {{-- Packages Section with Tabs --}}
+        <section class="packages-section py-16 lg:py-24">
+            <div class="container mx-auto px-4 lg:px-8">
 
             {{-- Cards View --}}
-            <div x-show="activeTab === 'cards'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
-                <x-packages-cards-section :packages="$packages" />
+            <div 
+                x-show="activeTab === 'cards'" 
+                x-cloak
+                x-transition:enter="transition ease-out duration-300" 
+                x-transition:enter-start="opacity-0" 
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="transition ease-in duration-200"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+            >
+                <div class="packages-cards-grid py-16">
+                    @foreach($packages as $package)
+                        <x-package-card :package="$package" />
+                    @endforeach
+                </div>
             </div>
 
             {{-- Comparison View --}}
-            <div x-show="activeTab === 'comparison'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+                <div 
+                    x-show="activeTab === 'comparison'" 
+                    x-cloak
+                    x-transition:enter="transition ease-out duration-300" 
+                    x-transition:enter-start="opacity-0" 
+                    x-transition:enter-end="opacity-100"
+                    x-transition:leave="transition ease-in duration-200"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0"
+                >
                 <x-packages-comparison-section
                     :packages="$packages"
                     :comparison-groups="$comparisonGroups"
@@ -79,6 +115,7 @@
             </div>
         </div>
     </section>
+    </div>
 
     {{-- Customize Package Section --}}
     <section class="py-12 lg:py-16 bg-gray-50" x-data="{ 
@@ -160,22 +197,114 @@
 
     @once
     <style>
+        /* Alpine.js x-cloak */
+        [x-cloak] {
+            display: none !important;
+        }
+
+        /* Packages Banner Section */
+        .packages-banner-section {
+            position: relative;
+            width: 100%;
+            overflow: visible;
+        }
+
+        .packages-banner-wrapper {
+            position: relative;
+            width: 100%;
+            background-image: url('{{ asset("images/banner.jpg") }}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-bottom: 4rem;
+        }
+
+        .packages-banner-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.60) 100%);
+            z-index: 1;
+        }
+
+        .packages-banner-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 5rem 0 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+
+        .packages-tabs-wrapper-banner {
+            position: absolute;
+            bottom: -2.5rem;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .packages-tabs-wrapper-banner .container {
+            display: flex;
+            justify-content: center;
+        }
+
         /* Packages Section */
         .packages-section {
             position: relative;
             background: #ffffff;
+            padding-top: 4rem;
+        }
+
+        /* Packages Cards Grid */
+        .packages-cards-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 640px) {
+            .packages-cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 5rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .packages-cards-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 5rem;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .packages-cards-grid {
+                gap: 5rem;
+            }
         }
 
         /* Section Header */
         .packages-section-header {
             animation: fadeInUp 0.6s ease-out;
+            position: relative;
+            z-index: 2;
         }
 
         .packages-section-label {
             font-family: 'Montserrat', sans-serif;
             font-weight: 500;
             letter-spacing: 0.3em;
-            opacity: 0.8;
         }
 
         .packages-section-title {
@@ -189,9 +318,34 @@
             font-weight: 400;
         }
 
+        /* Responsive Banner */
+        @media (max-width: 768px) {
+            .packages-banner-wrapper {
+                min-height: 300px;
+            }
+
+            .packages-banner-content {
+                padding: 3rem 0;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .packages-banner-wrapper {
+                min-height: 250px;
+            }
+
+            .packages-banner-content {
+                padding: 2.5rem 0;
+            }
+        }
+
         /* Tabs Wrapper */
         .packages-tabs-wrapper {
             animation: fadeInUp 0.6s ease-out 0.1s both;
+        }
+
+        .packages-tabs-wrapper-banner {
+            animation: fadeInUp 0.6s ease-out 0.2s both;
         }
 
         .packages-tabs-container {
@@ -199,9 +353,11 @@
             gap: 0.5rem;
             justify-content: center;
             padding: 0.25rem;
-            background: #f9f9f9;
+            background: #ffffff;
             border-radius: 8px;
             margin: 0 auto;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         .packages-tab {
@@ -223,7 +379,16 @@
             color: #6b7280;
         }
 
+        .packages-tabs-wrapper-banner .packages-tab {
+            color: #6b7280;
+        }
+
         .packages-tab:hover {
+            color: #000000;
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        .packages-tabs-wrapper-banner .packages-tab:hover {
             color: #000000;
             background: rgba(0, 0, 0, 0.03);
         }
@@ -249,7 +414,13 @@
 
         .packages-tab-active {
             color: #000000;
-            background: #ffffff;
+            background: #f3f4f6;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .packages-tabs-wrapper-banner .packages-tab-active {
+            color: #000000;
+            background: #f3f4f6;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
@@ -257,7 +428,15 @@
             stroke: #000000;
         }
 
+        .packages-tabs-wrapper-banner .packages-tab-active .packages-tab-icon svg {
+            stroke: #000000;
+        }
+
         .packages-tab-inactive {
+            color: #6b7280;
+        }
+
+        .packages-tabs-wrapper-banner .packages-tab-inactive {
             color: #6b7280;
         }
 
@@ -265,11 +444,23 @@
             stroke: #6b7280;
         }
 
+        .packages-tabs-wrapper-banner .packages-tab-inactive .packages-tab-icon svg {
+            stroke: #6b7280;
+        }
+
         .packages-tab-inactive:hover {
             color: #000000;
         }
 
+        .packages-tabs-wrapper-banner .packages-tab-inactive:hover {
+            color: #000000;
+        }
+
         .packages-tab-inactive:hover .packages-tab-icon svg {
+            stroke: #000000;
+        }
+
+        .packages-tabs-wrapper-banner .packages-tab-inactive:hover .packages-tab-icon svg {
             stroke: #000000;
         }
 

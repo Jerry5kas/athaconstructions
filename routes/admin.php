@@ -8,6 +8,9 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\BlogCategoryController;
+use App\Http\Controllers\Admin\PackageController;
+use App\Http\Controllers\Admin\PackageSectionController;
+use App\Http\Controllers\Admin\PackageFeatureController;
 use App\Http\Controllers\ImageKitUploadController;
 
 /*
@@ -44,6 +47,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // Blog Categories management
         Route::resource('blog-categories', BlogCategoryController::class)->names('blog-categories');
+
+        // Packages management
+        Route::resource('packages', PackageController::class)->names('packages');
+
+        // Package Sections management
+        Route::resource('package-sections', PackageSectionController::class)->names('package-sections');
+        
+        // Package Features management
+        Route::post('package-sections/{section}/features', [PackageFeatureController::class, 'storeOrUpdate'])->name('package-features.store-or-update');
+        Route::delete('package-features/{feature}', [PackageFeatureController::class, 'destroy'])->name('package-features.destroy');
 
         // ImageKit upload route
         Route::post('/upload-imagekit', [ImageKitUploadController::class, 'upload'])->name('upload-imagekit');

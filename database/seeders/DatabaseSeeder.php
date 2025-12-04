@@ -17,5 +17,8 @@ class DatabaseSeeder extends Seeder
     {
         // Seed default admin user for the dashboard
         $this->call(AdminUserSeeder::class);
+        
+        // Seed packages, sections, and features
+        $this->call(PackageSeeder::class);
     }
 }

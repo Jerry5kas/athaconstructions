@@ -182,6 +182,62 @@
         </a>
 
         <div class="my-6">
+            <p class="text-xs font-semibold uppercase tracking-wider text-gray-400 px-3 mb-3">Packages</p>
+        </div>
+
+        {{-- Packages --}}
+        <a
+            href="{{ route('admin.packages.index') }}"
+            class="group relative flex items-center rounded-xl px-4 py-3 transition-all duration-200
+                {{ request()->routeIs('admin.packages.*') && !request()->routeIs('admin.package-sections.*') && !request()->routeIs('admin.package-features.*')
+                    ? 'bg-gradient-to-r from-gray-900 to-gray-800 text-white shadow-lg shadow-gray-900/20' 
+                    : 'text-gray-700 hover:bg-gray-100 hover:shadow-md' }}">
+            @if(request()->routeIs('admin.packages.*') && !request()->routeIs('admin.package-sections.*') && !request()->routeIs('admin.package-features.*'))
+                <div class="absolute left-0 top-0 bottom-0 w-1 bg-gray-400 rounded-r-full"></div>
+            @endif
+            <div class="flex items-center justify-center w-8 h-8 rounded-lg mr-3
+                {{ request()->routeIs('admin.packages.*') && !request()->routeIs('admin.package-sections.*') && !request()->routeIs('admin.package-features.*')
+                    ? 'bg-white/10' 
+                    : 'bg-gray-100 group-hover:bg-gray-200' }}">
+                <svg class="w-4 h-4 {{ request()->routeIs('admin.packages.*') && !request()->routeIs('admin.package-sections.*') && !request()->routeIs('admin.package-features.*') ? 'text-white' : 'text-gray-600' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                </svg>
+            </div>
+            <span class="font-medium {{ request()->routeIs('admin.packages.*') && !request()->routeIs('admin.package-sections.*') && !request()->routeIs('admin.package-features.*') ? 'text-white' : 'text-gray-700' }}">Packages</span>
+            @if(request()->routeIs('admin.packages.*') && !request()->routeIs('admin.package-sections.*') && !request()->routeIs('admin.package-features.*'))
+                <svg class="w-4 h-4 ml-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            @endif
+        </a>
+
+        {{-- Package Sections --}}
+        <a
+            href="{{ route('admin.package-sections.index') }}"
+            class="group relative flex items-center rounded-xl px-4 py-3 transition-all duration-200
+                {{ request()->routeIs('admin.package-sections.*') || request()->routeIs('admin.package-features.*')
+                    ? 'bg-gradient-to-r from-gray-900 to-gray-800 text-white shadow-lg shadow-gray-900/20' 
+                    : 'text-gray-700 hover:bg-gray-100 hover:shadow-md' }}">
+            @if(request()->routeIs('admin.package-sections.*') || request()->routeIs('admin.package-features.*'))
+                <div class="absolute left-0 top-0 bottom-0 w-1 bg-gray-400 rounded-r-full"></div>
+            @endif
+            <div class="flex items-center justify-center w-8 h-8 rounded-lg mr-3
+                {{ request()->routeIs('admin.package-sections.*') || request()->routeIs('admin.package-features.*')
+                    ? 'bg-white/10' 
+                    : 'bg-gray-100 group-hover:bg-gray-200' }}">
+                <svg class="w-4 h-4 {{ request()->routeIs('admin.package-sections.*') || request()->routeIs('admin.package-features.*') ? 'text-white' : 'text-gray-600' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+                </svg>
+            </div>
+            <span class="font-medium {{ request()->routeIs('admin.package-sections.*') || request()->routeIs('admin.package-features.*') ? 'text-white' : 'text-gray-700' }}">Package Sections</span>
+            @if(request()->routeIs('admin.package-sections.*') || request()->routeIs('admin.package-features.*'))
+                <svg class="w-4 h-4 ml-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            @endif
+        </a>
+
+        <div class="my-6">
             <p class="text-xs font-semibold uppercase tracking-wider text-gray-400 px-3 mb-3">Content Management</p>
         </div>
 
