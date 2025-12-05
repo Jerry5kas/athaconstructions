@@ -76,7 +76,7 @@
         </section>
 
         {{-- Packages Section with Tabs --}}
-        <section class="packages-section py-16 lg:py-24">
+        <section class="packages-section py-12 lg:py-20">
             <div class="container mx-auto px-4 lg:px-8">
 
             {{-- Cards View --}}
@@ -90,7 +90,7 @@
                 x-transition:leave-start="opacity-100"
                 x-transition:leave-end="opacity-0"
             >
-                <div class="packages-cards-grid py-16">
+                <div class="packages-cards-grid py-10 sm:py-20">
                     @foreach($packages as $package)
                         <x-package-card :package="$package" />
                     @endforeach
@@ -269,7 +269,7 @@
         .packages-cards-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 5rem;
+            gap: 1.5rem;
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -277,20 +277,21 @@
         @media (min-width: 640px) {
             .packages-cards-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 5rem;
+                gap: 2rem;
             }
         }
 
         @media (min-width: 1024px) {
             .packages-cards-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 5rem;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2.5rem;
             }
         }
 
         @media (min-width: 1280px) {
             .packages-cards-grid {
-                gap: 5rem;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 3rem;
             }
         }
 

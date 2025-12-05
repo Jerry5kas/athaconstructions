@@ -179,7 +179,7 @@
     /* Stats Card */
     .stats-card {
         position: relative;
-        background: white;
+        background: transparent;
         border: 2px solid #e8e8e8;
         border-radius: 16px;
         padding: 2rem 1.5rem;

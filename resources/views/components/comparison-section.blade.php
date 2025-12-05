@@ -4,7 +4,7 @@
     'otherContractors' => [],
 ])
 
-<section class="comparison-section py-16 lg:py-24 bg-white relative overflow-hidden"
+<section class="comparison-section py-12 lg:py-16 bg-white relative overflow-hidden"
          x-data="{ visible: false }"
          x-intersect="visible = true">
     
@@ -20,7 +20,7 @@
 
     <div class="container mx-auto px-4 relative z-10">
         {{-- Section Header --}}
-        <div class="text-center mb-12 lg:mb-16">
+        <div class="text-center mb-8 lg:mb-10">
             {{-- Top Decoration --}}
             <div class="comparison-top-decoration opacity-0 mb-6"
                  :class="{ 'animate-fade-in-down': visible }" 
@@ -28,7 +28,7 @@
                 <div class="comparison-decoration-line"></div>
             </div>
 
-            <h2 class="font-tenor text-3xl lg:text-6xl uppercase mb-4 tracking-tight comparison-title opacity-0"
+            <h2 class="font-tenor text-2xl lg:text-4xl uppercase mb-3 tracking-tight comparison-title opacity-0"
                 :class="{ 'animate-fade-in-up': visible }" 
                 style="animation-delay: 0.3s;">
                 <span class="hidden md:inline">{{ $title }}</span>
@@ -46,7 +46,7 @@
                 {{-- Center Icon on Vertical Dashed Line --}}
                 <div class="absolute left-1/2 top-0 bottom-0 w-px transform -translate-x-1/2 z-0 comparison-center-line">
                     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center comparison-center-icon">
-                        <svg class="w-14 h-14 text-black" fill="none" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-10 h-10 text-black" fill="none" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
                             <path d="M32 8 L56 20 L56 44 L32 56 L8 44 L8 20 Z" stroke="currentColor" stroke-width="2" fill="none"/>
                             <path d="M32 20 L44 26 L44 38 L32 44 L20 38 L20 26 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
                         </svg>
@@ -55,44 +55,44 @@
                     <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-px h-1/2 bg-gradient-to-b from-gray-200 via-gray-200 to-transparent"></div>
                 </div>
 
-                <div class="grid grid-cols-12 gap-6 items-start">
+                <div class="grid grid-cols-12 gap-4 items-start">
                     {{-- ATHA CONSTRUCTION Side --}}
-                    <div class="col-span-5 pr-10">
-                        <div class="sticky top-32">
+                    <div class="col-span-5 pr-8">
+                        <div class="sticky top-24">
                             {{-- Header with SVG --}}
-                            <div class="mb-10 comparison-header-left opacity-0"
+                            <div class="mb-6 comparison-header-left opacity-0"
                                  :class="{ 'animate-fade-in-left': visible }" 
                                  style="animation-delay: 0.5s;">
-                                <div class="flex items-center gap-4 mb-6">
-                                    <svg class="w-8 h-8 text-black flex-shrink-0" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <svg class="w-6 h-6 text-black flex-shrink-0" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                                         <rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
                                         <path d="M8 14 L16 20 L24 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                         <circle cx="10" cy="6" r="1.5" fill="currentColor"/>
                                         <circle cx="16" cy="6" r="1.5" fill="currentColor"/>
                                         <circle cx="22" cy="6" r="1.5" fill="currentColor"/>
                                     </svg>
-                                    <h3 class="font-tenor text-3xl lg:text-4xl uppercase tracking-tight">ATHA<br>CONSTRUCTION</h3>
+                                    <h3 class="font-tenor text-2xl lg:text-3xl uppercase tracking-tight">ATHA<br>CONSTRUCTION</h3>
                                 </div>
                                 <div class="w-32 h-1 bg-black comparison-header-line"></div>
                             </div>
                             
                             {{-- Items with Custom SVGs --}}
-                            <div class="space-y-5">
+                            <div class="space-y-3">
                                 @foreach($athaAdvantages as $index => $advantage)
                                     <div class="comparison-item-left opacity-0"
                                          :class="{ 'animate-fade-in-left': visible }"
                                          style="animation-delay: {{ 0.6 + ($index * 0.1) }}s">
                                         <div class="comparison-item-card comparison-item-card-left group">
-                                            <div class="flex items-start gap-6">
-                                                <div class="flex-shrink-0 mt-1">
+                                            <div class="flex items-center gap-4">
+                                                <div class="flex-shrink-0">
                                                     <div class="comparison-icon-box comparison-icon-box-left">
-                                                        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                                                         </svg>
                                                     </div>
                                                 </div>
-                                                <div class="flex-1 pt-1">
-                                                    <p class="text-base text-gray-900 leading-relaxed comparison-item-text">{{ $advantage }}</p>
+                                                <div class="flex-1">
+                                                    <p class="text-sm text-gray-900 leading-relaxed comparison-item-text">{{ $advantage }}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -106,15 +106,15 @@
                     <div class="col-span-2"></div>
 
                     {{-- OTHER CONTRACTORS Side --}}
-                    <div class="col-span-5 pl-10">
-                        <div class="sticky top-32">
+                    <div class="col-span-5 pl-8">
+                        <div class="sticky top-24">
                             {{-- Header with SVG --}}
-                            <div class="mb-10 comparison-header-right opacity-0"
+                            <div class="mb-6 comparison-header-right opacity-0"
                                  :class="{ 'animate-fade-in-right': visible }" 
                                  style="animation-delay: 0.5s;">
-                                <div class="flex items-center gap-4 mb-6 justify-end">
-                                    <h3 class="font-tenor text-3xl lg:text-4xl uppercase tracking-tight text-gray-300 text-right">OTHER<br>CONTRACTORS</h3>
-                                    <svg class="w-8 h-8 text-gray-300 flex-shrink-0" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                <div class="flex items-center gap-3 mb-4 justify-end">
+                                    <h3 class="font-tenor text-2xl lg:text-3xl uppercase tracking-tight text-gray-300 text-right">OTHER<br>CONTRACTORS</h3>
+                                    <svg class="w-6 h-6 text-gray-300 flex-shrink-0" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                                         <rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="1.5" fill="none" stroke-dasharray="4 4"/>
                                         <path d="M8 14 L16 20 L24 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 2"/>
                                     </svg>
@@ -123,19 +123,19 @@
                             </div>
                             
                             {{-- Items with Custom SVGs --}}
-                            <div class="space-y-5">
+                            <div class="space-y-3">
                                 @foreach($otherContractors as $index => $disadvantage)
                                     <div class="comparison-item-right opacity-0"
                                          :class="{ 'animate-fade-in-right': visible }"
                                          style="animation-delay: {{ 0.6 + ($index * 0.1) }}s">
                                         <div class="comparison-item-card comparison-item-card-right group">
-                                            <div class="flex items-start gap-6">
-                                                <div class="flex-1 pt-1 text-right">
-                                                    <p class="text-base text-gray-400 leading-relaxed line-through comparison-item-text">{{ $disadvantage }}</p>
+                                            <div class="flex items-center gap-4">
+                                                <div class="flex-1 text-right">
+                                                    <p class="text-sm text-gray-400 leading-relaxed line-through comparison-item-text">{{ $disadvantage }}</p>
                                                 </div>
-                                                <div class="flex-shrink-0 mt-1">
+                                                <div class="flex-shrink-0">
                                                     <div class="comparison-icon-box comparison-icon-box-right">
-                                                        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                                                         </svg>
                                                     </div>
@@ -151,37 +151,37 @@
             </div>
 
             {{-- Mobile: Stacked Design --}}
-            <div class="lg:hidden space-y-20">
+            <div class="lg:hidden space-y-12">
                 {{-- ATHA CONSTRUCTION --}}
                 <div>
-                    <div class="mb-10 comparison-header-left opacity-0"
+                    <div class="mb-6 comparison-header-left opacity-0"
                          :class="{ 'animate-fade-in-left': visible }" 
                          style="animation-delay: 0.5s;">
-                        <div class="flex items-center gap-3 mb-6">
-                            <svg class="w-6 h-6 text-black" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                        <div class="flex items-center gap-3 mb-4">
+                            <svg class="w-5 h-5 text-black" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                                 <rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
                                 <path d="M8 14 L16 20 L24 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                            <h3 class="font-tenor text-2xl uppercase tracking-tight">ATHA CONSTRUCTION</h3>
+                            <h3 class="font-tenor text-xl uppercase tracking-tight">ATHA CONSTRUCTION</h3>
                         </div>
-                        <div class="w-24 h-0.5 bg-black"></div>
+                        <div class="w-20 h-0.5 bg-black"></div>
                     </div>
                     
-                    <div class="space-y-6">
+                    <div class="space-y-4">
                         @foreach($athaAdvantages as $index => $advantage)
                             <div class="comparison-item-left opacity-0"
                                  :class="{ 'animate-fade-in-left': visible }"
                                  style="animation-delay: {{ 0.6 + ($index * 0.1) }}s">
                                 <div class="comparison-item-card comparison-item-card-left">
-                                    <div class="flex items-start gap-4">
-                                        <div class="flex-shrink-0 mt-1">
+                                    <div class="flex items-center gap-4">
+                                        <div class="flex-shrink-0">
                                             <div class="comparison-icon-box comparison-icon-box-left">
-                                                <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                                                 </svg>
                                             </div>
                                         </div>
-                                        <p class="text-xs text-gray-900 leading-relaxed flex-1 pt-2">{{ $advantage }}</p>
+                                        <p class="text-xs text-gray-900 leading-relaxed flex-1">{{ $advantage }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -190,13 +190,13 @@
                 </div>
 
                 {{-- Divider with SVG --}}
-                <div class="relative py-6">
+                <div class="relative py-4">
                     <div class="absolute inset-0 flex items-center justify-center">
                         <div class="w-full h-px bg-gray-200"></div>
                     </div>
                     <div class="relative flex justify-center">
                         <div class="flex items-center justify-center">
-                            <svg class="w-12 h-12 text-black" fill="none" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="w-10 h-10 text-black" fill="none" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M32 8 L56 20 L56 44 L32 56 L8 44 L8 20 Z" stroke="currentColor" stroke-width="2" fill="none"/>
                                 <path d="M32 20 L44 26 L44 38 L32 44 L20 38 L20 26 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
                             </svg>
@@ -206,29 +206,29 @@
 
                 {{-- OTHER CONTRACTORS --}}
                 <div>
-                    <div class="mb-10 comparison-header-right opacity-0"
+                    <div class="mb-6 comparison-header-right opacity-0"
                          :class="{ 'animate-fade-in-right': visible }" 
                          style="animation-delay: 0.5s;">
-                        <div class="flex items-center gap-3 mb-6 justify-end">
-                            <h3 class="font-tenor text-2xl uppercase tracking-tight text-gray-300 text-right">OTHER CONTRACTORS</h3>
-                            <svg class="w-6 h-6 text-gray-300" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                        <div class="flex items-center gap-3 mb-4 justify-end">
+                            <h3 class="font-tenor text-xl uppercase tracking-tight text-gray-300 text-right">OTHER CONTRACTORS</h3>
+                            <svg class="w-5 h-5 text-gray-300" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                                 <rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="1.5" fill="none" stroke-dasharray="4 4"/>
                             </svg>
                         </div>
-                        <div class="w-24 h-0.5 bg-gray-300 ml-auto"></div>
+                        <div class="w-20 h-0.5 bg-gray-300 ml-auto"></div>
                     </div>
                     
-                    <div class="space-y-6">
+                    <div class="space-y-4">
                         @foreach($otherContractors as $index => $disadvantage)
                             <div class="comparison-item-right opacity-0"
                                  :class="{ 'animate-fade-in-right': visible }"
                                  style="animation-delay: {{ 0.6 + ($index * 0.1) }}s">
                                 <div class="comparison-item-card comparison-item-card-right">
-                                    <div class="flex items-start gap-4">
-                                        <p class="text-xs text-gray-400 leading-relaxed flex-1 pt-2 text-right line-through">{{ $disadvantage }}</p>
-                                        <div class="flex-shrink-0 mt-1">
+                                    <div class="flex items-center gap-4">
+                                        <p class="text-xs text-gray-400 leading-relaxed flex-1 text-right line-through">{{ $disadvantage }}</p>
+                                        <div class="flex-shrink-0">
                                             <div class="comparison-icon-box comparison-icon-box-right">
-                                                <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                                                 </svg>
                                             </div>
@@ -316,8 +316,8 @@
 
     /* Item Cards */
     .comparison-item-card {
-        padding: 1.25rem;
-        border-radius: 12px;
+        padding: 1rem;
+        border-radius: 10px;
         transition: all 0.4s ease;
         background: white;
         border: 1px solid #e8e8e8;
@@ -342,14 +342,14 @@
 
     /* Icon Boxes */
     .comparison-icon-box {
-        width: 48px;
-        height: 48px;
-        border-radius: 10px;
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
         display: flex;
         align-items: center;
         justify-content: center;
         transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     .comparison-icon-box-left {
@@ -442,8 +442,8 @@
     /* Responsive */
     @media (max-width: 1023px) {
         .comparison-icon-box {
-            width: 40px;
-            height: 40px;
+            width: 24px;
+            height: 24px;
         }
     }
 </style>

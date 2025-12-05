@@ -35,7 +35,7 @@
     {{-- Services Section --}}
     <x-services-section
         title="OUR SERVICES"
-        :description="'From concept to completion, we deliver comprehensive construction solutions tailored to your vision. Whether you\'re building your dream home or expanding your business, our expert team brings quality, innovation, and reliability to every project.'"
+        :description="'We deliver comprehensive construction solutions tailored to your vision. Our expert team brings quality, innovation, and reliability to every project.'"
         :services="$services"
         ctaText="VIEW ALL SERVICES"
         :ctaLink="route('services')"

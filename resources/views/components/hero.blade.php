@@ -425,6 +425,20 @@
             cursor: pointer;
         }
 
+        @media (min-width: 1025px) and (max-width: 1440px) {
+            .hero-form-card {
+                padding: 40px 48px;
+                border-radius: 120px 0 0 120px;
+            }
+        }
+
+        @media (min-width: 1441px) and (max-width: 1920px) {
+            .hero-form-card {
+                padding: 48px 52px;
+                border-radius: 160px 0 0 160px;
+            }
+        }
+
         @media (max-width: 1024px) {
             .hero-shell {
                 min-height: 70vh;

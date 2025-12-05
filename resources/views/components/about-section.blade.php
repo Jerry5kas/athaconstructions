@@ -197,18 +197,10 @@
     /* Paragraphs */
     .about-paragraph-wrapper {
         position: relative;
-        padding-left: 1.5rem;
     }
 
     .about-paragraph-wrapper::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0.5rem;
-        bottom: 0.5rem;
-        width: 3px;
-        background: linear-gradient(180deg, #1a1a1a, transparent);
-        border-radius: 2px;
+        display: none;
     }
 
     .about-paragraph {
@@ -405,14 +397,6 @@
 
     /* Responsive Adjustments */
     @media (max-width: 1023px) {
-        .about-paragraph-wrapper {
-            padding-left: 1rem;
-        }
-
-        .about-paragraph-wrapper::before {
-            width: 2px;
-        }
-
         .about-image-corner {
             width: 30px;
             height: 30px;
