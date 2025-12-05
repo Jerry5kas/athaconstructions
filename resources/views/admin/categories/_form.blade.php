@@ -17,15 +17,38 @@
             if (file) {
                 this.mediaFile = file;
                 this.mediaLoading = true;
+                
+                // Check if it's a video or document
+                const fileType = file.type;
+                const isVideo = fileType.startsWith('video/');
+                const isDocument = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 
+                                   'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                                   'text/csv', 'application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.presentationml.presentation'].includes(fileType);
+                
+                if (isVideo) {
+                    // For videos, create object URL for preview
+                    this.mediaPreview = URL.createObjectURL(file);
+                    this.mediaLoading = false;
+                } else if (isDocument) {
+                    // For documents, show file icon instead
+                    this.mediaPreview = null;
+                    this.mediaLoading = false;
+                } else {
+                    // For images, use FileReader
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     this.mediaPreview = e.target.result;
                     this.mediaLoading = false;
                 };
                 reader.readAsDataURL(file);
+                }
             }
         },
         clearMedia() {
+            // Clean up video object URL to prevent memory leaks
+            if (this.mediaPreview && this.mediaFile && this.mediaFile.type.startsWith('video/')) {
+                URL.revokeObjectURL(this.mediaPreview);
+            }
             this.mediaPreview = null;
             this.mediaFile = null;
             const input = document.getElementById('media_input');
@@ -201,13 +224,13 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
                         </svg>
                         <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-                        <p class="text-xs text-gray-500">PNG, JPG, GIF, SVG, WEBP, ICO up to 5MB</p>
+                        <p class="text-xs text-gray-500">Images, Videos, PDFs, Documents, Spreadsheets, etc. (up to 20MB)</p>
                     </div>
                     <input
                         id="media_input"
                         type="file"
                         name="media"
-                        accept="image/png,image/jpeg,image/jpg,image/gif,image/svg+xml,image/webp,image/x-icon"
+                        accept="image/*,video/*,.pdf,.doc,.docx,.xls,.xlsx,.csv,.ppt,.pptx,.txt"
                         x-on:change="handleMediaSelect($event)"
                         class="hidden" />
                 </label>
@@ -233,6 +256,11 @@
                         <option value="svg" {{ $mediaTypeValue === 'svg' ? 'selected' : '' }}>SVG</option>
                         <option value="icon" {{ $mediaTypeValue === 'icon' ? 'selected' : '' }}>Icon</option>
                         <option value="video" {{ $mediaTypeValue === 'video' ? 'selected' : '' }}>Video</option>
+                        <option value="pdf" {{ $mediaTypeValue === 'pdf' ? 'selected' : '' }}>PDF Document</option>
+                        <option value="document" {{ $mediaTypeValue === 'document' ? 'selected' : '' }}>Word Document</option>
+                        <option value="spreadsheet" {{ $mediaTypeValue === 'spreadsheet' ? 'selected' : '' }}>Spreadsheet</option>
+                        <option value="presentation" {{ $mediaTypeValue === 'presentation' ? 'selected' : '' }}>Presentation</option>
+                        <option value="other" {{ $mediaTypeValue === 'other' ? 'selected' : '' }}>Other File</option>
                     </select>
                     <p class="mt-1 text-xs text-gray-500">Leave as auto-detect in most cases. Use this only if you need to force a specific handling.</p>
                     @error('media_type')
@@ -248,6 +276,23 @@
                 {{-- Current Media (if editing) --}}
                 @if (!empty($category?->media_path))
                     <div class="flex items-center gap-3 p-4 bg-gray-50 rounded-xl border-2 border-gray-200">
+                        @if($category->media_type === 'video')
+                            <div class="relative w-32 h-24 overflow-hidden rounded-lg shadow-md bg-slate-100 flex-shrink-0">
+                                <video
+                                    src="{{ $category->media_url }}"
+                                    class="w-full h-full object-cover"
+                                    controls
+                                    preload="metadata">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        @elseif(in_array($category->media_type, ['pdf', 'document', 'spreadsheet', 'presentation', 'other']))
+                            <div class="relative w-24 h-24 overflow-hidden rounded-lg shadow-md bg-slate-100 flex-shrink-0 flex items-center justify-center">
+                                <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                        @else
                         <div class="relative w-24 h-24 overflow-hidden rounded-lg shadow-md bg-slate-100 flex-shrink-0">
                             @if ($category->media_type === 'svg')
                                 <img
@@ -261,18 +306,38 @@
                                     class="object-cover w-full h-full" />
                             @endif
                         </div>
+                        @endif
                         <div class="flex-1 min-w-0">
                             <div class="flex items-center space-x-2 mb-1">
                                 <span class="inline-flex items-center px-2 py-0.5 text-xs font-semibold text-gray-700 bg-gray-200 rounded-md">Current</span>
+                                @if($category->media_type)
+                                    <span class="inline-flex items-center px-2 py-0.5 text-xs font-semibold text-blue-700 bg-blue-100 rounded-md capitalize">{{ $category->media_type }}</span>
+                                @endif
                             </div>
                             <p class="text-sm font-medium text-gray-900 truncate">{{ basename($category->media_path) }}</p>
                             <p class="text-xs text-gray-500 mt-0.5">Existing media file</p>
+                            <a href="{{ $category->media_url }}" target="_blank" class="text-xs text-blue-600 hover:text-blue-800 mt-1 inline-block">View/Download</a>
                         </div>
                     </div>
                 @endif
 
                 {{-- New Media Preview --}}
-                <div x-show="mediaPreview && mediaFile" x-cloak class="flex items-center gap-3 p-4 bg-emerald-50 rounded-xl border-2 border-emerald-300">
+                <div x-show="mediaFile" x-cloak class="flex items-center gap-3 p-4 bg-emerald-50 rounded-xl border-2 border-emerald-300">
+                    <template x-if="mediaPreview && mediaFile.type.startsWith('video/')">
+                        <div class="relative w-32 h-24 overflow-hidden rounded-lg shadow-md bg-slate-100 flex-shrink-0">
+                            <video
+                                :src="mediaPreview"
+                                class="w-full h-full object-cover"
+                                controls
+                                preload="metadata">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="absolute top-1 right-1">
+                                <span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-semibold text-white bg-emerald-500 rounded">New</span>
+                            </div>
+                        </div>
+                    </template>
+                    <template x-if="mediaPreview && !mediaFile.type.startsWith('video/') && !['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'text/csv'].includes(mediaFile.type)">
                     <div class="relative w-24 h-24 overflow-hidden rounded-lg shadow-md bg-slate-100 flex-shrink-0">
                         <img
                             :src="mediaPreview"
@@ -282,6 +347,17 @@
                             <span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-semibold text-white bg-emerald-500 rounded">New</span>
                         </div>
                     </div>
+                    </template>
+                    <template x-if="!mediaPreview || ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'text/csv'].includes(mediaFile.type)">
+                        <div class="relative w-24 h-24 overflow-hidden rounded-lg shadow-md bg-slate-100 flex-shrink-0 flex items-center justify-center">
+                            <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                            </svg>
+                            <div class="absolute top-1 right-1">
+                                <span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-semibold text-white bg-emerald-500 rounded">New</span>
+                            </div>
+                        </div>
+                    </template>
                     <div class="flex-1 min-w-0">
                         <div class="flex items-center justify-between mb-1">
                             <span class="inline-flex items-center px-2 py-0.5 text-xs font-semibold text-emerald-700 bg-emerald-200 rounded-md">Selected</span>
@@ -295,7 +371,8 @@
                             </button>
                         </div>
                         <p class="text-sm font-medium text-gray-900 truncate" x-text="mediaFile ? mediaFile.name : ''"></p>
-                        <p class="text-xs text-emerald-600 mt-0.5" x-text="mediaFile ? (mediaFile.size / 1024).toFixed(2) + ' KB' : ''"></p>
+                        <p class="text-xs text-emerald-600 mt-0.5" x-text="mediaFile ? (mediaFile.size > 1024 * 1024 ? (mediaFile.size / (1024 * 1024)).toFixed(2) + ' MB' : (mediaFile.size / 1024).toFixed(2) + ' KB') : ''"></p>
+                        <p class="text-xs text-gray-500 mt-0.5" x-text="mediaFile ? mediaFile.type : ''"></p>
                     </div>
                 </div>
             </div>

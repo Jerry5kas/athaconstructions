@@ -20,5 +20,8 @@ class DatabaseSeeder extends Seeder
         
         // Seed packages, sections, and features
         $this->call(PackageSeeder::class);
+
+        // Seed properties and related data
+        $this->call(PropertySeeder::class);
     }
 }

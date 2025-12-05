@@ -61,8 +61,8 @@ class Category extends Model
         if (filter_var($this->media_path, FILTER_VALIDATE_URL)) {
             // Check if it's an ImageKit URL
             if (strpos($this->media_path, 'ik.imagekit.io') !== false) {
-                // For videos, return the raw URL (no image optimizations)
-                if ($this->media_type === 'video') {
+                // For videos and documents, return the raw URL (no image optimizations)
+                if (in_array($this->media_type, ['video', 'pdf', 'document', 'spreadsheet', 'presentation', 'other'])) {
                     return $this->media_path;
                 }
 

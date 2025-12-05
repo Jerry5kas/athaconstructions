@@ -11,6 +11,7 @@ use App\Models\Contact;
 use App\Models\Package;
 use App\Models\PackageSection;
 use App\Models\PackageFeature;
+use App\Models\Property;
 
 // Brevo (Sendinblue) API SDK
 use SendinBlue\Client\Configuration as BrevoConfiguration;
@@ -542,24 +543,111 @@ class HomeController extends Controller
     public function properties()
     {
         $seo = [
-            'title' => 'Villa Construction Company mysore | Atha construction',
-            'description' => 'Explore exciting career opportunities with Atha Construction. Join our dynamic team and build your future with a leading name in the construction industry.',
-            'keywords' => 'Villa Construction Company mysore, Villa Construction Company In Bangalore',
+            'title' => 'Properties & Projects | Atha Construction - Best Builders in Bangalore',
+            'description' => 'Explore our portfolio of residential and commercial construction projects in Bangalore. View ongoing and completed projects with detailed specifications, floor plans, and amenities.',
+            'keywords' => 'construction projects bangalore, residential projects, commercial projects, villa construction, apartment projects',
         ];
 
-        // Firebase configuration for client-side use
-        $firebaseConfig = [
-            'apiKey' => 'AIzaSyAEpyMUKI8eH2xU7_3Ve3whYWs7dXWOrwI',
-            'authDomain' => 'atha-eb597.firebaseapp.com',
-            'databaseURL' => 'https://atha-eb597-default-rtdb.firebaseio.com',
-            'projectId' => 'atha-eb597',
-            'storageBucket' => 'atha-eb597.appspot.com',
-            'messagingSenderId' => '793772614946',
-            'appId' => '1:793772614946:web:45fb6b530052fbdc44b17b',
-            'measurementId' => 'G-NR4CK21TCC',
+        // Filter by status
+        $status = request()->query('status');
+        $type = request()->query('type');
+        $search = request()->query('search');
+
+        $query = Property::with(['location', 'units', 'amenities', 'gallery'])
+            ->ordered();
+
+        if ($status && in_array($status, ['upcoming', 'ongoing', 'completed'])) {
+            $query->where('status', $status);
+        }
+
+        if ($type && in_array($type, ['apartment', 'villa', 'plot', 'commercial'])) {
+            $query->where('project_type', $type);
+        }
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                  ->orWhere('short_description', 'like', "%{$search}%")
+                  ->orWhereHas('location', function ($locQuery) use ($search) {
+                      $locQuery->where('city', 'like', "%{$search}%")
+                               ->orWhere('locality', 'like', "%{$search}%");
+                  });
+            });
+        }
+
+        $properties = $query->paginate(12)->withQueryString();
+
+        // How It Works data
+        $howItWorks = [
+            [
+                'step' => 'A',
+                'title' => 'Initial Consultation',
+                'description' => 'Site survey, client requirement assessment, and project scoping.',
+                'image' => 'a.jpg',
+            ],
+            [
+                'step' => 'B',
+                'title' => 'Design & Planning',
+                'description' => 'Development of floor plans, elevations, and interior design concepts with client feedback incorporated.',
+                'image' => 'b.jpg',
+            ],
+            [
+                'step' => 'C',
+                'title' => 'Material Selection',
+                'description' => 'Option to choose from curated lookbooks or visit showrooms with architect guidance.',
+                'image' => 'c.jpg',
+            ],
+            [
+                'step' => 'D',
+                'title' => 'Execution',
+                'description' => 'Detailed construction process including foundation, waterproofing, MEP (Mechanical, Electrical, Plumbing), and anti-termite treatment.',
+                'image' => 'd.jpg',
+            ],
+            [
+                'step' => 'E',
+                'title' => 'Final inspections, approvals',
+                'description' => 'Check all the inspection checklist and get approval from site engineers as well as client.',
+                'image' => 'e.jpg',
+            ],
+            [
+                'step' => 'F',
+                'title' => 'Handover',
+                'description' => 'Client walkthroughs for a smooth transition to occupancy.',
+                'image' => 'f.jpg',
+            ],
         ];
 
-        return view('properties', compact('seo', 'firebaseConfig'));
+        return view('properties', compact('seo', 'properties', 'status', 'type', 'search', 'howItWorks'));
+    }
+
+    /**
+     * Display individual property detail page.
+     */
+    public function propertyDetail($slug)
+    {
+        $property = Property::with([
+            'location',
+            'units' => function ($query) {
+                $query->orderBy('bhk');
+            },
+            'amenities' => function ($query) {
+                $query->active()->ordered();
+            },
+            'gallery' => function ($query) {
+                $query->ordered();
+            },
+            'specifications' => function ($query) {
+                $query->ordered();
+            },
+        ])->where('slug', $slug)->firstOrFail();
+
+        $seo = [
+            'title' => ($property->meta_title ?? $property->title) . ' | Atha Construction',
+            'description' => $property->meta_description ?? $property->short_description ?? '',
+            'keywords' => $property->meta_title ?? '',
+        ];
+
+        return view('property-detail', compact('property', 'seo'));
     }
 
     /**

@@ -65,6 +65,27 @@
                                     <td class="p-2 align-middle bg-transparent whitespace-nowrap">
                                         <div class="flex items-center px-2">
                                             @if ($category->media_path)
+                                                @if($category->media_type === 'video')
+                                                    <div class="relative w-16 h-16 overflow-hidden rounded-lg shadow-sm bg-slate-100 flex-shrink-0">
+                                                        <video
+                                                            src="{{ $category->media_url }}"
+                                                            class="w-full h-full object-cover"
+                                                            preload="metadata"
+                                                            muted>
+                                                        </video>
+                                                        <div class="absolute inset-0 flex items-center justify-center bg-black/20">
+                                                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                                                <path d="M8 5v14l11-7z"/>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                @elseif(in_array($category->media_type, ['pdf', 'document', 'spreadsheet', 'presentation', 'other']))
+                                                    <div class="relative w-16 h-16 overflow-hidden rounded-lg shadow-sm bg-slate-100 flex-shrink-0 flex items-center justify-center">
+                                                        <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                                                        </svg>
+                                                    </div>
+                                                @else
                                                 <div class="relative w-16 h-16 overflow-hidden rounded-lg shadow-sm bg-slate-100 flex-shrink-0">
                                                     @if ($category->media_type === 'svg')
                                                         <img
@@ -78,6 +99,7 @@
                                                             class="object-cover w-full h-full" />
                                                     @endif
                                                 </div>
+                                                @endif
                                             @else
                                                 <div class="flex items-center justify-center w-16 h-16 rounded-lg border border-dashed border-slate-200 text-slate-300 text-xs">
                                                     No Media

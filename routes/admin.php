@@ -14,6 +14,8 @@ use App\Http\Controllers\Admin\PackageFeatureController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\TestimonialMediaController;
+use App\Http\Controllers\Admin\PropertyController;
+use App\Http\Controllers\Admin\AmenityController;
 use App\Http\Controllers\ImageKitUploadController;
 
 /*
@@ -69,6 +71,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('contact-messages', ContactController::class)
             ->only(['index', 'show', 'destroy'])
             ->names('contact-messages');
+
+        // Properties management
+        Route::resource('properties', PropertyController::class)->names('properties');
+
+        // Amenities management
+        Route::resource('amenities', AmenityController::class)->names('amenities');
 
         // ImageKit upload route
         Route::post('/upload-imagekit', [ImageKitUploadController::class, 'upload'])->name('upload-imagekit');

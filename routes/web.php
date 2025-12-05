@@ -26,6 +26,7 @@ Route::get('/packages/{slug}', [HomeController::class, 'packageDetail'])->name('
 
 // Properties Page
 Route::get('/properties', [HomeController::class, 'properties'])->name('properties');
+Route::get('/properties/{slug}', [HomeController::class, 'propertyDetail'])->name('properties.show');
 
 // Careers Page
 Route::get('/careers', [HomeController::class, 'careers'])->name('careers');

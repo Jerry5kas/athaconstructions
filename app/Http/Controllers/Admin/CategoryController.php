@@ -55,8 +55,8 @@ class CategoryController extends Controller
             // Context type (grouping), free text – e.g. "hero", "testimonial", etc.
             'type' => ['nullable', 'string', 'max:100'],
             'description' => ['nullable', 'string'],
-            'media' => ['nullable', 'file', 'mimes:png,jpg,jpeg,gif,svg,webp,mp4,mov,webm,mkv,avi', 'max:20480'], // up to 20MB for video
-            'media_type' => ['nullable', 'string', 'in:image,svg,icon,video'],
+            'media' => ['nullable', 'file', 'mimes:png,jpg,jpeg,gif,svg,webp,ico,mp4,mov,webm,mkv,avi,pdf,doc,docx,xls,xlsx,csv,ppt,pptx,txt', 'max:20480'], // up to 20MB
+            'media_type' => ['nullable', 'string', 'in:image,svg,icon,video,pdf,document,spreadsheet,presentation,other'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
             'is_active' => ['nullable', 'boolean'],
         ]);
@@ -74,14 +74,26 @@ class CategoryController extends Controller
             // Determine media type based on extension
             if (empty($data['media_type'])) {
                 $ext = strtolower($extension);
+                $mimeType = $file->getMimeType();
+                
                 if (in_array($ext, ['svg'])) {
                     $data['media_type'] = 'svg';
                 } elseif (in_array($ext, ['ico', 'icon'])) {
                     $data['media_type'] = 'icon';
-                } elseif (in_array($ext, ['mp4', 'mov', 'webm', 'mkv', 'avi'])) {
+                } elseif (in_array($ext, ['mp4', 'mov', 'webm', 'mkv', 'avi']) || strpos($mimeType, 'video/') === 0) {
                     $data['media_type'] = 'video';
-                } else {
+                } elseif ($ext === 'pdf' || $mimeType === 'application/pdf') {
+                    $data['media_type'] = 'pdf';
+                } elseif (in_array($ext, ['doc', 'docx']) || in_array($mimeType, ['application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'])) {
+                    $data['media_type'] = 'document';
+                } elseif (in_array($ext, ['xls', 'xlsx', 'csv']) || in_array($mimeType, ['application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'text/csv'])) {
+                    $data['media_type'] = 'spreadsheet';
+                } elseif (in_array($ext, ['ppt', 'pptx']) || in_array($mimeType, ['application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.presentationml.presentation'])) {
+                    $data['media_type'] = 'presentation';
+                } elseif (in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp'])) {
                     $data['media_type'] = 'image';
+                } else {
+                    $data['media_type'] = 'other';
                 }
             }
             
@@ -158,14 +170,26 @@ class CategoryController extends Controller
             // Determine media type based on extension
             if (empty($data['media_type'])) {
                 $ext = strtolower($extension);
+                $mimeType = $file->getMimeType();
+                
                 if (in_array($ext, ['svg'])) {
                     $data['media_type'] = 'svg';
                 } elseif (in_array($ext, ['ico', 'icon'])) {
                     $data['media_type'] = 'icon';
-                } elseif (in_array($ext, ['mp4', 'mov', 'webm', 'mkv', 'avi'])) {
+                } elseif (in_array($ext, ['mp4', 'mov', 'webm', 'mkv', 'avi']) || strpos($mimeType, 'video/') === 0) {
                     $data['media_type'] = 'video';
-                } else {
+                } elseif ($ext === 'pdf' || $mimeType === 'application/pdf') {
+                    $data['media_type'] = 'pdf';
+                } elseif (in_array($ext, ['doc', 'docx']) || in_array($mimeType, ['application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'])) {
+                    $data['media_type'] = 'document';
+                } elseif (in_array($ext, ['xls', 'xlsx', 'csv']) || in_array($mimeType, ['application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'text/csv'])) {
+                    $data['media_type'] = 'spreadsheet';
+                } elseif (in_array($ext, ['ppt', 'pptx']) || in_array($mimeType, ['application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.presentationml.presentation'])) {
+                    $data['media_type'] = 'presentation';
+                } elseif (in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp'])) {
                     $data['media_type'] = 'image';
+                } else {
+                    $data['media_type'] = 'other';
                 }
             }
             
