@@ -14,7 +14,7 @@
                             <img 
                                 src="{{ $blog->cover_image_url ?? asset('images/blog-1.png') }}" 
                                 alt="{{ $blog->title }}" 
-                                class="w-full h-auto object-cover rounded-lg"
+                                class="w-full h-auto object-cover"
                                 style="max-height: 650px;"
                             >
                         </div>
@@ -38,14 +38,14 @@
 
                             <div class="mt-3 flex flex-wrap items-center gap-2">
                                 @if($blog->category)
-                                    <span class="inline-flex items-center px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide bg-black text-white rounded-full">
+                                    <span class="inline-flex items-center px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide bg-black text-white">
                                         {{ $blog->category->name }}
                                     </span>
                                 @endif
 
                                 @if($blog->tags && $blog->tags->isNotEmpty())
                                     @foreach($blog->tags as $tag)
-                                        <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-gray-100 text-[11px] font-medium text-gray-700">
+                                        <span class="inline-flex items-center px-2 py-0.5 bg-gray-100 text-[11px] font-medium text-gray-700">
                                             #{{ $tag->name }}
                                         </span>
                                     @endforeach
@@ -66,7 +66,7 @@
 
                 {{-- Sidebar --}}
                 <div class="lg:col-span-3">
-                    <div class="border border-gray-300 p-4 lg:p-6 rounded-lg">
+                    <div class="bg-gray-50 p-4 lg:p-6">
                         <h4 class="font-tenor text-lg lg:text-xl uppercase mb-6">Latest Posts</h4>
                         
                         <div class="space-y-6">
@@ -77,7 +77,7 @@
                                             <img 
                                                 src="{{ $recent->cover_image_url ?? asset('images/blog-1.png') }}" 
                                                 alt="{{ $recent->title }}" 
-                                                class="w-full h-40 object-cover rounded group-hover:opacity-90 transition-opacity"
+                                                class="w-full h-40 object-cover group-hover:opacity-90 transition-opacity"
                                             >
                                         </div>
                                         <div>

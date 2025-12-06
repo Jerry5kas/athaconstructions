@@ -120,22 +120,18 @@
 
     .package-card {
         background: #ffffff;
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        border-radius: 16px;
         overflow: hidden;
         transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         display: flex;
         flex-direction: column;
     }
 
     .package-card:hover {
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     }
 
     .package-card-header {
-        background: linear-gradient(135deg, #111111 0%, #2d2d2d 100%);
+        background: #000000;
         color: #ffffff;
         padding: 1.5rem;
         display: flex;
@@ -219,20 +215,19 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 50%;
-        background: rgba(37, 99, 235, 0.1);
-        color: #2563eb;
+        background: rgba(0, 0, 0, 0.05);
+        color: #000000;
         transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         flex-shrink: 0;
     }
 
     .package-section-header:hover .section-expand-icon {
-        background: rgba(37, 99, 235, 0.15);
+        background: rgba(0, 0, 0, 0.1);
         transform: scale(1.05);
     }
 
     .package-section-header.is-expanded .section-expand-icon {
-        background: #2563eb;
+        background: #000000;
         color: #ffffff;
         transform: rotate(0deg);
     }

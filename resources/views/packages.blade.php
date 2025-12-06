@@ -135,7 +135,7 @@
             </p>
             <button 
                 @click="openCustomizeModal()"
-                class="px-8 py-3 border-2 border-black text-black text-sm uppercase tracking-wide hover:bg-black hover:text-white transition-all duration-300"
+                class="px-8 py-3 border-2 border-black text-black text-sm uppercase tracking-wide hover:bg-black hover:text-white transition-colors duration-300"
             >
                 Customize Your Package
             </button>
@@ -157,7 +157,7 @@
         >
             <div
                 @click.stop
-                class="enquiry-modal bg-white rounded-lg shadow-2xl w-full max-w-5xl overflow-y-visible"
+                class="enquiry-modal bg-white w-full max-w-5xl overflow-y-visible"
                 x-transition:enter="transition ease-out duration-300"
                 x-transition:enter-start="opacity-0 transform scale-95"
                 x-transition:enter-end="opacity-100 transform scale-100"
@@ -173,7 +173,7 @@
                     </div>
                     <button
                         @click="closeCustomizeModal()"
-                        class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+                        class="w-8 h-8 flex items-center justify-center hover:bg-gray-100 transition-colors"
                         aria-label="Close"
                     >
                         <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -355,10 +355,8 @@
             justify-content: center;
             padding: 0.25rem;
             background: #ffffff;
-            border-radius: 8px;
             margin: 0 auto;
             border: 1px solid rgba(0, 0, 0, 0.1);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         .packages-tab {
@@ -369,7 +367,6 @@
             padding: 0.75rem 1.5rem;
             background: transparent;
             border: none;
-            border-radius: 6px;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-family: 'Montserrat', sans-serif;
@@ -415,8 +412,7 @@
 
         .packages-tab-active {
             color: #000000;
-            background: #f3f4f6;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            background: #f9fafb;
         }
 
         .packages-tabs-wrapper-banner .packages-tab-active {

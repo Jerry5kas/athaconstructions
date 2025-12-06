@@ -761,58 +761,82 @@
             <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
                     @foreach($founders as $index => $founder)
                         @php
-                            $bgColors = ['#F5F0E8', '#F0E8F5' , '#E8F4F5'];
-                            $accentColors = ['#D4C4B0', '#D4C4D8' , '#B8D4D8'];
-                            $bgColor = $bgColors[$index % 3];
-                            $accentColor = $accentColors[$index % 3];
+                            $bgShades = ['bg-gray-50', 'bg-gray-100', 'bg-gray-50'];
+                            $bgShade = $bgShades[$index % 3];
                         @endphp
-                        <div class="founder-card-creative opacity-0" 
+                        <div class="founder-card-flip opacity-0" 
                              :class="{ 'animate-fade-in-up': visible }" 
-                             style="animation-delay: {{ 0.3 + ($index * 0.2) }}s; --founder-bg: {{ $bgColor }}; --founder-accent: {{ $accentColor }};">
-                            {{-- Card Container --}}
-                            <div class="founder-card-inner">
-                                {{-- Image Section with Creative Shape --}}
-                                <div class="founder-image-section">
-                                    <div class="founder-image-shape">
-                        <img 
-                            src="{{ asset($founder['image']) }}" 
-                            alt="{{ $founder['name'] }}"
-                                            class="founder-image-creative"
+                             style="animation-delay: {{ 0.3 + ($index * 0.2) }}s;">
+                            {{-- Card Container with 3D Flip --}}
+                            <div class="founder-card-inner-flip">
+                                {{-- Front Face --}}
+                                <div class="founder-card-face founder-card-front {{ $bgShade }} flex flex-col">
+                                    {{-- Image Section - Full Width with Overlay --}}
+                                    <div class="founder-image-section flex-1 relative overflow-hidden">
+                                        <img 
+                                            src="{{ asset($founder['image']) }}" 
+                                            alt="{{ $founder['name'] }}"
+                                            class="founder-image-creative w-full h-full object-cover"
                                         >
+                                        {{-- Gradient Overlay --}}
+                                        <div class="founder-image-overlay"></div>
+                                        {{-- Corner Accent --}}
+                                        <div class="founder-corner-accent founder-corner-top-left"></div>
+                                        <div class="founder-corner-accent founder-corner-top-right"></div>
+                                    </div>
+
+                                    {{-- Content Section - Bottom --}}
+                                    <div class="founder-content-creative">
+                                        {{-- Title Badge --}}
+                                        <div class="founder-title-badge mb-3">
+                                            <span class="text-[9px] lg:text-[10px] uppercase tracking-[0.2em] font-bold">
+                                                {{ $founder['title'] }}
+                                            </span>
+                                        </div>
+
+                                        {{-- Name --}}
+                                        <h4 class="font-tenor text-xl lg:text-2xl uppercase founder-name tracking-wide">
+                                            {{ $founder['name'] }}
+                                        </h4>
+                                        
+                                        {{-- Elegant Line --}}
+                                        <div class="founder-elegant-line mt-3"></div>
                                     </div>
                                 </div>
 
-                                {{-- Content Section --}}
-                                <div class="founder-content-creative">
-                                    {{-- Title Badge --}}
-                                    <div class="founder-title-badge">
-                                        <span class="text-[10px] lg:text-xs uppercase tracking-widest font-semibold">
-                                            {{ $founder['title'] }}
-                                        </span>
+                                {{-- Back Face --}}
+                                <div class="founder-card-face founder-card-back {{ $bgShade }}">
+                                    {{-- Content Section --}}
+                                    <div class="founder-content-creative h-full flex flex-col">
+                                        {{-- Header with Badge and Name --}}
+                                        <div class="mb-6">
+                                            {{-- Title Badge --}}
+                                            <div class="founder-title-badge mb-3">
+                                                <span class="text-[9px] lg:text-[10px] uppercase tracking-[0.2em] font-bold">
+                                                    {{ $founder['title'] }}
+                                                </span>
+                                            </div>
+
+                                            {{-- Name --}}
+                                            <h4 class="font-tenor text-xl lg:text-2xl uppercase mb-3 founder-name tracking-wide">
+                                                {{ $founder['name'] }}
+                                            </h4>
+
+                                            {{-- Elegant Divider --}}
+                                            <div class="founder-elegant-line"></div>
+                                        </div>
+
+                                        {{-- Bio --}}
+                                        <div class="founder-bio-container flex-1">
+                                            <p class="text-xs lg:text-sm text-gray-700 leading-relaxed founder-bio">
+                                                {{ $founder['bio'] }}
+                                            </p>
+                                        </div>
+                                        
+                                        {{-- Bottom Accent Line --}}
+                                        <div class="founder-bottom-elegant-line mt-6"></div>
                                     </div>
-
-                                    {{-- Name --}}
-                                    <h4 class="font-tenor text-2xl lg:text-3xl uppercase mb-4 founder-name">
-                                        {{ $founder['name'] }}
-                                    </h4>
-
-                                    {{-- Decorative Line --}}
-                                    <div class="founder-divider"></div>
-
-                                    {{-- Bio --}}
-                                    <p class="text-xs lg:text-sm text-gray-700 leading-relaxed text-justify founder-bio pb-5">
-                            {{ $founder['bio'] }}
-                        </p>
-
-                                    {{-- Bottom Accent --}}
-                                    <div class="founder-bottom-accent"></div>
                                 </div>
-
-                                {{-- Decorative Elements --}}
-                                <div class="founder-decorative-dot founder-dot-1"></div>
-                                <div class="founder-decorative-dot founder-dot-2"></div>
-                                <div class="founder-decorative-line founder-line-1"></div>
-                                <div class="founder-decorative-line founder-line-2"></div>
                             </div>
                     </div>
                 @endforeach
@@ -845,77 +869,135 @@
 
         /* Title Underline */
         .founder-title-underline {
-            background: linear-gradient(90deg, transparent 0%, var(--founder-accent, #D4C4B0) 50%, transparent 100%);
-            opacity: 0.6;
+            background: linear-gradient(90deg, transparent 0%, #000 50%, transparent 100%);
+            opacity: 0.3;
         }
 
-        /* Founder Card Creative */
-        .founder-card-creative {
+        /* Founder Card Flip Container */
+        .founder-card-flip {
             position: relative;
-            height: 100%;
+            height: 550px;
+            perspective: 1200px;
         }
 
-        .founder-card-inner {
+        /* Card Inner with 3D Transform */
+        .founder-card-inner-flip {
             position: relative;
-            background: var(--founder-bg, #F5F0E8);
-            border-radius: 24px;
-            padding: 2rem 1.5rem;
+            width: 100%;
             height: 100%;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .founder-card-flip:hover .founder-card-inner-flip {
+            transform: rotateY(180deg);
+        }
+
+        /* Card Face (Front and Back) */
+        .founder-card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: box-shadow 0.6s ease;
+        }
+
+        .founder-card-flip:hover .founder-card-face {
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Front Face */
+        .founder-card-front {
+            transform: rotateY(0deg);
+            padding: 0;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Back Face */
+        .founder-card-back {
+            transform: rotateY(180deg);
+            padding: 2.5rem 2rem;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid rgba(0, 0, 0, 0.05);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
-        .founder-card-creative:hover .founder-card-inner {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
-            border-color: rgba(0, 0, 0, 0.1);
-        }
-
-        /* Image Section */
-        .founder-image-section {
+        /* Image Section - Front Face */
+        .founder-card-front .founder-image-section {
             position: relative;
-            margin-bottom: 2rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2;
-        }
-
-        .founder-image-shape {
-            position: relative;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
+            width: 100%;
+            height: calc(100% - 130px);
             overflow: hidden;
-            border: 4px solid white;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            background: white;
         }
 
-        .founder-card-creative:hover .founder-image-shape {
-            transform: scale(1.08);
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
-        }
-
-        .founder-image-creative {
+        .founder-card-front .founder-image-creative {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.6s ease;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .founder-card-creative:hover .founder-image-creative {
-            transform: scale(1.1);
+        .founder-card-flip:hover .founder-card-front .founder-image-creative {
+            transform: scale(1.05);
         }
 
-        /* Content Section */
-        .founder-content-creative {
+        /* Image Overlay */
+        .founder-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.02) 100%);
+            pointer-events: none;
+            transition: opacity 0.6s ease;
+        }
+
+        .founder-card-flip:hover .founder-image-overlay {
+            opacity: 0.8;
+        }
+
+        /* Corner Accents */
+        .founder-corner-accent {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .founder-corner-top-left {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .founder-corner-top-right {
+            top: 20px;
+            right: 20px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .founder-card-flip:hover .founder-corner-accent {
+            opacity: 1;
+        }
+
+        /* Content Section - Front Face */
+        .founder-card-front .founder-content-creative {
+            padding: 2rem 2rem 2.5rem;
+            flex-shrink: 0;
+            background: inherit;
+        }
+
+        /* Content Section - Back Face */
+        .founder-card-back .founder-content-creative {
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -923,124 +1005,82 @@
             z-index: 2;
         }
 
-        /* Title Badge */
+        /* Title Badge - Premium Style */
         .founder-title-badge {
             display: inline-block;
-            background: var(--founder-accent, #D4C4B0);
+            background: #000;
             color: white;
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            margin-bottom: 1rem;
+            padding: 0.5rem 1.2rem;
             align-self: flex-start;
-            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
         }
 
-        .founder-card-creative:hover .founder-title-badge {
-            transform: translateX(5px);
+        .founder-title-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
         }
 
-        /* Name */
+        .founder-card-flip:hover .founder-title-badge::before {
+            left: 100%;
+        }
+
+        /* Name - Premium Typography */
         .founder-name {
-            color: #1a1a1a;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            transition: color 0.3s ease;
-        }
-
-        .founder-card-creative:hover .founder-name {
             color: #000;
+            line-height: 1.3;
+            font-weight: 400;
+            letter-spacing: 0.05em;
         }
 
-        /* Divider */
-        .founder-divider {
-            width: 60px;
-            height: 3px;
-            background: var(--founder-accent, #D4C4B0);
-            margin-bottom: 1.5rem;
-            border-radius: 2px;
-            transition: all 0.3s ease;
+        /* Elegant Line */
+        .founder-elegant-line {
+            width: 50px;
+            height: 1px;
+            background: #000;
+            position: relative;
+            overflow: hidden;
         }
 
-        .founder-card-creative:hover .founder-divider {
-            width: 80px;
+        .founder-elegant-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50px;
+            width: 50px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, #000, transparent);
+            transition: left 0.8s ease;
         }
 
-        /* Bio */
+        .founder-card-flip:hover .founder-elegant-line::after {
+            left: 50px;
+        }
+
+        /* Bottom Elegant Line */
+        .founder-bottom-elegant-line {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.2), transparent);
+            position: relative;
+        }
+
+        /* Bio Container */
+        .founder-bio-container {
+            position: relative;
+        }
+
         .founder-bio {
-            flex: 1;
             color: #4a4a4a;
-        }
-
-        /* Bottom Accent */
-        .founder-bottom-accent {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--founder-accent, #D4C4B0) 0%, transparent 100%);
-            opacity: 0.5;
-            transition: opacity 0.3s ease;
-        }
-
-        .founder-card-creative:hover .founder-bottom-accent {
-            opacity: 1;
-        }
-
-        /* Decorative Elements */
-        .founder-decorative-dot {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: var(--founder-accent, #D4C4B0);
-            border-radius: 50%;
-            opacity: 0.3;
-            transition: all 0.4s ease;
-        }
-
-        .founder-dot-1 {
-            top: 20px;
-            left: 20px;
-        }
-
-        .founder-dot-2 {
-            bottom: 20px;
-            right: 20px;
-        }
-
-        .founder-card-creative:hover .founder-decorative-dot {
-            opacity: 0.6;
-            transform: scale(1.5);
-        }
-
-        .founder-decorative-line {
-            position: absolute;
-            background: var(--founder-accent, #D4C4B0);
-            opacity: 0.15;
-            transition: all 0.4s ease;
-        }
-
-        .founder-line-1 {
-            top: 50%;
-            left: 0;
-            width: 40px;
-            height: 1px;
-            transform: rotate(-45deg);
-            transform-origin: left center;
-        }
-
-        .founder-line-2 {
-            bottom: 30px;
-            right: 0;
-            width: 30px;
-            height: 1px;
-            transform: rotate(45deg);
-            transform-origin: right center;
-        }
-
-        .founder-card-creative:hover .founder-decorative-line {
-            opacity: 0.3;
-            width: 60px;
+            line-height: 1.8;
+            font-weight: 300;
         }
 
         /* Animation */
@@ -1059,15 +1099,42 @@
             animation: fadeInUp 0.8s ease-out forwards;
         }
 
+        /* Premium Hover Effects */
+        .founder-card-flip {
+            transition: transform 0.3s ease;
+        }
+
+        .founder-card-flip:hover {
+            transform: translateY(-8px);
+        }
+
         /* Responsive Adjustments */
         @media (max-width: 767px) {
-            .founder-image-shape {
-                width: 160px;
-                height: 160px;
+            .founder-card-flip {
+                height: 480px;
             }
 
-            .founder-card-inner {
-                padding: 1.5rem 1rem;
+            .founder-card-back {
+                padding: 2rem 1.5rem;
+            }
+
+            .founder-card-front .founder-content-creative {
+                padding: 1.5rem 1.5rem 2rem;
+            }
+
+            .founder-corner-accent {
+                width: 30px;
+                height: 30px;
+            }
+
+            .founder-corner-top-left {
+                top: 15px;
+                left: 15px;
+            }
+
+            .founder-corner-top-right {
+                top: 15px;
+                right: 15px;
             }
         }
     </style>

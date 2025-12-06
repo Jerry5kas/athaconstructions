@@ -41,7 +41,7 @@
                             name="q"
                             value="{{ $search ?? '' }}"
                             placeholder="Search blogs by title or topic..."
-                            class="w-full rounded-full border border-gray-300 bg-white pl-10 pr-10 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent shadow-sm" />
+                            class="w-full border border-gray-300 bg-white pl-10 pr-10 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-900 focus:border-gray-900 transition-colors" />
                         <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -59,7 +59,7 @@
                     </div>
                     <button
                         type="submit"
-                        class="hidden lg:inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-[0.16em] bg-black text-white hover:bg-gray-800 transition-all shadow-sm">
+                        class="hidden lg:inline-flex items-center px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] bg-black text-white hover:bg-gray-800 transition-colors">
                         Search
                     </button>
                 </form>
@@ -72,7 +72,7 @@
                 @endphp
                 <a
                     href="{{ $baseUrl }}"
-                    class="inline-flex items-center px-3.5 py-1.5 rounded-full border text-xs font-semibold tracking-wide uppercase transition-all
+                    class="inline-flex items-center px-3.5 py-1.5 border text-xs font-semibold tracking-wide uppercase transition-colors
                         {{ $categoryParam ? 'border-gray-300 text-gray-600 hover:border-black hover:text-black' : 'border-black bg-black text-white' }}">
                     All
                 </a>
@@ -82,7 +82,7 @@
                     @endphp
                     <a
                         href="{{ $baseUrl . '?category=' . urlencode($category->slug) }}"
-                        class="inline-flex items-center px-3.5 py-1.5 rounded-full border text-xs font-semibold tracking-wide uppercase transition-all
+                        class="inline-flex items-center px-3.5 py-1.5 border text-xs font-semibold tracking-wide uppercase transition-colors
                             {{ $isActive ? 'border-black bg-black text-white' : 'border-gray-300 text-gray-600 hover:border-black hover:text-black' }}">
                         {{ $category->name }}
                     </a>
@@ -97,7 +97,7 @@
                         $wordCount = str_word_count(strip_tags($blog->content ?? ''));
                         $readMinutes = max(1, (int) ceil($wordCount / 200));
                     @endphp
-                    <article class="mb-6 lg:mb-10 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col">
+                    <article class="mb-6 lg:mb-10 bg-white hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col">
                         <div class="relative overflow-hidden">
                             <img 
                                 src="{{ $blog->cover_image_url ?? asset('images/blog-1.png') }}" 
@@ -105,12 +105,12 @@
                                 class="w-full h-64 lg:h-80 object-cover"
                             >
                             @if($blog->category)
-                                <span class="absolute bottom-3 left-3 inline-flex items-center px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide bg-black/80 text-white rounded-full backdrop-blur">
+                                <span class="absolute bottom-3 left-3 inline-flex items-center px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide bg-black/30 backdrop-blur-md border border-white/20 text-white">
                                     {{ $blog->category->name }}
                                 </span>
                             @endif
                         </div>
-                        <div class="px-5 pt-4 pb-5 flex flex-col">
+                        <div class="bg-gray-50 px-5 pt-4 pb-5 flex flex-col">
                             <div class="flex items-center justify-between text-[11px] uppercase tracking-wide text-gray-500 mb-2">
                                 <span>
                                     {{ $blog->published_at?->format('d M Y') ?? $blog->created_at?->format('d M Y') }}
@@ -130,7 +130,7 @@
                             @if($blog->tags && $blog->tags->isNotEmpty())
                                 <div class="flex flex-wrap gap-1.5 mb-3">
                                     @foreach($blog->tags->take(3) as $tag)
-                                        <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-gray-100 text-[11px] font-medium text-gray-700">
+                                        <span class="inline-flex items-center px-2 py-0.5 bg-gray-100 text-[11px] font-medium text-gray-700">
                                             #{{ $tag->name }}
                                         </span>
                                     @endforeach
@@ -140,7 +140,7 @@
                                 </div>
                             @endif
 
-                            <a href="{{ route('blog.detail', $blog->slug) }}" class="inline-flex items-center w-max border border-black px-5 py-2 text-xs font-semibold uppercase tracking-[0.18em] rounded-full hover:bg-black hover:text-white transition-all duration-300">
+                            <a href="{{ route('blog.detail', $blog->slug) }}" class="inline-flex items-center w-max border border-black px-5 py-2 text-xs font-semibold uppercase tracking-[0.18em] hover:bg-black hover:text-white transition-colors duration-300">
                                 Read More
                                 <svg class="w-3 h-3 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />

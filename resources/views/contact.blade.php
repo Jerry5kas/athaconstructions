@@ -13,79 +13,167 @@
         title="Best Construction Companies in Bangalore"
     />
 
-    {{-- Contact Information Cards Section --}}
-    <section class="contact-info-section py-16 lg:py-24 bg-white" 
-             x-data="{ visible: false }"
-             x-intersect="visible = true">
+    {{-- Contact Information Section with Map --}}
+    <section class="contact-info-section py-12 lg:py-16 bg-white">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="max-w-7xl mx-auto">
                 {{-- Section Header --}}
-                <div class="text-center mb-12 lg:mb-16">
-                    <h2 class="font-tenor text-3xl lg:text-4xl uppercase mb-4">Get In Touch</h2>
+                <div class="text-center mb-8 lg:mb-12">
+                    <h2 class="font-tenor text-3xl lg:text-4xl uppercase mb-3">Get In Touch</h2>
                     <p class="text-gray-600 max-w-2xl mx-auto">
                         We're here to help you bring your construction dreams to life. Reach out through any of these channels.
                     </p>
                 </div>
 
-                {{-- Contact Cards Grid --}}
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-                    {{-- Phone Card --}}
-                    <div class="contact-info-card opacity-0"
-                         :class="{ 'animate-fade-in-up': visible }"
-                         style="animation-delay: 0.1s;">
-                        <div class="contact-info-card-icon contact-info-card-icon-phone">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="contact-info-card-title">Phone</h3>
-                        <div class="contact-info-card-content">
-                            <a href="tel:+918049776616" class="contact-info-link">
-                                +91 8049776616
-                            </a>
-                            <a href="tel:+919606956044" class="contact-info-link">
-                                +91 9606956044
-                            </a>
+                <div 
+                    x-data="{
+                        selectedLocation: 'bangalore',
+                        locations: {
+                            bangalore: {
+                                name: 'Bangalore',
+                                address: 'No.81/37, Ground Floor, The Hulkul, Lavelle Road, Bengaluru - 560001',
+                                mapUrl: 'https://maps.app.goo.gl/G8Ezuo2a8pbknSkk8',
+                                query: 'The+Hulkul,+Lavelle+Road,+Bengaluru+560001'
+                            },
+                            ballari: {
+                                name: 'Ballari',
+                                address: 'First Floor, PVR Plaza, No 7, 3rd Cross Rd, Nehru Colony, Sidiginamola, Ballari, Karnataka 583103',
+                                mapUrl: 'https://maps.app.goo.gl/MdQ2gi2iPGKXQNn28',
+                                query: 'PVR+Plaza,+Ballari,+Karnataka+583103'
+                            },
+                            mysore: {
+                                name: 'Mysore',
+                                address: 'VIJAY ARCADE, # 1714 Sarvodaya Road E&F Block Ramkrishna Nagar (Kuvempu Nagar), Mysore 570009',
+                                mapUrl: '#',
+                                query: 'VIJAY+ARCADE,+Sarvodaya+Road,+Mysore+570009'
+                            }
+                        },
+                        get currentLocation() {
+                            return this.locations[this.selectedLocation];
+                        },
+                        get mapSrc() {
+                            const loc = this.currentLocation;
+                            // Use place search in embed URL (works without API key)
+                            const query = loc.query.replace(/\+/g, ' ');
+                            return `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed&zoom=15`;
+                        },
+                        selectLocation(location) {
+                            this.selectedLocation = location;
+                        }
+                    }"
+                    class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+                    
+                    {{-- Left: Contact Poster Image with Overlay --}}
+                    <div class="lg:col-span-5 relative h-[500px] lg:h-auto">
+                        {{-- Background Image --}}
+                        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('{{ asset('images/Contact us poster.png') }}');"></div>
+                        {{-- Black Overlay --}}
+                        <div class="absolute inset-0 bg-black/50"></div>
+                        {{-- Phone & Email Content --}}
+                        <div class="relative z-10 h-full flex flex-col justify-end items-center p-6 lg:p-8 pb-8 lg:pb-12">
+                            {{-- Elegant Container --}}
+                            <div class="bg-black/30 backdrop-blur-sm p-6 lg:p-8 w-full max-w-sm text-white border border-white/20">
+                                {{-- Phone --}}
+                                <div class="mb-6 text-center">
+                                    <div class="flex items-center justify-center gap-3 mb-3">
+                                        <div class="w-10 h-10 bg-white/20 backdrop-blur-sm flex items-center justify-center flex-shrink-0 border border-white/30">
+                                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                            </svg>
+                                        </div>
+                                        <h3 class="font-tenor text-lg lg:text-xl uppercase text-white">Phone</h3>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <a href="tel:+918049776616" class="block text-white text-sm lg:text-base hover:text-white/80 transition-colors">
+                                            +91 8049776616
+                                        </a>
+                                        <a href="tel:+919606956044" class="block text-white text-sm lg:text-base hover:text-white/80 transition-colors">
+                                            +91 9606956044
+                                        </a>
+                                    </div>
+                                </div>
+
+                                {{-- Email --}}
+                                <div class="text-center">
+                                    <div class="flex items-center justify-center gap-3 mb-3">
+                                        <div class="w-10 h-10 bg-white/20 backdrop-blur-sm flex items-center justify-center flex-shrink-0 border border-white/30">
+                                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                            </svg>
+                                        </div>
+                                        <h3 class="font-tenor text-lg lg:text-xl uppercase text-white">Email</h3>
+                                    </div>
+                                    <div>
+                                        <a href="mailto:info@athaconstruction.in" class="block text-white text-sm lg:text-base hover:text-white/80 transition-colors">
+                                            info@athaconstruction.in
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    {{-- Email Card --}}
-                    <div class="contact-info-card opacity-0"
-                         :class="{ 'animate-fade-in-up': visible }"
-                         style="animation-delay: 0.2s;">
-                        <div class="contact-info-card-icon contact-info-card-icon-email">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="contact-info-card-title">Email</h3>
-                        <div class="contact-info-card-content">
-                            <a href="mailto:info@athaconstruction.in" class="contact-info-link">
-                                info@athaconstruction.in
-                            </a>
-                        </div>
-                    </div>
+                    {{-- Right: Map with Location Switcher --}}
+                    <div class="lg:col-span-7">
+                        <div class="bg-gray-50 p-6 lg:p-8">
+                            {{-- Location Selector --}}
+                            <div class="flex flex-wrap items-center gap-2 mb-6">
+                                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Select Location:</span>
+                                <button
+                                    @click="selectLocation('bangalore')"
+                                    :class="selectedLocation === 'bangalore' ? 'bg-black text-white' : 'bg-white border border-gray-300 text-gray-700 hover:border-black'"
+                                    class="px-4 py-2 text-xs font-semibold uppercase tracking-wide transition-colors">
+                                    Bangalore
+                                </button>
+                                <button
+                                    @click="selectLocation('ballari')"
+                                    :class="selectedLocation === 'ballari' ? 'bg-black text-white' : 'bg-white border border-gray-300 text-gray-700 hover:border-black'"
+                                    class="px-4 py-2 text-xs font-semibold uppercase tracking-wide transition-colors">
+                                    Ballari
+                                </button>
+                                <button
+                                    @click="selectLocation('mysore')"
+                                    :class="selectedLocation === 'mysore' ? 'bg-black text-white' : 'bg-white border border-gray-300 text-gray-700 hover:border-black'"
+                                    class="px-4 py-2 text-xs font-semibold uppercase tracking-wide transition-colors">
+                                    Mysore
+                                </button>
+                            </div>
 
-                    {{-- Location Card --}}
-                    <div class="contact-info-card opacity-0"
-                         :class="{ 'animate-fade-in-up': visible }"
-                         style="animation-delay: 0.3s;">
-                        <div class="contact-info-card-icon contact-info-card-icon-location">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="contact-info-card-title">Location</h3>
-                        <div class="contact-info-card-content">
-                            <p class="contact-info-text">
-                                No.81/37, Ground Floor,<br>
-                                The Hulkul, Lavelle Road,<br>
-                                Bengaluru - 560001
-                            </p>
-                            <div class="mt-4">
-                                <p class="text-xs text-gray-500 uppercase tracking-wide mb-2">Also in:</p>
-                                <p class="text-sm text-gray-700">Mysuru • Ballari</p>
+                            {{-- Selected Location Address --}}
+                            <div class="mb-6">
+                                <div class="flex items-start gap-2 mb-2">
+                                    <svg class="w-4 h-4 text-gray-600 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                    <div>
+                                        <p class="text-sm font-semibold text-gray-900 mb-1" x-text="currentLocation.name"></p>
+                                        <p class="text-sm text-gray-600 leading-relaxed" x-text="currentLocation.address"></p>
+                                        <a 
+                                            :href="currentLocation.mapUrl" 
+                                            target="_blank"
+                                            class="inline-flex items-center gap-1 mt-2 text-xs text-gray-900 hover:text-black transition-colors font-medium">
+                                            <span>Open in Google Maps</span>
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{-- Map Container --}}
+                            <div class="w-full h-96 lg:h-[500px] bg-gray-200 overflow-hidden">
+                                <iframe
+                                    :src="mapSrc"
+                                    width="100%"
+                                    height="100%"
+                                    style="border:0;"
+                                    allowfullscreen=""
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                    class="w-full h-full">
+                                </iframe>
                             </div>
                         </div>
                     </div>
@@ -348,24 +436,18 @@
 
         .contact-info-card {
             background: white;
-            border-radius: 20px;
             padding: 2rem;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
             text-align: center;
         }
 
         .contact-info-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
-            border-color: rgba(0, 0, 0, 0.12);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .contact-info-card-icon {
             width: 64px;
             height: 64px;
-            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -374,22 +456,22 @@
         }
 
         .contact-info-card-icon-phone {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            background: #000000;
             color: white;
         }
 
         .contact-info-card-icon-email {
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: #000000;
             color: white;
         }
 
         .contact-info-card-icon-location {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
+            background: #000000;
             color: white;
         }
 
         .contact-info-card:hover .contact-info-card-icon {
-            transform: scale(1.1) rotate(5deg);
+            transform: scale(1.05);
         }
 
         .contact-info-card-title {
@@ -433,10 +515,7 @@
 
         .contact-form-wrapper {
             background: white;
-            border-radius: 24px;
             padding: 2.5rem;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(0, 0, 0, 0.06);
         }
 
         .contact-form-header h2 {
@@ -449,7 +528,6 @@
             align-items: center;
             gap: 0.75rem;
             padding: 1rem 1.25rem;
-            border-radius: 12px;
             font-size: 0.875rem;
         }
 
@@ -513,7 +591,6 @@
             resize: vertical;
             min-height: 100px;
             border: 2px solid #e5e7eb;
-            border-radius: 8px;
             padding: 0.875rem;
             background: #f9fafb;
             transition: all 0.3s ease;
@@ -589,13 +666,12 @@
             background: #1a1a1a;
             color: white;
             border: none;
-            border-radius: 12px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             font-size: 0.875rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -604,8 +680,6 @@
 
         .contact-form-button:hover:not(:disabled) {
             background: #000000;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .contact-form-button:disabled {
@@ -624,23 +698,18 @@
 
         .contact-sidebar-card {
             background: white;
-            border-radius: 16px;
             padding: 1.75rem;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
             transition: all 0.3s ease;
         }
 
         .contact-sidebar-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .contact-sidebar-icon {
             width: 48px;
             height: 48px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            background: #000000;
             color: white;
             display: flex;
             align-items: center;

@@ -48,7 +48,7 @@
     $faqsToUse = !empty($propFaqs) ? $propFaqs : (!empty($globalFaqs) ? $globalFaqs : $defaultFaqs);
 @endphp
 
-<section class="faq-section py-16 lg:py-24 bg-white relative overflow-hidden" 
+<section class="faq-section py-12 lg:py-16 bg-white relative overflow-hidden" 
          x-data="{ openFaq: null, visible: false }"
          x-intersect="visible = true">
     
@@ -216,8 +216,8 @@
     /* Icon Wrapper */
     .faq-icon-wrapper {
         flex-shrink: 0;
-        width: 32px;
-        height: 32px;
+        width: 24px;
+        height: 24px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -232,8 +232,8 @@
 
     /* Icon */
     .faq-icon {
-        width: 18px;
-        height: 18px;
+        width: 14px;
+        height: 14px;
         color: #1a1a1a;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }

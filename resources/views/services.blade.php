@@ -45,7 +45,7 @@
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-center">
                         {{-- Image column --}}
                         <div class="{{ $isEven ? 'order-2 lg:order-2' : 'order-1 lg:order-1' }}">
-                            <div class="relative overflow-hidden rounded-xl lg:rounded-2xl border border-gray-200 bg-[#0B0D10]">
+                            <div class="relative overflow-hidden bg-black">
                                 <div class="absolute inset-0 bg-gradient-to-tr from-black/60 via-black/30 to-transparent"></div>
                                 <img
                                     src="{{ $service->image_url }}"
@@ -53,7 +53,7 @@
                                     class="w-full h-64 lg:h-80 object-cover transform transition duration-700 ease-out hover:scale-[1.03]"
                                 >
                                 <div class="absolute top-4 left-4">
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-[11px] tracking-[0.18em] uppercase bg-white/10 text-gray-100 border border-white/15 backdrop-blur">
+                                    <span class="inline-flex items-center px-3 py-1 text-[11px] tracking-[0.18em] uppercase bg-black/30 backdrop-blur-md border border-white/20 text-white">
                                         Service {{ sprintf('%02d', $loop->iteration) }}
                                     </span>
                                 </div>

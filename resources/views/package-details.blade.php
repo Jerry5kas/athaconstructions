@@ -306,10 +306,9 @@
         .package-hero-badge {
             display: inline-block;
             padding: 0.5rem 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur-md;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 30px;
         }
 
         .package-hero-badge-text {
@@ -325,10 +324,9 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.5rem 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 25px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur-md;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             color: white;
             font-size: 0.875rem;
             font-weight: 500;
@@ -336,10 +334,7 @@
 
         .package-hero-price-card {
             background: white;
-            border-radius: 24px;
             padding: 2rem;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .package-hero-price-header {
@@ -408,19 +403,16 @@
             padding: 1rem 2rem;
             background: #1a1a1a;
             color: white;
-            border-radius: 12px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             font-size: 0.875rem;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease;
             text-decoration: none;
         }
 
         .package-hero-price-button:hover {
             background: #000000;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .package-hero-price-button svg {
@@ -443,16 +435,12 @@
 
         .package-spec-card {
             background: white;
-            border-radius: 16px;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
             overflow: hidden;
             transition: all 0.3s ease;
         }
 
         .package-spec-card:hover {
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .package-spec-card-header-static {
@@ -468,8 +456,7 @@
         .package-spec-card-icon {
             width: 40px;
             height: 40px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            background: #000000;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -478,7 +465,7 @@
         }
 
         .package-spec-card-icon-excluded {
-            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            background: #dc2626;
         }
 
         .package-spec-card-content {
@@ -489,8 +476,7 @@
         .package-spec-item-bullet {
             width: 20px;
             height: 20px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: #000000;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -500,7 +486,7 @@
         }
 
         .package-spec-item-bullet-excluded {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
+            background: #dc2626;
         }
 
         /* CTA Section */
@@ -516,19 +502,16 @@
             padding: 1rem 2.5rem;
             background: white;
             color: #1a1a1a;
-            border-radius: 12px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             font-size: 0.875rem;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease;
             text-decoration: none;
         }
 
         .package-cta-button-primary:hover {
             background: #f3f4f6;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
         }
 
         .package-cta-button-primary svg {
@@ -546,7 +529,6 @@
             background: transparent;
             color: white;
             border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 12px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.1em;
@@ -558,7 +540,6 @@
         .package-cta-button-secondary:hover {
             border-color: white;
             background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
         }
 
         /* Responsive */
