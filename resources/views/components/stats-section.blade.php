@@ -17,26 +17,26 @@
     {{-- Animated Background Pattern --}}
     <div class="absolute inset-0 stats-bg-pattern"></div>
 
-    <div class="relative z-10 py-16 lg:py-24">
+    <div class="relative z-10 py-12 lg:py-16">
         <div class="container mx-auto px-4">
             {{-- Section Header --}}
-            <div class="text-center mb-12 lg:mb-16">
+            <div class="text-center mb-8 lg:mb-12">
                 {{-- Top Decoration --}}
-                <div class="stats-top-decoration opacity-0 mb-6"
+                <div class="stats-top-decoration opacity-0 mb-4"
                      :class="{ 'animate-fade-in-down': visible }" 
                      style="animation-delay: 0.2s;">
                     <div class="stats-decoration-line"></div>
                 </div>
 
                 {{-- Title --}}
-                <h2 class="font-tenor text-3xl lg:text-5xl uppercase mb-6 stats-title opacity-0"
+                <h2 class="font-tenor text-2xl lg:text-3xl uppercase mb-4 stats-title opacity-0"
                     :class="{ 'animate-fade-in-up': visible }" 
                     style="animation-delay: 0.3s;">
                     {{ $title }}
                 </h2>
 
                 {{-- Description --}}
-                <p class="text-sm lg:text-base max-w-3xl mx-auto leading-relaxed stats-description opacity-0"
+                <p class="text-xs lg:text-sm max-w-2xl mx-auto leading-relaxed stats-description opacity-0"
                    :class="{ 'animate-fade-in-up': visible }" 
                    style="animation-delay: 0.4s;">
                     {{ $description }}
@@ -44,7 +44,7 @@
             </div>
 
             {{-- Stats Grid --}}
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 max-w-4xl mx-auto">
                 @foreach($stats as $index => $stat)
                     @php
                         $numericPart = preg_replace('/[^\d\.]/', '', $stat['number']);
@@ -69,7 +69,7 @@
                                      x-data="statCounter({ target: @js($targetValue), suffix: @js($suffixPart) })"
                                  @endif
                                  x-intersect.once="start()">
-                                <p class="font-tenor text-4xl lg:text-5xl font-bold stats-number" x-text="displayValue">
+                                <p class="font-tenor text-3xl lg:text-4xl font-bold stats-number" x-text="displayValue">
                                     {{ $stat['number'] }}
                                 </p>
                             </div>
@@ -78,7 +78,7 @@
                             <div class="stats-divider"></div>
 
                             {{-- Stat Label --}}
-                            <p class="text-xs lg:text-sm font-medium stats-label">{{ $stat['label'] }}</p>
+                            <p class="text-xs font-medium stats-label">{{ $stat['label'] }}</p>
 
                             {{-- Decorative Bottom Element --}}
                             <!-- <div class="stats-card-bottom-decoration"></div> -->
@@ -157,11 +157,11 @@
     .stats-title::after {
         content: '';
         position: absolute;
-        bottom: -12px;
+        bottom: -8px;
         left: 50%;
         transform: translateX(-50%);
-        width: 80px;
-        height: 3px;
+        width: 60px;
+        height: 2px;
         background: linear-gradient(90deg, transparent, #1a1a1a, transparent);
         opacity: 0.6;
     }
@@ -181,8 +181,8 @@
         position: relative;
         background: transparent;
         border: 2px solid #e8e8e8;
-        border-radius: 16px;
-        padding: 2rem 1.5rem;
+        border-radius: 12px;
+        padding: 1.5rem 1.25rem;
         text-align: center;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         overflow: hidden;
@@ -229,7 +229,7 @@
 
     /* Number Wrapper */
     .stats-number-wrapper {
-        margin-bottom: 1rem;
+        margin-bottom: 0.75rem;
     }
 
     /* Number */
@@ -245,16 +245,16 @@
 
     /* Divider */
     .stats-divider {
-        width: 50px;
-        height: 2px;
+        width: 40px;
+        height: 1.5px;
         background: linear-gradient(90deg, transparent, #1a1a1a, transparent);
-        margin: 1rem auto;
+        margin: 0.75rem auto;
         opacity: 0.4;
         transition: all 0.4s ease;
     }
 
     .stats-card:hover .stats-divider {
-        width: 70px;
+        width: 60px;
         opacity: 0.6;
     }
 
@@ -364,20 +364,20 @@
     /* Responsive Adjustments */
     @media (max-width: 767px) {
         .stats-card {
-            padding: 1.5rem 1rem;
+            padding: 1.25rem 1rem;
         }
 
         .stats-number {
-            font-size: 2.5rem;
-        }
-
-        .stats-title {
             font-size: 2rem;
         }
 
+        .stats-title {
+            font-size: 1.75rem;
+        }
+
         .stats-title::after {
-            width: 60px;
-            bottom: -8px;
+            width: 50px;
+            bottom: -6px;
         }
     }
 </style>

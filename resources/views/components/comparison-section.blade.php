@@ -4,7 +4,7 @@
     'otherContractors' => [],
 ])
 
-<section class="comparison-section py-12 lg:py-16 bg-white relative overflow-hidden"
+<section class="comparison-section py-10 lg:py-12 bg-white relative overflow-hidden"
          x-data="{ visible: false }"
          x-intersect="visible = true">
     
@@ -20,22 +20,22 @@
 
     <div class="container mx-auto px-4 relative z-10">
         {{-- Section Header --}}
-        <div class="text-center mb-8 lg:mb-10">
+        <div class="text-center mb-6 lg:mb-8">
             {{-- Top Decoration --}}
-            <div class="comparison-top-decoration opacity-0 mb-6"
+            <div class="comparison-top-decoration opacity-0 mb-4"
                  :class="{ 'animate-fade-in-down': visible }" 
                  style="animation-delay: 0.2s;">
                 <div class="comparison-decoration-line"></div>
             </div>
 
-            <h2 class="font-tenor text-2xl lg:text-4xl uppercase mb-3 tracking-tight comparison-title opacity-0"
+            <h2 class="font-tenor text-xl lg:text-2xl uppercase mb-2 tracking-tight comparison-title opacity-0"
                 :class="{ 'animate-fade-in-up': visible }" 
                 style="animation-delay: 0.3s;">
                 <span class="hidden md:inline">{{ $title }}</span>
                 <span class="md:hidden">{{ str_replace('?', '<br>?', $title) }}</span>
             </h2>
             
-            <div class="w-24 h-0.5 bg-black mx-auto comparison-divider opacity-0"
+            <div class="w-20 h-0.5 bg-black mx-auto comparison-divider opacity-0"
                  :class="{ 'animate-fade-in-up': visible }" 
                  style="animation-delay: 0.4s;"></div>
         </div>
@@ -60,39 +60,39 @@
                     <div class="col-span-5 pr-8">
                         <div class="sticky top-24">
                             {{-- Header with SVG --}}
-                            <div class="mb-6 comparison-header-left opacity-0"
+                            <div class="mb-4 comparison-header-left opacity-0"
                                  :class="{ 'animate-fade-in-left': visible }" 
                                  style="animation-delay: 0.5s;">
-                                <div class="flex items-center gap-3 mb-4">
-                                    <svg class="w-6 h-6 text-black flex-shrink-0" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <svg class="w-5 h-5 text-black flex-shrink-0" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                                         <rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
                                         <path d="M8 14 L16 20 L24 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                         <circle cx="10" cy="6" r="1.5" fill="currentColor"/>
                                         <circle cx="16" cy="6" r="1.5" fill="currentColor"/>
                                         <circle cx="22" cy="6" r="1.5" fill="currentColor"/>
                                     </svg>
-                                    <h3 class="font-tenor text-2xl lg:text-3xl uppercase tracking-tight">ATHA<br>CONSTRUCTION</h3>
+                                    <h3 class="font-tenor text-xl lg:text-2xl uppercase tracking-tight">ATHA<br>CONSTRUCTION</h3>
                                 </div>
-                                <div class="w-32 h-1 bg-black comparison-header-line"></div>
+                                <div class="w-24 h-0.5 bg-black comparison-header-line"></div>
                             </div>
                             
                             {{-- Items with Custom SVGs --}}
-                            <div class="space-y-3">
+                            <div class="space-y-2">
                                 @foreach($athaAdvantages as $index => $advantage)
                                     <div class="comparison-item-left opacity-0"
                                          :class="{ 'animate-fade-in-left': visible }"
                                          style="animation-delay: {{ 0.6 + ($index * 0.1) }}s">
                                         <div class="comparison-item-card comparison-item-card-left group">
-                                            <div class="flex items-center gap-4">
+                                            <div class="flex items-center gap-3">
                                                 <div class="flex-shrink-0">
                                                     <div class="comparison-icon-box comparison-icon-box-left">
-                                                        <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                                                         </svg>
                                                     </div>
                                                 </div>
                                                 <div class="flex-1">
-                                                    <p class="text-sm text-gray-900 leading-relaxed comparison-item-text">{{ $advantage }}</p>
+                                                    <p class="text-xs text-gray-900 leading-relaxed comparison-item-text">{{ $advantage }}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -109,33 +109,33 @@
                     <div class="col-span-5 pl-8">
                         <div class="sticky top-24">
                             {{-- Header with SVG --}}
-                            <div class="mb-6 comparison-header-right opacity-0"
+                            <div class="mb-4 comparison-header-right opacity-0"
                                  :class="{ 'animate-fade-in-right': visible }" 
                                  style="animation-delay: 0.5s;">
-                                <div class="flex items-center gap-3 mb-4 justify-end">
-                                    <h3 class="font-tenor text-2xl lg:text-3xl uppercase tracking-tight text-gray-300 text-right">OTHER<br>CONTRACTORS</h3>
-                                    <svg class="w-6 h-6 text-gray-300 flex-shrink-0" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                <div class="flex items-center gap-2 mb-3 justify-end">
+                                    <h3 class="font-tenor text-xl lg:text-2xl uppercase tracking-tight text-gray-300 text-right">OTHER<br>CONTRACTORS</h3>
+                                    <svg class="w-5 h-5 text-gray-300 flex-shrink-0" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                                         <rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="1.5" fill="none" stroke-dasharray="4 4"/>
                                         <path d="M8 14 L16 20 L24 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 2"/>
                                     </svg>
                                 </div>
-                                <div class="w-32 h-1 bg-gray-300 ml-auto comparison-header-line"></div>
+                                <div class="w-24 h-0.5 bg-gray-300 ml-auto comparison-header-line"></div>
                             </div>
                             
                             {{-- Items with Custom SVGs --}}
-                            <div class="space-y-3">
+                            <div class="space-y-2">
                                 @foreach($otherContractors as $index => $disadvantage)
                                     <div class="comparison-item-right opacity-0"
                                          :class="{ 'animate-fade-in-right': visible }"
                                          style="animation-delay: {{ 0.6 + ($index * 0.1) }}s">
                                         <div class="comparison-item-card comparison-item-card-right group">
-                                            <div class="flex items-center gap-4">
+                                            <div class="flex items-center gap-3">
                                                 <div class="flex-1 text-right">
-                                                    <p class="text-sm text-gray-400 leading-relaxed line-through comparison-item-text">{{ $disadvantage }}</p>
+                                                    <p class="text-xs text-gray-400 leading-relaxed line-through comparison-item-text">{{ $disadvantage }}</p>
                                                 </div>
                                                 <div class="flex-shrink-0">
                                                     <div class="comparison-icon-box comparison-icon-box-right">
-                                                        <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                                                         </svg>
                                                     </div>
@@ -151,32 +151,32 @@
             </div>
 
             {{-- Mobile: Stacked Design --}}
-            <div class="lg:hidden space-y-12">
+            <div class="lg:hidden space-y-8">
                 {{-- ATHA CONSTRUCTION --}}
                 <div>
-                    <div class="mb-6 comparison-header-left opacity-0"
+                    <div class="mb-4 comparison-header-left opacity-0"
                          :class="{ 'animate-fade-in-left': visible }" 
                          style="animation-delay: 0.5s;">
-                        <div class="flex items-center gap-3 mb-4">
-                            <svg class="w-5 h-5 text-black" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                        <div class="flex items-center gap-2 mb-3">
+                            <svg class="w-4 h-4 text-black" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                                 <rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
                                 <path d="M8 14 L16 20 L24 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                            <h3 class="font-tenor text-xl uppercase tracking-tight">ATHA CONSTRUCTION</h3>
+                            <h3 class="font-tenor text-lg uppercase tracking-tight">ATHA CONSTRUCTION</h3>
                         </div>
-                        <div class="w-20 h-0.5 bg-black"></div>
+                        <div class="w-16 h-0.5 bg-black"></div>
                     </div>
                     
-                    <div class="space-y-4">
+                    <div class="space-y-2">
                         @foreach($athaAdvantages as $index => $advantage)
                             <div class="comparison-item-left opacity-0"
                                  :class="{ 'animate-fade-in-left': visible }"
                                  style="animation-delay: {{ 0.6 + ($index * 0.1) }}s">
                                 <div class="comparison-item-card comparison-item-card-left">
-                                    <div class="flex items-center gap-4">
+                                    <div class="flex items-center gap-3">
                                         <div class="flex-shrink-0">
                                             <div class="comparison-icon-box comparison-icon-box-left">
-                                                <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                                                 </svg>
                                             </div>
@@ -206,29 +206,29 @@
 
                 {{-- OTHER CONTRACTORS --}}
                 <div>
-                    <div class="mb-6 comparison-header-right opacity-0"
+                    <div class="mb-4 comparison-header-right opacity-0"
                          :class="{ 'animate-fade-in-right': visible }" 
                          style="animation-delay: 0.5s;">
-                        <div class="flex items-center gap-3 mb-4 justify-end">
-                            <h3 class="font-tenor text-xl uppercase tracking-tight text-gray-300 text-right">OTHER CONTRACTORS</h3>
-                            <svg class="w-5 h-5 text-gray-300" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                        <div class="flex items-center gap-2 mb-3 justify-end">
+                            <h3 class="font-tenor text-lg uppercase tracking-tight text-gray-300 text-right">OTHER CONTRACTORS</h3>
+                            <svg class="w-4 h-4 text-gray-300" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                                 <rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="1.5" fill="none" stroke-dasharray="4 4"/>
                             </svg>
                         </div>
-                        <div class="w-20 h-0.5 bg-gray-300 ml-auto"></div>
+                        <div class="w-16 h-0.5 bg-gray-300 ml-auto"></div>
                     </div>
                     
-                    <div class="space-y-4">
+                    <div class="space-y-2">
                         @foreach($otherContractors as $index => $disadvantage)
                             <div class="comparison-item-right opacity-0"
                                  :class="{ 'animate-fade-in-right': visible }"
                                  style="animation-delay: {{ 0.6 + ($index * 0.1) }}s">
                                 <div class="comparison-item-card comparison-item-card-right">
-                                    <div class="flex items-center gap-4">
+                                    <div class="flex items-center gap-3">
                                         <p class="text-xs text-gray-400 leading-relaxed flex-1 text-right line-through">{{ $disadvantage }}</p>
                                         <div class="flex-shrink-0">
                                             <div class="comparison-icon-box comparison-icon-box-right">
-                                                <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                                                 </svg>
                                             </div>
@@ -289,7 +289,7 @@
     }
 
     .comparison-section:hover .comparison-divider {
-        width: 120px;
+        width: 100px;
     }
 
     /* Center Line & Icon */
@@ -311,45 +311,45 @@
 
     .comparison-header-left:hover .comparison-header-line,
     .comparison-header-right:hover .comparison-header-line {
-        width: 140px;
+        width: 100px;
     }
 
     /* Item Cards */
     .comparison-item-card {
-        padding: 1rem;
-        border-radius: 10px;
+        padding: 0.75rem;
+        border-radius: 8px;
         transition: all 0.4s ease;
         background: white;
         border: 1px solid #e8e8e8;
     }
 
     .comparison-item-card-left {
-        border-left: 3px solid #1a1a1a;
+        border-left: 2px solid #1a1a1a;
     }
 
     .comparison-item-card-right {
-        border-right: 3px solid #d0d0d0;
+        border-right: 2px solid #d0d0d0;
     }
 
     .comparison-item-card:hover {
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-        transform: translateX(4px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        transform: translateX(3px);
     }
 
     .comparison-item-card-right:hover {
-        transform: translateX(-4px);
+        transform: translateX(-3px);
     }
 
     /* Icon Boxes */
     .comparison-icon-box {
-        width: 28px;
-        height: 28px;
-        border-radius: 6px;
+        width: 24px;
+        height: 24px;
+        border-radius: 5px;
         display: flex;
         align-items: center;
         justify-content: center;
         transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
     }
 
     .comparison-icon-box-left {
@@ -442,8 +442,8 @@
     /* Responsive */
     @media (max-width: 1023px) {
         .comparison-icon-box {
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
         }
     }
 </style>

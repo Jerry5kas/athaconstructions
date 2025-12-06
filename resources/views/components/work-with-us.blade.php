@@ -7,7 +7,7 @@
     'backgroundImageTitle' => 'Work with us',
 ])
 
-<section class="work-with-us-section relative min-h-[500px] lg:min-h-[600px] flex items-center overflow-hidden"
+<section class="work-with-us-section relative min-h-[400px] lg:min-h-[500px] flex items-center overflow-hidden"
          x-data="{ enquiryModalOpen: false, visible: false }"
          x-intersect="visible = true"
          @enquiry-success.window="setTimeout(() => enquiryModalOpen = false, 2000)">
@@ -27,7 +27,7 @@
     <div class="absolute inset-0 work-with-us-pattern"></div>
     
     {{-- Content Container --}}
-    <div class="container mx-auto px-4 relative z-10">
+    <div class="container mx-auto px-4 lg:px-8 relative z-10">
         <div class="work-with-us-panel max-w-4xl mx-auto text-center">
             {{-- Decorative Top Element --}}
             <div class="work-with-us-top-decoration opacity-0" 
@@ -37,14 +37,14 @@
             </div>
 
             {{-- Title --}}
-            <h2 class="font-tenor text-3xl lg:text-5xl uppercase mb-6 text-white work-with-us-title opacity-0"
+            <h2 class="font-tenor text-2xl lg:text-3xl uppercase mb-4 text-white work-with-us-title opacity-0"
                 :class="{ 'animate-fade-in-up': visible }" 
                 style="animation-delay: 0.3s;">
                 {{ $title }}
             </h2>
 
             {{-- Description --}}
-            <p class="text-sm lg:text-base max-w-2xl mx-auto mb-10 text-white/90 leading-relaxed work-with-us-description opacity-0"
+            <p class="text-xs lg:text-sm max-w-2xl mx-auto mb-8 text-white/85 leading-relaxed work-with-us-description opacity-0"
                :class="{ 'animate-fade-in-up': visible }" 
                style="animation-delay: 0.4s;">
                 {{ $description }}
@@ -66,7 +66,7 @@
             </div>
 
             {{-- Decorative Bottom Elements --}}
-            <div class="work-with-us-bottom-decoration opacity-0 mt-12"
+            <div class="work-with-us-bottom-decoration opacity-0 mt-8"
                  :class="{ 'animate-fade-in-up': visible }" 
                  style="animation-delay: 0.6s;">
                 <div class="work-with-us-decoration-dot"></div>
@@ -155,12 +155,12 @@
 
     /* Top Decoration */
     .work-with-us-top-decoration {
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
     }
 
     .work-with-us-decoration-line {
-        width: 80px;
-        height: 2px;
+        width: 60px;
+        height: 1.5px;
         background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
         margin: 0 auto;
     }
@@ -186,18 +186,19 @@
         position: relative;
         display: inline-flex;
         align-items: center;
-        gap: 0.75rem;
-        padding: 1rem 2.5rem;
+        gap: 0.5rem;
+        padding: 0.75rem 2rem;
         background: transparent;
-        border: 2px solid white;
+        border: 1.5px solid white;
         color: white;
-        font-size: 0.875rem;
+        font-size: 0.8125rem;
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.1em;
         cursor: pointer;
         overflow: hidden;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 2px;
     }
 
     .work-with-us-button::before {
@@ -208,7 +209,7 @@
         width: 100%;
         height: 100%;
         background: white;
-        transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 0;
     }
 
@@ -223,16 +224,17 @@
     }
 
     .work-with-us-button-icon {
-        width: 1.25rem;
-        height: 1.25rem;
+        width: 1.125rem;
+        height: 1.125rem;
         position: relative;
         z-index: 1;
-        transition: transform 0.4s ease, color 0.4s ease;
+        transition: transform 0.3s ease, color 0.3s ease;
     }
 
     .work-with-us-button:hover {
         border-color: white;
-        box-shadow: 0 10px 40px rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 30px rgba(255, 255, 255, 0.15);
+        transform: translateY(-1px);
     }
 
     .work-with-us-button:hover .work-with-us-button-text {
@@ -240,7 +242,7 @@
     }
 
     .work-with-us-button:hover .work-with-us-button-icon {
-        transform: translateX(4px);
+        transform: translateX(3px);
         color: black;
     }
 
@@ -248,14 +250,14 @@
     .work-with-us-bottom-decoration {
         display: flex;
         justify-content: center;
-        gap: 0.75rem;
+        gap: 0.5rem;
         align-items: center;
     }
 
     .work-with-us-decoration-dot {
-        width: 8px;
-        height: 8px;
-        background: rgba(255, 255, 255, 0.6);
+        width: 6px;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.5);
         border-radius: 50%;
         animation: dotPulse 2s ease-in-out infinite;
     }
@@ -274,34 +276,40 @@
 
     @keyframes dotPulse {
         0%, 100% {
-            opacity: 0.6;
+            opacity: 0.5;
             transform: scale(1);
         }
         50% {
             opacity: 1;
-            transform: scale(1.3);
+            transform: scale(1.2);
         }
     }
 
     /* Panel */
     .work-with-us-panel {
         position: relative;
-        padding: 3rem 2.5rem;
-        border-radius: 20px;
-        background: radial-gradient(circle at 10% 0%, rgba(255,255,255,0.06), transparent 55%),
-                    radial-gradient(circle at 90% 100%, rgba(255,255,255,0.04), transparent 60%),
-                    rgba(0,0,0,0.45);
-        border: 1px solid rgba(255,255,255,0.25);
-        box-shadow: 0 24px 80px rgba(0,0,0,0.65);
-        backdrop-filter: blur(16px);
+        padding: 2rem 2rem;
+        border-radius: 12px;
+        background: radial-gradient(circle at 10% 0%, rgba(255,255,255,0.05), transparent 55%),
+                    radial-gradient(circle at 90% 100%, rgba(255,255,255,0.03), transparent 60%),
+                    rgba(0,0,0,0.5);
+        border: 1px solid rgba(255,255,255,0.2);
+        box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+        backdrop-filter: blur(12px);
+        transition: all 0.3s ease;
+    }
+
+    .work-with-us-panel:hover {
+        box-shadow: 0 16px 50px rgba(0,0,0,0.6);
+        border-color: rgba(255,255,255,0.25);
     }
 
     .work-with-us-panel::before {
         content: '';
         position: absolute;
-        inset: 1.25rem;
-        border-radius: 16px;
-        border: 1px solid rgba(255,255,255,0.08);
+        inset: 1rem;
+        border-radius: 8px;
+        border: 1px solid rgba(255,255,255,0.06);
         pointer-events: none;
     }
 
@@ -338,13 +346,39 @@
 
     /* Responsive Adjustments */
     @media (max-width: 767px) {
+        .work-with-us-panel {
+            padding: 1.5rem 1.5rem;
+        }
+
         .work-with-us-title {
-            font-size: 2rem;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .work-with-us-description {
+            margin-bottom: 1.5rem;
         }
 
         .work-with-us-button {
-            padding: 0.875rem 2rem;
-            font-size: 0.8125rem;
+            padding: 0.625rem 1.75rem;
+            font-size: 0.75rem;
+        }
+
+        .work-with-us-button-icon {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .work-with-us-top-decoration {
+            margin-bottom: 1rem;
+        }
+
+        .work-with-us-bottom-decoration {
+            margin-top: 1.5rem;
+        }
+
+        .work-with-us-decoration-line {
+            width: 50px;
         }
     }
 </style>

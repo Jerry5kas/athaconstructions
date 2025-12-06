@@ -22,9 +22,10 @@
             'Our approach combines cutting-edge design, advanced technology, and eco-conscious solutions to create spaces that inspire and endure. From cozy homes to modern office spaces, every project is tailored to exceed client expectations while delivering unmatched value and quality.',
             'At Atha Construction, we believe construction is more than building structures—it\'s about creating environments that foster growth, comfort, and community. Our collaborative process ensures transparency and trust, from concept to completion. With a strong presence in Bengaluru, Mysuru, Ballari, and beyond, we take pride in building lasting partnerships rooted in integrity and excellence. As we continue to grow, our mission remains steadfast: delivering exceptional construction services that stand the test of time.'
         ]"
-        image="images/ATHA-CONSTRUCTIONS.jpg"
-        imageAlt="Best Construction Companies in Bangalore"
-        imageTitle="Best Construction Companies in Bangalore"
+        :images="[
+            ['src' => 'images/logo mockup 2.png', 'alt' => 'Atha Construction Logo Mockup', 'title' => 'Atha Construction - Building Trust, Creating Value'],
+            ['src' => 'images/ATHA-CONSTRUCTIONS.jpg', 'alt' => 'Best Construction Companies in Bangalore', 'title' => 'Best Construction Companies in Bangalore']
+        ]"
         :buttonText="'KNOW MORE'"
         :buttonLink="route('about')"
         imagePosition="right"
@@ -49,82 +50,31 @@
         :otherContractors="$otherContractors"
     />
 
-    {{-- Featured Projects Section --}}
-            @php
-                $projects = [
-                    [
-                        'image' => 'mysoore-proj.png',
-                        'location' => 'Bangalore',
-                        'type' => '4BHK Luxury Home',
-                        'land' => '3200 sqft',
-                        'tagline' => 'Smart Living, Premium Design',
-                    ],
-                    [
-                        'image' => 'mysoore-proj.png',
-                        'location' => 'Mysore',
-                        'type' => '3BHK Villa',
-                        'land' => '2400 sqft',
-                        'tagline' => 'Heritage Meets Modernity',
-                    ],
-                    [
-                        'image' => 'mysoore-proj.png',
-                        'location' => 'Ballari',
-                        'type' => 'Commercial Complex',
-                        'land' => '5000 sqft',
-                        'tagline' => 'Business Excellence',
-                    ],
-                ];
-            @endphp
+    {{-- Featured Project Section --}}
     <x-featured-projects-section
-        title="Featured Projects"
-        :projects="$projects"
+        title="Featured Project"
+        projectName="Premium Residential Complex"
+        location="Bangalore"
+        type="Luxury Residential Development"
+        land="5000 sqft"
+        tagline="Modern Living, Timeless Design"
+        description="A contemporary residential complex featuring cutting-edge design and premium amenities, showcasing our commitment to excellence in construction."
+        :images="['b1.jpeg', 'b2.jpeg', 'b3.jpeg', 'b4.jpeg']"
     />
 
     {{-- How It Works Section --}}
     <x-how-it-works :steps="$howItWorks" />
 
+    {{-- Latest Blogs Section --}}
+    <x-latest-blogs-section
+        title="Latest Insights"
+        :blogs="$latestBlogs ?? []"
+    />
 
-    @once
-        <style>
-            /* Featured Projects - Interlocking Stagger Pattern */
-            @media (min-width: 1024px) {
-                .featured-projects-container {
-                    height: auto;
-                    position: relative;
-                    padding-bottom: 600px; /* Ensure space for absolutely positioned cards */
-                }
-
-                .featured-project-item {
-                    position: absolute;
-                    left: 0;
-                    right: 0;
-                    width: 100%;
-                }
-
-                /* Card 1: Left side, starts at top: 0 */
-                .featured-project-item[data-index="0"] {
-                    top: 0;
-                }
-
-                /* Card 2: Right side, starts at half card height + gap (112px + 48px = 160px) */
-                .featured-project-item[data-index="1"] {
-                    top: 200px;
-                }
-
-                /* Card 3: Left side, starts at full card height + gap (224px + 48px = 272px) */
-                .featured-project-item[data-index="2"] {
-                    top: 360px;
-                }
-            }
-
-            /* Mobile: Keep normal flow */
-            @media (max-width: 1023px) {
-                .featured-project-item {
-                    position: relative !important;
-                    margin-bottom: 2rem;
-                }
-            }
-        </style>
-    @endonce
+    {{-- Testimonials Section --}}
+    <x-testimonials-section
+        title="What Our Clients Say"
+        :testimonials="$testimonials ?? []"
+    />
 
 </x-layouts>

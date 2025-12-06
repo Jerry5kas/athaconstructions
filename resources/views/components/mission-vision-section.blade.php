@@ -8,25 +8,25 @@
     // Each block: ['title' => '', 'icon' => '', 'description' => [], 'bg' => '']
 @endphp
 
-<section class="py-16 lg:py-20 bg-black text-white mission-vision-section" 
+<section class="py-12 lg:py-16 bg-black text-white mission-vision-section" 
          x-data="{ visible: false }" 
          x-intersect="visible = true">
-    <div class="container mx-auto px-4">
+    <div class="container mx-auto px-4 lg:px-8">
         <div class="max-w-6xl mx-auto">
-            {{-- Section Title --}}
-            <div class="text-center mb-12 lg:mb-16">
+            {{-- Compact Section Title --}}
+            <div class="text-center mb-10 lg:mb-12">
                 @if($subtitle)
-                    <p class="mission-vision-subtitle text-xs lg:text-sm tracking-[0.2em] uppercase text-gray-400 mb-3 animate-on-scroll opacity-0" style="animation-delay: 0.05s;">
+                    <p class="mission-vision-subtitle text-[10px] lg:text-xs tracking-[0.2em] uppercase text-gray-400 mb-2 animate-on-scroll opacity-0" style="animation-delay: 0.05s;">
                         {{ $subtitle }}
                     </p>
                 @endif
-                <h2 class="font-tenor text-2xl lg:3xl lg:text-3xl uppercase mb-3 animate-on-scroll opacity-0" style="animation-delay: 0.1s;">
+                <h2 class="font-tenor text-xl lg:text-2xl uppercase mb-2 animate-on-scroll opacity-0" style="animation-delay: 0.1s;">
                     {{ $title }}
                 </h2>
                 <div class="mission-vision-title-underline animate-on-scroll opacity-0 mx-auto" style="animation-delay: 0.15s;"></div>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-6 lg:gap-12">
+            <div class="grid md:grid-cols-2 gap-5 lg:gap-8">
                 @foreach($blocks as $index => $block)
                     @php
                         $bgImage = $block['bg'] ?? null;
@@ -42,23 +42,20 @@
 
                             {{-- Card Header --}}
                             <div class="mission-vision-card-header">
-                                <!-- <div class="mission-vision-label-wrapper">
-                                    <span class="mission-vision-label">0{{ $index + 1 }}</span>
-                                </div> -->
                                 <div class="mission-vision-icon-wrapper">
                                     @if(!empty($block['icon']))
                                         <img src="{{ asset($block['icon']) }}" alt="{{ $block['title'] }}" class="mission-vision-icon">
                                     @endif
                                 </div>
-                                <h3 class="font-tenor text-xl lg:text-2xl uppercase mt-6 mb-3">
+                                <h3 class="font-tenor text-lg lg:text-xl uppercase mt-4 mb-2">
                                     {{ strtoupper($block['title'] ?? '') }}
                                 </h3>
-                                <div class="w-16 h-0.5 bg-white mx-auto"></div>
+                                <div class="w-12 h-0.5 bg-white mx-auto"></div>
                             </div>
 
                             {{-- Card Content --}}
                             <div class="mission-vision-card-content">
-                                <div class="space-y-3 lg:space-y-4 text-sm lg:text-base leading-relaxed text-gray-200">
+                                <div class="space-y-2.5 lg:space-y-3 text-xs lg:text-sm leading-relaxed text-gray-300">
                                     @foreach(($block['description'] ?? []) as $paragraph)
                                         <p>{{ $paragraph }}</p>
                                     @endforeach
@@ -96,11 +93,12 @@
     .mission-vision-card {
         position: relative;
         background: rgba(15, 15, 15, 0.9);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        padding: 3rem 2rem;
-        transition: all 0.4s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 2rem 1.5rem;
+        transition: all 0.3s ease;
         backdrop-filter: blur(10px);
         overflow: hidden;
+        border-radius: 4px;
     }
 
     .mission-vision-card::before {
@@ -140,14 +138,14 @@
 
     .mission-vision-card:hover {
         background: rgba(20, 20, 20, 0.95);
-        border-color: rgba(255, 255, 255, 0.3);
-        transform: translateY(-5px);
-        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.65);
+        border-color: rgba(255, 255, 255, 0.25);
+        transform: translateY(-3px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
     }
 
     .mission-vision-card-header {
         text-align: center;
-        margin-bottom: 1.75rem;
+        margin-bottom: 1.25rem;
         position: relative;
     }
 
@@ -174,27 +172,27 @@
     }
 
     .mission-vision-icon-wrapper {
-        width: 80px;
-        height: 80px;
+        width: 64px;
+        height: 64px;
         margin: 0 auto;
         background: rgba(255, 255, 255, 0.04);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 2px solid rgba(255, 255, 255, 0.2);
-        transition: all 0.4s ease;
+        border: 1.5px solid rgba(255, 255, 255, 0.15);
+        transition: all 0.3s ease;
     }
 
     .mission-vision-card:hover .mission-vision-icon-wrapper {
         background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(255, 255, 255, 0.35);
-        transform: scale(1.08);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: scale(1.05);
     }
 
     .mission-vision-icon {
-        width: 40px;
-        height: 40px;
+        width: 32px;
+        height: 32px;
         object-fit: contain;
         filter: brightness(0) invert(1);
     }
@@ -207,8 +205,8 @@
     }
 
     .mission-vision-title-underline {
-        width: 80px;
-        height: 2px;
+        width: 60px;
+        height: 1.5px;
         background: linear-gradient(90deg, transparent, white, transparent);
     }
 
@@ -216,18 +214,18 @@
         position: absolute;
         top: 0;
         right: 0;
-        width: 60px;
-        height: 60px;
-        border-top: 2px solid rgba(255, 255, 255, 0.18);
-        border-right: 2px solid rgba(255, 255, 255, 0.18);
+        width: 50px;
+        height: 50px;
+        border-top: 1.5px solid rgba(255, 255, 255, 0.15);
+        border-right: 1.5px solid rgba(255, 255, 255, 0.15);
         z-index: 2;
-        transition: all 0.4s ease;
+        transition: all 0.3s ease;
     }
 
     .mission-vision-card:hover .mission-vision-corner {
-        border-color: rgba(255, 255, 255, 0.4);
-        width: 80px;
-        height: 80px;
+        border-color: rgba(255, 255, 255, 0.35);
+        width: 65px;
+        height: 65px;
     }
 
     /* Animations */
@@ -249,17 +247,31 @@
     /* Responsive Adjustments */
     @media (max-width: 767px) {
         .mission-vision-card {
-            padding: 2rem 1.5rem;
+            padding: 1.5rem 1.25rem;
         }
 
         .mission-vision-icon-wrapper {
-            width: 60px;
-            height: 60px;
+            width: 56px;
+            height: 56px;
         }
 
         .mission-vision-icon {
-            width: 30px;
-            height: 30px;
+            width: 28px;
+            height: 28px;
+        }
+
+        .mission-vision-card-header {
+            margin-bottom: 1rem;
+        }
+
+        .mission-vision-corner {
+            width: 40px;
+            height: 40px;
+        }
+
+        .mission-vision-card:hover .mission-vision-corner {
+            width: 50px;
+            height: 50px;
         }
     }
 </style>

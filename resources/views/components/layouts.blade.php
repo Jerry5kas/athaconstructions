@@ -233,6 +233,70 @@
             animation: fadeInUp 0.5s ease-out forwards;
         }
 
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 50;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+        }
+
+        .whatsapp-float.hidden {
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.8);
+            pointer-events: none;
+        }
+
+        .whatsapp-float__link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background-color: #000000;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+        }
+
+        .whatsapp-float__link:hover {
+            background-color: #25D366;
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-float__icon {
+            font-size: 32px;
+            color: #ffffff;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-float__link:hover .whatsapp-float__icon {
+            transform: scale(1.1);
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .whatsapp-float__link {
+                width: 56px;
+                height: 56px;
+            }
+
+            .whatsapp-float__icon {
+                font-size: 28px;
+            }
+        }
+
     </style>
 
     {{ $head }}
@@ -273,6 +337,19 @@
 
     {{-- Footer Component --}}
     <x-footer />
+
+    {{-- WhatsApp Floating Button --}}
+    <div id="whatsapp-button" class="whatsapp-float">
+        <a 
+            href="https://wa.me/918049776616?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20Atha%20Construction" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="whatsapp-float__link"
+            aria-label="Contact us on WhatsApp"
+        >
+            <i class="fab fa-whatsapp whatsapp-float__icon"></i>
+        </a>
+    </div>
 
     {{-- Alpine.js Plugins --}}
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
@@ -324,6 +401,78 @@
                 observer.observe(el);
             });
         });
+
+        // WhatsApp Button Visibility Control
+        (function() {
+            const whatsappButton = document.getElementById('whatsapp-button');
+            if (!whatsappButton) return;
+
+            const heroSection = document.querySelector('.hero-shell');
+            const footerSection = document.querySelector('.atha-footer');
+
+            function updateWhatsAppVisibility() {
+                let shouldHide = false;
+
+                // Check if hero section is visible in viewport
+                if (heroSection) {
+                    const heroRect = heroSection.getBoundingClientRect();
+                    // Hide if any part of hero section is visible (with 50px buffer)
+                    if (heroRect.bottom > 50 && heroRect.top < window.innerHeight) {
+                        shouldHide = true;
+                    }
+                }
+
+                // Check if footer section is visible in viewport
+                if (footerSection) {
+                    const footerRect = footerSection.getBoundingClientRect();
+                    // Hide if footer is visible (with 100px buffer from bottom)
+                    if (footerRect.top < window.innerHeight - 100) {
+                        shouldHide = true;
+                    }
+                }
+
+                // Update visibility
+                if (shouldHide) {
+                    whatsappButton.classList.add('hidden');
+                } else {
+                    whatsappButton.classList.remove('hidden');
+                }
+            }
+
+            // Update on scroll for real-time feedback
+            let ticking = false;
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        updateWhatsAppVisibility();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }, { passive: true });
+
+            // Also use Intersection Observer for better performance
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: [0, 0.1, 0.5, 1]
+            };
+
+            const visibilityObserver = new IntersectionObserver(() => {
+                updateWhatsAppVisibility();
+            }, observerOptions);
+
+            // Observe hero and footer sections
+            if (heroSection) {
+                visibilityObserver.observe(heroSection);
+            }
+            if (footerSection) {
+                visibilityObserver.observe(footerSection);
+            }
+
+            // Initial check
+            updateWhatsAppVisibility();
+        })();
     </script>
     <script>
         // Reusable Alpine counter for stat blocks

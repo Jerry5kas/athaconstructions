@@ -48,22 +48,22 @@
     $faqsToUse = !empty($propFaqs) ? $propFaqs : (!empty($globalFaqs) ? $globalFaqs : $defaultFaqs);
 @endphp
 
-<section class="faq-section py-12 lg:py-16 bg-white relative overflow-hidden" 
+<section class="faq-section py-10 lg:py-14 bg-white relative overflow-hidden" 
          x-data="{ openFaq: null, visible: false }"
          x-intersect="visible = true">
     
     {{-- Background Pattern --}}
     <div class="absolute inset-0 faq-bg-pattern"></div>
     
-    <div class="container mx-auto px-4 relative z-10">
-        {{-- Section Header --}}
-        <div class="text-center mb-12 lg:mb-16">
-            <h2 class="font-tenor text-3xl lg:text-4xl uppercase mb-4 faq-title opacity-0"
+    <div class="container mx-auto px-4 lg:px-8 relative z-10">
+        {{-- Compact Section Header --}}
+        <div class="text-center mb-10 lg:mb-12">
+            <h2 class="font-tenor text-2xl lg:text-3xl uppercase mb-3 faq-title opacity-0"
                 :class="{ 'animate-fade-in-up': visible }" 
                 style="animation-delay: 0.2s;">
                 {{ $title }}
             </h2>
-            <div class="w-24 h-0.5 bg-black mx-auto faq-divider opacity-0"
+            <div class="w-16 h-0.5 bg-black mx-auto faq-divider opacity-0"
                  :class="{ 'animate-fade-in-up': visible }" 
                  style="animation-delay: 0.3s;"></div>
         </div>
@@ -71,7 +71,7 @@
         {{-- FAQ Items --}}
         <div class="max-w-3xl mx-auto">
             @foreach($faqsToUse as $index => $faq)
-                <div class="faq-item mb-4 opacity-0"
+                <div class="faq-item mb-3 opacity-0"
                      :class="{ 'animate-fade-in-up': visible }" 
                      style="animation-delay: {{ 0.4 + ($index * 0.1) }}s;">
                     <div class="faq-question-wrapper">
@@ -127,16 +127,16 @@
 
     /* Divider */
     .faq-divider {
-        transition: width 0.6s ease;
+        transition: width 0.4s ease;
     }
 
     .faq-section:hover .faq-divider {
-        width: 120px;
+        width: 100px;
     }
 
     /* FAQ Item */
     .faq-item {
-        border-bottom: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e8e8e8;
         transition: all 0.3s ease;
     }
 
@@ -155,14 +155,15 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 1.25rem 1.5rem;
-        background: #f8f8f8;
-        border: 1px solid #e5e5e5;
+        padding: 1rem 1.25rem;
+        background: #f9f9f9;
+        border: 1px solid #e8e8e8;
         text-align: left;
         cursor: pointer;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
         overflow: hidden;
+        border-radius: 4px;
     }
 
     .faq-question-button::before {
@@ -172,8 +173,8 @@
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.05), transparent);
-        transition: left 0.5s ease;
+        background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.04), transparent);
+        transition: left 0.4s ease;
     }
 
     .faq-question-button:hover::before {
@@ -181,31 +182,34 @@
     }
 
     .faq-question-button:hover {
-        background: #f0f0f0;
-        border-color: #d0d0d0;
-        transform: translateX(4px);
+        background: #f5f5f5;
+        border-color: #d5d5d5;
+        transform: translateX(2px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
 
     .faq-question-button-active {
         background: #1a1a1a;
         border-color: #1a1a1a;
         color: white;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     .faq-question-button-active:hover {
         background: #2a2a2a;
         border-color: #2a2a2a;
         transform: translateX(0);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
     /* Question Text */
     .faq-question-text {
-        font-size: 0.9375rem;
+        font-size: 0.875rem;
         font-weight: 600;
         line-height: 1.5;
         color: #1a1a1a;
         flex: 1;
-        padding-right: 1rem;
+        padding-right: 0.75rem;
         transition: color 0.3s ease;
     }
 
@@ -216,8 +220,8 @@
     /* Icon Wrapper */
     .faq-icon-wrapper {
         flex-shrink: 0;
-        width: 24px;
-        height: 24px;
+        width: 22px;
+        height: 22px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -227,13 +231,13 @@
     }
 
     .faq-question-button-active .faq-icon-wrapper {
-        background: rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.15);
     }
 
     /* Icon */
     .faq-icon {
-        width: 14px;
-        height: 14px;
+        width: 12px;
+        height: 12px;
         color: #1a1a1a;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -254,15 +258,16 @@
 
     /* Answer */
     .faq-answer {
-        padding: 1.5rem;
+        padding: 1.25rem 1.25rem 1.25rem 1.5rem;
         background: #fafafa;
-        border-left: 3px solid #1a1a1a;
+        border-left: 2px solid #1a1a1a;
         margin-top: 0;
+        border-radius: 0 0 4px 4px;
     }
 
     .faq-answer p {
-        font-size: 0.9375rem;
-        line-height: 1.7;
+        font-size: 0.875rem;
+        line-height: 1.6;
         color: #4a4a4a;
         margin: 0;
     }
@@ -286,19 +291,31 @@
     /* Responsive Adjustments */
     @media (max-width: 767px) {
         .faq-question-button {
-            padding: 1rem 1.25rem;
+            padding: 0.875rem 1rem;
         }
 
         .faq-question-text {
-            font-size: 0.875rem;
+            font-size: 0.8125rem;
+            padding-right: 0.5rem;
+        }
+
+        .faq-icon-wrapper {
+            width: 20px;
+            height: 20px;
+        }
+
+        .faq-icon {
+            width: 11px;
+            height: 11px;
         }
 
         .faq-answer {
-            padding: 1.25rem;
+            padding: 1rem 1rem 1rem 1.25rem;
         }
 
         .faq-answer p {
-            font-size: 0.875rem;
+            font-size: 0.8125rem;
+            line-height: 1.55;
         }
     }
 </style>

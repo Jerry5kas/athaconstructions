@@ -3,123 +3,485 @@
     :description="$seo['description']" 
     :keywords="$seo['keywords']"
 >
-    {{-- Hero Section with Video Play --}}
+    {{-- Enhanced Hero Section with Advanced Video Player --}}
+    @php
+        // Detect video type and format URL
+        $videoUrl = $property->video_url ?? null;
+        $isYouTube = $videoUrl && (strpos($videoUrl, 'youtube.com') !== false || strpos($videoUrl, 'youtu.be') !== false);
+        $isVimeo = $videoUrl && strpos($videoUrl, 'vimeo.com') !== false;
+        $isDirectVideo = $videoUrl && !$isYouTube && !$isVimeo;
+        
+        // Format YouTube/Vimeo embed URL
+        if ($isYouTube) {
+            preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/', $videoUrl, $matches);
+            $videoId = $matches[1] ?? null;
+            $embedUrl = $videoId ? "https://www.youtube.com/embed/{$videoId}?autoplay=1&rel=0&modestbranding=1&showinfo=0" : null;
+        } elseif ($isVimeo) {
+            preg_match('/vimeo\.com\/(\d+)/', $videoUrl, $matches);
+            $videoId = $matches[1] ?? null;
+            $embedUrl = $videoId ? "https://player.vimeo.com/video/{$videoId}?autoplay=1&title=0&byline=0&portrait=0" : null;
+        } else {
+            $embedUrl = $videoUrl;
+        }
+    @endphp
+
     <section 
         x-data="{
             showVideo: false,
-            videoIframe: null,
+            isPlaying: false,
+            videoLoaded: false,
             init() {
-                this.$watch('showVideo', (value) => {
-                    if (value) {
-                        // Try to detect video end (for YouTube/Vimeo)
-                        this.setupVideoEndDetection();
+                // Handle escape key to close video
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && this.showVideo) {
+                        this.closeVideo();
                     }
                 });
             },
-            setupVideoEndDetection() {
-                // This will be handled by the close button for now
-                // Video end detection in iframe requires postMessage API
+            openVideo() {
+                this.showVideo = true;
+                this.isPlaying = true;
+                // Prevent body scroll when video is open
+                document.body.style.overflow = 'hidden';
             },
             closeVideo() {
                 this.showVideo = false;
-                this.videoIframe = null;
+                this.isPlaying = false;
+                this.videoLoaded = false;
+                // Restore body scroll
+                document.body.style.overflow = '';
+            },
+            onVideoLoad() {
+                this.videoLoaded = true;
             }
         }"
-        class="relative overflow-hidden bg-gray-900 h-screen flex items-center">
+        class="property-hero-section relative overflow-hidden bg-black h-screen lg:h-[80vh] flex items-center justify-center">
         
-        {{-- Background Image with Fade Transition --}}
+        {{-- Background Image with Parallax Effect --}}
         <div 
             x-show="!showVideo"
-            x-transition:enter="transition ease-out duration-700"
-            x-transition:enter-start="opacity-0"
-            x-transition:enter-end="opacity-100"
-            x-transition:leave="transition ease-in duration-500"
-            x-transition:leave-start="opacity-100"
-            x-transition:leave-end="opacity-0"
-            class="absolute inset-0">
+            x-transition:enter="transition ease-out duration-1000"
+            x-transition:enter-start="opacity-0 scale-110"
+            x-transition:enter-end="opacity-100 scale-100"
+            x-transition:leave="transition ease-in duration-700"
+            x-transition:leave-start="opacity-100 scale-100"
+            x-transition:leave-end="opacity-0 scale-110"
+            class="property-hero-bg absolute inset-0">
             @if($property->featured_image)
                 <img 
                     src="{{ $property->featured_image_url }}" 
                     alt="{{ $property->title }}"
-                    class="w-full h-full object-cover opacity-30"
+                    class="property-hero-image w-full h-full object-cover"
+                    loading="eager"
                 >
             @endif
-            <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
+            {{-- Enhanced Gradient Overlay --}}
+            <div class="property-hero-overlay absolute inset-0"></div>
+            {{-- Animated Background Pattern --}}
+            <div class="property-hero-pattern absolute inset-0"></div>
         </div>
         
-        {{-- Video Player with Fade Transition --}}
-        @if($property->video_url)
+        {{-- Advanced Video Player Modal --}}
+        @if($videoUrl && $embedUrl)
             <div 
                 x-show="showVideo"
+                x-cloak
                 x-transition:enter="transition ease-out duration-700"
                 x-transition:enter-start="opacity-0"
                 x-transition:enter-end="opacity-100"
                 x-transition:leave="transition ease-in duration-500"
                 x-transition:leave-start="opacity-100"
                 x-transition:leave-end="opacity-0"
-                class="absolute inset-0 w-full h-full z-20">
-                <iframe
-                    x-ref="videoFrame"
-                    class="w-full h-full"
-                    :src="showVideo ? '{{ $property->video_url }}?autoplay=1' : ''"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
+                class="property-video-modal absolute inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center"
+                @click.self="closeVideo()"
+                @keydown.escape.window="closeVideo()">
                 
-                {{-- Close Video Button --}}
-                <button
-                    @click="closeVideo()"
-                    class="absolute top-6 right-6 z-30 inline-flex items-center justify-center w-12 h-12 lg:w-14 lg:h-14 bg-black/40 backdrop-blur-md border border-white/20 hover:bg-black/60 hover:border-white/40 transition-all duration-300 group">
-                    <svg class="w-6 h-6 lg:w-7 lg:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                    </svg>
-                </button>
+                {{-- Video Container --}}
+                <div 
+                    class="property-video-container relative w-full h-full flex items-center justify-center"
+                    @click.stop>
+                    {{-- Video Wrapper --}}
+                    <div class="property-video-wrapper relative w-full h-full flex items-center justify-center" 
+                         :class="videoLoaded ? 'opacity-100' : 'opacity-0'"
+                         x-transition:enter="transition ease-out duration-500 delay-300"
+                         x-transition:enter-start="opacity-0 scale-95"
+                         x-transition:enter-end="opacity-100 scale-100">
+                        @if($isYouTube || $isVimeo)
+                            <iframe
+                                x-ref="videoFrame"
+                                class="property-video-iframe w-full h-full rounded-lg shadow-2xl"
+                                :src="showVideo ? '{{ $embedUrl }}' : ''"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen
+                                @load="onVideoLoad()">
+                            </iframe>
+                        @else
+                            <video
+                                x-ref="videoElement"
+                                class="property-video-iframe w-full h-full rounded-lg shadow-2xl"
+                                :src="showVideo ? '{{ $embedUrl }}' : ''"
+                                controls
+                                autoplay
+                                @loadeddata="onVideoLoad()">
+                                Your browser does not support the video tag.
+                            </video>
+                        @endif
+                    </div>
+                    
+                    {{-- Close Button --}}
+                    <button
+                        @click="closeVideo()"
+                        class="property-video-close absolute top-4 right-4 lg:top-8 lg:right-8 z-40 group"
+                        aria-label="Close video">
+                        <div class="property-video-close-bg"></div>
+                        <svg class="property-video-close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+
+                    {{-- Loading Indicator --}}
+                    <div 
+                        x-show="!videoLoaded"
+                        class="absolute inset-0 flex items-center justify-center">
+                        <div class="property-video-loader">
+                            <div class="property-video-loader-ring"></div>
+                            <div class="property-video-loader-ring"></div>
+                            <div class="property-video-loader-ring"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         @endif
 
-        {{-- Content (Title, Location, Play Button) - Hidden when video plays --}}
+        {{-- Hero Content --}}
         <div 
             x-show="!showVideo"
-            x-transition:enter="transition ease-out duration-500"
-            x-transition:enter-start="opacity-0 translate-y-4"
+            x-transition:enter="transition ease-out duration-700 delay-200"
+            x-transition:enter-start="opacity-0 translate-y-8"
             x-transition:enter-end="opacity-100 translate-y-0"
-            x-transition:leave="transition ease-in duration-300"
+            x-transition:leave="transition ease-in duration-500"
             x-transition:leave-start="opacity-100 translate-y-0"
-            x-transition:leave-end="opacity-0 translate-y-4"
-            class="container mx-auto px-4 lg:px-8 relative z-10">
-            <div class="max-w-5xl mx-auto text-center text-white">
-                <h1 class="font-tenor text-3xl lg:text-5xl xl:text-6xl uppercase mb-4 leading-tight">
-                    {{ $property->title }}
-                </h1>
+            x-transition:leave-end="opacity-0 translate-y-8"
+            class="property-hero-content container mx-auto px-4 lg:px-8 relative z-10">
+            <div class="max-w-5xl mx-auto text-center">
+                {{-- Title with Decorative Elements --}}
+                <div class="property-hero-title-wrapper mb-6">
+                    <h1 class="font-tenor text-4xl lg:text-6xl xl:text-7xl uppercase mb-6 leading-tight text-white property-hero-title">
+                        {{ $property->title }}
+                    </h1>
+                    <div class="property-hero-title-accent mx-auto"></div>
+                </div>
+                
+                {{-- Location with Icon --}}
                 @if($property->location)
-                    <div class="flex items-center justify-center gap-2 text-base lg:text-lg text-white/90 mb-8">
-                        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                        </svg>
-                        <span>{{ $property->location->city }}</span>
+                    <div class="property-hero-location flex items-center justify-center gap-3 text-base lg:text-lg text-white/90 mb-10">
+                        <div class="property-hero-location-icon">
+                            <svg class="w-5 h-5 lg:w-6 lg:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </div>
+                        <span class="font-medium">{{ $property->location->city }}</span>
                         @if($property->location->locality)
-                            <span class="text-white/70">•</span>
+                            <span class="text-white/50">•</span>
                             <span class="text-white/80">{{ $property->location->locality }}</span>
                         @endif
                     </div>
                 @endif
                 
-                {{-- Video Play Button --}}
-                @if($property->video_url)
+                {{-- Enhanced Video Play Button --}}
+                @if($videoUrl)
                     <button
-                        @click="showVideo = true"
-                        class="inline-flex items-center gap-2 px-4 py-2 lg:px-5 lg:py-2.5 bg-black/30 backdrop-blur-md border border-white/20 text-white hover:bg-black/40 hover:border-white/30 transition-all duration-300 font-semibold text-sm lg:text-base">
-                        <svg class="w-4 h-4 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z"/>
-                        </svg>
-                        <span>Play</span>
+                        @click="openVideo()"
+                        class="property-hero-play-btn group inline-flex items-center gap-3 px-6 py-3 lg:px-8 lg:py-4 bg-white/10 backdrop-blur-md border-2 border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-500 font-semibold text-sm lg:text-base uppercase tracking-wider">
+                        <div class="property-hero-play-icon">
+                            <svg class="w-5 h-5 lg:w-6 lg:h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                        <span>Watch Video</span>
                     </button>
                 @endif
             </div>
         </div>
+
+        {{-- Scroll Indicator --}}
+        <div 
+            x-show="!showVideo"
+            class="property-hero-scroll absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+            <svg class="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+        </div>
     </section>
+
+    @once
+    <style>
+        /* Property Hero Section Styles */
+        .property-hero-section {
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Background Image */
+        .property-hero-bg {
+            will-change: transform;
+        }
+
+        .property-hero-image {
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .property-hero-section:hover .property-hero-image {
+            transform: scale(1.05);
+        }
+
+        /* Enhanced Gradient Overlay */
+        .property-hero-overlay {
+            background: linear-gradient(
+                180deg,
+                rgba(0, 0, 0, 0.4) 0%,
+                rgba(0, 0, 0, 0.6) 50%,
+                rgba(0, 0, 0, 0.8) 100%
+            );
+        }
+
+        /* Animated Background Pattern */
+        .property-hero-pattern {
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+            background-size: 600px 600px;
+            animation: patternMove 20s ease-in-out infinite;
+        }
+
+        @keyframes patternMove {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 30px); }
+        }
+
+        /* Hero Content */
+        .property-hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Title Wrapper */
+        .property-hero-title-wrapper {
+            position: relative;
+        }
+
+        .property-hero-title {
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            letter-spacing: 0.02em;
+        }
+
+        .property-hero-title-accent {
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+            margin-top: 1rem;
+            transition: width 0.5s ease;
+        }
+
+        .property-hero-section:hover .property-hero-title-accent {
+            width: 180px;
+        }
+
+        /* Location */
+        .property-hero-location {
+            transition: all 0.3s ease;
+        }
+
+        .property-hero-location-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .property-hero-section:hover .property-hero-location-icon {
+            transform: scale(1.1);
+        }
+
+        /* Enhanced Play Button */
+        .property-hero-play-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .property-hero-play-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .property-hero-play-btn:hover::before {
+            left: 100%;
+        }
+
+        .property-hero-play-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .property-hero-play-btn:hover .property-hero-play-icon {
+            transform: scale(1.2);
+        }
+
+        .property-hero-play-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Video Modal */
+        .property-video-modal {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .property-video-container {
+            position: relative;
+            height: 100%;
+        }
+
+        .property-video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .property-video-iframe {
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Close Button */
+        .property-video-close {
+            position: relative;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .property-video-close:hover {
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .property-video-close-bg {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .property-video-close:hover .property-video-close-bg {
+            background: rgba(0, 0, 0, 0.8);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .property-video-close-icon {
+            position: relative;
+            width: 24px;
+            height: 24px;
+            color: white;
+            z-index: 1;
+        }
+
+        /* Loading Indicator */
+        .property-video-loader {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .property-video-loader-ring {
+            width: 12px;
+            height: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .property-video-loader-ring:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .property-video-loader-ring:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .property-video-loader-ring:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Scroll Indicator */
+        .property-hero-scroll {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1023px) {
+            .property-hero-title {
+                font-size: 2.5rem;
+            }
+
+            .property-video-close {
+                width: 40px;
+                height: 40px;
+            }
+
+            .property-video-close-icon {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .property-hero-title {
+                font-size: 2rem;
+            }
+
+            .property-video-container {
+                padding: 1rem;
+            }
+        }
+    </style>
+    @endonce
 
     {{-- Compact Overview Section --}}
     <section class="pt-8 lg:pt-12 bg-white">

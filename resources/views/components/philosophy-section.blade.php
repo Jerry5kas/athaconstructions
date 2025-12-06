@@ -3,10 +3,15 @@
     'title' => 'OUR PHILOSOPHY',
     'mainQuote' => 'Construction is more than building structures.',
     'supportingText' => 'Our philosophy is to create meaningful spaces that nurture growth, feel effortlessly comfortable, and are built on uncompromising trust.',
-    'image' => 'images/banner.jpg',
-    'imageAlt' => 'Modern skyline representing Atha Construction philosophy',
-    'image' => 'images/banner.jpg',
-    'imageAlt' => 'Modern skyline representing Atha Construction philosophy',
+    'images' => [
+        'images/logo mockup 1.png',
+        'images/logo mockup 2.png',
+        'images/logo mockup 3.png',
+        'images/logo mockup 4.png',
+        'images/logo mockup 5.png',
+        'images/logo mockup 6.png',
+    ],
+    'carouselInterval' => 4000, // Auto-transition interval in milliseconds
     'pillars' => [
         ['label' => 'Growth', 'icon' => 'growth'],
         ['label' => 'Comfort', 'icon' => 'comfort'],
@@ -14,75 +19,122 @@
     ],
 ])
 
-<section class="py-20 lg:py-28 relative philosophy-section overflow-hidden" 
-         x-data="{ visible: false }" 
+<section class="py-12 lg:py-16 relative philosophy-section overflow-hidden" 
+         x-data="{ 
+             visible: false,
+             currentSlide: 0,
+             totalSlides: {{ count($images) }},
+             interval: null,
+             carouselStarted: false,
+             init() {
+                 setTimeout(() => {
+                     if (this.totalSlides > 1) {
+                         this.startCarousel();
+                         this.carouselStarted = true;
+                     }
+                 }, 2000);
+             },
+             startCarousel() {
+                 this.stopCarousel();
+                 this.interval = setInterval(() => {
+                     this.nextSlide();
+                 }, {{ $carouselInterval }});
+             },
+             stopCarousel() {
+                 if (this.interval) {
+                     clearInterval(this.interval);
+                     this.interval = null;
+                 }
+             },
+             nextSlide() {
+                 this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+             }
+         }"
+         @mouseenter="stopCarousel()"
+         @mouseleave="if (carouselStarted && totalSlides > 1) { setTimeout(() => startCarousel(), 500); }"
          x-intersect="visible = true">
-    {{-- Sophisticated Background Pattern --}}
+    {{-- Background Pattern --}}
     <div class="absolute inset-0 pointer-events-none">
-        {{-- Grid Pattern --}}
-        <div class="absolute inset-0 philosophy-grid-pattern opacity-[0.03]"></div>
+        <div class="absolute inset-0 philosophy-grid-pattern opacity-[0.02]"></div>
     </div>
 
-    <div class="container mx-auto px-4 relative z-10">
+    <div class="container mx-auto px-4 lg:px-8 relative z-10">
         <div class="max-w-7xl mx-auto">
-            {{-- Section Header with Elegant Design --}}
-            <div class="text-center mb-16 lg:mb-20">
-                <div class="inline-block mb-6">
-                    <span class="font-tenor text-5xl lg:text-7xl text-black/5 font-bold tracking-tight">
+            {{-- Compact Section Header --}}
+            <div class="text-center mb-10 lg:mb-12">
+                <div class="inline-block mb-3">
+                    <span class="font-tenor text-3xl lg:text-5xl text-black/5 font-bold tracking-tight">
                         {{ $backgroundTitle }}
                     </span>
                 </div>
-                <h2 class="font-tenor text-3xl lg:text-4xl uppercase mb-4 animate-on-scroll opacity-0 relative inline-block" style="animation-delay: 0.1s;">
+                <h2 class="font-tenor text-2xl lg:text-3xl uppercase mb-3 animate-on-scroll opacity-0 relative inline-block" style="animation-delay: 0.1s;">
                     {{ $title }}
-                    <span class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-20 h-0.5 bg-black"></span>
+                    <span class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-16 h-0.5 bg-black"></span>
                 </h2>
             </div>
 
-            {{-- Main Philosophy Content - Split Design --}}
-            <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                {{-- Left Side: Visual Element --}}
-                <div class="lg:col-span-5 order-2 lg:order-1">
-                    <div class="philosophy-visual-container animate-on-scroll opacity-0" style="animation-delay: 0.3s;">
-                        {{-- Elegant Frame Design --}}
-                        <div class="philosophy-visual-frame">
-                            {{-- Image with dark overlay and centered logo --}}
-                            <img 
-                                src="{{ asset($image) }}" 
-                                alt="{{ $imageAlt }}" 
-                                class="philosophy-image"
-                            >
-                            <div class="philosophy-image-overlay"></div>
-                            <div class="philosophy-logo-wrapper">
+            {{-- Main Philosophy Content - Compact Split Design --}}
+            <div class="grid lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+                {{-- Left Side: Visual Element with Auto-Transitioning Carousel --}}
+                <div class="lg:col-span-5 order-2 lg:order-1 flex">
+                    <div class="philosophy-visual-container animate-on-scroll opacity-0 w-full" style="animation-delay: 0.3s;">
+                        {{-- Compact Frame Design --}}
+                        <div class="philosophy-visual-frame h-full">
+                            {{-- Carousel Container --}}
+                            <div class="philosophy-carousel-container relative w-full h-full overflow-hidden">
+                                @foreach($images as $index => $imagePath)
+                                    <div 
+                                        x-show="currentSlide === {{ $index }}"
+                                        x-transition:enter="transition ease-out duration-1000"
+                                        x-transition:enter-start="opacity-0"
+                                        x-transition:enter-end="opacity-100"
+                                        x-transition:leave="transition ease-in duration-1000"
+                                        x-transition:leave-start="opacity-100"
+                                        x-transition:leave-end="opacity-0"
+                                        class="absolute inset-0"
+                                        style="{{ $index === 0 ? '' : 'display: none;' }}"
+                                    >
+                                        <img 
+                                            src="{{ asset($imagePath) }}" 
+                                            alt="Atha Construction Philosophy - Image {{ $index + 1 }}" 
+                                            class="philosophy-image"
+                                            loading="{{ $index === 0 ? 'eager' : 'lazy' }}"
+                                        >
+                                    </div>
+                                @endforeach
+                            </div>
+                            <!-- <div class="philosophy-image-overlay"></div> -->
+                            <!-- <div class="philosophy-logo-wrapper">
                                 <img 
                                     src="{{ asset('images/Atha Logo - High Quality-White.png') }}" 
                                     alt="Atha Construction" 
                                     class="philosophy-logo"
                                 >
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
 
                 {{-- Right Side: Philosophy Text --}}
-                <div class="lg:col-span-7 order-1 lg:order-2">
-                    <div class="philosophy-content-wrapper">
+                <div class="lg:col-span-7 order-1 lg:order-2 flex">
+                    <div class="philosophy-content-wrapper w-full flex flex-col justify-center">
                         {{-- Main Quote --}}
                         <div class="philosophy-main-quote animate-on-scroll opacity-0" style="animation-delay: 0.4s;">
-                            <p class="text-2xl lg:text-3xl leading-relaxed font-light text-gray-900 mb-4">
+                            <p class="text-xl lg:text-2xl leading-relaxed font-light text-gray-900 mb-3">
                                 {{ $mainQuote }}
                             </p>
                         </div>
 
                         {{-- Supporting Text --}}
                         <div class="philosophy-supporting-text animate-on-scroll opacity-0" style="animation-delay: 0.5s;">
-                            <p class="text-base lg:text-lg leading-relaxed text-gray-700 mb-4">
+                            <p class="text-sm lg:text-base leading-relaxed text-gray-700 mb-5">
                                 {{ $supportingText }}
                             </p>
                         </div>
 
                         {{-- Philosophy Pillars --}}
-                        <div class="philosophy-pillars mt-6 animate-on-scroll opacity-0" style="animation-delay: 0.6s;">
-                            <div class="grid grid-cols-3 gap-4 lg:gap-6">
+                        <div class="philosophy-pillars mt-4 animate-on-scroll opacity-0" style="animation-delay: 0.6s;">
+                            <div class="grid grid-cols-3 gap-3 lg:gap-4">
                                 @foreach($pillars as $pillar)
                                     <div class="philosophy-pillar">
                                         <div class="philosophy-pillar-icon">
@@ -126,11 +178,44 @@
 
 @once
 <style>
+    .philosophy-visual-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .philosophy-visual-frame {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
+
+    .philosophy-visual-frame:hover {
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+    }
+
+    .philosophy-carousel-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        flex: 1;
+        min-height: 0;
+    }
+
     .philosophy-image {
         width: 100%;
         height: 100%;
         object-fit: cover;
         display: block;
+        transition: transform 0.6s ease;
+    }
+
+    .philosophy-visual-frame:hover .philosophy-image {
+        transform: scale(1.02);
     }
 
     .philosophy-image-overlay {
@@ -138,6 +223,7 @@
         inset: 0;
         background: radial-gradient(circle at 50% 40%, rgba(0,0,0,0.2), rgba(0,0,0,0.7));
         pointer-events: none;
+        z-index: 1;
     }
 
     .philosophy-logo-wrapper {
@@ -147,6 +233,8 @@
         align-items: center;
         justify-content: center;
         padding: 1.5rem;
+        z-index: 2;
+        pointer-events: none;
     }
 
     .philosophy-logo {
@@ -154,6 +242,85 @@
         max-width: 320px;
         height: auto;
         filter: drop-shadow(0 6px 18px rgba(0,0,0,0.7));
+    }
+
+    /* Compact Content Styles */
+    .philosophy-content-wrapper {
+        padding: 0;
+    }
+
+    .philosophy-main-quote {
+        position: relative;
+        padding-left: 1.5rem;
+        border-left: 2px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .philosophy-supporting-text {
+        padding-left: 1.5rem;
+    }
+
+    .philosophy-pillar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem 0.75rem;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        background: rgba(0, 0, 0, 0.01);
+        transition: all 0.3s ease;
+        border-radius: 4px;
+    }
+
+    .philosophy-pillar:hover {
+        background: rgba(0, 0, 0, 0.03);
+        border-color: rgba(0, 0, 0, 0.15);
+        transform: translateY(-2px);
+    }
+
+    .philosophy-pillar-icon {
+        width: 28px;
+        height: 28px;
+        color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .philosophy-pillar-icon svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    .philosophy-pillar-text {
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #1a1a1a;
+    }
+
+    @media (max-width: 1023px) {
+        .philosophy-main-quote {
+            padding-left: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .philosophy-supporting-text {
+            padding-left: 1rem;
+        }
+
+        .philosophy-pillar {
+            padding: 0.75rem 0.5rem;
+        }
+
+        .philosophy-pillar-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .philosophy-pillar-text {
+            font-size: 0.65rem;
+        }
     }
 </style>
 @endonce

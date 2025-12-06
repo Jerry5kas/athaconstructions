@@ -12,6 +12,7 @@ use App\Models\Package;
 use App\Models\PackageSection;
 use App\Models\PackageFeature;
 use App\Models\Property;
+use App\Models\Testimonial;
 
 // Brevo (Sendinblue) API SDK
 use SendinBlue\Client\Configuration as BrevoConfiguration;
@@ -193,6 +194,28 @@ class HomeController extends Controller
             ],
         ];
 
+        // Get latest 3 published blogs
+        $latestBlogs = Blog::published()
+            ->with(['category', 'tags'])
+            ->orderByDesc('published_at')
+            ->orderByDesc('created_at')
+            ->limit(3)
+            ->get();
+
+        // Get published testimonials (or use placeholder if none)
+        $testimonials = Testimonial::published()
+            ->orderByDesc('published_at')
+            ->orderByDesc('created_at')
+            ->limit(5)
+            ->get()
+            ->map(function ($testimonial) {
+                return [
+                    'comment' => $testimonial->review_text,
+                    'name' => $testimonial->client_name ?: 'Anonymous',
+                    'location' => $testimonial->project_location ?: 'Bangalore',
+                ];
+            });
+
         return view('welcome', compact(
             'seo',
             'stats',
@@ -201,7 +224,9 @@ class HomeController extends Controller
             'otherContractors',
             'howItWorks',
             'faqs',
-            'heroSection'
+            'heroSection',
+            'latestBlogs',
+            'testimonials'
         ));
     }
 
